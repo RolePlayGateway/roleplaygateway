@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="[CONTENT_ENCODING/]"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="[LANG_CODE/]" lang="[LANG_CODE/]" dir="[BASE_DIRECTION/]">
+
+<head>
+	<meta http-equiv="Content-Type" content="[CONTENT_TYPE/]" />
+	<meta http-equiv="X-UA-Compatible" content="IE=8">
+	<title>[LANG]title[/LANG]</title>
+	<style type="text/css">
+		body {
+			padding:0;
+			margin:0;
+		}
+	</style>
+	[STYLE_SHEETS/]
+	<!--[if lt IE 7]>
+		<link rel="stylesheet" type="text/css" href="css/ie5-6.css"/>
+	<![endif]-->
+
+	<style type="text/css">
+		body {
+			height: 100%;
+		}
+		
+		#copyright {
+			position:absolute;
+			bottom: 10px;
+			right: 10px;
+		}
+		
+		#loginContent #loginHeadlineContainer {
+			margin-left: 10px;
+			margin-top:	10px;
+			margin-right: 10px;
+		}
+	
+		#loginContent {
+			height: 100%;
+		}
+	
+		#roleplays {
+			position:absolute;
+			bottom: 30px;
+			top: 130px;
+			right:50px;
+			left: 10px;
+			overflow: auto;
+		}
+	
+		#roleplays li {
+			background:#cdf;
+			list-style-type: none;
+			min-height: 100px;
+			padding:10px;
+			margin: 10px;
+			cursor:pointer;
+			border: 1px solid black;
+		}
+		
+		#roleplays li:hover {
+			background:#cff;
+		}
+		
+		#roleplays li img {
+			float:left;
+			margin-right:10px;
+			height:100px;
+		}
+		
+		#roleplays li p {
+			margin-top:-10px;
+			margin-right: 10px;
+		}
+		
+		#roleplays li span.stats {
+			font-size:0.8em;
+			font-style: italic;
+		}
+	</style>
+	
+	<link rel="stylesheet" type="text/css" href="css/easySlider.css" />
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.js"></script>
+	<script src="js/easySlider.js" type="text/javascript" charset="UTF-8"></script>
+	
+	<script src="js/chat.js" type="text/javascript" charset="UTF-8"></script>
+	<script src="js/lang/[LANG_CODE/].js" type="text/javascript" charset="UTF-8"></script>
+	<script src="js/config.js" type="text/javascript" charset="UTF-8"></script>
+	<script type="text/javascript">
+		// <![CDATA[
+			function handleLogin() {
+				var loginForm = document.getElementById('loginForm');
+				var userNameField = document.getElementById('userNameField');
+				var passwordField = document.getElementById('passwordField');
+				var channelField = document.getElementById('channelField');
+				var redirectField = document.getElementById('redirectField');
+				if(passwordField.value.length == 0) {
+					loginForm.setAttribute('action', '[LOGIN_URL/]');
+					userNameField.setAttribute('name', 'userName');
+				} else {
+					var channelRequest = 'channelName=' + encodeURIComponent(channelField.value);
+					var regExp = /\?/;
+					if(regExp.test(redirectField.value)) {
+						redirectField.value += '&';
+					} else {
+						redirectField.value += '?';
+					}
+					redirectField.value += channelRequest;
+				}
+				return true;
+			}
+
+			function initializeLoginPage() {
+				document.getElementById('userNameField').focus();
+				if(!ajaxChat.isCookieEnabled()) {
+					var node = document.createElement('div');
+					var text = document.createTextNode(ajaxChatLang['errorCookiesRequired']);
+					node.appendChild(text);
+					document.getElementById('errorContainer').appendChild(node);
+				}
+			}
+			
+			ajaxChatConfig.sessionName = '[SESSION_NAME/]';
+			ajaxChatConfig.cookieExpiration = parseInt('[COOKIE_EXPIRATION/]');
+			ajaxChatConfig.cookiePath = '[COOKIE_PATH/]';
+			ajaxChatConfig.cookieDomain = '[COOKIE_DOMAIN/]';
+			ajaxChatConfig.cookieSecure = '[COOKIE_SECURE/]';
+
+			ajaxChat.init(ajaxChatConfig, ajaxChatLang, true, true, false);
+		// ]]>
+	</script>	
+	
+	<base target="_parent">
+</head>
+
+<body onload="initializeLoginPage();">
+	<div id="loginContent">
+		<div id="loginHeadlineContainer">
+			<a href="http://www.roleplaygateway.com/roleplay/" style="font-size: 1.5em; float:right; padding:20px; background: #cff; border: 2px solid #cdf;">Browse All Roleplays &raquo;</a>
+			<!-- <h1>[LANG]title[/LANG]</h1> -->
+			<h1>Chat is currently part of our roleplaying system only.  We'll be launching a chat very soon&trade; that is for more general discussion.</h1>
+			<h2>Please select your roleplay to participate:</h2>
+			<p>Only roleplays that you have submitted a character to will be displayed here.  To join a specific roleplay, click "Characters" on that roleplay's page, then fill out the "Character Application" section.</p>
+			
+			<div id="roleplays">
+				[ROLEPLAY_SELECTION/]
+			</div>			
+			
+			<div id="errorContainer">[ERROR_MESSAGES/]<noscript><div>[LANG]requiresJavaScript[/LANG]</div></noscript></div>
+			
+		</div>
+		<form id="loginForm" action="[FORUM_LOGIN_URL/]" method="post" enctype="application/x-www-form-urlencoded" onsubmit="return handleLogin();">
+			<div id="loginFormContainer" style="display:none;">
+				<input type="hidden" name="login" id="loginField" value="login"/>
+				<input type="hidden" name="redirect" id="redirectField" value="[REDIRECT_URL/]"/>
+				<div><label for="userNameField">[LANG]userName[/LANG]:</label><br />
+				<input type="text" name="username" id="userNameField" maxlength="[USER_NAME_MAX_LENGTH/]"/></div>
+				<div><input type="submit" name="submit" id="loginButton" value="[LANG]login[/LANG]"/></div>
+			</div>
+		</form>
+		
+		<!--
+			Please retain the full copyright notice below including the link to blueimp.net.
+			This not only gives respect to the amount of time given freely by the developer
+			but also helps build interest, traffic and use of AJAX Chat.
+			
+			Thanks,
+			Sebastian Tschan
+		//-->
+		<div id="copyright">Proudly powered by <em>das <strong>&uuml;ber</strong>kustom</em> <a href="https://blueimp.net/ajax/">AJAX Chat</a> (&copy; <a href="https://blueimp.net">blueimp.net</a>).  <a href="http://www.ericmartindale.com/projects/">More details...</a></div>
+	</div>
+</body>
+
+</html>

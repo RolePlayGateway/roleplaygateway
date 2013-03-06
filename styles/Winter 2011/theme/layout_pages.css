@@ -1,0 +1,484 @@
+/*
+    Layouts for pages not covered in other css files
+*/
+
+
+/* notification */
+div#message, #confirm .panel, #agreement .panel {
+    margin: 40px 0;
+    border-width: 0;
+    background-color: transparent;
+    background-image: none;
+    font-size: 12px;
+}
+div#message > div, #confirm .panel > div, #agreement .panel > div { padding: 0; }
+div#message h2, #confirm h2, #agreement h2 { 
+    margin-left: 0; 
+    margin-bottom: 20px; 
+}
+
+/*
+    UCP tabs
+*/
+#tabs {
+    margin: 10px 0 6px;
+}
+#navigation, #minitabs {
+    margin: 4px 0;
+    min-height: 1em;
+}
+#tabs ul, #navigation ul, #minitabs ul {
+    list-style-type: none;
+}
+#tabs li, #navigation li, #minitabs li {
+    display: block;
+    float: left;
+}
+#tabs li a, #navigation li a, #minitabs li a {
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: 24px;
+    padding-left: 10px;
+    background: url({T_THEME_PATH}/images/tabs_right.png) top left no-repeat;
+    border-width: 0;
+    outline-style: none;
+    text-decoration: none;
+}
+#tabs li a span, #navigation li a span, #minitabs li a span {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1em;
+    white-space: nowrap;
+    padding-top: 6px;
+    padding-right: 10px;
+    height: 18px;
+    background: url({T_THEME_PATH}/images/tabs_left.png) top right no-repeat;
+    color: #0b8f12;
+    text-shadow: rgba(0,0,0,0.1) 1px 1px 1px;
+}
+#tabs li a:hover, #tabs li.activetab a, #navigation li a:hover, #navigation li#active-subsection a, #minitabs li a:hover, #minitabs li.activetab a {
+    background-position: bottom left;
+}
+#tabs li a:hover span, #tabs li.activetab a span, #navigation li a:hover span, #navigation li#active-subsection a span, #minitabs li a:hover span, #minitabs li.activetab a span {
+    background-position: bottom right;
+    color: #11b414;
+}
+#tabs li.first a, #navigation li.first a, #minitabs li.first a {
+    background-image: url({T_THEME_PATH}/images/tabs_left.png);
+    padding-left: 14px;
+}
+
+#tabs li.last a, #navigation li.last a, #minitabs li.last a {
+    background-position: top right;
+    padding-right: 14px;
+    padding-left: 0;
+}
+#tabs li.last a span, #navigation li.last a span, #minitabs li.last a span {
+    background-image: url({T_THEME_PATH}/images/tabs_right.png);
+    background-position: top left;
+    padding-left: 10px;
+    padding-right: 0;
+}
+
+#tabs li.last a:hover, #tabs li.activetab.last a, #navigation li.last a:hover, #navigation li#active-subsection.last a, #minitabs li.last a:hover, #minitabs li.activetab.last a {
+    background-position: bottom right;
+}
+#tabs li.last a:hover span, #tabs li.activetab.last a span, #navigation li.last a:hover span, #navigation li#active-subsection.last a span, #minitabs li.last a:hover span, #minitabs li.activetab.last a span {
+    background-position: bottom left;
+}
+#navigation strong, #tabs strong, #minitabs strong { 
+    color: #d71026; 
+    font-weight: normal;
+}
+li.activetab strong, #active-subsection strong,
+#navigation a:hover strong, #tabs a:hover strong, #minitabs a:hover strong {
+    color: #11b414;
+}
+
+
+
+/*
+    UCP stuff
+*/
+p.linkmcp { color: #999; }
+
+#cp-main > h2, #cp-main > form > h2 {
+    font-family: Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+	font-weight: normal;
+	margin: 8px 0;
+	padding: 0;
+	font-size: 16px;
+	color: #d71026;
+    font-size: 20px;
+    font-weight: normal;
+    text-shadow: #ddd 2px 3px 1px;
+    margin: 14px 2px;
+}
+
+#cp-main h3 {
+    margin: 6px 0;
+}
+
+
+#cp-main .content {
+	padding: 0;
+}
+
+#cp-main .panel ol {
+	margin-left: 2em;
+	font-size: 11px;
+}
+
+ul.cplist {
+	margin-bottom: 5px;
+}
+
+#cp-main table.table1 {
+	margin-bottom: 1em;
+}
+
+#cp-main .pagination {
+	float: right;
+	width: auto;
+	padding-top: 1px;
+}
+
+#cp-main .postbody p {
+	font-size: 12px;
+}
+
+#cp-main .pm-message {
+	border: 1px solid #e2e2e2;
+	margin: 10px 0;
+	background-color: #FFFFFF;
+	width: auto;
+	float: none;
+}
+
+.pm-message h2 {
+	padding-bottom: 5px;
+}
+
+#cp-main .postbody h3, #cp-main .box2 h3 {
+	margin-top: 0;
+}
+
+#cp-main .buttons {
+	margin-left: 0;
+}
+
+#cp-main ul.linklist {
+	margin: 0;
+}
+
+/* MCP Specific tweaks */
+.mcp-main .postbody {
+	width: 100%;
+}
+
+
+/* Friends list */
+.cp-mini {
+	background-color: #f9f9f9;
+	padding: 0 5px;
+	margin: 5px 5px 0 0;
+	float: left;
+}
+
+.cp-mini > div {
+    padding: 5px 2px;
+}
+
+dl.mini dt {
+	font-weight: normal;
+	color: #649bf4;
+	font-size: 14px;
+	line-height: 1.3em;
+    font-family: Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+}
+
+dl.mini dd {
+	padding-top: 4px;
+}
+
+.friend-online {
+	font-weight: bold;
+}
+
+.friend-offline {
+	font-style: italic;
+}
+
+/* PM Styles
+----------------------------------------*/
+#pm-menu {
+	line-height: 2.5em;
+}
+
+/* PM panel adjustments */
+.pm-panel-header {
+}
+
+.reply-all {
+	display: block; 
+	padding-top: 4px; 
+	clear: both;
+	float: left;
+}
+
+.pm-return-to {
+	padding-top: 23px;
+}
+
+#cp-main .pm-message-nav {
+	margin: 0; 
+	padding: 2px 10px 5px 10px; 
+}
+
+/* PM Message history */
+.current {
+	color: #999999;
+}
+
+/* Defined rules list for PM options */
+ol.def-rules {
+	padding-left: 0;
+}
+
+ol.def-rules li {
+	line-height: 180%;
+	padding: 1px;
+}
+
+/* PM marking colours */
+.pmlist li.bg1, .pmlist li.bg2 {
+	margin: 2px;
+}
+
+.pmlist li.bg1 dl, .pmlist li.bg2 dl {
+    border: solid 1px rgba(214, 214, 214, 0.5);
+	border-width: 0 3px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+.pmlist li.pm_message_reported_colour dl, .pm_message_reported_colour {
+	border-color: #d71026;
+}
+
+.pmlist li.pm_marked_colour dl, .pm_marked_colour {
+	border-color: #11b414;
+}
+
+.pmlist li.pm_replied_colour dl, .pm_replied_colour {
+	border-color: #649bf4;
+}
+
+.pmlist li.pm_friend_colour dl, .pm_friend_colour {
+	border-color: #0b8f12;
+}
+
+.pmlist li.pm_foe_colour dl, .pm_foe_colour {
+	border-color: #d71026;
+}
+
+
+
+.pm-legend {
+	border-left-width: 10px;
+	border-left-style: solid;
+	border-right-width: 0;
+	margin-bottom: 3px;
+	padding-left: 3px;
+}
+
+/* Avatar gallery */
+#gallery label {
+	position: relative;
+	float: left;
+	margin: 10px;
+	padding: 5px;
+	width: auto;
+	background: #FFFFFF;
+	border: 1px solid #CCC;
+	text-align: center;
+}
+
+#gallery label:hover {
+	background-color: #EEE;
+}
+
+/* Topic review panel
+----------------------------------------*/
+#review {
+	margin-top: 2em;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 1.4em;
+	color: #649bf4;
+}
+
+#topicreview {
+	padding-right: 5px;
+	overflow: auto;
+	height: 300px;
+}
+
+#topicreview .postbody {
+	width: auto;
+	float: none;
+	margin: 0;
+	height: auto;
+}
+
+#topicreview .post {
+	height: auto;
+}
+
+#topicreview h2 {
+	border-bottom-width: 0;
+}
+
+.post-ignore .postbody {
+	display: none;
+}
+
+/* MCP Post details
+----------------------------------------*/
+#post_details
+{
+	/* This will only work in IE7+, plus the others */
+	overflow: auto;
+	max-height: 300px;
+}
+
+#expand
+{
+	clear: both;
+}
+
+
+/* FAQ */
+dl.faq {
+	margin-top: 5px;
+	margin-bottom: 20px;
+	line-height: 1.4em;
+}
+
+dl.faq dt {
+	font-weight: normal;
+    font-family: Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+	font-size: 14px;
+	color: #649bf4;
+	line-height: 1.4em;
+}
+dl.faq dt strong { font-weight: normal; }
+
+.content dl.faq {
+	font-size: 12px;
+	margin-bottom: 0.5em;
+}
+
+.column1 {
+	float: left;
+	clear: left;
+	width: 49%;
+}
+
+.column2 {
+	float: right;
+	clear: right;
+	width: 49%;
+}
+
+
+/* Table styles
+----------------------------------------*/
+table.table1 {
+    width: 100%;
+}
+
+#ucp-main table.table1 {
+	margin: 2px;
+}
+
+table.table1 th {
+	font-weight: normal;
+    border: solid 1px transparent; /* rgba(100, 155, 244,  0.2); */
+    background: url({T_THEME_PATH}/images/popupbg.png) 0 -2px repeat-x;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    line-height: 1.2em;
+    padding: 2px 4px;
+}
+table.table1 thead th a, table.table1 thead th a:visited {
+    color: rgba(255, 255, 255, 0.8);
+}
+table.table1 thead th a:hover {
+    color: #fff;
+}
+
+table.table1 thead th span {
+	padding-left: 7px;
+}
+
+table.table1 tbody tr:hover, table.table1 tbody tr.hover {
+	background-color: #fafafa;
+}
+
+table.table1 td {
+	font-size: 12px;
+	padding: 4px;
+	border: 1px solid rgba(214, 214, 214, 0.5);
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+/* Specific column styles */
+table.table1 .name		{ text-align: left; }
+table.table1 .posts		{ text-align: center !important; width: 7%; }
+table.table1 .joined	{ text-align: left; width: 15%; }
+table.table1 .active	{ text-align: left; width: 15%; }
+table.table1 .mark		{ text-align: center; width: 7%; }
+table.table1 .info		{ text-align: left; width: 30%; }
+table.table1 .info div	{ width: 100%; white-space: normal; overflow: hidden; }
+table.table1 .autocol	{ line-height: 2em; white-space: nowrap; }
+table.table1 thead .autocol { padding-left: 1em; }
+
+table.table1 span.rank-img {
+	float: right;
+	width: auto;
+}
+
+table.info td {
+	padding: 3px;
+}
+
+table.info tbody th {
+	padding: 3px;
+	text-align: right;
+	vertical-align: top;
+	color: #000000;
+	font-weight: normal;
+}
+
+/* Jump to post link for now */
+ul.searchresults {
+	list-style: none;
+	text-align: right;
+	clear: both;
+}
+.post ul.searchresults {
+    width: 68%;
+    clear: left;
+}
+
+/* Close popup */
+body.simple #page-body > a { 
+    display: block;
+    text-align: center; 
+    margin: 4px;
+}

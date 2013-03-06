@@ -1,0 +1,102 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- IF U_MCP -->
+	<div id="pageheader">
+		<p class="linkmcp">[ <a href="{U_MCP}">{L_MCP}</a> ]</p>
+	</div>
+
+	<br clear="all" /><br />
+<!-- ENDIF -->
+<!-- IF RIGHT_COL -->
+<table width="100%" cellspacing="0">
+	<tr><td valign="top" width="76%">
+<!-- ENDIF -->
+{LEFT_COL}
+<!-- IF RIGHT_COL -->
+</td><td valign="top">
+	{RIGHT_COL}</td>
+</tr>
+</table>
+<!-- ENDIF -->
+
+<!-- IF not S_USER_LOGGED_IN -->
+	<br clear="all" />
+
+	<form method="post" action="{S_LOGIN_ACTION}">
+	
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat"><h4><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a></h4></td>
+	</tr>
+	<tr>
+		<td class="row1" align="center"><span class="genmed">{L_USERNAME}:</span> <input class="post" type="text" name="username" size="10" />&nbsp; <span class="genmed">{L_PASSWORD}:</span> <input class="post" type="password" name="password" size="10" />&nbsp; <!-- IF S_AUTOLOGIN_ENABLED --> <span class="gensmall">{L_LOG_ME_IN}</span> <input type="checkbox" class="radio" name="autologin" /><!-- ENDIF -->&nbsp; <input type="submit" class="btnmain" name="login" value="{L_LOGIN}" /></td>
+	</tr>
+	</table>
+	{S_FORM_TOKEN}
+	</form>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_ONLINE_LIST -->
+	<br clear="all" />
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<!-- IF not S_SINGLE_TRAKING -->
+	<tr>
+		<td class="cat" colspan="2"><!-- IF U_VIEWONLINE --><h4><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h4><!-- ELSE --><h4>{L_WHO_IS_ONLINE}</h4><!-- ENDIF --></td>
+	</tr>
+	<!-- ENDIF -->
+	<tr>
+	<!-- IF LEGEND -->
+		<td class="row1" rowspan="2" align="center" valign="middle"><img src="{T_THEME_PATH}/images/whosonline.gif" alt="{L_WHO_IS_ONLINE}" /></td>
+	<!-- ELSE -->
+		<td class="row1" align="center" valign="middle"><img src="{T_THEME_PATH}/images/whosonline.gif" alt="{L_WHO_IS_ONLINE}" /></td>
+	<!-- ENDIF -->
+		<td class="row1" width="100%"><span class="genmed"><!-- IF not S_SINGLE_TRAKING -->{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br /><br /><!-- ENDIF -->{LOGGED_IN_USER_LIST}</span></td>
+	</tr>
+	<!-- IF LEGEND -->
+		<tr>
+			<td class="row1"><b class="gensmall">{L_LEGEND} :: {LEGEND}</b></td>
+		</tr>
+	<!-- ENDIF -->
+	</table>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_BIRTHDAY_LIST and BIRTHDAY_LIST -->
+	<br clear="all" />
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat" colspan="2"><h4>{L_BIRTHDAYS}</h4></td>
+	</tr>
+	<tr>
+		<td class="row1" align="center" valign="middle"><img src="{T_THEME_PATH}/images/whosonline.gif" alt="{L_BIRTHDAYS}" /></td>
+		<td class="row1" width="100%"><p class="genmed">{L_CONGRATULATIONS}: <b>{BIRTHDAY_LIST}</b></p></td>
+	</tr>
+	</table>
+<!-- ENDIF -->
+
+<!-- IF TOTAL_USERS -->
+<table class="tablebg" width="100%" cellspacing="1">
+<tr>
+	<td class="cat" colspan="2"><h4>{L_STATISTICS}</h4></td>
+</tr>
+<tr>
+	<td class="row1"><img src="{T_THEME_PATH}/images/whosonline.gif" alt="{L_STATISTICS}" /></td>
+	<td class="row1" width="100%" valign="middle"><p class="genmed">{TOTAL_POSTS} | {TOTAL_TOPICS} | {TOTAL_USERS}<!-- IF NEWEST_USER --> | {NEWEST_USER}<!-- ENDIF --></p></td>
+</tr>
+</table>
+<!-- ENDIF -->
+<br clear="all" />
+<!--
+	We request you retain the full copyright notice below, as well as in all templates you may use,
+	including the link to www.phpbb-seo.com.
+	This not only gives respect to the large amount of time given freely by the developers
+	but also helps build interest, traffic and use of www.phpBB-SEO.com
+	If you cannot (for good reason) retain the full copyright we request you at least leave in place the
+	"Copyright phpBB SEO" line, with "phpBB SEO" linked to www.phpbb-seo.com.
+	If you refuse to include even this, then support and further development on our forums may be affected.
+	The phpBB SEO Team : 2008.
+-->
+<div class="copyright" style="text-align:center;"><a href="http://www.phpbb-seo.com/{S_SEO_FORUM}" title="{L_FORUM} - {L_GYM_SEO}">GYM sitemaps &amp; RSS</a></div>
+<br clear="all" />
+<!-- INCLUDE overall_footer.html -->

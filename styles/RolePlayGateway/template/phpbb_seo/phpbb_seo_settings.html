@@ -1,0 +1,45 @@
+<ul class="topiclist">
+	<li class="header">
+		<dl class="icon">
+			<dt>{SEO_SETTINGS_TITLE}</dt>
+			<dd class="topics"><span>{STATUS_TITLE}</span></dd>
+			<dd class="lastpost"><span>{SEO_VALUES}</span></dd>
+		</dl>
+	</li>
+</ul>
+<!-- BEGIN settingrow -->
+<ul class="topiclist forums">
+	<li class="row">
+		<!-- IF settingrow.S_FORM -->
+		<form id="quick" action="{U_CACHE_ACTION}" method="post">
+		<!-- ENDIF -->
+			<dl class="icon" style="background-image: url({settingrow.STATUS_IMG}); background-repeat: no-repeat;">
+				<dt id="{settingrow.OPTION}">
+					<a href="#{settingrow.OPTION}" class="top2">{settingrow.TITLE}</a><br/><ul style="margin-left:20px">{settingrow.TITLE_EXPLAIN}</ul><br/>
+				</dt>
+				<dd class="topics">{settingrow.STATUS_MSG}<dfn>{STATUS_TITLE}</dfn></dd>
+				<!-- IF settingrow.S_FORM -->
+				<dd class="lastpost">
+				<fieldset><legend>{settingrow.TITLE}</legend><a href="#seo_top" class="top2" style="float:right;">{BACK_TO_TOP}</a>
+						<!-- IF not settingrow.ZD_CODE -->
+						<label><input type="radio" class="radio" name="{settingrow.OPTION}" value="1"<!-- IF settingrow.S_CHECKED --> id="{settingrow.OPTION}" checked="checked"<!-- ENDIF --> />{L_YES}</label>
+						<label><input type="radio" class="radio" name="{settingrow.OPTION}" value="0"<!-- IF not settingrow.S_CHECKED --> id="{settingrow.OPTION}" checked="checked"<!-- ENDIF --> />{L_NO}</label>
+						<!-- ENDIF -->
+						<!-- IF settingrow.ZD_CODE -->
+						{settingrow.ZD_CODE}
+						<!-- ENDIF -->
+						<br/><input type="hidden" name="sid_check" value="{SID_CHECK}" />
+						<input class="button1" type="submit" id="submit" name="update" value="{L_SUBMIT}" />&nbsp;
+						<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+					</fieldset>
+					<br/><dfn>{SEO_VALUES}</dfn>
+				</dd>
+				<!-- ENDIF -->
+
+			</dl>
+		<!-- IF settingrow.S_FORM -->
+		</form>
+		<!-- ENDIF -->
+	</li>
+</ul>
+<!-- END settingrow -->

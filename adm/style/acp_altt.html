@@ -1,0 +1,30 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_ALTT_TITLE}</h1><!-- IF ALTT_VERSION --><p>{ALTT_VERSION}</p><!-- ENDIF -->
+
+<form id="acp_board" method="post" action="{U_ACTION}">
+	<fieldset>
+		<dl>
+			<dt><label for="altt_char_limit">{L_ALTT_CHAR_LIMIT}:</label><br />
+			<span>{L_ALTT_CHAR_LIMIT_EXP}</span></dt>
+			<dd><input type="text" name="altt_char_limit" size="6" value="{ALTT_CHAR_LIMIT}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="altt_last_post">{L_ALTT_LASTPOST}:</label><br />
+			<span>{L_ALTT_LASTPOST_EXP}</span></dt>
+			<dd><input type="radio" class="radio" name="altt_last_post" value="1" <!-- IF ALTT_LASTPOST -->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp; 
+				<input type="radio" class="radio" name="altt_last_post" value="0" <!-- IF not ALTT_LASTPOST -->checked="checked"<!-- ENDIF --> /> {L_NO}</dd>
+		</dl>
+		<dl>
+			<dt><label for="altt_char_limit">{L_ALTT_ACTIVE}:</label></dt>
+			<dd><input type="radio" class="radio" name="altt_active" value="1" <!-- IF ALTT_ACTIVE -->checked="checked"<!-- ENDIF -->/> {L_YES} &nbsp; 
+				<input type="radio" class="radio" name="altt_active" value="0" <!-- IF not ALTT_ACTIVE -->checked="checked"<!-- ENDIF --> /> {L_NO}</dd>
+		</dl>
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+			<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		</p>
+	{S_FORM_TOKEN}
+	</fieldset>
+</form>
+<!-- INCLUDE overall_footer.html -->

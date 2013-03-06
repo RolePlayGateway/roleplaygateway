@@ -1,0 +1,21 @@
+Subject: Reminder from "{SITENAME}"! 
+
+Dear {USERNAME},
+
+We are writing to you as we have noticed that you registered an account on {SITENAME} a little while ago.
+
+Although your account is activated, you have yet to log in to the site. 
+
+Please find below for your ease of reference your user details and board url.
+----------------------------
+Username: {USERNAME}
+Password: *
+
+Board URL: {U_BOARD}
+----------------------------
+
+* Please note that your password has been encrypted in our database and we cannot retrieve it for you. Should you have forgotten your password you can request a new one which will be activated in the same way as your account.
+
+We look forward to your participation on {SITENAME} shortly.
+
+{EMAIL_SIG}

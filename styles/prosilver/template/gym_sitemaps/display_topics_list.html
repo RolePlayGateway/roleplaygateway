@@ -1,0 +1,100 @@
+<!-- IF DISPLAY_TOPICS_H1 --><h1><!-- IF U_TOPICS --><a href="{U_TOPICS}" title="{H1_TOPICS}">{H1_TOPICS}</a><!-- ELSE -->{H1_TOPICS}<!-- ENDIF --></h1><!-- ENDIF -->
+<!-- IF FORUM_MAP_URL or FORUM_NEWS_URL --><h3><!-- IF FORUM_NEWS_URL --><a href="{FORUM_NEWS_URL}" title="{FORUM_NEWS}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {FORUM_NEWS}</a><!-- ENDIF --> <strong>&raquo;</strong> <a href="{FORUM_URL}" title="{FORUM_NAME}">{L_FORUM} : {FORUM_NAME}</a></h3><!-- ENDIF -->
+<!-- IF MAP_DESC --><span>{MAP_DESC}<br /></span><!-- ENDIF -->
+<!-- IF MAP_RULES or MAP_RULES_LINK -->
+	<div class="rules">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<!-- IF MAP_RULES_LINK -->
+			<a href="{MAP_RULES_LINK}">{L_FORUM_RULES}</a>
+		<!-- ELSE -->
+			<strong>{L_FORUM_RULES}</strong><br />
+			{MAP_RULES}
+		<!-- ENDIF -->
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- ENDIF -->
+<!-- IF DISPLAY_PAGINATION -->
+<div class="topic-actions">
+	<div class="pagination">
+		{DISPLAY_TOTAL_TOPICS}
+		<!-- IF DISPLAY_PAGE_NUMBER --><!-- IF DISPLAY_PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{DISPLAY_PAGE_NUMBER}</a> &bull; <span>{DISPLAY_PAGINATION}</span><!-- ELSE --> &bull; {DISPLAY_PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+	</div>
+</div>
+<div class="clear"></div>
+<!-- ELSE -->
+<br/><br/>
+<!-- ENDIF -->
+<!-- BEGIN topicrow -->
+	<!-- IF not topicrow.S_TOPIC_TYPE_SWITCH and not topicrow.S_FIRST_ROW -->
+		</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<!-- ENDIF -->
+
+	<!-- IF topicrow.S_FIRST_ROW or not topicrow.S_TOPIC_TYPE_SWITCH -->
+		<div class="forumbg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt <!-- IF not DISPLAY_LAST_POST -->style="width:85%;"<!-- ENDIF -->>
+					<!-- IF FORUM_NEWS_URL --><a href="{FORUM_NEWS_URL}" title="{FORUM_NEWS}">{FORUM_NEWS}</a> <strong>&raquo;</strong> <!-- ENDIF --><!-- IF U_TOPICS --><a href="{U_TOPICS}" title="{H1_TOPICS}">{H1_TOPICS}</a><!-- ELSE -->{H1_TOPICS}<!-- ENDIF --></dt>
+					<!-- IF DISPLAY_LAST_POST --><dd class="lastpost"><span>{L_LAST_POST}</span></dd><!-- ENDIF -->
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist topics">
+	<!-- ENDIF -->
+	
+		<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+			<dl class="icon" style="background-image: url({topicrow.TOPIC_FOLDER_IMG_SRC}); background-repeat: no-repeat;">
+				<dt style="<!-- IF topicrow.TOPIC_ICON_IMG -->background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;<!-- ENDIF --><!-- IF not DISPLAY_LAST_POST -->width:85%;<!-- ENDIF -->" title="{topicrow.TOPIC_FOLDER_IMG_ALT}"><!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle" title="{topicrow.TOPIC_TITLE}">{topicrow.TOPIC_TITLE}</a>
+					<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
+					<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF --><br />
+					<!-- IF topicrow.PAGINATION --><strong class="pagination"><span>{topicrow.PAGINATION}</span></strong><!-- ENDIF -->
+					<!-- IF topicrow.ATTACH_ICON_IMG -->{topicrow.ATTACH_ICON_IMG} <!-- ENDIF -->
+					<!-- IF topicrow.TOPIC_AUTHOR_FULL -->{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL}<!-- ENDIF --> {L_POSTED_ON_DATE} {topicrow.FIRST_POST_TIME}
+					<!-- IF not S_SINGLE_FORUM and topicrow.U_VIEW_FORUM --><br />{L_IN} <a href="{topicrow.U_VIEW_FORUM}" style="font-weight: bold;">{topicrow.FORUM_NAME}</a><!-- ENDIF -->
+				</dt>
+				<!-- IF DISPLAY_LAST_POST --><dd class="lastpost"><span><dfn>{L_LAST_POST} </dfn>
+					<a href="{topicrow.U_MINI_POST}" title="{L_LAST_POST} : {topicrow.TOPIC_LAST_POST_TITLE}">{LAST_POST_IMG} {topicrow.TOPIC_LAST_POST_TITLE}</a> <br />
+					<!-- IF topicrow.TOPIC_AUTHOR_FULL -->{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL} <!-- ENDIF -->
+					{L_POSTED_ON_DATE} {topicrow.LAST_POST_TIME}</span>
+				</dd>
+				<!-- ENDIF -->
+			</dl>
+		</li>
+
+	<!-- IF topicrow.S_LAST_ROW -->
+			</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<!-- ENDIF -->
+
+	<!-- BEGINELSE -->
+<div class="forumbg">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt><!-- IF U_TOPICS --><a href="{U_TOPICS}" title="{H1_TOPICS}">{H1_TOPICS}</a><!-- ELSE -->{H1_TOPICS}<!-- ENDIF --></dt>
+					<dd>&nbsp;</dd>
+				</dl>
+			</li>
+		</ul>
+		<div class="panel">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<p>{L_HTML_NO_ITEMS}</p>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- END topicrow -->
+<!-- IF DISPLAY_PAGINATION -->
+<div class="topic-actions">
+	<div class="pagination">
+		{DISPLAY_TOTAL_TOPICS}
+		<!-- IF DISPLAY_PAGE_NUMBER --><!-- IF DISPLAY_PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{DISPLAY_PAGE_NUMBER}</a> &bull; <span>{DISPLAY_PAGINATION}</span><!-- ELSE --> &bull; {DISPLAY_PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+	</div>
+</div>
+<!-- ENDIF -->

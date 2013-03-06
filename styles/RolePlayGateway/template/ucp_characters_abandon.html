@@ -1,0 +1,32 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>Abandon Character</h2>
+
+<form id="ucp" method="post" action="http://www.roleplaygateway.com/ucp.php?i=characters&mode=abandon&character_id={ID}">
+
+<div class="panel">
+        <div class="inner"><span class="corners-top"><span></span></span>
+
+                <h3>Character: {CHARACTER_NAME}</h3>
+                <fieldset>
+                        <dl>
+                                <dt><span><strong>Character Synopsis: </strong>{CHARACTER_SYNOPSIS}</span></dt><br /><br />
+                                <dt>
+                                        <label for="Adoption">Allow "{CHARACTER_NAME}" to be adopted:</label><br />
+                                </dt>
+                                <dd><input type="checkbox" name="Adoption" value="1" /></textarea></dd>
+                        </dl>
+                </fieldset>
+
+                <fieldset class="submit-buttons">
+                        <input type="hidden" name="character_id" value="{ID}" />
+                        <input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+                </fieldset>
+
+        <span class="corners-bottom"><span></span></span></div>
+</div>
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->
+

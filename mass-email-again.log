@@ -1,0 +1,8 @@
+
+Fatal error: Uncaught exception 'Exception' with message 'Send raw message failed. Server says: 400 Recipient format is invalid: 'rowin_b.c.@hotmail.com
+'' in /var/www/www.roleplaygateway.com/includes/Mailgun.php:259
+Stack trace:
+#0 /var/www/www.roleplaygateway.com/includes/Mailgun.php(91): _mailgun_exec_curl(Resource id #10625, 'Send raw messag...')
+#1 /var/www/www.roleplaygateway.com/mass-email.php(38605): MailgunMessage::send_raw('admin@roleplayg...', 'rowin_b.c.@hotm...', 'Content-Type: t...')
+#2 {main}
+  thrown in /var/www/www.roleplaygateway.com/includes/Mailgun.php on line 259

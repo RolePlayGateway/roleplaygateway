@@ -1,0 +1,15 @@
+<!-- $Id: latest_members.html,v 1.4 2007/04/12 06:19:41 angelside Exp $ //-->
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+			<h3>{L_LATEST_MEMBERS}</h3>
+			<span style="float:left;"><strong>{L_USERNAME}</strong></span>
+			<span style="float:right;padding-right:10px;"><strong>{L_JOINED}</strong></span><br />
+			<!-- BEGIN latest_members -->
+			<span style="float:left;"><img src="bb3portal/images/member.gif" /> <a href="{latest_members.U_USERNAME}"><span<!-- IF latest_members.USERNAME_COLOR -->{latest_members.USERNAME_COLOR}<!-- ENDIF -->>{latest_members.USERNAME}</span></a></span>
+			<span style="float:right;padding-right:10px;">{latest_members.JOINED}</span><br clear="all" />
+			<!-- END latest_members -->
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+<br clear="all" />

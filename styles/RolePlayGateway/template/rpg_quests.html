@@ -1,0 +1,51 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<img src="/roleplay/{ROLEPLAY_URL}/image" class="crisp-border" style="float:left; margin-right: 1em;" />
+<h1 style="color:#596E7C;"><a href="/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/quests">Quests</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/quests/{QUEST_URL}">Quest #{QUEST_ID}</a></h1>
+
+<br class="clear: both;" />
+
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+    <div class="postbody" style="width:100%;"><div class="content">
+      
+      <h2>Synopsis</h2>
+      <p>{QUEST_SYNOPSIS}</p>
+
+      <h2>Description</h2>
+      <div>{QUEST_DESCRIPTION}</div>
+      
+      <!-- <h3><strong>{PLACE_COUNT}</strong> Places Controlled</h3> -->
+      
+      <h2><strong>{CHARACTER_COUNT}</strong> Characters</h2>
+			<!-- BEGIN characters -->
+			<div class="character">
+				<img src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
+				<div>
+				  <h3>{characters.QUEST_STATUS}</h3>
+					<a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}"><strong>{characters.NAME}</strong></a> <span><em>played by {characters.OWNER_USERNAME}</em></span>
+				</div>
+				<span>{characters.SYNOPSIS}</span>
+			</div>
+			<!-- BEGINELSE -->
+				<p class="supersize">There are no characters in this quest!</p>
+			<!-- END characters -->
+			
+			
+			<br class="clear" /> 
+
+      <h2>Comments</h2>
+			<!-- BEGIN comments -->
+			<div class="character"></div>
+			<!-- BEGINELSE -->
+			<p class="supersize">No comments have been made on this quest!</p>
+			<!-- END comments -->
+
+    </div></div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

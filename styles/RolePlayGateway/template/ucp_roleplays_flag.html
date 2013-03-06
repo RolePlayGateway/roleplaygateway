@@ -1,0 +1,52 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>Flag This Roleplay</h2>
+
+<form id="ucp" method="post" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=flag&id={ROLEPLAY_ID}">
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	
+		<h3>How do you want to flag this roleplay?</h3>
+		<fieldset>
+			<dl>
+				<dt>
+					<label for="tag">Status:</label><br />
+					<!-- IF IS_MOD -->
+					<span>"Open" will re-open this roleplay.</span>
+					<br />
+					<span>"Closed" will shut this roleplay down, making its content completely unavailable.</span>
+					<br />
+					<span>"Completed and Reviewed" will submit this roleplay as Completed.</span>
+					<br />
+					<!-- ENDIF -->
+					<span>"Completed" will submit this roleplay for review. It will then be reviewed and moved to Completed.</span>
+					<br />
+					<span>"Close" will submit this roleplay to be closed down, making its content completely unavailable.</span>
+				</dt>
+				<dd>
+					<select name="action">
+						<!-- IF IS_MOD -->
+						<option value="open">Open</option>
+						<option value="closed">Closed</option>
+						<option value="completed">Completed and Reviewed</option>
+						<!-- ENDIF -->
+						<option value="review">Completed</option>
+						<option value="close">Close</option>
+					</select>
+				</dd>
+			</dl>
+		</fieldset>
+		
+		<fieldset class="submit-buttons">
+			<input type="hidden" name="id" value="{ROLEPLAY_ID}" />
+			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
+			<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+		</fieldset>
+		
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

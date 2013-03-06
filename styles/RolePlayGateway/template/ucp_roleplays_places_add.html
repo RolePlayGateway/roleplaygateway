@@ -1,0 +1,80 @@
+<!-- INCLUDE ucp_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<h2>Add New Place</h2>
+
+<form id="ucp" enctype="multipart/form-data" method="post" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_place&roleplay_id={ROLEPLAY_ID}&action=submit">
+
+	<!-- IF PARENT_ID -->
+	<input type="hidden" name="parent_id" value="{PARENT_ID}" />
+	<!-- ENDIF -->
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	
+		<h3>Place Information</h3>
+		<fieldset>
+			<dl>
+				<dt>
+					<label for="name">Name:</label><br />
+					<span>This will be the actual name of this location. <strong>You cannot change this in the future.</strong> Pick wisely!</span>
+				</dt>
+				<dd><input type="text" name="name" id="name" maxlength="45" class="inputbox" /></dd>
+			</dl>
+			<!-- IF PARENT_ID -->
+			<div style="margin: 1em; margin-bottom: 5em;" class="place">
+				<h4>This new Location will be created inside of:</h4>
+				<div>
+					<img src="/roleplay/{ROLEPLAY_URL}/places/{PARENT_URL}/image" class="crisp-border" style="float:left;" />
+					<h2>{PARENT_NAME}</h2>
+					<p>{PARENT_SYNOPSIS}</p>
+				</div>
+			</div>
+			<!-- ELSE -->
+			<dl>
+				<dt>
+					<label for="parent_id">Inside Of:</label><br />
+					<span>Inside of what other location is this particular place?</span>
+				</dt>
+				<dd>
+					<select name="parent_id" id="parent_id">
+						<option value="-1" selected="selected">None.</option>
+						{PARENT_OPTIONS}
+					</select>
+				</dd>
+			</dl>
+			<!-- ENDIF -->
+			<dl>
+				<dt>
+					<label for="synopsis">Entrance Message / Synopsis:</label><br />
+					<span>This will be the short text displayed when someone enters this location.</span>
+				</dt>
+				<dd><script type="text/javascript">edToolbar('synopsis');</script><textarea name="synopsis" id="synopsis" maxlength="255" rows="3" class="inputbox"></textarea></dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="place_image">Place Image:</label><br />
+					<span>Upload a small 100x100 image that will represent this location in your roleplay.</span>
+				</dt>
+				<dd>
+					<input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
+					<input name="userfile" type="file" />
+				</dd>
+			</dl>			
+			<dl>
+				<dt><label for="description">Description:</label></dt>
+				<dd><script type="text/javascript">edToolbar('description');</script><textarea name="description" id="description" rows="25" class="inputbox"></textarea></dd>
+			</dl>
+		</fieldset>
+		
+		<fieldset class="submit-buttons">
+			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
+			<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+		</fieldset>
+		
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

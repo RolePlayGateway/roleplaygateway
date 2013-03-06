@@ -1,0 +1,72 @@
+/* Posts ratings icons */
+.prs_star_uv_0, .prs_star_uv_0 a	{ background: none top left no-repeat; }
+.prs_star_uv_1, .prs_star_uv_1 a	{ background: none top left no-repeat; }
+.prs_star_uv_2, .prs_star_uv_2 a	{ background: none top left no-repeat; }
+.prs_star_uv_3, .prs_star_uv_3 a	{ background: none top left no-repeat; }
+.prs_star_uv_4, .prs_star_uv_4 a	{ background: none top left no-repeat; }
+.prs_star_uv_5, .prs_star_uv_5 a	{ background: none top left no-repeat; }
+.prs_star_uv_6, .prs_star_uv_6 a	{ background: none top left no-repeat; }
+.prs_star_uv_7, .prs_star_uv_7 a	{ background: none top left no-repeat; }
+.prs_star_uv_8, .prs_star_uv_8 a	{ background: none top left no-repeat; }
+.prs_star_uv_9, .prs_star_uv_9 a	{ background: none top left no-repeat; }
+.prs_star_uv_10, .prs_star_uv_10 a	{ background: none top left no-repeat; }
+.prs_star_v_0, .prs_star_v_0 a	{ background: none top left no-repeat; }
+.prs_star_v_1, .prs_star_v_1 a	{ background: none top left no-repeat; }
+.prs_star_v_2, .prs_star_v_2 a	{ background: none top left no-repeat; }
+.prs_star_v_3, .prs_star_v_3 a	{ background: none top left no-repeat; }
+.prs_star_v_4, .prs_star_v_4 a	{ background: none top left no-repeat; }
+.prs_star_v_5, .prs_star_v_5 a	{ background: none top left no-repeat; }
+.prs_star_v_6, .prs_star_v_6 a	{ background: none top left no-repeat; }
+.prs_star_v_7, .prs_star_v_7 a	{ background: none top left no-repeat; }
+.prs_star_v_8, .prs_star_v_8 a	{ background: none top left no-repeat; }
+.prs_star_v_9, .prs_star_v_9 a	{ background: none top left no-repeat; }
+.prs_star_v_10, .prs_star_v_10 a	{ background: none top left no-repeat; }
+
+/* Set profile icon dimensions */
+ul.profile-icons li.prs_star_uv_0	{ width: {IMG_PRS_STAR_UV_0_WIDTH}px; height: {IMG_PRS_STAR_UV_0_HEIGHT}px; }
+ul.profile-icons li.prs_star_uv_1	{ width: {IMG_PRS_STAR_UV_1_WIDTH}px; height: {IMG_PRS_STAR_UV_1_HEIGHT}px; }
+ul.profile-icons li.prs_star_uv_2	{ width: {IMG_PRS_STAR_UV_2_WIDTH}px; height: {IMG_PRS_STAR_UV_2_HEIGHT}px; }
+ul.profile-icons li.prs_star_uv_3	{ width: {IMG_PRS_STAR_UV_3_WIDTH}px; height: {IMG_PRS_STAR_UV_3_HEIGHT}px; }
+ul.profile-icons li.prs_star_uv_4	{ width: {IMG_PRS_STAR_UV_4_WIDTH}px; height: {IMG_PRS_STAR_UV_4_HEIGHT}px; }
+ul.profile-icons li.prs_star_uv_5	{ width: {IMG_PRS_STAR_UV_5_WIDTH}px; height: {IMG_PRS_STAR_UV_5_HEIGHT}px; }
+ul.profile-icons li.prs_star_uv_6	{ width: {IMG_PRS_STAR_UV_6_WIDTH}px; height: {IMG_PRS_STAR_UV_6_HEIGHT}px; }
+ul.profile-icons li.prs_star_uv_7	{ width: {IMG_PRS_STAR_UV_7_WIDTH}px; height: {IMG_PRS_STAR_UV_7_HEIGHT}px; }
+ul.profile-icons li.prs_star_uv_8	{ width: {IMG_PRS_STAR_UV_8_WIDTH}px; height: {IMG_PRS_STAR_UV_8_HEIGHT}px; }
+ul.profile-icons li.prs_star_uv_9	{ width: {IMG_PRS_STAR_UV_9_WIDTH}px; height: {IMG_PRS_STAR_UV_9_HEIGHT}px; }
+ul.profile-icons li.prs_star_uv_10	{ width: {IMG_PRS_STAR_UV_10_WIDTH}px; height: {IMG_PRS_STAR_UV_10_HEIGHT}px; }
+ul.profile-icons li.prs_star_v_0	{ width: {IMG_PRS_STAR_V_0_WIDTH}px; height: {IMG_PRS_STAR_V_0_HEIGHT}px; }
+ul.profile-icons li.prs_star_v_1	{ width: {IMG_PRS_STAR_V_1_WIDTH}px; height: {IMG_PRS_STAR_V_1_HEIGHT}px; }
+ul.profile-icons li.prs_star_v_2	{ width: {IMG_PRS_STAR_V_2_WIDTH}px; height: {IMG_PRS_STAR_V_2_HEIGHT}px; }
+ul.profile-icons li.prs_star_v_3	{ width: {IMG_PRS_STAR_V_3_WIDTH}px; height: {IMG_PRS_STAR_V_3_HEIGHT}px; }
+ul.profile-icons li.prs_star_v_4	{ width: {IMG_PRS_STAR_V_4_WIDTH}px; height: {IMG_PRS_STAR_V_4_HEIGHT}px; }
+ul.profile-icons li.prs_star_v_5	{ width: {IMG_PRS_STAR_V_5_WIDTH}px; height: {IMG_PRS_STAR_V_5_HEIGHT}px; }
+ul.profile-icons li.prs_star_v_6	{ width: {IMG_PRS_STAR_V_6_WIDTH}px; height: {IMG_PRS_STAR_V_6_HEIGHT}px; }
+ul.profile-icons li.prs_star_v_7	{ width: {IMG_PRS_STAR_V_7_WIDTH}px; height: {IMG_PRS_STAR_V_7_HEIGHT}px; }
+ul.profile-icons li.prs_star_v_8	{ width: {IMG_PRS_STAR_V_8_WIDTH}px; height: {IMG_PRS_STAR_V_8_HEIGHT}px; }
+ul.profile-icons li.prs_star_v_9	{ width: {IMG_PRS_STAR_V_9_WIDTH}px; height: {IMG_PRS_STAR_V_9_HEIGHT}px; }
+ul.profile-icons li.prs_star_v_10	{ width: {IMG_PRS_STAR_V_10_WIDTH}px; height: {IMG_PRS_STAR_V_10_HEIGHT}px; }
+
+/* Posts ratings icons */
+.prs_star_uv_0, .prs_star_uv_0 a { background-image: url("{IMG_PRS_STAR_UV_0_SRC}"); } 
+.prs_star_uv_1, .prs_star_uv_1 a { background-image: url("{IMG_PRS_STAR_UV_1_SRC}"); }
+.prs_star_uv_2, .prs_star_uv_2 a { background-image: url("{IMG_PRS_STAR_UV_2_SRC}"); }
+.prs_star_uv_3, .prs_star_uv_3 a { background-image: url("{IMG_PRS_STAR_UV_3_SRC}"); }
+.prs_star_uv_4, .prs_star_uv_4 a { background-image: url("{IMG_PRS_STAR_UV_4_SRC}"); }
+.prs_star_uv_5, .prs_star_uv_5 a { background-image: url("{IMG_PRS_STAR_UV_5_SRC}"); }
+.prs_star_uv_6, .prs_star_uv_6 a { background-image: url("{IMG_PRS_STAR_UV_6_SRC}"); }
+.prs_star_uv_7, .prs_star_uv_7 a { background-image: url("{IMG_PRS_STAR_UV_7_SRC}"); }
+.prs_star_uv_8, .prs_star_uv_8 a { background-image: url("{IMG_PRS_STAR_UV_8_SRC}"); }
+.prs_star_uv_9, .prs_star_uv_9 a { background-image: url("{IMG_PRS_STAR_UV_9_SRC}"); }
+.prs_star_uv_10, .prs_star_uv_10 a { background-image: url("{IMG_PRS_STAR_UV_10_SRC}"); }
+.prs_star_v_0, .prs_star_v_0 a { background-image: url("{IMG_PRS_STAR_V_0_SRC}"); } 
+.prs_star_v_1, .prs_star_v_1 a { background-image: url("{IMG_PRS_STAR_V_1_SRC}"); }
+.prs_star_v_2, .prs_star_v_2 a { background-image: url("{IMG_PRS_STAR_V_2_SRC}"); }
+.prs_star_v_3, .prs_star_v_3 a { background-image: url("{IMG_PRS_STAR_V_3_SRC}"); }
+.prs_star_v_4, .prs_star_v_4 a { background-image: url("{IMG_PRS_STAR_V_4_SRC}"); }
+.prs_star_v_5, .prs_star_v_5 a { background-image: url("{IMG_PRS_STAR_V_5_SRC}"); }
+.prs_star_v_6, .prs_star_v_6 a { background-image: url("{IMG_PRS_STAR_V_6_SRC}"); }
+.prs_star_v_7, .prs_star_v_7 a { background-image: url("{IMG_PRS_STAR_V_7_SRC}"); }
+.prs_star_v_8, .prs_star_v_8 a { background-image: url("{IMG_PRS_STAR_V_8_SRC}"); }
+.prs_star_v_9, .prs_star_v_9 a { background-image: url("{IMG_PRS_STAR_V_9_SRC}"); }
+.prs_star_v_10, .prs_star_v_10 a { background-image: url("{IMG_PRS_STAR_V_10_SRC}"); }
+

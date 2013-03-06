@@ -1,0 +1,38 @@
+<!-- IF S_SHOW_TAG_RESULTS -->
+<h2>Topics tagged with: {SEARCH_WORDS}</h2>
+<div class="topic-actions">
+	<div class="rightside pagination">
+		{TAG_MATCHES}
+	</div>
+</div>
+<div id="tag-results" class="navbar">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<div class="scrolling-div">
+			<!-- IF relevant_topics_1 -->
+			<ul style="float:left; width:50%;">
+			<!-- BEGIN relevant_topics_1 -->	
+				<li>
+				<a href="{relevant_topics_1.U_URL}">{relevant_topics_1.TOPIC_TITLE}</a></li>
+			<!-- END relevant_topics_1 -->
+			</ul>
+			<!-- ENDIF -->
+			
+			<!-- IF relevant_topics_2 -->
+			<ul style="float:left; width:50%;">
+			<!-- BEGIN relevant_topics_2 -->
+					<li>
+					<a href="{relevant_topics_2.U_URL}">{relevant_topics_2.TOPIC_TITLE}</a></li>
+			<!-- END relevant_topics_2 -->
+			</ul>
+			<!-- ENDIF -->
+		</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<br style="clear:both;" />
+
+
+
+<!-- ENDIF -->
+
+
+

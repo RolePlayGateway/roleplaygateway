@@ -1,0 +1,3 @@
+.quick-reply-icon, .quick-reply-icon a	{ background: transparent none 0 0 no-repeat; }
+.buttons div.quick-reply-icon	{ width: {IMG_BUTTON_QUICK_REPLY_WIDTH}px; height: {IMG_BUTTON_QUICK_REPLY_HEIGHT}px; }
+.quick-reply-icon, .quick-reply-icon a	{ background-image: url("{IMG_BUTTON_QUICK_REPLY_SRC}"); }

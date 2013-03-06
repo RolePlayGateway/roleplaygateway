@@ -1,0 +1,27 @@
+<style type="text/css">
+<!--
+.topiclist dd.posts_portal {
+	font-size: 1.1em;
+	padding:6px 5px 6px 5px;
+}
+
+ul.topiclist dt {
+	float: left;
+	width: 90%;
+	font-size: 1em;
+}
+//-->
+</style>
+
+<div class="forabg"><div class="inner">
+	<span class="corners-top"><span></span></span>
+	<ul class="topiclist">
+		<li class="header"><dl><dt>{TITLE}</dt></dl></li>
+	</ul>
+	<ul class="topiclist forums"><li><dl>
+		<dd class="posts_portal">
+			{CONTENT}
+		</dd>
+	</dl></li></ul>
+	<span class="corners-bottom"><span></span></span>
+</div></div>

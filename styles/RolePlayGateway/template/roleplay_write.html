@@ -1,0 +1,12 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<h1 style="color:#596E7C;"><a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a> &raquo; <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/write">Write</a></h1>
+
+<!-- IF S_CAN_POST -->
+	<!-- INCLUDE roleplay_posting.html -->
+<!-- ELSE -->
+	<div><h2><a href="#join" onclick="toggleDiv('addCharacter');">Create a Character to Post Here &raquo;</a></h2></div><div id="addCharacter" style="display:none;"><!-- INCLUDE roleplay_join.html --></div>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

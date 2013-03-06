@@ -1,0 +1,35 @@
+<div id="quick_reply">
+		<div class="panel" id="postingbox">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			
+			<h3>{L_POST_REPLY}</h3>
+			
+			<dl class="postprofile" style="float:right; width:300px; height:250px;">
+				<dd>
+					<!-- IF AD_CODE4 -->
+						{AD_CODE4}
+					<!-- ELSE -->
+						<!-- INCLUDE ad_quickreply.html -->
+					<!-- ENDIF -->
+				</dd>
+			</dl>
+			<form action="{S_QR_POST_ACTION}" method="post" id="postform">	
+				<fieldset class="fields1">
+				
+				<dl style="width:100%;" id="message-box">
+				
+					<textarea placeholder="Your words are powerful; write carefully, with precision and meaning.  Use them to nurture, not destroy." name="message" id="message" rows="10" tabindex="2" class="inputbox" style="height:250px; width:99%;"></textarea>
+					
+				</dl>
+				</fieldset>
+					
+				<fieldset class="submit-buttons">
+					{S_QR_HIDDEN_FIELDS}
+					<input type="submit" name="preview" tabindex="6" value="{L_PREVIEW}" class="button1" onclick="document.getElementById('postform').action += '#preview';" />&nbsp;
+					<input type="submit" name="post" tabindex="5" value="{L_SUBMIT}" class="button1" accesskey="s" />
+				</fieldset>
+				{S_FORM_TOKEN}
+			</form>	
+			<span class="corners-bottom"><span></span></span></div>
+	</div>
+</div>

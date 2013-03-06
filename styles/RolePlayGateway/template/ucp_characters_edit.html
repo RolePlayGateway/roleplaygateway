@@ -1,0 +1,90 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>Edit Character</h2>
+
+<form id="ucp" enctype="multipart/form-data" method="post" action="http://www.roleplaygateway.com/ucp.php?i=characters&mode=edit&action=submit">
+<input type="hidden" name="character_id" value="{CHARACTER_ID}" />
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	
+		<h3>Character Details: {NAME}</h3>
+
+		<fieldset>
+			<dl>
+				<dt>
+					<label for="character_synopsis">Synopsis:</label><br />
+					<span>Give a brief overview of your character. This is used as your introduction in our roleplay chat when you type the following command to go In Character (IC):
+/ic Character Name</span>
+				</dt>
+				<dd><input type="text" value="{SYNOPSIS}" maxlength="255" size="255" name="character_synopsis" id="character_synopsis" class="inputbox" /></dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="character_image">Character Avatar:</label><br />
+					<span>Upload a small 100x100 avatar for your character. This will be displayed in various places around your roleplay, such as dialogue.</span>
+				</dt>
+				<dd>
+					<input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
+					<input name="userfile" type="file" />
+				</dd>
+			</dl>
+
+		</fieldset>
+		
+		<h3>Important Details</h3>
+		<p>Filling one or more of these fields out will allow it to display on your character's profile, but leaving it empty will prevent it from being displayed. If you so choose, you can use the "Description" field to add any detailed information that does not fit into other fields. BBcode <strong>is</strong> enabled in these fields.</p>
+		<fieldset>		
+			<dl>
+				<dt>
+					<label for="character_description">Description:</label><br />
+					<span>Describe the physical appearance of your character. Words are better than pictures.</span>
+				</dt>
+			</dl>
+			<ul class="topiclist cplist">
+				<script type="text/javascript">edToolbar('character_description');</script>
+				<textarea name="character_description" id="character_description" rows="15" class="inputbox" style="width:100%;">{DESCRIPTION}</textarea>
+			</ul>
+			<dl>
+				<dt>
+					<label for="character_personality">Personality:</label><br />
+					<span>Describe your character's personality and general demeanor.</span>
+				</dt>
+			</dl>
+			<ul class="topiclist cplist">
+				<script type="text/javascript">edToolbar('character_personality');</script>
+				<textarea name="character_personality" id="character_personality" rows="15" class="inputbox" style="width:100%;">{PERSONALITY}</textarea>
+			</ul>
+			<dl>
+				<dt>
+					<label for="character_equipment">Equipment:</label><br />
+					<span>Describe your character's equipment and tools.</span>
+				</dt>
+			</dl>
+			<ul class="topiclist cplist">
+				<script type="text/javascript">edToolbar('character_equipment');</script>
+				<textarea name="character_equipment" id="character_equipment" rows="15" class="inputbox" style="width:100%;">{EQUIPMENT}</textarea>
+			</ul>
+			<dl>
+				<dt>
+					<label for="character_history">History:</label><br />
+					<span>Describe your character's history and background.</span>
+				</dt>
+			</dl>
+			<ul class="topiclist cplist">
+				<script type="text/javascript">edToolbar('character_history');</script>
+				<textarea name="character_history" id="character_history" rows="15" class="inputbox" style="width:100%;">{HISTORY}</textarea>
+			</ul>
+		</fieldset>
+		
+		<fieldset class="submit-buttons">
+			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
+			<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+		</fieldset>
+		
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

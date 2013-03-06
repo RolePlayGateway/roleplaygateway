@@ -1,0 +1,46 @@
+<form action="{S_ADD_TAG_ACTION}" method="post" id="addtag">  
+<table class="tablebg" width="100%" cellspacing="1">
+<tr><th colspan="2">{L_PTT_TAGGING}</th></tr>
+<!-- IF TOPIC_TAG_LIST -->
+<tr class="row1">
+	<td valign="middle">
+		<b>{L_PTT_TOPIC_TAGS}</b>
+	</td>
+	<td>
+		{TOPIC_TAG_LIST}
+	</td>
+</tr>
+<!-- ENDIF -->
+<!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
+<tr class="row1">
+	<td width="30%" valign="middle">
+		<b>{L_PTT_ADD_TAGS}</b><br />
+		{L_PTT_ADD_TAGS_DESCRIPTION}<br />
+		<a id="activate_link" href="javascript:activate('tags');">{L_PTT_ENABLE_TAGGING}</a>
+	</td>
+	<td>
+		<textarea id="tags" name="tags" onkeyup="searchSuggest('tags', 'suggestions_div');" autocomplete="off" disabled="disabled" cols="20">{L_PTT_NOT_REPLY}</textarea>
+	</td>
+</tr>
+<tr class="row1">
+	<td valign="middle">
+		<b>{L_PTT_SUGGESTIONS}</b><br />
+		{L_PTT_SUGGESTIONS_EXPLANATION}
+	</td>
+	<td>
+		<div id="suggestions_div" class="suggestions"></div>
+	</td>
+</tr>
+<tr>
+	<td class="row1" colspan="2">
+	<noscript>
+		<span class="error">{L_PTT_JS_WARN}</span><br />
+	</noscript>
+	<input name="f" type="hidden" value="{FORUM_ID}">
+	<input name="t" type="hidden" value="{TOPIC_ID}">
+	<input style="clear:right;" type="submit" name="post" value="{L_SUBMIT}" class="button1" />			</td>
+</tr>
+<!-- ENDIF -->	
+</table>
+<script language="JavaScript" type="text/javascript" src="phpbb_topic_tagging.js"></script>
+</form>

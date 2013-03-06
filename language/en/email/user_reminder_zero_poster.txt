@@ -1,0 +1,13 @@
+Subject: Reminder from "{SITENAME}"! 
+
+Dear {USERNAME},
+
+You registered on {SITENAME} a little while ago. 
+
+We have noticed that to-date you have not yet participated in the community and posted in any of the forums.
+
+Please take some time to have a look at some of our recent topics on {U_BOARD} which you may find interesting to get involved in.
+
+Alternatively, please do not hesitate to start your own topic, even if it is just to introduce yourself to the rest of the community. This is normally the first ice-breaker.
+
+{EMAIL_SIG}

@@ -1,0 +1,18 @@
+Subject: {TOPIC_SUBJECT}
+
+Hello {MODERATOR_NAME},
+
+You are receiving this notification because you are either an Administrator or a moderator of the {FORUM_NAME} forum.
+
+The following {POST_TYPE} has been made in the topic : {TOPIC_TITLE}
+
+Author     :  {AUTHOR_NAME}
+Topic URL  :  {U_TOPIC_URL}
+Subject    :  {POST_SUBJECT}
+Topic type :  {TOPIC_TYPE}
+Queued     :  {MODERATION}
+Message    :
+
+{POST_TEXT}
+
+{EMAIL_SIG}

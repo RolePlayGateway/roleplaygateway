@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="{S_CONTENT_DIRECTION}" lang="{S_USER_LANG}" xml:lang="{S_USER_LANG}">
+<head>
+	<title>{L_SITENAME}</title>
+	<link href="{T_THEME_PATH}/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+	<link href="{T_STYLESHEET_LINK}" rel="stylesheet" type="text/css" media="screen, projection" />
+</head>
+<body dir="{S_CONTENT_DIRECTION}">
+<div id="wrap">
+	<div id="page-body">
+
+		<a id="top" name="top" accesskey="t"></a>
+		
+		<h1 style="color:#000000">{L_DIGEST_TITLE}</h1>
+	
+		<p>{L_DIGEST_SALUTATION} {DIGEST_SALUTATION},</p>
+		
+		<p>{L_DIGEST_INTRODUCTION}</p>
+		
+		{DIGEST_CONTENT}
+		<br />
+		<hr />
+		<h3>{L_DIGEST_OPTIONS}</h3>
+		<p>
+		{L_DIGEST_FREQUENCY}: {DIGEST_FREQUENCY}<br />
+		{L_DIGEST_FORMAT} {DIGEST_FORMAT}<br />
+		{L_DIGEST_SEND_HOUR}: {DIGEST_SEND_HOUR}<br />
+		{L_DIGEST_POST_TYPES}: {DIGEST_POST_TYPES}<br />
+		{L_DIGEST_MAX_POSTS_IN_DIGESTS}: {DIGEST_MAX_POSTS_IN_DIGESTS}<br />
+		{L_DIGEST_MIN_WORDS_IN_DIGEST}: {DIGEST_MIN_WORDS_IN_DIGEST} <br />
+		{L_DIGEST_SHOW_NEW_POSTS_ONLY}: {DIGEST_SHOW_NEW_POSTS_ONLY}<br />
+		{L_DIGEST_SHOW_MY_MESSAGES}: {DIGEST_SHOW_MY_MESSAGES}<br />
+		{L_DIGEST_REMOVE_FOES}: {DIGEST_REMOVE_FOES}<br />
+		{L_DIGEST_SHOW_PMS}: {DIGEST_SHOW_PMS}<br />
+		{L_DIGEST_SORT_ORDER}: {DIGEST_SORT_ORDER}<br />
+		{L_DIGEST_MAX_MSG_SIZE}: {DIGEST_MAX_MSG_SIZE}<br />
+		{L_DIGEST_SEND_IF_NO_NEW_MESSAGES} {DIGEST_SEND_IF_NO_NEW_MESSAGES}<br />
+		{L_DIGEST_RESET_LAST_VISIT}: {DIGEST_RESET_LAST_VISIT}
+		</p>
+		<hr />
+		<p><span class="copyright"><i>{L_DIGEST_PUBLISH_DATE}</i></span></p>
+		<p>{DIGEST_DISCLAIMER}</p>
+		<p><span class="copyright">{L_DIGEST_POWERED_BY} {DIGEST_POWERED_BY} {DIGEST_VERSION}</span></p>
+		
+	</div>
+</div>
+</body>
+</html>

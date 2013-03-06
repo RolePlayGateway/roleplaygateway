@@ -1,0 +1,63 @@
+<div id="quick_reply">
+	<form action="{S_QR_POST_ACTION}" method="post" id="postform">
+		<div class="panel" id="postingbox">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			
+			<h3>{L_POST_REPLY}</h3>
+			
+			<dl class="postprofile" style="float:right; width:300px; height:250px;">
+				<dd>		
+					<h3>Make a Donation</h3>
+					<div style="float: right; text-align: center;">
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+							<p>
+								<input name="cmd" value="_xclick" type="hidden">
+								<input name="business" value="eric.martindale@gmail.com" type="hidden">
+								<input name="item_name" value="Make donation" type="hidden">
+								<input name="no_note" value="1" type="hidden">
+								<input name="currency_code" value="USD" type="hidden">
+								<input name="no_shipping" value="2" type="hidden">
+								<input name="bn" value="PP-DonationsBF" type="hidden">
+								<input name="tax" value="0" type="hidden">
+								$<select name="amount">
+									<option value="100.00">100.00</option>
+									<option value="50.00">50.00</option>
+									<option value="25.00">25.00</option>
+									<option value="20.00">20.00</option>
+									<option value="10.00">10.00</option>
+									<option value="5.00">5.00</option>
+									<option value="4.00">4.00</option>
+									<option value="3.00">3.00</option>
+									<option value="2.00">2.00</option>
+									<option value="1.00">1.00</option>
+								</select>
+								<br>
+								<input src="http://www.roleplaygateway.com/bb3portal/images/paypal.gif" style="border: 0px none ; background-color: transparent; padding-top: 6px;" type="image">
+							</p>
+						</form>
+					</div>
+					<div>
+						<p><strong>RolePlayGateway</strong> is a site built by a couple roleplayers who wanted to give a little something back to the roleplay community.  The site has no intention of earning any profit, and is paid for out of their own pockets.</p>
+						<p>If you appreciate what they do, feel free to donate your spare change to help feed them on the weekends.  After selecting the amount you want to donate from the menu, you can continue by clicking on PayPal logo.</p>
+					</div>
+				</dd>
+			</dl>
+			
+			<fieldset class="fields1">
+			
+			<dl style="width:100%;" id="message-box">
+				<textarea name="message" id="message" rows="10" tabindex="2" class="inputbox" style="height:250px; width:99%;"></textarea>
+			</dl>
+			</fieldset>
+				
+			<fieldset class="submit-buttons">
+				{S_QR_HIDDEN_FIELDS}
+				<input type="submit" name="preview" tabindex="6" value="{L_PREVIEW}" class="button1" onclick="document.getElementById('postform').action += '#preview';" />&nbsp; 
+				<input type="submit" name="post" tabindex="5" value="{L_SUBMIT}" class="button1" accesskey="s" />
+			</fieldset>
+		
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+	{S_FORM_TOKEN}
+	</form>
+</div>

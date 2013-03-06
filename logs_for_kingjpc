@@ -1,0 +1,1136 @@
+# 369.4s user time, 4.5s system time, 108.83M rss, 196.92M vsz
+# Overall: 1.44M total, 323 unique, 5.79 QPS, 0.35x concurrency __________
+#                    total     min     max     avg     95%  stddev  median
+# Exec time         87004s       0    160s    60ms    91ms   769ms     1ms
+# Lock time           299s       0      5s   207us   224us    10ms    69us
+# Rows sent        180.50M       0  15.31M  131.20  107.34  27.02k   10.84
+# Rows exam         17.38G       0  15.31M  12.63k  18.47k 190.91k  212.52
+# Time range        2011-05-06 19:48:16 to 2011-05-09 17:00:00
+# bytes            406.90M      25   2.78k  295.75  400.73  131.43  271.23
+
+# Query 1: 0.00 QPS, 0.06x concurrency, ID 0xE1A6E832AF96EBD3 at byte 2674875
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0    1031
+# Exec time     17  15575s      4s     28s     15s     18s      2s     15s
+# Lock time      0   112ms    57us    14ms   108us   138us   422us    84us
+# Rows sent      0  25.13k       5      25   24.96   24.84    0.74   24.84
+# Rows exam     19   3.32G 1011.46k   3.53M   3.29M   3.34M 209.52k   3.18M
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:59:32 to 2011-05-09 16:07:13
+# bytes          0 278.87k     276     277  276.98  271.23       0  271.23
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  #
+#  10s+  ################################################################
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_content'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_content`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_users'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_users`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_places'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_places`\G
+# EXPLAIN
+SELECT a.*, a.type, p.name as place,u.username,u.user_id FROM rpg_content a
+						LEFT OUTER JOIN gateway_users u ON a.author_id = u.user_id
+						LEFT OUTER JOIN rpg_places p ON p.id = a.place_id
+						 
+					 WHERE a.roleplay_id = 1 ORDER BY a.written DESC
+ LIMIT 1180200, 25\G
+
+# Query 2: 0.00 QPS, 0.06x concurrency, ID 0x4CC08722CAB18183 at byte 600881057
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0    1044
+# Exec time     17  15120s      4s     25s     14s     17s      2s     14s
+# Lock time      0    72ms    52us   601us    68us    80us    24us    63us
+# Rows sent      0  25.45k       5      25   24.96   24.84    0.74   24.84
+# Rows exam     19   3.34G      75   3.53M   3.28M   3.34M 264.45k   3.18M
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:59:47 to 2011-05-09 16:07:26
+# bytes          0 277.27k     266     272  271.96  271.23    2.29  271.23
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  #
+#  10s+  ################################################################
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_content'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_content`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_users'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_users`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_places'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_places`\G
+# EXPLAIN
+SELECT a.*, a.type, p.name as place,u.username,u.user_id FROM rpg_content a
+					LEFT OUTER JOIN gateway_users u ON a.author_id = u.user_id
+					LEFT OUTER JOIN rpg_places p ON p.id = a.place_id
+					 
+				 WHERE a.roleplay_id = 1 ORDER BY a.written ASC
+ LIMIT 1215925, 25\G
+
+# Query 3: 0.50 QPS, 0.05x concurrency, ID 0x0D0E0B6C9B77BA84 at byte 605494529
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          8  124896
+# Exec time     13  11923s    42ms     12s    95ms   128ms    52ms    82ms
+# Lock time      4     14s    50us    57ms   113us   144us   355us   103us
+# Rows sent      0  85.06k       0      59    0.70    2.90    3.53       0
+# Rows exam     13   2.28G  13.09k  19.31k  19.18k  18.47k   17.30  18.47k
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:49:07 to 2011-05-09 16:59:53
+# bytes          8  33.56M     279     283  281.73  271.23       0  271.23
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms  ################################################################
+# 100ms  #######################################
+#    1s  #
+#  10s+  #
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_places'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_places`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_roleplays'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_roleplays`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_places_stats'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_places_stats`\G
+# EXPLAIN
+SELECT p.id,p.name,p.url,p.synopsis,p.owner,r.owner as roleplay_owner,s.posts FROM rpg_places p
+					INNER JOIN rpg_roleplays r on p.roleplay_id = r.id
+					LEFT OUTER JOIN rpg_places_stats s ON p.id = s.place_id
+				WHERE p.parent_id = 48 AND visibility <> "Hidden" AND p.id <> 0\G
+
+# Query 4: 0.01 QPS, 0.04x concurrency, ID 0xFA0D3F6DB8D14333 at byte 6685
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0    1967
+# Exec time     12  10824s      3s     20s      6s     11s      3s      4s
+# Lock time      9     27s    36us      3s    14ms   108us   152ms    57us
+# Rows sent      0   1.92k       0       1    1.00    0.99    0.04    0.99
+# Rows exam      0   3.84k       0       2    2.00    1.96    0.08    1.96
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:48:29 to 2011-05-09 16:57:06
+# bytes          0 305.42k     159     159     159     159       0     159
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+  ####
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_sessions'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_sessions`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_users'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_users`\G
+# EXPLAIN
+SELECT u.*, s.*
+				FROM gateway_sessions s, gateway_users u
+				WHERE s.session_id = '898c194295cb039db5575a59140a128b'
+					AND u.user_id = s.session_user_id\G
+
+# Query 5: 0.05 QPS, 0.02x concurrency, ID 0xBFFEA5160E28312E at byte 3214082
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0   12183
+# Exec time      6   6084s     2ms     17s   499ms      4s      1s    16ms
+# Lock time      0      2s   127us    29ms   200us   316us   358us   159us
+# Rows sent      0 231.84k       1      21   19.49   20.43    3.20   20.43
+# Rows exam     30   5.32G     192   4.33M 458.05k   4.06M   1.13M   9.33k
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:51:25 to 2011-05-09 16:59:52
+# bytes          2  11.22M     942     969  965.97  964.41   13.50  964.41
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms  ##########################################################
+#  10ms  ################################################################
+# 100ms  ###############
+#    1s  ###################
+#  10s+  #
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_content'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_content`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_users'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_users`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_places'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_places`\G
+# EXPLAIN
+(SELECT a.*, a.type, p.name as place,u.username,u.user_id FROM rpg_content a
+					LEFT OUTER JOIN gateway_users u ON a.author_id = u.user_id
+					LEFT OUTER JOIN rpg_places p ON p.id = a.place_id
+					 
+				 WHERE a.id = 1441646 AND a.roleplay_id = 10960)
+				 
+				 
+				 UNION DISTINCT
+				 
+				(SELECT a.*, a.type, p.name as place,u.username,u.user_id FROM rpg_content a USE INDEX (PRIMARY) 
+					LEFT OUTER JOIN gateway_users u ON a.author_id = u.user_id
+					LEFT OUTER JOIN rpg_places p ON p.id = a.place_id
+					 
+				 WHERE a.id < 1441646 AND a.roleplay_id = 10960 ORDER BY a.id DESC LIMIT 10)
+				 
+				 UNION DISTINCT
+				 
+				(SELECT a.*, a.type, p.name as place,u.username,u.user_id FROM rpg_content a USE INDEX (PRIMARY)
+					LEFT OUTER JOIN gateway_users u ON a.author_id = u.user_id
+					LEFT OUTER JOIN rpg_places p ON p.id = a.place_id
+					 
+				 WHERE a.id > 1441646 AND a.roleplay_id = 10960 ORDER BY a.id ASC LIMIT 10)	
+
+					ORDER BY written ASC\G
+
+# Query 6: 0.00 QPS, 0.02x concurrency, ID 0x061C274991CA84C2 at byte 28041
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0    1075
+# Exec time      6   5502s      3s     30s      5s     10s      3s      4s
+# Lock time      2      8s    24us      3s     7ms    80us   125ms    44us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows exam      0   1.05k       1       1       1       1       0       1
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:48:23 to 2011-05-09 16:57:06
+# bytes          0 222.90k     165     287  212.33  212.52   11.35  212.52
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+  ###
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_sessions'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_sessions`\G
+UPDATE gateway_sessions SET session_time = 1304711289, session_page = 'embed/index.php?ajax=true&lastID=17444550&roleplayID=11860', session_forum_id = 0
+								WHERE session_id = '0635877955ecfc82ecde9dd2f85684aa'\G
+# Converted for EXPLAIN
+# EXPLAIN
+select  session_time = 1304711289, session_page = 'embed/index.php?ajax=true&lastID=17444550&roleplayID=11860', session_forum_id = 0 from gateway_sessions where  session_id = '0635877955ecfc82ecde9dd2f85684aa'\G
+
+# Query 7: 0.00 QPS, 0.02x concurrency, ID 0xC49D9157B5731F82 at byte 1015458
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0     375
+# Exec time      5   4423s      6s     89s     12s     14s      5s     11s
+# Lock time      0    21ms    27us     2ms    57us   108us   113us    38us
+# Rows sent      0     375       1       1       1       1       0       1
+# Rows exam     11   1.95G 494.51k   5.35M   5.33M   5.18M 248.41k   5.18M
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:55:24 to 2011-05-09 16:54:44
+# bytes          0  28.20k      77      77      77      77       0      77
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  #
+#  10s+  ################################################################
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'ajax_chat_messages'\G
+#    SHOW CREATE TABLE `db_gateway`.`ajax_chat_messages`\G
+# EXPLAIN
+SELECT max(dateTime) as lastMessage FROM ajax_chat_messages WHERE channel = 0\G
+
+# Query 8: 0.00 QPS, 0.01x concurrency, ID 0x397CE66765809C32 at byte 3650
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0     727
+# Exec time      3   3192s      3s     14s      4s      9s      2s      4s
+# Lock time      1      3s    61us      2s     5ms   131us    71ms    80us
+# Rows sent      0   4.88k       0      33    6.88   24.84    8.61    1.96
+# Rows exam      0  20.93k       0     137   29.48  107.34   37.52    7.70
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:48:23 to 2011-05-09 16:57:06
+# bytes          0 308.63k     432     436  434.72  420.77       0  420.77
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+  #
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'ajax_chat_online'\G
+#    SHOW CREATE TABLE `db_gateway`.`ajax_chat_online`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_users'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_users`\G
+# EXPLAIN
+SELECT
+					o.userID,
+					o.userName,
+					o.userRole,
+					o.channel,
+					o.characterID,
+					o.roleplayID,
+					UNIX_TIMESTAMP(o.dateTime) AS timeStamp,
+					o.ip,
+					u.user_warnings,
+					u.user_notes,
+					u.group_id
+				FROM
+					ajax_chat_online o
+					LEFT JOIN gateway_users u
+						ON o.userID = u.user_id
+				WHERE
+					o.roleplayID = 11782
+				GROUP BY o.userID, o.roleplayID
+				ORDER BY
+					o.userRole DESC, o.userName\G
+
+# Query 9: 2.38 QPS, 0.01x concurrency, ID 0x1A2FB7919EE795D7 at byte 409243682
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count         41  593017
+# Exec time      3   2658s   627us      7s     4ms     3ms    69ms     2ms
+# Lock time     43    130s    49us      4s   219us   626us     5ms    76us
+# Rows sent     26  47.47M      32     126   83.94  112.70   20.35   88.31
+# Rows exam      1 215.11M     132     623  380.36  487.09   96.84  400.73
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:49:06 to 2011-05-09 16:59:59
+# bytes         57 234.14M     414     414     414     414       0     414
+# Query_time distribution
+#   1us
+#  10us
+# 100us  #
+#   1ms  ################################################################
+#  10ms  #
+# 100ms  #
+#    1s  #
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'ajax_chat_online'\G
+#    SHOW CREATE TABLE `db_gateway`.`ajax_chat_online`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_users'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_users`\G
+# EXPLAIN
+SELECT
+						o.userID,
+						o.userName,
+						o.userRole,
+						o.channel,
+						o.characterID,
+						o.roleplayID,
+						UNIX_TIMESTAMP(o.dateTime) AS timeStamp,
+						o.ip,
+						u.user_warnings,
+						u.user_notes,
+						u.group_id
+					FROM
+						ajax_chat_online o
+						LEFT JOIN gateway_users u
+							ON o.userID = u.user_id
+					GROUP BY o.userID,o.channel
+					ORDER BY
+						o.userRole DESC, o.userName\G
+
+# Query 10: 0.00 QPS, 0.01x concurrency, ID 0x67A347A2812914DF at byte 361588411
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0     351
+# Exec time      2   1886s    60us    160s      5s     25s     21s   287us
+# Lock time      0    11ms    23us   188us    32us    42us    12us    28us
+# Rows sent     56 102.37M       0  15.31M 298.64k   1.20M   1.59M   69.19
+# Rows exam      0 102.37M       0  15.31M 298.64k   1.20M   1.59M   69.19
+# Users                  1    root
+# Hosts                  1 localhost
+# Databases              1 db_gateway
+# Time range 2011-05-07 09:00:03 to 2011-05-09 09:10:36
+# bytes          0  20.07k      50      74   58.55   65.89    4.88   56.92
+# Query_time distribution
+#   1us
+#  10us  ######################################################
+# 100us  ################################################################
+#   1ms  ##########################
+#  10ms  ############
+# 100ms  ###########
+#    1s  ###############
+#  10s+  ###################
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_posts'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_posts`\G
+SELECT /*!40001 SQL_NO_CACHE */ * FROM `gateway_posts`\G
+# Converted for EXPLAIN
+# EXPLAIN
+SELECT /*!40001 SQL_NO_CACHE */ * FROM `gateway_posts`\G
+
+# Query 11: 0.03 QPS, 0.01x concurrency, ID 0x6A2E016DFABEB7A0 at byte 498748608
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0    6631
+# Exec time      2   1761s    36ms      4s   266ms   393ms   120ms   293ms
+# Lock time      0      1s    60us    58ms   164us   194us     1ms    84us
+# Rows sent      0  94.75k       0     164   14.63   46.83   18.23    8.91
+# Rows exam      0 137.99M   6.09k  79.33k  21.31k  59.57k  20.22k   6.01k
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:49:06 to 2011-05-09 16:59:28
+# bytes          0   1.85M     291     293  292.92  284.79       0  284.79
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms  ######
+# 100ms  ################################################################
+#    1s  #
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_roleplays'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_roleplays`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_users'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_users`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_characters'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_characters`\G
+# EXPLAIN
+SELECT id,title,description,owner,player_slots,owner,username,require_approval,url FROM rpg_roleplays
+							INNER JOIN gateway_users
+								ON rpg_roleplays.owner = gateway_users.user_id
+							WHERE owner = 5616
+								OR id IN (SELECT roleplay_id FROM rpg_characters WHERE owner = 5616)\G
+
+# Query 12: 1.13 QPS, 0.00x concurrency, ID 0x58B16A12AEF70926 at byte 605480405
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count         19  282268
+# Exec time      1   1085s   115us     12s     4ms   424us   108ms   247us
+# Lock time      9     27s    26us   373ms    97us   125us     1ms    49us
+# Rows sent      0  11.81k       0     114    0.04       0    0.45       0
+# Rows exam      0  29.92M      36     221  111.14  158.58   32.29  112.70
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:49:06 to 2011-05-09 16:59:58
+# bytes          9  37.42M     139     139     139     139       0     139
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ################################################################
+#   1ms  #
+#  10ms  #
+# 100ms  #
+#    1s  #
+#  10s+  #
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'ajax_chat_online'\G
+#    SHOW CREATE TABLE `db_gateway`.`ajax_chat_online`\G
+# EXPLAIN
+SELECT
+					userID,
+					userName,
+					channel
+				FROM
+					ajax_chat_online
+				WHERE
+					NOW() > DATE_ADD(dateTime, interval 5 MINUTE)\G
+
+# Query 13: 0.00 QPS, 0.00x concurrency, ID 0xEC5CD237C12B8497 at byte 605485675
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0     218
+# Exec time      1    998s      3s     12s      5s      9s      2s      4s
+# Lock time      0    13ms    30us   415us    60us    98us    29us    52us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows exam      0     399       1     128    1.83    1.96    8.36    0.99
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 20:03:08 to 2011-05-09 16:57:06
+# bytes          0  45.55k     204     225  213.97  212.52    5.36  212.52
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+  #
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'ajax_chat_online'\G
+#    SHOW CREATE TABLE `db_gateway`.`ajax_chat_online`\G
+UPDATE
+					ajax_chat_online
+				SET
+					userName 	= 'Fallen',
+					channel 	= '0',
+					roleplayID 	= '11919',	
+					characterID = 0,	
+					dateTime 	= NOW(),
+					ip			= 'H‚‘'
+				WHERE
+					userID = '6985'\G
+# Converted for EXPLAIN
+# EXPLAIN
+select 
+					userName 	= 'Fallen',
+					channel 	= '0',
+					roleplayID 	= '11919',	
+					characterID = 0,	
+					dateTime 	= NOW(),
+					ip			= 'H‚‘' from ajax_chat_online where 
+					userID = '6985'\G
+
+# Query 14: 0.00 QPS, 0.00x concurrency, ID 0x3230C45C1B965C11 at byte 111034580
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0     122
+# Exec time      0    586s      3s     12s      5s     11s      2s      4s
+# Lock time      0    16ms    93us   497us   134us   176us    52us   113us
+# Rows sent      0      97       0      10    0.80    1.96    1.18    0.99
+# Rows exam      0   4.89k       0   2.30k   41.02   49.17  231.76    2.90
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 20:03:05 to 2011-05-09 16:43:06
+# bytes          0 124.13k   1.01k   1.02k   1.02k 1012.63       0 1012.63
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+  #######
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'ajax_chat_messages'\G
+#    SHOW CREATE TABLE `db_gateway`.`ajax_chat_messages`\G
+# EXPLAIN
+SELECT
+					id,
+					userID,
+					userName,
+					userRole,
+					channel AS channelID,
+					UNIX_TIMESTAMP(dateTime) AS timeStamp,
+					text,
+					characterID,
+					roleplayID
+				FROM
+					ajax_chat_messages
+				WHERE
+					
+					id > '17450475'
+					AND
+					(
+						(
+							(
+								channel = '0'
+								OR
+								channel = '1000029312'
+								OR
+								(
+									roleplayID = 11826
+										AND
+									text LIKE "/ooc %"
+								)
+							)
+							AND
+							(
+								roleplayID IS NULL
+								OR 
+								roleplayID = 11826
+								OR
+									channel = 0
+							)
+						
+						
+						)
+						
+						OR
+						(
+							roleplayID = 11826
+							AND
+								text LIKE "/ooc %"
+						)
+					
+					)
+					AND userName <> "HAL"
+					
+						AND NOT (
+											text LIKE ('/login%')
+											OR
+											text LIKE ('/logout%')
+											OR
+											text LIKE ('/channelEnter%')
+											OR
+											text LIKE ('/channelLeave%')
+											OR
+											text LIKE ('/kick%')
+										)
+				ORDER BY
+					id
+					DESC
+				LIMIT 20\G
+
+# Query 15: 0.00 QPS, 0.00x concurrency, ID 0x09AA462C48723426 at byte 164012218
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0     727
+# Exec time      0    496s   602ms      2s   682ms   900ms   147ms   640ms
+# Lock time      7     21s    43us      1s    29ms    42ms   133ms    60us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows exam      0 131.00M 181.37k 187.65k 184.51k 182.98k   3.14k 182.98k
+# Users                  1 rpg-news
+# Hosts                  1
+# Databases              1 rpg_news
+# Time range 2011-05-06 19:52:25 to 2011-05-09 16:50:16
+# bytes          0 146.25k     206     206     206     206       0     206
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms  ################################################################
+#    1s  ###
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `rpg_news` LIKE 'pligg_tag_cache'\G
+#    SHOW CREATE TABLE `rpg_news`.`pligg_tag_cache`\G
+#    SHOW TABLE STATUS FROM `rpg_news` LIKE 'pligg_tags'\G
+#    SHOW CREATE TABLE `rpg_news`.`pligg_tags`\G
+#    SHOW TABLE STATUS FROM `rpg_news` LIKE 'pligg_links'\G
+#    SHOW CREATE TABLE `rpg_news`.`pligg_links`\G
+INSERT INTO pligg_tag_cache select tag_words, count(*) as count FROM pligg_tags, pligg_links WHERE tag_lang='en' and link_id = tag_link_id and  link_status!='discard'  GROUP BY tag_words order by count desc\G
+
+# Query 16: 1.27 QPS, 0.00x concurrency, ID 0x99A4D2CD4AD2B789 at byte 564544224
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count         21  316066
+# Exec time      0    469s   692us      5s     1ms     1ms    24ms   925us
+# Lock time     12     37s    43us   947ms   115us   138us     2ms    66us
+# Rows sent      1   3.32M      11      11      11      11       0      11
+# Rows exam      0   9.95M      33      33      33      33       0      33
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:49:06 to 2011-05-09 17:00:00
+# bytes         16  68.72M     228     228     228     228       0     228
+# Query_time distribution
+#   1us
+#  10us
+# 100us  ################################################################
+#   1ms  ##############################################
+#  10ms  #
+# 100ms  #
+#    1s  #
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_ad'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_ad`\G
+# EXPLAIN
+SELECT a.code, a.ad_id, a.position, a.type, a.image, a.url, a.height, a.width
+			FROM gateway_ad a
+			WHERE (a.max_views >= a.views OR a.max_views = '0')
+			AND (a.clicks <= a.max_clicks OR a.max_clicks = '0')
+			ORDER BY rand()\G
+
+# Query 17: 0.00 QPS, 0.00x concurrency, ID 0x9643E2288D06DC6D at byte 249594465
+# This item is included in the report because it matches --limit.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0     110
+# Exec time      0    384s      3s      4s      3s      4s   318ms      4s
+# Lock time      0     6ms    35us   118us    53us    84us    16us    44us
+# Rows sent      0   2.47k      23      23      23      23       0      23
+# Rows exam      0   2.47k      23      23      23      23       0      23
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 23:10:13 to 2011-05-09 15:36:05
+# bytes          0   8.70k      81      81      81      81       0      81
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_config'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_config`\G
+# EXPLAIN
+SELECT config_name, config_value
+				FROM gateway_config
+				WHERE is_dynamic = 1\G
+
+# Query 18: 0.00 QPS, 0.00x concurrency, ID 0x4CD2ED0E307CDFB2 at byte 30880
+# This item is included in the report because it matches --outliers.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0      67
+# Exec time      0    377s      3s     27s      6s      9s      5s      4s
+# Lock time      0     4ms    22us   185us    53us   103us    26us    42us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows exam      0      67       1       1       1       1       0       1
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:49:06 to 2011-05-09 16:57:06
+# bytes          0   6.77k      79     111  103.51  107.34   11.11  107.34
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+  ####
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_config'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_config`\G
+UPDATE gateway_config
+		SET config_value = 'b244c145615b76dae3e67789b1dabe52'
+		WHERE config_name = 'rand_seed'\G
+# Converted for EXPLAIN
+# EXPLAIN
+select  config_value = 'b244c145615b76dae3e67789b1dabe52' from gateway_config where  config_name = 'rand_seed'\G
+
+# Query 19: 0.00 QPS, 0.00x concurrency, ID 0x28BB999469B951E8 at byte 3440
+# This item is included in the report because it matches --outliers.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0      59
+# Exec time      0    295s      3s     14s      5s      9s      2s      4s
+# Lock time      0      1s    36us      1s    20ms    89us   148ms    47us
+# Rows sent      0      59       1       1       1       1       0       1
+# Rows exam      0      59       1       1       1       1       0       1
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:48:23 to 2011-05-09 16:43:06
+# bytes          0   3.51k      60      61   60.95   59.77       0   59.77
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+  ##
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_characters'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_characters`\G
+# EXPLAIN
+SELECT image,image_type FROM rpg_characters WHERE id = 128725\G
+
+# Query 20: 0.00 QPS, 0.00x concurrency, ID 0xF715ACE97E6E42B4 at byte 605492224
+# This item is included in the report because it matches --outliers.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0      56
+# Exec time      0    288s      3s     12s      5s      9s      2s      4s
+# Lock time      0     6ms    48us     2ms    99us    98us   246us    60us
+# Rows sent      0      56       1       1       1       1       0       1
+# Rows exam      0      56       1       1       1       1       0       1
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 20:32:06 to 2011-05-09 16:10:09
+# bytes          0   7.55k     138     138     138     138       0     138
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+  ###
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_users'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_users`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_sessions'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_sessions`\G
+# EXPLAIN
+SELECT u.*, s.*
+					FROM gateway_users u
+					LEFT JOIN gateway_sessions s ON (s.session_user_id = u.user_id)
+					WHERE u.user_id = 3034\G
+
+# Query 21: 0.00 QPS, 0.00x concurrency, ID 0x40D72F9F86E1B4AD at byte 605483878
+# This item is included in the report because it matches --outliers.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0      55
+# Exec time      0    274s      3s     12s      5s      9s      2s      4s
+# Lock time      0     5ms    47us   608us    82us   119us    72us    66us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows exam      0       0       0       0       0       0       0       0
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 20:03:08 to 2011-05-09 16:10:09
+# bytes          0  26.01k     390     580  484.27  537.02   43.25  463.90
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+  #
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_sessions'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_sessions`\G
+INSERT INTO gateway_sessions  (session_user_id, session_start, session_last_visit, session_time, session_browser, session_forwarded_for, session_ip, session_autologin, session_admin, session_viewonline, session_page, session_forum_id, session_id) VALUES (1, 1304941201, 1304941201, 1304941201, 'Mozilla/5.0 (compatible; Netseer crawler/2.0; +http://www.netseer.com/crawler.html; crawler@netseer.com)', '', '204.2.167.22', 0, 0, 1, 'roleplay.php?roleplay_name=romance-in-aisle-3', 0, '0618733d43d0fb0e213f08a62a216f2d')\G
+
+# Query 22: 0.00 QPS, 0.00x concurrency, ID 0xCF251D111381A292 at byte 605486034
+# This item is included in the report because it matches --outliers.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0      59
+# Exec time      0    271s      3s     12s      5s      7s      2s      4s
+# Lock time      0     3ms    33us   286us    55us    69us    29us    49us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows exam      0      59       1       1       1       1       0       1
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-07 01:04:05 to 2011-05-09 16:57:06
+# bytes          0  14.01k     226     304  243.24  258.32   15.56  234.30
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+  #
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_sessions'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_sessions`\G
+UPDATE gateway_sessions SET session_time = 1304941201, session_last_visit = 1304941201, session_admin = 0, session_page = 'roleplay.php?roleplay_name=the-black-light-abomination', session_forum_id = 0
+						WHERE session_id = '49b57946debe76001323268054e76edf'\G
+# Converted for EXPLAIN
+# EXPLAIN
+select  session_time = 1304941201, session_last_visit = 1304941201, session_admin = 0, session_page = 'roleplay.php?roleplay_name=the-black-light-abomination', session_forum_id = 0 from gateway_sessions where  session_id = '49b57946debe76001323268054e76edf'\G
+
+# Query 23: 0.00 QPS, 0.00x concurrency, ID 0x14CFAEC3223D90B2 at byte 4235
+# This item is included in the report because it matches --outliers.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0      42
+# Exec time      0    239s      3s     14s      6s      9s      3s      5s
+# Lock time      0      1s    99us      1s    33ms   152us   203ms   119us
+# Rows sent      0      60       0      20    1.43       0    5.01       0
+# Rows exam      0   4.93k      26     208  120.31  192.76   48.78  118.34
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:48:23 to 2011-05-09 16:43:06
+# bytes          0  41.83k    1005    1021 1019.95 1012.63       8 1012.63
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+  ###
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'ajax_chat_messages'\G
+#    SHOW CREATE TABLE `db_gateway`.`ajax_chat_messages`\G
+# EXPLAIN
+SELECT
+					id,
+					userID,
+					userName,
+					userRole,
+					channel AS channelID,
+					UNIX_TIMESTAMP(dateTime) AS timeStamp,
+					text,
+					characterID,
+					roleplayID
+				FROM
+					ajax_chat_messages
+				WHERE
+					
+				
+					dateTime >= "2011-05-06 19:33:09"
+					
+					AND
+					(
+					(
+					(
+						channel = '13371'
+						OR
+						channel = '1000043052'
+						OR
+						(
+							roleplayID = 11904
+								AND
+							text LIKE "/ooc %"
+						)
+					)
+					AND
+					(
+						roleplayID IS NULL
+						OR 
+						roleplayID = 11904
+						OR
+							channel = 0
+					)
+					
+					
+					)
+					
+					OR
+						(roleplayID = 11904
+							AND
+						text LIKE "/ooc %")
+					
+					)
+					AND userName <> "HAL"
+					
+						AND NOT (
+											text LIKE ('/login%')
+											OR
+											text LIKE ('/logout%')
+											OR
+											text LIKE ('/channelEnter%')
+											OR
+											text LIKE ('/channelLeave%')
+											OR
+											text LIKE ('/kick%')
+										)
+				ORDER BY
+					id
+					DESC
+				LIMIT 20\G
+
+# Query 24: 0.00 QPS, 0.00x concurrency, ID 0x988CFD2A5385868A at byte 131644917
+# This item is included in the report because it matches --outliers.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0      12
+# Exec time      0    146s     10s     15s     12s     13s      1s     11s
+# Lock time      0     1ms    63us   140us    86us   113us    22us    80us
+# Rows sent      0     300      25      25      25      25       0      25
+# Rows exam      0  31.08M   2.26M   2.72M   2.59M   2.62M 134.70k   2.62M
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-07 07:03:55 to 2011-05-09 12:27:01
+# bytes          0   3.20k     273     273     273     273       0     273
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  #####
+#  10s+  ################################################################
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_content'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_content`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_users'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_users`\G
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_places'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_places`\G
+# EXPLAIN
+SELECT a.*, a.type, p.name as place,u.username,u.user_id FROM rpg_content a
+						LEFT OUTER JOIN gateway_users u ON a.author_id = u.user_id
+						LEFT OUTER JOIN rpg_places p ON p.id = a.place_id
+						 
+					 WHERE a.place_id = 4 ORDER BY a.written DESC
+ LIMIT 927225, 25\G
+
+# Query 25: 0.00 QPS, 0.00x concurrency, ID 0x4CDB4ED4D9FB2B9F at byte 409233759
+# This item is included in the report because it matches --outliers.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0      14
+# Exec time      0     58s      3s      8s      4s      5s      1s      4s
+# Lock time      0   869us    32us   120us    62us   108us    26us    54us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows exam      0      14       1       1       1       1       0       1
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-07 12:52:05 to 2011-05-09 16:10:05
+# bytes          0   1.16k      81      85   84.71   84.10    1.03   84.10
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_users'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_users`\G
+UPDATE gateway_users
+						SET user_lastvisit = 1304864401
+						WHERE user_id = 3034\G
+# Converted for EXPLAIN
+# EXPLAIN
+select  user_lastvisit = 1304864401 from gateway_users where  user_id = 3034\G
+
+# Query 26: 0.00 QPS, 0.00x concurrency, ID 0x78822A28AA3E254E at byte 415927597
+# This item is included in the report because it matches --outliers.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0      11
+# Exec time      0     48s      4s      6s      4s      5s   557ms      4s
+# Lock time      0   640us    46us    75us    58us    69us    10us    58us
+# Rows sent      0      11       1       1       1       1       0       1
+# Rows exam      0      11       1       1       1       1       0       1
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 20:03:05 to 2011-05-09 16:03:08
+# bytes          0     645      58      59   58.64   56.92    0.00   56.92
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'rpg_roleplays'\G
+#    SHOW CREATE TABLE `db_gateway`.`rpg_roleplays`\G
+# EXPLAIN
+SELECT image,image_type FROM rpg_roleplays WHERE id = 11616\G
+
+# Query 27: 0.00 QPS, 0.00x concurrency, ID 0x776164C18DE30D5A at byte 498725326
+# This item is included in the report because it matches --outliers.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0      11
+# Exec time      0     47s      3s      6s      4s      5s   742ms      4s
+# Lock time      0   356us    20us    43us    32us    40us     7us    33us
+# Rows sent      0       0       0       0       0       0       0       0
+# Rows exam      0       4       0       1    0.36    0.99    0.48       0
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-07 14:03:06 to 2011-05-08 22:55:09
+# bytes          0     726      66      66      66      66       0      66
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'ajax_chat_online'\G
+#    SHOW CREATE TABLE `db_gateway`.`ajax_chat_online`\G
+DELETE FROM
+						ajax_chat_online
+					WHERE
+						userID='37357'\G
+# Converted for EXPLAIN
+# EXPLAIN
+select * from 
+						ajax_chat_online
+					WHERE
+						userID='37357'\G
+
+# Query 28: 0.00 QPS, 0.00x concurrency, ID 0xF8AFEC352FC9CE6A at byte 34607220
+# This item is included in the report because it matches --outliers.
+#              pct   total     min     max     avg     95%  stddev  median
+# Count          0      11
+# Exec time      0     45s      3s      6s      4s      5s   861ms      4s
+# Lock time      0   604us    36us    75us    54us    69us    11us    56us
+# Rows sent      0      11       1       1       1       1       0       1
+# Rows exam      0      11       1       1       1       1       0       1
+# Users                  1   admin
+# Hosts                  1
+# Databases              1 db_gateway
+# Time range 2011-05-06 19:48:29 to 2011-05-09 09:45:09
+# bytes          0     605      55      55      55      55       0      55
+# Query_time distribution
+#   1us
+#  10us
+# 100us
+#   1ms
+#  10ms
+# 100ms
+#    1s  ################################################################
+#  10s+
+# Tables
+#    SHOW TABLE STATUS FROM `db_gateway` LIKE 'gateway_users'\G
+#    SHOW CREATE TABLE `db_gateway`.`gateway_users`\G
+# EXPLAIN
+SELECT *
+					FROM gateway_users
+					WHERE user_id = 1\G
+
+# Profile
+# Rank Query ID           Response time    Calls  R/Call   Item
+# ==== ================== ================ ====== ======== ===============
+#    1 0xE1A6E832AF96EBD3 15574.7435 18.3%   1031  15.1064 SELECT rpg_content gateway_users rpg_places
+#    2 0x4CC08722CAB18183 15119.7910 17.8%   1044  14.4826 SELECT rpg_content gateway_users rpg_places
+#    3 0x0D0E0B6C9B77BA84 11923.0016 14.0% 124896   0.0955 SELECT rpg_places rpg_roleplays rpg_places_stats
+#    4 0xFA0D3F6DB8D14333 10823.9512 12.7%   1967   5.5028 SELECT gateway_sessions gateway_users
+#    5 0xBFFEA5160E28312E  6083.7494  7.2%  12183   0.4994 SELECT UNION rpg_content gateway_users rpg_places rpg_content gateway_users rpg_places rpg_content gateway_users rpg_places
+#    6 0x061C274991CA84C2  5502.3940  6.5%   1075   5.1185 UPDATE gateway_sessions
+#    7 0xC49D9157B5731F82  4422.7993  5.2%    375  11.7941 SELECT ajax_chat_messages
+#    8 0x397CE66765809C32  3191.8714  3.8%    727   4.3905 SELECT ajax_chat_online gateway_users
+#    9 0x1A2FB7919EE795D7  2658.1739  3.1% 593017   0.0045 SELECT ajax_chat_online gateway_users
+#   10 0x67A347A2812914DF  1885.8764  2.2%    351   5.3729 SELECT gateway_posts
+#   11 0x6A2E016DFABEB7A0  1761.4315  2.1%   6631   0.2656 SELECT rpg_roleplays gateway_users rpg_characters
+#   12 0x58B16A12AEF70926  1084.7379  1.3% 282268   0.0038 SELECT ajax_chat_online
+#   13 0xEC5CD237C12B8497   997.7122  1.2%    218   4.5767 UPDATE ajax_chat_online
+#   14 0x3230C45C1B965C11   586.2077  0.7%    122   4.8050 SELECT ajax_chat_messages
+#   15 0x09AA462C48723426   496.1779  0.6%    727   0.6825 INSERT SELECT pligg_tag_cache pligg_tags pligg_links
+#   16 0x99A4D2CD4AD2B789   469.0738  0.6% 316066   0.0015 SELECT gateway_ad
+#   17 0x9643E2288D06DC6D   383.8621  0.5%    110   3.4897 SELECT gateway_config
+#   18 0x4CD2ED0E307CDFB2   377.3766  0.4%     67   5.6325 UPDATE gateway_config
+#   19 0x28BB999469B951E8   294.7585  0.3%     59   4.9959 SELECT rpg_characters
+#   20 0xF715ACE97E6E42B4   288.1324  0.3%     56   5.1452 SELECT gateway_users gateway_sessions
+#   21 0x40D72F9F86E1B4AD   274.4310  0.3%     55   4.9897 INSERT gateway_sessions
+#   22 0xCF251D111381A292   270.6883  0.3%     59   4.5879 UPDATE gateway_sessions
+#   23 0x14CFAEC3223D90B2   239.4856  0.3%     42   5.7020 SELECT ajax_chat_messages
+#   24 0x988CFD2A5385868A   146.1031  0.2%     12  12.1753 SELECT rpg_content gateway_users rpg_places
+#   25 0x4CDB4ED4D9FB2B9F    57.7674  0.1%     14   4.1262 UPDATE gateway_users
+#   26 0x78822A28AA3E254E    48.4188  0.1%     11   4.4017 SELECT rpg_roleplays
+#   27 0x776164C18DE30D5A    46.5920  0.1%     11   4.2356 DELETE ajax_chat_online
+#   28 0xF8AFEC352FC9CE6A    45.1187  0.1%     11   4.1017 SELECT gateway_users

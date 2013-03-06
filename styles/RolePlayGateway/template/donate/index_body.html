@@ -1,0 +1,55 @@
+<!-- INCLUDE overall_header.html -->
+
+<form action="{S_DONATE_ACTION}" method="post" id="donate">
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<h2>{DONATE_TO_SITENAME}</h2>
+
+	<fieldset class="fields2">
+	<p><!-- {DONATE_TO_SITENAME_EXPLAIN} --></p>
+	<!-- IF .update -->
+	<dl class="faq">
+	<em style="font-size:.8em;"><!-- BEGIN update -->
+		{update.TIME}: {update.DESCRIPTION}<!-- IF not update.S_LAST_ROW --><br /><!-- ENDIF -->
+		<!-- END update --></em></dl>
+	<!-- ENDIF -->
+	<!-- IF .perk -->
+	<h3>{L_SUPPORTER_REWARDS}:</h3>
+	<dl class="faq">
+		<!-- BEGIN perk -->
+		<dt>{perk.PERK_TITLE}:</dt>
+		<dd>{perk.PERK_DESCRIPTION}</dd>
+		<!-- END perk -->
+	</dl>
+	<!-- ENDIF -->
+
+	<dl>
+    	<dt><label for="amount">{L_DONATE_AMOUNT}:</label><br /><br /><span>{L_DONATE_AMOUNT_EXPLAIN}</span></dt>
+        <dd><input type="text" tabindex="1" name="amount" id="amount" size="25" maxlength="6" value="" class="inputbox autowidth" title="{L_DONATE_AMOUNT}" />
+        <select name="currency_code" id="currency_code" class="autowidth">
+        {S_CURRENCY_OPTIONS}
+        </select></dd>
+    </dl>
+
+    </fieldset>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<fieldset class="submit-buttons">
+		{S_HIDDEN_FIELDS}
+		<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp;
+		<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+	</fieldset>
+
+	<img alt="" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

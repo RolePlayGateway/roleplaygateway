@@ -1,0 +1,9 @@
+Subject: We linked to your site...
+
+Hey there!  I'm the owner of "{SITENAME}" (which you can find at: {SITE_LINK} ) - and I just wanted to mention that we linked to your site ( {LINKED_DOMAIN} ) in a post of ours.
+
+The post was titled {POST_TITLE}, and you can go take a glance: {POST_LINK}
+
+If you don't mind, we'd love to have you link to something on our site in return.  Thanks a ton!
+
+{EMAIL_SIG}

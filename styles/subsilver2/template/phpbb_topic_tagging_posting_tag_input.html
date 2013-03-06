@@ -1,0 +1,33 @@
+<tr>
+	<th colspan="2">
+		{L_PTT_TAGS}
+	</th>
+</tr>
+<tr>
+	<td class="row3" colspan="2"><span class="gensmall">{L_PTT_ADD_TAGS_DESCRIPTION}</span></td>
+</tr>
+
+<tr> 
+	<td class="row1"><b class="genmed">{L_PTT_TAGS}</b></td> 
+	<td class="row2">
+		<table border="0" cellspacing="0" width="100%" cellpadding="2">
+		<tr>
+			<td width="1%">
+				<textarea name="ptt_tags" onkeyup="searchSuggest('ptt_tags', 'suggestions_div');" autocomplete="off" id="ptt_tags" rows="5" cols="35" class="inputbox"></textarea>
+			</td>
+			<td valign="top">
+				<table border="0" width="100%" cellspacing="4" cellpadding="0">
+				<tr>
+					<td>
+					<noscript>
+						<span class="error">Without Javascript suggestions will not work</span><br />
+					</noscript>
+					<div id="suggestions_div" class="suggestions suggest_posting"></div></td>
+				</tr>
+				</table>
+			</td>
+			<script language="JavaScript" type="text/javascript" src="phpbb_topic_tagging.js"></script>
+		</tr>
+		</table>
+	</td>
+</tr> 

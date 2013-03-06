@@ -1,0 +1,366 @@
+<!-- INCLUDE overall_header.html -->
+<style type="text/css">
+dl.roleplay .tags {
+  font-style:italic;
+}
+
+dl.roleplay {
+  min-height: 110px;
+}
+
+dl.roleplay dt {
+  padding-left: 120px;
+  padding-right: 10px;
+  width:auto;
+  font-size: 1.1em;
+}
+ul.roleplays {
+  display:block;
+}
+ul.roleplays li {
+  display:block;
+  list-style-type:none;
+  margin: 0;
+  cursor: pointer;
+}
+div.join a:hover {
+  background-color:#2DC3D0;
+  background-image:url(/styles/proseafoam/theme/images/bg_header.gif);
+  background-repeat: repeat-x;
+}
+.toplist ol {
+  padding-left:18px;
+  white-space:nowrap;
+}
+.toplist ol span, .toplist h3 span {
+  float:right;
+}
+ol li a {
+	max-width: 136px;
+	overflow: hidden;
+	display: inline-block;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+a.nice-button {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  background-color: #b6d3db;
+  background-image: -ms-linear-gradient(top, #EDF2F2 0%, #6FABBD 100%);
+  background-image: -moz-linear-gradient(top, #EDF2F2 0%, #6FABBD 100%);
+  background-image: -o-linear-gradient(top, #EDF2F2 0%, #6FABBD 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #EDF2F2), color-stop(1, #6FABBD));
+  background-image: -webkit-linear-gradient(top, #EDF2F2 0%, #6FABBD 100%);
+  background-image: linear-gradient(to bottom, #EDF2F2 0%, #6FABBD 100%);
+}
+.nice-button:hover {
+  background-image: -ms-linear-gradient(top, #EDF2F2 20%, #6FABBD 100%);
+  background-image: -moz-linear-gradient(top, #EDF2F2 20%, #6FABBD 100%);
+  background-image: -o-linear-gradient(top, #EDF2F2 20%, #6FABBD 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.2, #EDF2F2), color-stop(1, #6FABBD));
+  background-image: -webkit-linear-gradient(top, #EDF2F2 20%, #6FABBD 100%);
+  background-image: linear-gradient(to bottom, #EDF2F2 20%, #6FABBD 100%);
+  text-decoration: none;
+}
+
+.hero {
+  background: url('/images/fantasy-land-scaled.jpg');
+  background-size: 100% auto;
+  background-position: 50% 100%;
+  color: white;
+  font-size: 2em;
+  padding: 2em;
+  font-weight: bold;
+  text-shadow: 
+    0px 0px 50px rgba(0, 0, 0, 1),
+    0px 0px 50px rgba(0, 0, 0, 1),
+    0px 0px 50px rgba(0, 0, 0, 1),
+    0px 0px 50px rgba(0, 0, 0, 1),
+    0px 0px 50px rgba(0, 0, 0, 1),
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.hero h1 {
+  color: white;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+a:hover {
+  text-decoration: none;
+}
+</style>		
+			<div class="hero panel">
+        <h1 style="margin-top: 2em;">Create a world.</h1>
+        <p style="font-size: 1.1em;">The human mind offers an endless labyrinth of creativity.  <em>Harness it</em>.</p>
+
+        <p style="font-size: 0.8em;">RolePlayGateway helps you collaborate with fellow writers to <em>create your own world</em>.  We've created a set of roleplaying tools to help you organize your worlds and write with your fellow authors. <a href="/about/" style="margin-left:1em;">Learn More »</a></p>
+
+         <!-- IF S_USER_LOGGED_IN -->
+        <a href="/ucp.php?i=roleplays&amp;mode=new" class="nice-button" style="border-radius: 5px; padding: 0.5em; text-shadow: none; border: 1px solid black; float:right;">Get Started &raquo;</a>
+        <!-- ELSE -->
+        <a href="/ucp.php?mode=register" class="nice-button" style="border-radius: 5px; padding: 0.5em; text-shadow: none; border: 1px solid black; float:right;">Get Started &raquo;</a>
+        <!-- ENDIF -->
+        <br style="clear: both;">
+
+      </div>
+			<div style="float:right; width:228px;">
+
+
+				<div class="panel toplist">
+					<div class="inner"><span class="corners-top"><span></span></span>
+						<h3><a href="http://www.roleplaygateway.com/tag/" title="Tag Search">Roleplay Categories</a></h3>
+						<div align="center">{TAG_CLOUD}</div>
+						<span>Colored and sized by popularity! Click one to find all roleplays with that tag.</span>
+					<span class="corners-bottom"><span></span></span></div>
+				</div>
+			
+				<div class="panel toplist">
+					<div class="inner">
+						<span class="corners-top"><span></span></span>
+
+						<h2>Roleplay Stats</h2>
+
+						<h3><span></span><abbr title="Awesome roleplays">Awesome Roleplays</abbr></h3>
+						<ol>
+						<!-- BEGIN awesome_roleplays -->
+							<li><span></span>{awesome_roleplays.LINK}</li>
+						<!-- END awesome_roleplays -->
+						</ol>
+												
+						<h3><span>Words</span>Highest Words Per Post</h3>
+						<ol>
+						<!-- BEGIN longest_posts_in_roleplays -->
+							<li><span>{longest_posts_in_roleplays.AVERAGE_WORDS}</span>{longest_posts_in_roleplays.LINK}</li>
+						<!-- END longest_posts_in_roleplays -->
+						</ol>
+	
+	
+	          <!-- 
+						<h3><span>Grade Level</span><abbr title="Roleplays with the highest Flesch-Kincaid Grade Level average.">Most Advanced Roleplays</abbr></h3>
+						<ol>
+						<!-- BEGIN most_advanced_roleplays -->
+							<li><span>{most_advanced_roleplays.AVERAGE_GRADE_LEVEL}</span>{most_advanced_roleplays.LINK}</li>
+						<!-- END most_advanced_roleplays -->
+						</ol>
+						-->
+		
+						<h3><span>Words</span>Longest Roleplays</h3>
+						<ol>
+						<!-- BEGIN longest_roleplays -->
+							<li><span>{longest_roleplays.WORDS}</span>{longest_roleplays.LINK}</li>
+						<!-- END longest_roleplays -->
+						</ol>
+		
+						<h3><span>Age (Days)</span><abbr title="Roleplays that have recent activity in the past 30 days.">Oldest Active Roleplays</abbr></h3>
+						<ol>
+						<!-- BEGIN oldest_active_roleplays -->
+							<li><span>{oldest_active_roleplays.AGE}</span>{oldest_active_roleplays.LINK}</li>
+						<!-- END oldest_active_roleplays -->
+						</ol>
+						<span class="corners-bottom"><span></span></span>
+					</div>
+				</div>
+				
+				<!-- IF S_USER_STATS-->
+				<div class="panel toplist">
+					<div class="inner">
+						<span class="corners-top"><span></span></span>
+
+						<h2>User Stats</h2>
+						
+						<h3><span>Grade Level</span>Highest Grade Level</h3>
+						<ol>
+						<!-- BEGIN top_grade_level -->
+							<li><span>{top_grade_level.AVERAGE_GRADE_LEVEL}</span>{top_grade_level.USERNAME}</li>
+						<!-- END top_grade_level -->
+						</ol>
+						
+						<h3><span>Words</span>Most Words Written</h3>
+						<ol>
+						<!-- BEGIN top_words_written -->
+							<li><span>{top_words_written.WORDS}</span>{top_words_written.USERNAME}</li>
+						<!-- END top_words_written -->
+						</ol>
+
+						<h3><span>Average (Words)</span>Longest Posts</h3>
+						<ol>
+						<!-- BEGIN top_average_words -->
+							<li><span>{top_average_words.WORDS}</span>{top_average_words.USERNAME}</li>
+						<!-- END top_average_words -->
+						</ol>
+						<span class="corners-bottom"><span></span></span>
+					</div>
+				</div>
+				<!-- ENDIF -->
+				
+				<div class="panel" >
+					<div class="inner">
+						<span class="corners-top"><span></span></span>			
+						<h3>Online Gaming</h3>
+						<p>Experience role playing as a true <a href="http://www.21onlinecasinos.com">online casinos</a> player, show your skills at the <a href="http://www.luckyblackjack.com">online blackjack</a> table and win real money.</p>
+						<p>If you like role play why not play casino games? <a href="http://www.onlinecasinospro.com/">OnlineCasinosPro.com</a> has all the info you need to start!</p>
+						<p><a href="http://www.roleplaygateway.com/pages/future-of-bingo">Future of Bingo</a></p>
+						<span class="corners-bottom"><span></span></span>
+					</div>
+				</div>
+			
+				<div class="panel" >
+					<div class="inner">
+						<span class="corners-top"><span></span></span>
+							<div>
+
+							<!-- IF TAG_CLOUD and S_PHPBBFOLK_ON and !S_SHOW_ROLEPLAYS -->
+							<!-- phpBBFolk mod -->
+								<!-- INCLUDE phpBBFolk_tagcloud.html -->
+							<!-- end phpBBFolk mod -->	
+							<!-- ENDIF -->	
+							
+							</div>
+							
+							
+							
+							<hr />
+							<a href="http://www.roleplaygateway.com/links.php"><h3>Affiliates!</h3></a>
+							<a href="http://roleplayerguild.com/" title="roleplay forum">Roleplayer Guild</a><br />
+							<a href="http://www.dungeonmastering.com">DungeonMastering</a>
+							<hr />
+							<h3>Featured Roleplays</h3>
+							<a href="http://www.roleplaygateway.com/almost-allegory-t6965.html" title="Almost An Allegory - Write What You Feel">
+								<img src="http://www.lagedorre.net/sdf/AlmostAnAllegory.png" alt="Almost An Allegory - Write What You Feel" border="0" style="width:100%;" />
+							</a>
+							
+							<script type="text/javascript"><!--
+							google_ad_client = "pub-4532443596754933";
+							/* 160x600, created 2/2/10 */
+							google_ad_slot = "9784735203";
+							google_ad_width = 160;
+							google_ad_height = 600;
+							//-->
+							</script>
+							<script type="text/javascript"
+							src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+							</script>							
+							
+							
+						<span class="corners-bottom"><span></span></span>
+					</div>
+				</div>
+			</div>
+			
+			<!-- IF S_SHOW_ROLEPLAYS -->
+			<div style="margin-right: 232px;">
+				<script type="text/javascript"><!--
+				google_ad_client = "ca-pub-4532443596754933";
+				/* Front Page */
+				google_ad_slot = "1278049176";
+				google_ad_width = 728;
+				google_ad_height = 90;
+				//-->
+				</script>
+				<script type="text/javascript"
+				src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+				</script>
+
+				<div class="panel">
+					<div class="inner">
+						<span class="corners-top"><span></span></span>
+
+	<!--
+						
+						<h1 style="color:#226A87;">Welcome to RolePlayGateway!</h1>
+						<p style="font-size:1.4em; padding: 10px; line-height:1.7em;">
+							RolePlayGateway works a bit differently than your typical play-by-post roleplaying site. When you <a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=new">create your own roleplay</a>, you get your own set of message boards and chat that you can configure and share to your friends that embodies the world that you, as the author, have defined.  Attach images and descriptions to individual places in your world, and control what characters can join through a powerful character approval system.
+							<a href="http://www.roleplaygateway.com/roleplay/" style="float:right; font-size:1.2em;">Learn More &raquo;</a>
+						</p>
+
+						<hr style="clear:left;" />
+						
+	--> 
+						
+						<h2 style="font-weight:bold; text-transform: uppercase; font-size: 1.8em;"><a href="/roleplay/" style="float:right;" title="View All Online Roleplays">View All Worlds &raquo;</a><a href="http://www.roleplaygateway.com/roleplay/" title="Online Roleplays">Open Worlds</a>:</h2>
+						<ul class="roleplays">
+						
+						<!-- BEGIN roleplays -->
+
+							<li class="row bg1 roleplay" style="clear:left; padding-bottom: 0.5em;">
+								<dl class="icon roleplay">
+									<a href="/roleplay/{roleplays.URL}/"><img src="/roleplay/{roleplays.URL}/image" class="crisp-border" style="float:left; margin:0.75em;" /></a>
+									<dt style="padding-bottom:5px;">
+										<div onclick="window.location('http://www.roleplaygateway.com/roleplay/{roleplays.URL}/#join');" style="cursor:pointer;">
+											<!-- IF roleplays.S_CAN_EDIT -->
+											<div id="controls" style="float:right;">
+												<a href="/ucp.php?i=roleplays&mode=edit&id={roleplays.ID}">Edit</a>
+											</div>
+											<!-- ENDIF -->					
+											<a href="/roleplay/{roleplays.URL}/" class="topictitle">{roleplays.TITLE}</a> <span class="author">by {roleplays.OWNER_USERNAME}</span>
+											<p>{roleplays.DESCRIPTION}</p>
+											<span class="tags"><strong>Tags:</strong> {roleplays.TAGS} (<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_tag&id={roleplays.ID}">Add Tags &raquo;</a>)</span>
+											<div><g:plusone annotation="inline" href="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/"></g:plusone></div>
+										</div>
+									</dt>
+								</dl>
+							</li>
+					
+						<!-- END roleplays -->
+						</ul>
+						
+						
+						<br style="padding-top:20px;" />
+						<p><strong>RolePlayGateway is a community dedicated to online, text based <a href="http://www.roleplaygateway.com/pages/role-playing-and-online-poker">role-playing games</a>, their players, and other skills and pastimes associated with role-playing, be it anything ranging from <a href="http://www.intercasino.co.uk">casino gambling</a> to D&D and everything in between.</strong></p>
+						<p>At RolePlayGateway, we aim to provide a community where you are welcomed with a warmness that is unmatched, made to feel right at home, and given the freedom of not being monitored by the staff.</p>
+						<p>We will never delete a roleplay thread that has been brought to life on our forums. We are not the type of organization that will be unrealistically strict, nor will we come down like a ton of bricks issuing bans and official warnings at the first opportunity. Instead we wish to issue our new (and old) players into a world of unrivaled freedom of play. Here at RolePlayGateway you play your way.</p>
+						<p>Free Form Role Play, is what RolePlayGateway is all about. And as such, you should be allowed to play in ways that interest and motivate you. It is our goal to successfully accommodate the skillful and creative minds of roleplayers world wide.  <!-- 5/28 -->Roleplayers on RolePlayGateway absolutely revel in <a href="http://www.roleplaygateway.com/pages/the_appeal_of_the_unreal">the appeal of the unreal</a>, as it offers a chance to gain control over their own world. <!-- 5/28 --> <!-- 1/30 -->We also offer interesting articles and great reading for all visitors that want to learn more about roleplay and the relations to other kind of <a href="http://www.online-casinos.com/" rel="nofollow">casino</a> games like poker, and <a href="http://www.casinotoplists.com/video-poker-rules-544">video poker</a>.<!-- 1/30 --> <!-- 3/19 - 6m When interested in an online poker game, check the <a href="http://www.rakebrain.com/cake-poker.php">Cake poker rakeback</a> offers first. As with RPGs, you can create your own fantasy war online. 3/19 --> <!-- 2/2 -->&nbsp;&nbsp;Learn also how to include <a href="http://www.roleplaygateway.com/pages/involving_gambling_in_your_rpg_campaign">gambling in your RPG campaigns</a>, or <a href="http://www.roleplaygateway.com/pages/poker_as_a_role_playing_game">poker as an RPG</a> by reading our articles, among many others!<!-- 2/2 --></p>
+						<p>Yes, we are a community. But a community cannot possibly grow or become stable from a singular common interest like roleplay. So, to involve a more diverse crowd, all members will find that throughout the site there are many non-roleplay threads and discussions happening all the time. From general discussions and debates, gaming, martial arts, and technology chat, to places where you can show off skills such in areas like music, art, and writing.  Talk about your <a href="http://poker.ladbrokes.com/en/poker-hands">poker hands</a> or your favorite TV shows.</p>
+						<p>Alongside the forums, we also have an integrated chat service that will allow you to talk to staff and other members in real time, along with being able to roleplay in a chat style.</p>			
+						<p><a href="http://www.roleplaygateway.com/ucp.php?mode=register">Register for an account today!</a></p>		
+						
+						
+						
+						
+						<span class="corners-bottom"><span></span></span>
+					</div>
+				</div>
+			</div>
+			<!-- ELSE -->
+			
+			<div class="panel" style="margin-right: 260px;">
+				<div class="inner">
+					<span class="corners-top"><span></span></span>
+					<a href="forum.html" title="Role Playing Forums"><div style="float:left;"><img src="/images/roleplaying_forums.png" alt="Visit the Forum" style="width:150px; margin: 20px;" /></div></a>
+					
+					<div style="font-size:14px; margin-bottom:20px;">
+						<h3>Roleplay Your Way.  Period.</h3>
+						<div style="border:3px solid; padding:10px; letter-spacing:-1px;">
+<p>         Have a character sheet that you want to re-use in multiple roleplays? <strong><a href="http://www.roleplaygateway.com/ucp.php?mode=register">Register now</a>, then <a href="http://www.roleplaygateway.com/ucp.php?i=characters&mode=new">create your character</a>, and you'll get your own URL that you can use:</strong>        </p>       <p style="padding-left:100px;">         <code>roleplaygateway.com/characters/Your_Character_Name</code><br /><br />  <strong><a href="http://www.roleplaygateway.com/ucp.php?mode=register">Register now</a> to get one!</strong>        </p>        
+							</noscript>
+						</div>
+					</div>
+					
+					<p><strong>RolePlayGateway is a community dedicated to online, text based <a href="http://www.roleplaygateway.com/pages/role-playing-and-online-poker">role-playing games</a>, their players, and other skills and pastimes associated with role-playing, be it anything ranging from <a href="http://www.intercasino.co.uk">casino gambling</a> to D&D and everything in between.</strong></p>
+					<p>At RolePlayGateway, we aim to provide a community where you are welcomed with a warmness that is unmatched, made to feel right at home, and given the freedom of not being monitored by the staff.</p>
+					<p>We will never delete a roleplay thread that has been brought to life on our forums. We are not the type of organization that will be unrealistically strict, nor will we come down like a ton of bricks issuing bans and official warnings at the first opportunity. Instead we wish to issue our new (and old) players into a world of unrivaled freedom of play. Here at RolePlayGateway you play your way.</p>
+					<p>Free Form Role Play, is what RolePlayGateway is all about. And as such, you should be allowed to play in ways that interest and motivate you. It is our goal to successfully accommodate the skillful and creative minds of roleplayers world wide.  <!-- 5/28 -->Roleplayers on RolePlayGateway absolutely revel in <a href="http://www.roleplaygateway.com/pages/the_appeal_of_the_unreal">the appeal of the unreal</a>, as it offers a chance to gain control over their own world. <!-- 5/28 --> <!-- 1/30 -->We also offer interesting articles and great reading for all visitors that what to learn more about roleplay and the relations to other kind of <a href="http://www.online-casinos.com/" rel="nofollow">casino</a> games like poker, and <a href="http://www.casinotoplists.com/video-poker-rules-544">video poker</a>.<!-- 1/30 --> <!-- 2/2 -->Learn how to include <a href="http://www.roleplaygateway.com/pages/involving_gambling_in_your_rpg_campaign">gambling in your RPG campaigns</a>, or <a href="http://www.roleplaygateway.com/pages/poker_as_a_role_playing_game">poker as an RPG</a> by reading our articles, among many others!<!-- 2/2 --></p>
+					<p>Yes, we are a community. But a community cannot possibly grow or become stable from a singular common interest like roleplay. So, to involve a more diverse crowd, all members will find that throughout the site there are many non-roleplay threads and discussions happening all the time. From general discussions and debates, gaming, martial arts, and technology chat, to places where you can show off skills such in areas like music, art, and writing.  Talk about your <a href="http://poker.ladbrokes.com/en/poker-hands">poker hands</a> or your favorite TV shows.</p>
+					<p>Alongside the forums, we also have an integrated chat service that will allow you to talk to staff and other members in real time, along with being able to roleplay in a chat style.</p>			
+					<p><a href="http://www.roleplaygateway.com/ucp.php?mode=register">Register for an account today!</a></p>		
+					
+					<span class="corners-bottom"><span></span></span>
+				</div>
+			</div>
+			
+			<!-- ENDIF -->
+
+<script type="text/javascript">
+if(typeof(_gat)!='object')document.write('<sc'+'ript src="http'+
+(document.location.protocol=='https:'?'s://ssl':'://www')+
+'.google-analytics.com/ga.js"></sc'+'ript>')</script>
+<script type="text/javascript">
+try {
+var pageTracker=_gat._getTracker("UA-247942-13");
+pageTracker._trackPageview("/3393112822/test");
+}catch(err){}</script>
+			
+<!-- INCLUDE overall_footer.html -->

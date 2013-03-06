@@ -1,0 +1,341 @@
+<!-- INCLUDE overall_header.html -->
+
+<h2>{L_TITLE}</h2>
+<!-- IF S_TICKET_REPLY -->
+	<p>{L_TITLE_EXPLAIN}</p>
+<!-- ENDIF -->
+
+<!-- IF TICKET_HIDDEN or TICKET_SECURITY -->
+<div class="rules" align="center">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<!-- IF TICKET_HIDDEN -->{L_TRACKER_TICKET_HIDDEN_FROM_VIEW}<!-- ENDIF -->
+		<!-- IF TICKET_HIDDEN and TICKET_SECURITY --><br /><!-- ENDIF -->
+		<!-- IF TICKET_SECURITY -->{L_TRACKER_TICKET_SECURITY_FROM_VIEW}<!-- ENDIF -->
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<br />
+<!-- ENDIF -->
+
+<div id="col1">
+<!-- IF not S_TICKET_REPLY -->
+	<h3 style="color: #D21A4E;<!-- IF TICKET_CLOSED --> text-decoration: line-through;<!-- ENDIF -->">{TICKET_TITLE}<span style="color: black;"> {TICKET_STATUS}</span></h3>
+	<div class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<div class="postbody" style="width: auto; float: none; margin: 0; height: auto;">
+					<!-- IF not S_IS_BOT -->
+						<!-- IF S_CAN_DELETE or S_CAN_EDIT -->
+						<ul class="profile-icons">
+							<!-- IF S_CAN_EDIT --><li class="edit-icon"><a href="{U_EDIT}" title="{L_EDIT_POST}"><span>{L_EDIT_POST}</span></a></li><!-- ENDIF -->
+							<!-- IF S_CAN_DELETE --><li class="delete-icon"><a href="{U_DELETE}" title="{L_DELETE_POST}"><span>{L_DELETE_POST}</span></a></li><!-- ENDIF -->
+						</ul>
+						<!-- ENDIF -->
+					<!-- ENDIF -->
+				<p class="author">&nbsp;</p>
+				<div class="content">{TICKET_DESC}</div>
+				<!-- IF S_SHOW_ATTACHMENTS -->
+				<dl class="attachbox">
+					<dt>{L_ATTACHMENTS}</dt>
+					<dd>
+						<dl class="file">
+							<dt><!-- IF UPLOAD_ICON -->{UPLOAD_ICON} <!-- ENDIF --><a class="postlink" href="{U_DOWNLOAD_LINK}">{DOWNLOAD_NAME}</a></dt>
+							<dd>({FILESIZE} {SIZE_LANG})</dd>
+						</dl>
+					</dd>
+				</dl>
+				<!-- ENDIF -->
+				<!-- IF S_DISPLAY_NOTICE --><div class="rules">{L_DOWNLOAD_NOTICE}</div><!-- ENDIF -->
+				<!-- IF EDITED_MESSAGE or EDIT_REASON -->
+					<div class="notice">{EDITED_MESSAGE}
+						<!-- IF EDIT_REASON --><br /><strong>{L_REASON}:</strong> <em>{EDIT_REASON}</em><!-- ENDIF -->
+					</div>
+				<!-- ENDIF -->
+			</div>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<!-- IF S_DISPLAY_COMMENTS -->
+	<h3>{L_TRACKER_TICKET_COMMENTS}</h3>
+		<!-- BEGIN comments -->
+		<div id="{comments.POST_ID}" class="post <!-- IF comments.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<div class="postbody" style="width: auto; float: none; margin: 0; height: auto;">
+					<!-- IF not S_IS_BOT -->
+						<!-- IF comments.S_CAN_DELETE or comments.S_CAN_EDIT -->
+						<ul class="profile-icons">
+							<!-- IF comments.S_CAN_EDIT --><li class="edit-icon"><a href="{comments.U_EDIT}" title="{L_EDIT_POST}"><span>{L_EDIT_POST}</span></a></li><!-- ENDIF -->
+							<!-- IF comments.S_CAN_DELETE --><li class="delete-icon"><a href="{comments.U_DELETE}" title="{L_DELETE_POST}"><span>{L_DELETE_POST}</span></a></li><!-- ENDIF -->
+						</ul>
+						<!-- ENDIF -->
+					<!-- ENDIF -->
+					<p class="author"><a href="#{comments.POST_ID}">{POST_IMG}</a> <strong>{L_TRACKER_POST_BY_AUTHOR} {comments.COMMENT_POSTER} {L_TRACKER_POSTED_ON_DATE} {comments.COMMENT_TIME}</strong></p>
+					<div class="content">{comments.COMMENT_DESC}</div>
+					<!-- IF comments.S_SHOW_ATTACHMENTS -->
+					<dl class="attachbox">
+						<dt>{L_ATTACHMENTS}</dt>
+						<dd>
+							<dl class="file">
+								<dt><!-- IF comments.UPLOAD_ICON -->{comments.UPLOAD_ICON} <!-- ENDIF --><a class="postlink" href="{comments.U_DOWNLOAD_LINK}">{comments.DOWNLOAD_NAME}</a></dt>
+								<dd>({comments.FILESIZE} {comments.SIZE_LANG})</dd>
+							</dl>
+						</dd>
+					</dl>
+					<!-- ENDIF -->
+					<!-- IF comments.S_DISPLAY_NOTICE --><div class="rules">{L_DOWNLOAD_NOTICE}</div><!-- ENDIF -->
+					<!-- IF comments.EDITED_MESSAGE or comments.EDIT_REASON -->
+						<div class="notice">{comments.EDITED_MESSAGE}
+							<!-- IF comments.EDIT_REASON --><br /><strong>{L_REASON}:</strong> <em>{comments.EDIT_REASON}</em><!-- ENDIF -->
+						</div>
+					<!-- ENDIF -->
+				</div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+		<!-- BEGINELSE -->
+			<div class="post bg1">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				{L_TRACKER_TICKET_NO_COMMENTS}
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+		<!-- END -->
+	<!-- ENDIF -->
+
+	<!-- IF S_DISPLAY_HISTORY -->
+	<h3>{L_TRACKER_TICKET_HISTORY}</h3>
+		<!-- BEGIN history -->
+		<div class="post <!-- IF history.S_ROW_COUNT is odd --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+			<div class="inner"><span class="corners-top"><span></span></span>
+					<strong>{history.HISTORY_ACTION}</strong>
+					<div style="margin-top: 10px; padding-top: 2px; border-top: 1px dashed #CCCCCC;">{history.HISTORY_ACTION_BY}</div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+		<!-- BEGINELSE -->
+			<div class="post bg1">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				{L_TRACKER_TICKET_NO_HISTORY}
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+		<!-- END -->
+	<!-- ENDIF -->
+
+	<!-- IF S_USER_LOGGED_IN and S_CAN_POST_TRACKER and not S_IS_BOT or PAGINATION or TOTAL_POSTS -->
+	<div class="topic-actions">
+		<!-- IF S_USER_LOGGED_IN and S_CAN_POST_TRACKER and not S_IS_BOT and not S_DISPLAY_HISTORY -->
+		<div class="buttons">
+			<div class="<!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->reply-icon<!-- ENDIF -->"><a href="{U_POST_REPLY_TICKET}" title="<!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED}<!-- ELSE -->{L_POST_REPLY}<!-- ENDIF -->"><span></span><!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED_SHORT}<!-- ELSE -->{L_POST_REPLY}<!-- ENDIF --></a></div>
+		</div>
+		<!-- ENDIF -->
+		<!-- IF PAGINATION or TOTAL_POSTS -->
+		<div class="pagination">
+			{TOTAL_POSTS}
+			<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+		</div>
+		<!-- ENDIF -->
+	</div>
+	<!-- ENDIF -->
+<!-- ELSE -->
+	<!-- IF S_PREVIEW -->
+	<h3>{L_TRACKER_PREVIEW}</h3>
+	<div class="panel bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<div class="postbody" style="width: auto; float: none; margin: 0; height: auto;">
+				<div class="content">{REPLY_PREVIEW}</div>
+			</div>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<br />
+	<!-- ENDIF -->
+
+	<form action="{U_ACTION}" method="post"{S_FORM_ENCTYPE}>
+		<div class="panel bg2">
+			<span class="corners-top"><span></span></span>
+			<fieldset class="fields1">
+			<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+				<!-- IF S_EDIT_REASON -->
+				<dl>
+					<dt><label for="edit_reason">{L_TRACKER_EDIT_REASON}:</label><br /><span>{L_TRACKER_EDIT_REASON_EXPLAIN}</span></dt>
+					<dd><input type="text" id="edit_reason" name="edit_reason" value="{EDIT_REASON_TEXT}" class="inputbox medium" /></dd>
+				</dl>
+				<!-- ENDIF -->
+				<dl>
+					<dt><label for="post_text">{L_MESSAGE}:</label></dt>
+					<dd><textarea id="post_text" name="post_text" rows="10" cols="20" class="inputbox">{REPLY_DESC}</textarea></dd>
+				</dl>
+			</fieldset>
+			<span class="corners-bottom"><span></span></span>
+		</div>
+
+		<!-- IF S_CAN_ATTACH and not S_HAS_ATTACHMENTS-->
+		<div class="panel bg2">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			<fieldset>
+			<h3>{L_TRACKER_ATTACHMENTS}</h3>
+			<dl>
+				<dt><label for="attachment">{L_TRACKER_ATTACHMENTS_UPLOAD}:</label></dt>
+				<dd>
+					<input type="file" name="attachment" id="attachment" class="inputbox medium" />
+				</dd>
+			</dl>
+			<dl>
+				<dt></dt>
+				<dd><input type="submit" name="add_attachment" value="{L_TRACKER_ATTACHMENTS_ADD}" class="button2" /></dd>
+			</dl>
+			</fieldset>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+		<!-- ENDIF -->
+
+		<!-- IF S_HAS_ATTACHMENTS -->
+			<div class="panel bg2">
+				<div class="inner"><span class="corners-top"><span></span></span>
+				<h3>{L_POSTED_ATTACHMENTS}</h3>
+				<fieldset class="fields2">
+				<dl>
+					<dd><a href="{U_VIEW_ATTACHMENT}" class="{S_CONTENT_FLOW_END}">{FILENAME}</a></dd>
+					<dd style="margin-top: 5px;">
+						<input type="submit" name="delete_attachment" value="{L_DELETE_FILE}" class="button2" />
+					</dd>
+				</dl>
+				{S_HIDDEN}
+				</fieldset>
+				<span class="corners-bottom"><span></span></span></div>
+			</div>
+		<!-- ENDIF -->
+
+		<!-- IF S_MANAGE_TICKET -->
+		<div class="panel bg2">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			<h3>{L_OPTIONS}</h3>
+			<fieldset class="fields2">
+			<!-- IF S_MANAGE_TICKET and S_ASSIGN_USER_OPTIONS -->
+				<dl>
+					<dt><label for="au"><strong>{L_TRACKER_ASSIGN_USER}:</strong></label></dt>
+					<dd><select id="au" name="au">{S_ASSIGN_USER_OPTIONS}</select></dd>
+				</dl>
+				<!-- ENDIF -->
+				<!-- IF S_MANAGE_TICKET and S_STATUS_OPTIONS -->
+				<dl>
+					<dt><label for="cs"><strong>{L_TRACKER_CHANGE_STATUS}:</strong></label></dt>
+					<dd><select id="cs" name="cs">{S_STATUS_OPTIONS}</select></dd>
+				</dl>
+				<!-- ENDIF -->
+				<!-- IF S_MANAGE_TICKET and S_PRIORITY_OPTIONS -->
+				<dl>
+					<dt><label for="pr"><strong>{L_TRACKER_CHANGE_PRIORITY}:</strong></label></dt>
+					<dd><select id="pr" name="pr">{S_PRIORITY_OPTIONS}</select></dd>
+				</dl>
+				<!-- ENDIF -->
+				<!-- IF S_MANAGE_TICKET and S_SEVERITY_OPTIONS -->
+				<dl>
+					<dt><label for="s"><strong>{L_TRACKER_CHANGE_SEVERITY}:</strong></label></dt>
+					<dd><select id="s" name="s">{S_SEVERITY_OPTIONS}</select></dd>
+				</dl>
+				<!-- ENDIF -->
+				<!-- IF S_TICKET_SECURITY -->
+				<dl>
+					<dt><label for="ticket_security">{L_TRACKER_SECURITY_TICKET}:</label></dt>
+					<dd><input type="checkbox" name="ticket_security" id="ticket_security" value="1"<!-- IF TICKET_SECURITY --> checked="checked"<!-- ENDIF --> /></dd>
+				</dl>
+				<!-- ENDIF -->
+				<dl>
+					<dt><label for="ticket_hidden">{L_TRACKER_HIDE_TICKET}:</label></dt>
+					<dd><input type="checkbox" name="ticket_hidden" id="ticket_hidden" value="1"<!-- IF TICKET_HIDDEN --> checked="checked"<!-- ENDIF --> /></dd>
+				</dl>
+				<dl>
+					<dt><label for="ticket_status">{L_TRACKER_LOCK_TICKET}:</label></dt>
+					<dd><input type="checkbox" name="ticket_status" id="ticket_status" value="1"<!-- IF S_IS_LOCKED --> checked="checked"<!-- ENDIF --> /></dd>
+				</dl>
+			</fieldset>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+		<!-- ENDIF -->
+
+		<div class="panel bg2">
+			<span class="corners-top"><span></span></span>
+			<fieldset>
+				<p>{TRACKER_REPLY_DETAIL}</p>
+				<input type="submit" name="preview" value="{L_TRACKER_PREVIEW_REPLY}" class="button2" /> <input type="submit" name="submit" value="{L_TRACKER_SUBMIT_REPLY}" class="button1" />
+				{S_FORM_TOKEN}
+			</fieldset>
+			<span class="corners-bottom"><span></span></span>
+		</div>
+	</form>
+
+	<!-- IF S_DISPLAY_REVIEW -->
+	<h3>{L_TRACKER_PREVIOUS_POSTS}</h3>
+		<div id="topicreview">
+			<div class="post bg2">
+				<div class="inner"><span class="corners-top"><span></span></span>
+				<!-- BEGIN review -->
+				<div id="{review.POST_ID}" class="postbody">
+					<p class="author<!-- IF review.S_LAST_ROW --> current<!-- ENDIF -->">{POST_IMG} <strong>{L_TRACKER_POST_BY_AUTHOR} {review.POST_USER} {L_TRACKER_POSTED_ON_DATE} {review.POST_TIME}<strong></p>
+					<div class="content<!-- IF review.S_LAST_ROW --> current<!-- ENDIF -->">{review.POST_TEXT}</div>
+				</div>
+				<!-- IF not review.S_LAST_ROW --><hr /><!-- ENDIF -->
+				<!-- END -->
+				<span class="corners-bottom"><span></span></span></div>
+			</div>
+		</div>
+	<!-- ENDIF -->
+<!-- ENDIF -->
+</div>
+<div id="col2">
+	<div class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<h3 style="border-bottom: none; margin-top: 5px;">{L_TRACKER_TICKET_DETAILS}</h3>
+			<ul class="menu">
+				<li><strong>{L_TRACKER_TICKET_ID}:</strong> {TICKET_ID}</li>
+				<li><strong>{L_TRACKER_PROJECT_NAME}:</strong> {PROJECT_NAME}</li>
+				<li><strong>{L_TRACKER_STATUS}:</strong> {TICKET_STATUS_DETAILS}</li>
+				<!-- IF S_TICKET_COMPONENT --><li><strong>{L_TRACKER_COMPONENT}:</strong> {TICKET_COMPONENT}</li><!-- ENDIF -->
+				<!-- IF S_TICKET_VERSION --><li><strong>{L_TRACKER_DETAILS_VERSION}:</strong> {TICKET_VERSION}</li><!-- ENDIF -->
+				<!-- IF S_TICKET_PRIORITY --><li><strong>{L_TRACKER_PRIORITY}:</strong> {TICKET_PRIORITY}</li><!-- ENDIF -->
+				<!-- IF S_TICKET_SEVERITY --><li><strong>{L_TRACKER_SEVERITY}:</strong> {TICKET_SEVERITY}</li><!-- ENDIF -->
+				<!-- IF S_TICKET_ENVIRONMENT -->
+					<!-- IF S_SHOW_PHP --><li><strong>{L_TRACKER_TICKET_PHP_DETAIL}:</strong> {TICKET_PHP}</li><!-- ENDIF -->
+					<!-- IF S_SHOW_DBMS --><li><strong>{L_TRACKER_TICKET_DBMS_DETAIL}:</strong> {TICKET_DBMS}</li><!-- ENDIF -->
+				<!-- ENDIF -->
+				<li><strong>{L_TRACKER_ASSIGNED_TO}:</strong> {TICKET_ASSIGNED_TO}</li>
+				<li><strong>{L_TRACKER_REPORTED_BY}:</strong> {TICKET_REPORTED_BY} (<a href="{U_SEND_PM}">{L_TRACKER_SEND_PM}</a>)</li>
+				<li><strong>{L_TRACKER_REPORTERS_TICKETS}:</strong> <a href="{U_REPORTERS_TICKETS}">{L_TRACKER_LIST_ALL_TICKETS}</a></li>
+				<li<!-- IF not TICKET_LAST_VISIT --> class="last"<!-- ENDIF -->><strong>{L_TRACKER_REPORTED_ON}:</strong> {TICKET_TIME}</li>
+				<!-- IF TICKET_LAST_VISIT --><li class="last">{TICKET_LAST_VISIT}</li><!-- ENDIF -->
+			</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<!-- IF S_MANAGE_TICKET --><form id="assign_user_form" action="{U_UPDATE_ACTION}" method="post"><!-- ENDIF -->
+	<div class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<h3 style="border-bottom: none; margin-top: 5px;">{L_OPTIONS}</h3>
+		<ul class="menu">
+				<li<!-- IF not S_MANAGE_TICKET or S_TICKET_REPLY and (not S_USER_LOGGED_IN and S_IS_BOT) --> class="last"<!-- ENDIF -->><a href="{U_VIEW_TICKET_HISTORY}">{L_TICKET_HISTORY}</a></li>
+				<!-- IF S_USER_LOGGED_IN and not S_IS_BOT -->
+					<li<!-- IF not S_MANAGE_TICKET or S_TICKET_REPLY --> class="last"<!-- ENDIF -->><a href="{U_WATCH_TICKET}">{L_WATCH_TICKET}</a></li>
+				<!-- ENDIF -->				
+				<!-- IF not S_TICKET_REPLY -->
+					<!-- IF S_MANAGE_TICKET and S_ASSIGN_USER_OPTIONS --><li><label for="au"><strong>{L_TRACKER_ASSIGN_USER}:</strong></label><select id="au" name="au">{S_ASSIGN_USER_OPTIONS}</select></li><!-- ENDIF -->
+					<!-- IF S_MANAGE_TICKET and S_STATUS_OPTIONS --><li><label for="cs"><strong>{L_TRACKER_CHANGE_STATUS}:</strong></label><select id="cs" name="cs">{S_STATUS_OPTIONS}</select></li><!-- ENDIF -->
+					<!-- IF S_MANAGE_TICKET and S_PRIORITY_OPTIONS --><li><label for="pr"><strong>{L_TRACKER_CHANGE_PRIORITY}:</strong></label><select id="pr" name="pr">{S_PRIORITY_OPTIONS}</select></li><!-- ENDIF -->
+					<!-- IF S_MANAGE_TICKET and S_SEVERITY_OPTIONS --><li><label for="s"><strong>{L_TRACKER_CHANGE_SEVERITY}:</strong></label><select id="s" name="s">{S_SEVERITY_OPTIONS}</select></li><!-- ENDIF -->
+					<!-- IF S_MANAGE_TICKET --><li class="last"><input type="submit" name="update" value="{L_SUBMIT}" class="button2" /></li><!-- ENDIF -->
+				<!-- ENDIF -->
+			</ul>
+		<span class="corners-bottom"><span></span></span></div>
+		<!-- IF S_MANAGE_TICKET -->{S_FORM_TOKEN}<!-- ENDIF -->
+	</div>
+	<!-- IF S_MANAGE_TICKET --></form><!-- ENDIF -->
+</div>
+<div class="cleaner">&nbsp;</div>
+<!-- IF S_MANAGE_TICKET_MOD and not S_TICKET_REPLY -->
+	<br />
+	<form method="post" action="{S_MOD_ACTION}">
+	<fieldset class="quickmod">
+		<label>{L_QUICK_MOD}: {S_TICKET_MOD}</label> <input name="submit_mod" type="submit" value="{L_GO}" class="button2" />
+		{S_FORM_TOKEN}
+	</fieldset>
+	</form>
+	<div class="cleaner">&nbsp;</div>
+<!-- ENDIF -->
+
+<!-- INCLUDE tracker/tracker_footer.html -->
+
+<!-- INCLUDE overall_footer.html -->

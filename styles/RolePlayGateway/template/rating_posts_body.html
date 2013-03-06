@@ -1,0 +1,72 @@
+<!-- INCLUDE simple_header.html -->
+
+	<script type="text/javascript" src="{T_TEMPLATE_PATH}/forum_fn.js"></script>
+
+	<script type="text/javascript">
+		function rate_post(rating) {
+			requestContent('http://www.roleplaygateway.com/prs.php?mode=vote&s='+ rating +'&p={POST_ID}&t={TOPIC_ID}&f={FORUM_ID}&ajax=true','prs_rating{POST_ID}');
+			
+			document.getElementById('prs_rating{POST_ID}').innerHTML = "Read more of this story at <a href=\"http://www.roleplaygateway.com/post{POST_ID}.html#p{POST_ID}\">{POST_SUBJECT}</a>...";
+			document.getElementById('post_reader').innerHTML = '<center style="margin-top:100px;"><strong>Wait for the next post...</strong><br /><img src="http://www.roleplaygateway.com/styles/prosilver/theme/images/loading.gif" /></center>';
+		
+			timedRefresh(3000);
+
+		}
+		
+		//create a XMLHttpRequest Object.
+		if (window.XMLHttpRequest) {
+			xmlhttp = new XMLHttpRequest();
+		} else {
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		//call this function with url of document to open as attribute
+		function requestContent(url,id) {
+			xmlhttp.open("GET",url,true);
+			xmlhttp.onreadystatechange = function () {
+				
+				if (xmlhttp.readyState == 4) {
+					//xmlhttp.responseText is the content of document requested
+					// If our message looks like it's going to RETURN THE WHOLE PAGE (ZOMG), then we just push the user to that page
+					if (xmlhttp.responseText.length > 2048) {
+						document.location = url;
+					} else {
+					//Otherwise, lets use the response and write it to the page
+						// Do nothing, really...
+					}
+				}
+				
+			}
+			xmlhttp.send(null);
+		}
+
+		function timedRefresh(timeoutPeriod) {
+			setTimeout("location.reload(true);",timeoutPeriod);
+		}
+
+	</script>
+
+<div style="font-size:2em; text-align:center;">
+	
+	<div>What do you think of this post?</div>
+
+	<a href="http://www.roleplaygateway.com/report.php?p={POST_ID}" style="font-size:0.8em; margin-right:10px;">Report!</a> | 
+	<a href="#" onclick="rate_post(1); return false;" title="{L_PRS_STAR1_EXPLAIN}"><span>{L_PRS_STAR1}</span></a> &bull; 
+	<a href="#" onclick="rate_post(2); return false;" title="{L_PRS_STAR2_EXPLAIN}"><span>{L_PRS_STAR2}</span></a> &bull; 
+	<a href="#" onclick="rate_post(3); return false;" title="{L_PRS_STAR3_EXPLAIN}"><span>{L_PRS_STAR3}</span></a> &bull; 
+	<a href="#" onclick="rate_post(4); return false;" title="{L_PRS_STAR4_EXPLAIN}"><span>{L_PRS_STAR4}</span></a> &bull; 
+	<a href="#" onclick="rate_post(5); return false;" title="{L_PRS_STAR5_EXPLAIN}"><span>{L_PRS_STAR5}</span></a> | 
+	<a href="#" onclick="timedRefresh(0); return false;" style="font-size:0.8em; margin-left:10px;"><span>Skip >></span></a>
+	
+	<div id="prs_rating{POST_ID}" style="font-size:0.7em; margin-top:10px;"></div>
+</div>
+	
+<div id="post_reader">
+
+	<h2>{TOPIC_TAG_LIST}</h2>
+
+	<!-- <h2 id="post_subject">{POST_SUBJECT}</h2> -->
+	<p id="post_text">{POST_TEXT}</p>
+</div>
+
+<!-- INCLUDE simple_footer.html -->

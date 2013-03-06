@@ -1,0 +1,33 @@
+<ul class="topiclist">
+	<li class="header">
+		<dl class="icon">
+			<dt>{SEO_FORUM_TITLE}</dt>
+			<dd class="topics"><span>{STATUS_TITLE}</span></dd>
+			<dd class="posts"><span>{ID_TITLE}</span></dd>
+			<dd class="lastpost"><span>{DETAIL_TITLE}</span></dd>
+		</dl>
+	</li>
+</ul>
+<!-- BEGIN forumrow -->	
+<ul class="topiclist forums">
+	<li class="row">
+		<form id="quick" action="{U_CACHE_ACTION}" method="post">
+			<dl class="icon" style="background-image: url({forumrow.FORUM_FOLDER_STATUS_IMG}); background-repeat: no-repeat;">
+				<dt id="forum_{forumrow.FORUM_ID}">
+					<fieldset><legend><a href="#forum_{forumrow.FORUM_ID}" class="top2">{forumrow.FORUM_NAME}</a></legend>
+						<br/><input class="text medium" type="text" id="forum_url{forumrow.FORUM_ID}" name="forum_url{forumrow.FORUM_ID}" value="{forumrow.URL}" maxlength="255" />
+						<input type="hidden" name="sid_check" value="{SID_CHECK}" />
+						<input type="hidden" name="forum_id_check" value="{forumrow.FORUM_ID}" />
+						<input class="button1" type="submit" id="submit" name="update" value="{L_SUBMIT}" />&nbsp;
+						<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+					</fieldset>
+{forumrow.FORUM_ADVICES}
+				</dt>
+				<dd class="topics">{forumrow.STATUS_MSG}<dfn>{STATUS_TITLE}</dfn></dd>
+				<dd class="posts">{forumrow.FORUM_ID}<dfn>{ID_TITLE}</dfn></dd>
+				<dd class="lastpost">{forumrow.FORUM_URL_TITLE}<br/>{forumrow.FORUM_URL}<a href="#seo_top" class="top2" style="float:right;">{BACK_TO_TOP}</a><dfn>{DETAIL_TITLE}</dfn></dd>
+			</dl>
+		</form>
+	</li>
+</ul>
+<!-- END forumrow -->

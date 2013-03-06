@@ -1,0 +1,57 @@
+<!-- INCLUDE overall_header.html -->
+<h2>{L_TRACKER}</h2>
+<p>{TRACKER_PROJECTS}</p>
+
+<!-- IF not S_DISPLAY_PROJECT -->
+<table class="tablebg" cellspacing="1" width="100%">
+<tr>
+	<th width="30%" style="text-align: left;">&nbsp;{L_TRACKER_PROJECT_NAME_TITLE}&nbsp;</th>
+	<th width="70%" style="text-align: left;">&nbsp;{L_TRACKER_DESCRIPTION}&nbsp;</th>
+</tr>
+<tr style="height: 50px">
+	<td class="row1" colspan="2" align="center">
+		<strong>{L_TRACKER_NO_PROJECT_EXIST}</strong>
+	</td>
+</tr>
+</table>
+<!-- ELSE -->
+<br />
+	<!-- BEGIN cat -->
+		<table class="tablebg" cellspacing="1" width="100%">
+			<tr>
+				<th width="30%" style="text-align: left;">&nbsp;<a href="{cat.U_PROJECT}">{cat.PROJECT_NAME}</a>&nbsp;</th>
+				<th colspan="2" width="70%" style="text-align: left;">&nbsp;{L_TRACKER_DESCRIPTION}&nbsp;</th>
+			</tr>
+			<!-- BEGIN project -->
+			<!-- IF cat.project.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+					<td style="width: 30%;"><a href="{cat.project.U_PROJECT}"><strong>{cat.project.PROJECT_TYPE}</strong></a></td>
+					<td style="width: 60%;"><!-- IF cat.project.PROJECT_DESC -->{cat.project.PROJECT_DESC}<!-- ELSE -->&nbsp;<!-- ENDIF --></td>
+					<td style="width: 10%; text-align: center; vertical-align: middle;"><a href="{cat.project.U_PROJECT_STATISTICS}">{L_TRACKER_VIEW_STATISTICS}</a></td>
+				</tr>
+			<!-- END project -->
+		</table>
+		<!-- IF not cat.S_LAST_ROW --><br /><!-- ENDIF -->
+	<!-- END cat -->
+<!-- ENDIF -->
+<br />
+
+<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
+	<br clear="all" />
+
+	<form method="post" action="{S_LOGIN_ACTION}">
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat"><h4><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a></h4></td>
+	</tr>
+	<tr>
+		<td class="row1" align="center"><span class="genmed">{L_USERNAME}:</span> <input class="post" type="text" name="username" size="10" />&nbsp; <span class="genmed">{L_PASSWORD}:</span> <input class="post" type="password" name="password" size="10" />&nbsp; <!-- IF S_AUTOLOGIN_ENABLED --> <span class="gensmall">{L_LOG_ME_IN}</span> <input type="checkbox" class="radio" name="autologin" /><!-- ENDIF -->&nbsp; <input type="submit" class="btnmain" name="login" value="{L_LOGIN}" /></td>
+	</tr>
+	</table>
+	{S_FORM_TOKEN}
+	</form>
+<!-- ENDIF -->
+
+<!-- INCLUDE tracker/tracker_footer.html -->
+
+<!-- INCLUDE overall_footer.html -->

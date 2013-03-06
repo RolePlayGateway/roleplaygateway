@@ -1,0 +1,26 @@
+Hello {USERNAME},
+
+You are receiving this notification because you are subscribed to this project
+or ticket. An update to the ticket has occured.  You will receive these notifications
+when a new ticket is posted, a comment is posted to the ticket and any details
+about the ticket have changed.
+
+To view the ticket, click here:
+{TICKET_URL}
+
+To unsubscribe to the project, click here:
+{PROJECT_UNSUBSCRIBE_URL}
+
+To unsubscribe to the ticket, click here:
+{TICKET_UNSUBSCRIBE_URL}
+
+Ticket details
+--------------------------
+
+Ticket ID: {TICKET_ID}
+Title:     {TICKET_TITLE}
+
+--
+{SITE_NAME}
+{PROJECT_NAME} - {TRACKER_TYPE}
+{TRACKER_URL}

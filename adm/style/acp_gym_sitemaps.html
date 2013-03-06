@@ -1,0 +1,95 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+<div style="float:right;">{L_MAIN} V {GYM_VERSION} {INSTALL_LINK}</div>
+<h1>{L_MODE_TITLE}</h1>
+<p>{L_MODE_ITLE_EXPLAIN}</p>
+<br/>
+<!-- IF S_MENU_MODULE -->
+<div id="gymtab">
+	<ul>
+	<!-- BEGIN menu_module -->
+	<li<!-- IF menu_module.S_SELECTED --> id="gymactivetab"<!-- ENDIF -->> <a href="{menu_module.U_TITLE}"><span>{menu_module.L_TITLE}</span></a></li>
+	<!-- END menu_module -->
+	</ul>
+</div>
+<div id="gymacp">
+		<div class="panel">
+			<span class="corners-top"><span></span></span>
+				<div id="gymcontent">
+<!-- ENDIF -->
+
+<div style="float:right;">{MAINTENANCE_LINKS}</div>
+<!-- IF S_MENU -->
+<h1>{L_MODULE_TITLE}</h1>
+
+<p>{L_MODULE_ITLE_EXPLAIN}</p>
+<br/>
+<div id="gymtabs">
+	<ul>
+	<!-- BEGIN menu -->
+	<li<!-- IF menu.S_SELECTED --> id="gymactivetabs"<!-- ENDIF -->> <a href="{menu.U_TITLE}"><span>{menu.L_TITLE}</span></a></li>
+	<!-- END menu -->
+	</ul>
+</div>
+<div id="gymacps">
+		<div class="panel">
+			<span class="corners-top"><span></span></span>
+				<div id="gymcontents">
+<!-- ENDIF -->
+<h1>{L_TITLE}</h1>
+
+<p>{L_TITLE_EXPLAIN}</p>
+
+<!-- IF S_ERROR -->
+	<div class="errorbox">
+		<h3>{L_WARNING}</h3>
+		<p>{ERROR_MSG}</p>
+	</div>
+<!-- ENDIF -->
+<form id="acp_board" method="post" action="{U_ACTION}">
+
+<!-- BEGIN options -->
+	<!-- IF options.S_LEGEND -->
+		<!-- IF not options.S_FIRST_ROW -->
+			</fieldset>
+		<!-- ENDIF -->
+		<fieldset>
+			<legend>{options.LEGEND}</legend>
+	<!-- ELSE -->
+
+		<dl>
+			<dt><label for="{options.KEY}">{options.TITLE}:</label><!-- IF options.S_EXPLAIN --><br /><span>{options.TITLE_EXPLAIN}</span><!-- ENDIF --></dt>
+			<dd>{options.CONTENT}</dd>
+		</dl>
+
+	<!-- ENDIF -->
+<!-- END options -->
+
+<!-- IF S_AUTH -->
+	<!-- BEGIN auth_tpl -->
+		{auth_tpl.TPL}
+	<!-- END auth_tpl -->
+<!-- ENDIF -->
+<!-- IF S_SUBMIT_BUTTON -->
+	<p class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</p>
+<!-- ENDIF -->
+</form>
+<!-- IF S_MENU_MODULE -->
+				</div>
+			<span class="corners-bottom"><span></span></span>
+		</div>
+		</div>
+<!-- ENDIF -->
+<!-- IF S_MENU -->
+				</div>
+			<span class="corners-bottom"><span></span></span>
+		</div>
+		</div>
+		<!-- ENDIF -->
+<div style="float:right;">
+{SUPPORT_LINKS}
+</div>
+<!-- INCLUDE overall_footer.html -->

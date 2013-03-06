@@ -1,0 +1,18 @@
+Subject: Bienvenue sur les forums de "{SITENAME}"
+
+{WELCOME_MSG}
+
+Conservez cet e-mail pour mémoire. Les informations de votre compte sont les suivantes:
+
+----------------------------
+Nom d'utilisateur: {USERNAME}
+----------------------------
+
+Votre mot de passe a été stocké de manière sécurisée dans notre base de données et ne pourra pas être retrouvé. Dans le cas où vous l'auriez oublié, vous pourrez le réinitialiser en utilisant l'adresse e-mail associée à votre compte.
+
+Visitez le lien suivant afin d'activer votre compte:
+{U_ACTIVATE}
+
+Merci pour votre inscription.
+
+{EMAIL_SIG}

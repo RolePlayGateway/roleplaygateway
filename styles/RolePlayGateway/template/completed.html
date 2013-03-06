@@ -1,0 +1,46 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<style type="text/css">
+  .character {
+    height: 130px;
+  }
+</style>
+
+<h1 style="color: #2B363C;"><a href="http://www.roleplaygateway.com/roleplay/">Roleplays</a> &raquo; <a href="http://www.roleplaygateway.com/roleplays/completed">Completed</a></h1>
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_ROLEPLAYS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+    <div class="" style="width:inherit;"><div class="">
+
+      <!-- BEGIN roleplays -->
+      <div class="place" style="height:auto;">
+        <img src="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/image" />
+	      <h2>
+	        <a href="#" style="float:right;">Buy Hardcopy &raquo;</a>
+          <a href="#" style="float:right;">Download PDF &raquo;</a>
+	        <a href="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/">{roleplays.TITLE}</a>
+	      </h2>
+	      <h3>{roleplays.WORDS} words by {roleplays.AUTHOR_COUNT} authors</h3>
+        <p><!-- BEGIN authors --><a href="http://www.roleplaygateway.com/member/{roleplays.authors.USERNAME}/" style="border-radius: 3px; margin-left: 5px; padding: 3px; padding-left: 5px; padding-right: 5px; background: #ccc;">{roleplays.authors.USERNAME}: {roleplays.authors.PERCENTAGE}%</a><!-- END authors --></p>
+	      <p>{roleplays.SYNOPSIS}</p>
+      </div>
+      <!-- BEGINELSE -->
+	      <p class="supersize">There are no completed roleplays.</p>
+      <!-- END roleplays -->
+
+    </div></div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_ROLEPLAYS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<!-- INCLUDE overall_footer.html -->

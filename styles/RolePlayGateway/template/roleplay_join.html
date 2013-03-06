@@ -1,0 +1,114 @@
+<div class="join">
+
+	<h2><a href="#join" name="join">Character Application</a></h2>
+	<p>You can't post in this roleplay until you submit a profile for approval.  Fill out the following form with your character information:</p>
+	
+	<!-- IF S_HAS_MULTIVERSE_CHARACTERS -->
+	<h3>Duplicate Multiversal Character</h3>
+	<fieldset> 
+		<dl> 	
+			
+			<dt>
+				<label for="">Select the character:</label><br />
+				<span><strong>Warning: </strong> This will submit the selected character to this roleplay as soon as you select them. Use with caution!</span>
+			</dt>
+			<dd>
+				<select onchange="window.location='http://www.roleplaygateway.com/ucp.php?i=characters&mode=duplicate&roleplay_id={ID}&character_id=' + this.options[this.selectedIndex].value;">
+					<option selected="selected"></option>
+					<!-- BEGIN multiverse_characters -->
+					<option value="{multiverse_characters.ID}">{multiverse_characters.NAME}</option>
+					<!-- END multiverse_characters -->
+				</select>
+			</dd>
+			</dt>
+		</dl>
+	</fieldset>
+	<!-- ENDIF -->
+	
+	<form id="ucp" enctype="multipart/form-data" method="post" action="http://www.roleplaygateway.com/ucp.php?i=characters&mode=new&action=submit"> 
+ 
+		<input type="hidden" name="roleplay_id" value="{ID}" />
+	
+		<h3>Basic Information</h3> 
+		<fieldset> 
+			<dl> 
+				<dt>
+					<label for="character_name">Character Name:</label><br />
+					<span>It is recommended you use your character's full name.  <strong>You cannot change this in the future.</strong> Pick wisely.</span>
+				</dt> 
+				<dd><input type="text" name="character_name" id="character_name" maxlength="45" class="inputbox" /></dd> 
+			</dl> 
+			<dl> 
+				<dt> 
+					<label for="character_synopsis">Synopsis:</label><br /> 
+					<span>Give a brief overview of your character.  This is used as your introduction in our <a href="http://www.roleplaygateway.com/chat/">roleplay chat</a> when you type the following command to go <strong>In Character</strong> (IC):<br /><code>/ic Character Name</code></span> 
+				</dt> 
+				<dd><input type="text" value="" maxlength="255" size="255" name="character_synopsis" id="character_synopsis" class="inputbox" /></dd> 
+			</dl> 
+			<dl> 
+				<dt> 
+					<label for="character_image">Character Avatar:</label><br /> 
+					<span>Upload a small 100x100 avatar for your character. This will be displayed in various places around your roleplay, such as dialogue.</span> 
+				</dt> 
+				<dd> 
+					<input type="hidden" name="MAX_FILE_SIZE" value="1500000" /> 
+					<input name="userfile" type="file" /> 
+				</dd> 
+			</dl> 
+		</fieldset> 
+		
+		<h3>Important Details</h3>
+		<p>Filling one or more of these fields out will allow it to display on your character's profile, but leaving it empty will prevent it from being displayed. If you so choose, you can use the "Description" field to add any detailed information that does not fit into other fields. BBcode <strong>is</strong> enabled in these fields.</p>
+		<fieldset>
+			<dl>
+				<dt>
+					<label for="character_description">Description:</label><br />
+					<span>Describe the physical appearance of your character. Words are better than pictures.</span>
+				</dt>
+			</dl>
+			<ul class="topiclist cplist">
+				<script type="text/javascript">edToolbar('character_description');</script>
+				<textarea name="character_description" id="character_description" rows="15" class="inputbox" style="width:100%;"></textarea>
+			</ul>
+			<dl>
+				<dt>
+					<label for="character_personality">Personality:</label><br />
+					<span>Describe your character's personality and general demeanor.</span>
+				</dt>
+			</dl>
+			<ul class="topiclist cplist">
+				<script type="text/javascript">edToolbar('character_personality');</script>
+				<textarea name="character_personality" id="character_personality" rows="15" class="inputbox" style="width:100%;"></textarea>
+			</ul>
+			<dl>
+				<dt>
+					<label for="character_equipment">Equipment:</label><br />
+					<span>Describe your character's equipment and tools.</span>
+				</dt>
+			</dl>
+			<ul class="topiclist cplist">
+				<script type="text/javascript">edToolbar('character_equipment');</script>
+				<textarea name="character_equipment" id="character_equipment" rows="15" class="inputbox" style="width:100%;"></textarea>
+			</ul>
+			<dl>
+				<dt>
+					<label for="character_history">History:</label><br />
+					<span>Describe your character's history and background.</span>
+				</dt>
+			</dl>
+			<ul class="topiclist cplist">
+				<script type="text/javascript">edToolbar('character_history');</script>
+				<textarea name="character_history" id="character_history" rows="15" class="inputbox" style="width:100%;"></textarea>
+			</ul>
+		</fieldset>
+		
+		<fieldset class="submit-buttons"> 
+			<input type="reset" value="Reset" name="reset" class="button2" />&nbsp; 
+			<input type="submit" name="submit" value="Submit this profile &raquo;" class="button1" /> 
+		</fieldset> 
+		
+
+ 
+</form> 	
+	
+</div>

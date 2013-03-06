@@ -1,0 +1,23 @@
+	<div class="panel bg3" id="phpBBFolk-panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<p>{L_PBF_ADD_TAGS_DESCRIPTION}</p>
+
+	<fieldset class="fields2">
+		<dl>
+			<dt><label for="poll_option_text">{L_PBF_TAGS}:</label><span></dt>
+			<dd><textarea name="pbf_tags" onkeyup="searchSuggest('pbf_tags', 'suggestions_div');" autocomplete="off" id="pbf_tags" rows="5" cols="35" class="inputbox"></textarea></dd>
+		</dl>
+        <dl>
+			<dt>
+				<label for="poll_option_text">{L_PBF_SUGGESTIONS}:</label><span>
+				<noscript>
+					<br /><span class="error">Without Javascript suggestions will not work</span><br>
+				</noscript>
+			</dt>
+			<dd><div id="suggestions_div" class="suggestions suggest_posting"></div></dd>
+		</dl>
+	</fieldset>
+	<script language="JavaScript" type="text/javascript" src="phpBBFolk.js"></script>
+	<span class="corners-bottom"><span></span></span></div>
+</div>

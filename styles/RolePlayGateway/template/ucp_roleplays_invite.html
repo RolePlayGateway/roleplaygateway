@@ -1,0 +1,26 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>Invite Player</h2>
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<form id="ucp" method="post" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=invite_player&action=submit">
+	
+	<p>This page shows a list of your friends' characters.</p>
+	
+	<select name="character_id" id="character_id">
+	<!-- BEGIN characters -->
+		<option value="{characters.ID}">{characters.NAME}</option>
+	<!-- END characters -->
+	</select>
+	
+	<input type="hidden" name="roleplay_id" value="{ROLEPLAY_ID}" />
+	<input type="submit" name="submit" value="Invite This Player" />
+	
+	</form>
+		
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- INCLUDE ucp_footer.html -->

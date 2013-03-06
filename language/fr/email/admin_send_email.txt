@@ -1,0 +1,14 @@
+
+Ce qui suit est un e-mail qui vous a été envoyé par un administrateur de "{SITENAME}". Si ce message est un spam, contient des commentaires abusifs ou autre chose qui vous offense, contactez le webmaster de ce forum à l'adresse suivante:
+
+{CONTACT_EMAIL}
+
+Incluez cet e-mail en entier (plus particulièrement les en-têtes).
+
+Message qui vous a été envoyé:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+{MESSAGE}
+
+
+{EMAIL_SIG}

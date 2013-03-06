@@ -1,0 +1,10 @@
+Subject: Votre compte est toujours inactif
+
+Bonjour {USERNAME},
+
+Cet e-mail de notification est un rappel pour vous indiquer que votre compte à "{SITENAME}", créé le {REGISTER_DATE}, reste inactif. Si vous souhaitez activer ce compte, nous vous invitons à visiter le lien suivant:
+{U_ACTIVATE}
+
+Merci pour votre inscription à "{SITENAME}", et pour votre future participation.
+
+{EMAIL_SIG}

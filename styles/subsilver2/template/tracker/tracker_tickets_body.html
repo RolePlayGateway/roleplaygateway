@@ -1,0 +1,132 @@
+<!-- INCLUDE overall_header.html -->
+<h2>{L_TITLE}</h2>
+
+<!-- IF S_FOUND_RESULTS -->
+<table width="100%" cellspacing="2" cellpadding="2" border="0" align="center">
+  <tr>
+	<td><span class="titles">{SEARCH_MATCHES}</span><br /></td>
+</tr>
+ <tr>
+	<td><span class="genmed">{L_SEARCHED_FOR}: <b>{SEARCH_TERM}</b></span></td>
+</tr>
+</table>
+<!-- ENDIF  -->
+
+<div align="center">
+<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+<tr>
+	<td class="row1">
+		{TRACKER_CURRENTLY_SHOWING}
+	</td>
+</tr>
+</table>
+</div>
+<br />
+<table width="100%" cellspacing="1">
+<tr>
+	<!-- IF S_USER_LOGGED_IN and S_CAN_POST_TRACKER and not S_IS_BOT -->
+		<td align="{S_CONTENT_FLOW_BEGIN}" valign="middle"><a href="{U_POST_NEW_TICKET}">{TICKET_IMG}</a></td>
+	<!-- ENDIF -->
+		<td>
+			<form id="st_form" action="{U_ACTION}" method="get">
+				<label for="st">
+					<strong>{L_TRACKER_FILTER_TICKET}:</strong>
+				</label>
+				<select id="st" name="st" onchange="document.getElementById('st_form').submit();">{S_STATUS_OPTIONS}</select>
+				<!-- IF S_VERSION_OPTIONS --><select id="vid" name="vid" onchange="document.getElementById('st_form').submit();">{S_VERSION_OPTIONS}</select>&nbsp;<!-- ENDIF -->
+				<!-- IF S_COMPONENT_OPTIONS --><select id="cid" name="cid" onchange="document.getElementById('st_form').submit();">{S_COMPONENT_OPTIONS}</select><!-- ENDIF -->
+				<noscript><input type="submit" name="submit" value="OK" class="btnlite" /></noscript>
+				<input type="hidden" name="p" value="{PROJECT_ID}" />
+				<input type="hidden" name="u" value="{TRACKER_USER_ID}" />
+				<input type="hidden" name="at" value="{TRACKER_ASSIGNED_USER_ID}" />
+				{S_HIDDEN_FIELDS}
+			</form>
+		</td>
+		<td>
+			<form action="{S_ACTION_SEARCH}" method="post" id="search_tracker">
+				{S_HIDDEN_FIELDS_SEARCH}
+				<input type="text" name="term" maxlength="128" title="{L_TRACKER_SEARCH_DESCRIPTION}" value="<!-- IF SEARCH_TERM-->{SEARCH_TERM}<!-- ELSE -->{L_SEARCH_MINI}<!-- ENDIF -->" onclick="if(this.value=='{LA_SEARCH_MINI}')this.value='';" onblur="if(this.value=='')this.value='{LA_SEARCH_MINI}';" />
+				<input type="submit" value="{L_SEARCH}" class="btnlite" />
+			</form>
+		</td>
+		<td class="gensmall" align="{S_CONTENT_FLOW_END}" nowrap="nowrap"><!-- IF S_CAN_MANAGE and U_MY_ASSIGNED_TICKETS --><a href="{U_MY_ASSIGNED_TICKETS}" title="{TRACKER_MY_ASSIGNED_TICKETS}">{TRACKER_MY_ASSIGNED_TICKETS}</a>&nbsp;&bull;&nbsp;<!-- ENDIF --><a href="{U_MY_TICKETS}" title="{TRACKER_MY_TICKETS}">{TRACKER_MY_TICKETS}</a></td>
+</tr>
+</table>
+
+<table class="tablebg" cellspacing="1" width="100%">
+<tr>
+	<th width="5%" style="text-align: left;">#</th>
+	<th width="45%" style="text-align: left;">{L_TRACKER_TICKET_TITLE}</th>
+	<th width="15%" align="center">{L_TRACKER_COMPONENT}</th>
+	<th width="20%" align="center">{L_TRACKER_ASSIGNED_TO}</th>
+	<th width="15%" align="center">{L_TRACKER_STATUS}</th>
+</tr>
+<!-- BEGIN tickets -->
+
+	<!-- IF tickets.TICKET_HIDDEN or tickets.TICKET_SECURITY -->
+	<tr class="forumrules">
+	<!-- ELSE -->
+		<!-- IF tickets.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+	<!-- ENDIF -->
+		<td><strong>{tickets.TICKET_ID}</strong></td>
+		<td>
+			<strong><a href="{tickets.U_VIEW_TICKET}">{tickets.TICKET_TITLE}</a></strong><br />
+			<span class="small">{tickets.TICKET_USERNAME} {L_TRACKER_POSTED_ON_DATE} {tickets.TICKET_TIME}<!-- IF tickets.LAST_POST_USERNAME -->{L_TRACKER_LAST_POST_BY}{tickets.LAST_POST_USERNAME}<!-- ENDIF --></span>
+		</td>
+		<td align="center">{tickets.TICKET_COMPONENT}</td>
+		<td align="center">{tickets.TICKET_ASSIGNED_TO}</td>
+		<td align="center" style="color: red;">{tickets.TICKET_STATUS}</td>
+	</tr>
+<!-- BEGINELSE -->
+	<tr style="height: 50px">
+		<td class="row1" colspan="5" align="center">
+			<strong>{L_TRACKER_NO_TICKETS}</strong>
+		</td>
+	</tr>
+<!-- END tickets -->
+</table>
+
+<!-- IF TOTAL_TICKETS -->
+	<table width="100%" cellspacing="1">
+		<tr>
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;{PAGE_NUMBER}<br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ {TOTAL_TICKETS} ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"><!-- INCLUDE pagination.html --></td>
+		</tr>
+		<!-- IF S_USER_LOGGED_IN and not S_IS_BOT -->
+		<tr>
+			<td colspan="3"><a href="{U_WATCH_PROJECT}">{L_WATCH_PROJECT}</a></td>
+		</tr>
+		<!-- ENDIF -->
+	</table>
+<!-- ELSE -->
+	<table width="100%" cellspacing="1">
+		<tr>
+			<td><a href="{U_WATCH_PROJECT}">{L_WATCH_PROJECT}</a></td>
+		</tr>
+	</table>
+<!-- ENDIF -->
+
+<br />
+
+
+<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
+	<br clear="all" />
+
+	<form method="post" action="{S_LOGIN_ACTION}">
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<td class="cat"><h4><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a></h4></td>
+	</tr>
+	<tr>
+		<td class="row1" align="center"><span class="genmed">{L_USERNAME}:</span> <input class="post" type="text" name="username" size="10" />&nbsp; <span class="genmed">{L_PASSWORD}:</span> <input class="post" type="password" name="password" size="10" />&nbsp; <!-- IF S_AUTOLOGIN_ENABLED --> <span class="gensmall">{L_LOG_ME_IN}</span> <input type="checkbox" class="radio" name="autologin" /><!-- ENDIF -->&nbsp; <input type="submit" class="btnmain" name="login" value="{L_LOGIN}" /></td>
+	</tr>
+	</table>
+	{S_FORM_TOKEN}
+	</form>
+<!-- ENDIF -->
+
+<!-- INCLUDE tracker/tracker_footer.html -->
+
+<!-- INCLUDE overall_footer.html -->
