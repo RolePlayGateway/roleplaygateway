@@ -1,0 +1,35 @@
+<!-- INCLUDE overall_header.html -->
+<style type="text/css">
+  textarea {
+    font-size: 1.2em;
+  }
+</style>
+<div class="panel" id="message">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<div id="posting">
+		<h2><a href="#posting" name="posting">Creating a New Bundle</a></h2>
+
+		<h3>...starting with the following post:</h3>
+		<p>{POST_CONTENT}</p>
+					
+		<form id="write" method="post" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_arc&roleplay_id={ROLEPLAY_ID}&action=submit">
+
+			<input type="hidden" name="arc_id" value="{ARC_ID}" />
+			<input type="hidden" name="with_post" value="{POST_ID}" />
+
+			<h3>Name</h3>
+			<input name="arc_name" class="ed inputbox supersize" style="width: 100%;" value="{NAME}" />
+
+			<h3>Synopsis</h3>
+			<textarea name="arc_description" class="ed inputbox supersize" style="width: 100%;" rows="4">{SYNOPSIS}</textarea>
+
+			<input type="submit" name="submit" value="Create &raquo;" class="button1 supersize" style="float: right; font-size:1.75em; padding: 0.5em;" />
+
+		</form>
+	</div>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

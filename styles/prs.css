@@ -1,0 +1,72 @@
+/* Posts ratings icons */
+.prs_star_uv_0, .prs_star_uv_0 a	{ background: none top left no-repeat; }
+.prs_star_uv_1, .prs_star_uv_1 a	{ background: none top left no-repeat; }
+.prs_star_uv_2, .prs_star_uv_2 a	{ background: none top left no-repeat; }
+.prs_star_uv_3, .prs_star_uv_3 a	{ background: none top left no-repeat; }
+.prs_star_uv_4, .prs_star_uv_4 a	{ background: none top left no-repeat; }
+.prs_star_uv_5, .prs_star_uv_5 a	{ background: none top left no-repeat; }
+.prs_star_uv_6, .prs_star_uv_6 a	{ background: none top left no-repeat; }
+.prs_star_uv_7, .prs_star_uv_7 a	{ background: none top left no-repeat; }
+.prs_star_uv_8, .prs_star_uv_8 a	{ background: none top left no-repeat; }
+.prs_star_uv_9, .prs_star_uv_9 a	{ background: none top left no-repeat; }
+.prs_star_uv_10, .prs_star_uv_10 a	{ background: none top left no-repeat; }
+.prs_star_v_0, .prs_star_v_0 a	{ background: none top left no-repeat; }
+.prs_star_v_1, .prs_star_v_1 a	{ background: none top left no-repeat; }
+.prs_star_v_2, .prs_star_v_2 a	{ background: none top left no-repeat; }
+.prs_star_v_3, .prs_star_v_3 a	{ background: none top left no-repeat; }
+.prs_star_v_4, .prs_star_v_4 a	{ background: none top left no-repeat; }
+.prs_star_v_5, .prs_star_v_5 a	{ background: none top left no-repeat; }
+.prs_star_v_6, .prs_star_v_6 a	{ background: none top left no-repeat; }
+.prs_star_v_7, .prs_star_v_7 a	{ background: none top left no-repeat; }
+.prs_star_v_8, .prs_star_v_8 a	{ background: none top left no-repeat; }
+.prs_star_v_9, .prs_star_v_9 a	{ background: none top left no-repeat; }
+.prs_star_v_10, .prs_star_v_10 a	{ background: none top left no-repeat; }
+
+/* Set profile icon dimensions */
+ul.profile-icons li.prs_star_uv_0	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_uv_1	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_uv_2	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_uv_3	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_uv_4	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_uv_5	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_uv_6	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_uv_7	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_uv_8	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_uv_9	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_uv_10	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_v_0	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_v_1	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_v_2	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_v_3	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_v_4	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_v_5	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_v_6	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_v_7	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_v_8	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_v_9	{ width: 17px; height: 20px; }
+ul.profile-icons li.prs_star_v_10	{ width: 17px; height: 20px; }
+
+/* Posts ratings icons */
+.prs_star_uv_0, .prs_star_uv_0 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_uv_00.gif"); } 
+.prs_star_uv_1, .prs_star_uv_1 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_uv_01.gif"); }
+.prs_star_uv_2, .prs_star_uv_2 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_uv_02.gif"); }
+.prs_star_uv_3, .prs_star_uv_3 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_uv_03.gif"); }
+.prs_star_uv_4, .prs_star_uv_4 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_uv_04.gif"); }
+.prs_star_uv_5, .prs_star_uv_5 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_uv_05.gif"); }
+.prs_star_uv_6, .prs_star_uv_6 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_uv_06.gif"); }
+.prs_star_uv_7, .prs_star_uv_7 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_uv_07.gif"); }
+.prs_star_uv_8, .prs_star_uv_8 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_uv_08.gif"); }
+.prs_star_uv_9, .prs_star_uv_9 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_uv_09.gif"); }
+.prs_star_uv_10, .prs_star_uv_10 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_uv_10.gif"); }
+.prs_star_v_0, .prs_star_v_0 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_v_00.gif"); } 
+.prs_star_v_1, .prs_star_v_1 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_v_01.gif"); }
+.prs_star_v_2, .prs_star_v_2 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_v_02.gif"); }
+.prs_star_v_3, .prs_star_v_3 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_v_03.gif"); }
+.prs_star_v_4, .prs_star_v_4 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_v_04.gif"); }
+.prs_star_v_5, .prs_star_v_5 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_v_05.gif"); }
+.prs_star_v_6, .prs_star_v_6 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_v_06.gif"); }
+.prs_star_v_7, .prs_star_v_7 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_v_07.gif"); }
+.prs_star_v_8, .prs_star_v_8 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_v_08.gif"); }
+.prs_star_v_9, .prs_star_v_9 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_v_09.gif"); }
+.prs_star_v_10, .prs_star_v_10 a { background-image: url("http://www.roleplaygateway.com/styles/prosilver/imageset/prs_star_v_10.gif"); }
+

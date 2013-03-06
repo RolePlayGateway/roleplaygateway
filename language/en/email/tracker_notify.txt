@@ -1,0 +1,22 @@
+Hello {USERNAME},
+
+Your report has been added successfully and will soon be acted upon. You
+will receive further notifications if comments are added to this ticket, or
+if its status is changed by a team member.
+
+To view the ticket, click here:
+{TICKET_URL}
+
+Ticket details
+--------------------------
+
+Ticket ID: {TICKET_ID}
+Project:   {PROJECT_NAME}
+Title:     {TICKET_TITLE}
+
+{TICKET_DESC}
+
+--
+{SITE_NAME}
+{PROJECT_NAME} - {TRACKER_TYPE}
+{TRACKER_URL}

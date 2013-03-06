@@ -1,0 +1,85 @@
+<!-- IF HTML_URL or HTML_NEWS_URL --><h2><!-- IF HTML_NEWS_URL --><a href="{HTML_NEWS_URL}" title="{HTML_NEWS_TITLE}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {HTML_NEWS_TITLE}</a> <!-- ENDIF --><!-- IF HTML_URL --><strong>&raquo;</strong> <a href="{HTML_URL}" title="{HTML_SITENAME}">{HTML_SITENAME}</a><!-- ENDIF --></h2>
+<!-- IF HTML_SITEDESC --><span>{HTML_SITEDESC}<br /></span><!-- ENDIF -->
+<br clear="all" />
+<!-- ENDIF -->
+<!-- IF GYM_RSS_AGREGATED -->
+	<!-- IF GYM_RSS_SLIDE -->
+	<script type="text/javascript">
+	// <![CDATA[
+		// Message to stop scroller
+		var dn_stopMessage='{L_GYM_RSS_SLIDE_STOP}';
+		// Message to start scroller
+		var dn_startMessage='{L_GYM_RSS_SLIDE_START}';
+		// initial position 
+		var dn_startpos={GYM_RSS_SLIDE_SP_JS}; 			
+		// end position
+		var dn_endpos=-{GYM_RSS_SLIDE_EP}; 			
+		// Speed of scroller higher number = slower scroller 
+		var dn_speed={GYM_RSS_SCRSPEED};				
+		// ID of the news box
+		var dn_newsID='{GYM_RSS_CSSID}';
+		// ID of the generated paragraph
+		var dn_paraID='{GYM_RSS_CSSID}DomID';
+	// ]]>
+	</script>
+	<script type="text/javascript" src="{T_TEMPLATE_PATH}/gym_sitemaps/gym_rss_links.js"></script>
+	<!-- ENDIF -->
+	<!-- IF GYM_CHAN_TITLE --><h3><!-- IF GYM_CHAN_SOURCE --><a href="{GYM_CHAN_SOURCE}" title="{GYM_CHAN_TITLE} - {L_GYM_RSS_SOURCE}"><img src="{ROOT_PATH}gym_sitemaps/images/feed-icon.png" alt="{GYM_CHAN_TITLE} - {L_GYM_RSS_SOURCE}"/> {L_GYM_RSS_SOURCE}</a> <strong>&raquo;</strong> <a href="{GYM_CHAN_LINK}" title="{GYM_CHAN_TITLE}">{GYM_CHAN_TITLE}</a><!-- ELSE -->{GYM_CHAN_TITLE}<!-- ENDIF --></h3><!-- ENDIF -->
+	
+	<!-- IF not GYM_RSS_DESC -->
+<table class="tablebg" cellspacing="1" width="100%">
+	<tr>
+		<td class="cat" colspan="4">&nbsp;</td>
+	</tr>
+	<tr>
+		<th <!-- IF GYM_RSS_DATE -->colspan="2"<!-- ELSE -->colspan="3"<!-- ENDIF -->>&nbsp;{L_FORUM}&nbsp;</th>
+		<!-- IF GYM_RSS_AUTHOR --><th>&nbsp;{L_AUTHOR}&nbsp;</th><!-- ENDIF -->
+		<!-- IF GYM_RSS_DATE --><th>&nbsp;{L_FILEDATE}&nbsp;</th><!-- ENDIF -->
+	</tr>
+	<!-- BEGIN gym_link_list -->
+	<tr>
+		<td class="row1" width="25" align="center"><img src="{gym_link_list.IMG}" alt=""/></td>
+		<td class="row<!-- IF  gym_link_list.S_ROW_COUNT is even -->1<!-- ELSE -->2<!-- ENDIF -->">
+			<a href="{gym_link_list.LINK}" class="topictitle" title="{gym_link_list.TITLE}">{gym_link_list.TITLE}</a>
+			<!-- IF gym_link_list.SOURCE -->
+				<p class="topicdetails"><a href="{gym_link_list.SOURCE}" title="{gym_link_list.TITLE} - {L_GYM_RSS_SOURCE}"><img src="{ROOT_PATH}gym_sitemaps/images/feed-icon.png" alt="{gym_link_list.TITLE} - {L_GYM_RSS_SOURCE}"/> {L_GYM_RSS_SOURCE}</a></p>
+			<!-- ENDIF -->
+		</td>
+		<!-- IF GYM_RSS_AUTHOR or GYM_RSS_DATE -->
+		<td class="row1" width="140" align="center">
+			<p class="topicdetails">
+			<!-- IF gym_link_list.AUTHOR --><b class="postauthor">{gym_link_list.AUTHOR}</b> <!-- ENDIF -->
+			<!-- IF gym_link_list.PUBDATE -->{L_POSTED_ON_DATE} {gym_link_list.PUBDATE}<!-- ENDIF -->
+			</p>
+		</td><!-- ENDIF -->
+
+	</tr>
+	<!-- END gym_link_list -->
+</table>	
+<!-- ELSE -->
+<table class="tablebg" width="100%" cellspacing="1">
+	<!-- BEGIN gym_link_list -->
+	<tr>
+		<th align="left"><!-- IF gym_link_list.SOURCE -->&nbsp;<a href="{gym_link_list.SOURCE}" title="{gym_link_list.TITLE} - {L_GYM_RSS_SOURCE}"><img src="{ROOT_PATH}gym_sitemaps/images/feed-icon.png" alt="{gym_link_list.TITLE} - {L_GYM_RSS_SOURCE}"/> {L_GYM_RSS_SOURCE}</a> &bull; <!-- ENDIF --> <a href="{gym_link_list.LINK}" title="{gym_link_list.TITLE}">{gym_link_list.TITLE}</a> </th>
+	</tr>
+	<!-- IF gym_link_list.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+		<td valign="top">
+			<!-- IF gym_link_list.AUTHOR -->&nbsp;<b class="postauthor">{gym_link_list.AUTHOR}</b><!-- ENDIF -->
+			<!-- IF gym_link_list.PUBDATE -->&nbsp;<span class="topicdetails">{L_POSTED_ON_DATE} {gym_link_list.PUBDATE}</span><!-- ENDIF -->
+			<br clear="all" /><br clear="all" />
+			<div class="postbody">{gym_link_list.DESC}</div>	
+		</td>
+	</tr>
+	<!-- END gym_link_list -->
+</table>
+	<!-- ENDIF -->
+<!-- ELSE -->
+<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th><!-- IF HTML_URL --><a href="{HTML_URL}" title="{HTML_SITENAME}">{HTML_SITENAME}</a>&nbsp;<!-- ENDIF --></th>
+	</tr>
+	<tr>
+		<td class="row1" colspan="5" align="center"><p class="gensmall">{L_HTML_NEWS_NONE}</p></td>
+	</tr>
+</table>
+<!-- ENDIF -->

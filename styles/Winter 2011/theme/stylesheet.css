@@ -1,0 +1,20 @@
+/*
+    Uncomment line below to set fixed width to style
+*/
+/* body { max-width: 900px; } */
+
+/*
+    Change "none" to "inline-block" (without quotes) to show website title and description in header
+*/
+#site-description > p, #site-description > h1 { display: none; }
+
+
+/*
+    Include css files
+*/
+@import url("layout_global.css");
+@import url("layout_main.css");
+@import url("layout_forms.css");
+@import url("layout_index.css");
+@import url("layout_topic.css");
+@import url("layout_pages.css");

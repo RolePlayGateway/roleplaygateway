@@ -1,0 +1,134 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- IF S_CAN_EDIT -->
+<script type="text/javascript">
+	document.taggedCharacters = [];
+</script>
+<style type="text/css">
+  .characterTagging { font-size: 1.4em; vertical-align: middle; }
+  .taggedCharacters { display: block; padding-top: 0.5em; }
+  .hovered { border: 1px dotted red; }
+  .micro { height: 30px; width: 30px; margin-right: 5px; vertical-align: middle; }
+  .prettyCenter { font-weight: bold; }
+  .postTaggedCharacter { display: block; border-radius: 3px; background: #ccc; margin-left: 5px; margin-right: 5px; padding-right: 5px; border: 1px solid black; }
+  .submitTaggedCharacters { font-weight: bold; margin-top: 0.5em; }
+	.bundleList > div { clear: both; padding: 0.2em; }
+	.bundleList > div > input[type=button] { float: right; }
+	#addCharacterControls { display: none; }
+	#addCharacterControls input { font-weight: bold; font-size: 1.2em; padding: 0.5em; margin: 0.5em; border-radius: 3px;}
+</style>
+<!-- ENDIF -->
+<img src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/groups/{GROUP_URL}/logo" class="crisp-border" style="float:left; height: 100px; width: 100px; margin-right: 10px;" />
+<h1 style="color:#596E7C; margin-right: 0;"><a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a> &raquo; <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/groups">Groups</a> &raquo; <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/groups/{GROUP_URL}">{GROUP_NAME}</a><!-- IF S_CAN_EDIT --> [<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit_group&group_id={GROUP_ID}&roleplay_id={ROLEPLAY_ID}">Edit</a>]<!-- ENDIF --></h1>
+<p style="font-size: 1.5em; margin-bottom: 0.5em;">{GROUP_SYNOPSIS}</p>
+<div style="margin: 1em;">
+ 	<div style="display:inline;">
+ 		<g:plusone annotation="inline" href="/roleplay/{ROLEPLAY_URL}/groups/{GROUP_URL}"></g:plusone>
+	</div>
+	<div style="display:inline;">
+		<div class="fb-like" data-send="false" data-layout="standard" data-width="350" data-show-faces="false" data-colorscheme="light" data-action="like" data-href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/groups/{GROUP_URL}"></div>
+	</div>
+</div>
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+    <div class="postbody" style="width:100%;"><div class="content">
+
+      <h2>Description</h2>
+      <div>{GROUP_DESCRIPTION}</div>
+      
+      <!-- <h3><strong>{PLACE_COUNT}</strong> Places Controlled</h3> -->
+      
+      <h2><!-- IF S_CAN_EDIT --><input type="text" class="characterSearch" style="float: right;" placeholder="Add Character..." /><!-- ENDIF --><strong>{CHARACTER_COUNT}</strong> Characters Aligned, played by <strong>{UNIQUE_PLAYERS}</strong> Players</h2>
+			<!-- IF S_CAN_EDIT --><div id="addCharacterControls"><h3>Adding to Group:</h3> <div id="taggedCharacters"></div><input type="button" value="Add &raquo;" style="float: right;" /><hr /></div><!-- ENDIF -->
+			<!-- BEGIN characters -->
+			<div class="character">
+				<img src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
+				<div>
+					<a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}"><strong>{characters.NAME}</strong></a> <span><em>played by {characters.OWNER_USERNAME}</em></span>
+				</div>
+				<span>{characters.SYNOPSIS}</span>
+			</div>
+			<!-- BEGINELSE -->
+				<p class="supersize">There are no characters in this group!</p>
+			<!-- END characters -->
+			
+			<br class="clear" />
+			
+			<h2><strong>{PLACE_COUNT}</strong> Places roleplayed</h2>
+			<!-- BEGIN places -->
+			<div class="place">
+				<img src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/places/{places.URL}/image" alt="{places.NAME}" />
+				<div>
+					<a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/places/{places.URL}"><strong>{places.NAME}</strong></a> <span><strong>{places.POST_COUNT}</strong> posts</span>
+				</div>
+				<span>{places.SYNOPSIS}</span>
+			</div>
+			<!-- BEGINELSE -->
+				<p class="supersize">This group hasn't been very active!</p>
+			<!-- END places -->
+
+    </div></div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<!-- IF S_CAN_EDIT -->
+<script type="text/javascript">
+  $('.characterSearch').autocomplete({
+    source: function(request, response) {
+      $.ajax({
+        url: '/roleplay/{ROLEPLAY_URL}/characters.json',
+        dataType: 'json',
+        data: {
+          search: request.term
+        },
+        success: function(data) {
+          response( $.map( data, function (character) {
+            return {
+              label: '<div class="prettyCenter"><img class="micro" src="/roleplay/{ROLEPLAY_URL}/characters/'+ character.url + '/image">' + character.name + '</div>',
+              value: character.name,
+              id: character.id
+            }
+          }));
+        }
+      });
+    },
+    // minLength: 1,
+    delay: 250,
+    select: function (event, ui) {
+			console.log(document.taggedCharacters);
+		  document.taggedCharacters.push(ui.item.id);
+
+		  console.log(ui.item);
+
+		  $(ui.item.label).appendTo('#taggedCharacters');
+
+		  $('#addCharacterControls').slideDown();
+
+		  $(this).val('');
+		  return false;
+    },
+    open: function() {
+      $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+    },
+    close: function() {
+      $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+    }
+  });
+
+	$('#addCharacterControls input').click(function() {
+		$.post('/ucp.php?i=roleplays&mode=add_characters_to_group', {
+				character_ids: document.taggedCharacters
+			, roleplay_id: {ROLEPLAY_ID}
+			, group_id: {GROUP_ID}
+		}, function(data) {
+			var self = this;
+			console.log(data);
+			$('#taggedCharacters > *').fadeOut();
+		});
+	});
+</script>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

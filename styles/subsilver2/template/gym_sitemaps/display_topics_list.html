@@ -1,0 +1,77 @@
+<!-- IF DISPLAY_TOPICS_H1 --><h1><!-- IF U_TOPICS --><a href="{U_TOPICS}" title="{H1_TOPICS}">{H1_TOPICS}</a><!-- ELSE -->{H1_TOPICS}<!-- ENDIF --></h1><!-- ENDIF -->
+<!-- IF FORUM_MAP_URL or FORUM_NEWS_URL --><h3><!-- IF FORUM_NEWS_URL --><a href="{FORUM_NEWS_URL}" title="{FORUM_NEWS}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {FORUM_NEWS}</a><!-- ENDIF --> <strong>&raquo;</strong> <a href="{FORUM_URL}" title="{FORUM_NAME}">{L_FORUM} : {FORUM_NAME}</a></h3><!-- ENDIF -->
+<!-- IF MAP_DESC --><span>{MAP_DESC}<br /></span><!-- ENDIF -->
+<!-- IF MAP_RULES or MAP_RULES_LINK -->
+	<div class="forumrules">
+		<!-- IF MAP_RULES_LINK -->
+			<h3>{L_FORUM_RULES}</h3><br />
+			<a href="{MAP_RULES_LINK}">{L_FORUM_RULES}</a>
+		<!-- ELSE -->
+			<h3>{L_FORUM_RULES}</h3><br />
+			{MAP_RULES}
+		<!-- ENDIF -->
+	</div>
+<!-- ENDIF --><br/>
+
+<table class="tablebg" cellspacing="1" width="100%">
+	<tr>
+		<td class="cat" colspan="4">
+			<!-- IF DISPLAY_PAGINATION -->
+			<table width="100%" cellspacing="1">
+				<tr align="right">
+					<!-- IF DISPLAY_PAGE_NUMBER --><td class="nav" valign="middle" nowrap="nowrap">&nbsp;{DISPLAY_PAGE_NUMBER}<br /></td><!-- ENDIF -->
+					<td class="gensmall" nowrap="nowrap">&nbsp;[ {DISPLAY_TOTAL_TOPICS} ]&nbsp;</td>
+					<!-- IF DISPLAY_PAGINATION --><td class="gensmall" width="100%" align="{S_CONTENT_FLOW_END}" nowrap="nowrap"><b><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{L_GOTO_PAGE}</a> {DISPLAY_PAGINATION}</b><!-- ENDIF --></td>
+		
+				</tr>
+			</table>
+			<!-- ENDIF -->&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<th <!-- IF DISPLAY_LAST_POST -->colspan="2"<!-- ELSE -->colspan="3"<!-- ENDIF -->>&nbsp;{L_FORUM}&nbsp;</th>
+		<!-- IF DISPLAY_LAST_POST --><th>&nbsp;{L_LAST_POST}&nbsp;</th><!-- ENDIF -->
+	</tr>
+
+<!-- BEGIN topicrow -->
+	<tr>
+		<td class="row1" width="25" align="center">{topicrow.TOPIC_FOLDER_IMG}</td>
+		<!-- IF S_TOPIC_ICONS -->
+			<td class="row1" width="25" align="center"><!-- IF topicrow.TOPIC_ICON_IMG --><img src="{T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}" width="{topicrow.TOPIC_ICON_IMG_WIDTH}" height="{topicrow.TOPIC_ICON_IMG_HEIGHT}" alt="" title="" /><!-- ENDIF --></td>
+		<!-- ENDIF -->
+		<td class="row<!-- IF topicrow.S_ROW_COUNT is even -->1<!-- ELSE -->2<!-- ENDIF -->">
+			<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF -->
+			<!-- IF topicrow.ATTACH_ICON_IMG -->{topicrow.ATTACH_ICON_IMG} <!-- ENDIF --> <a href="{topicrow.U_VIEW_TOPIC}" class="topictitle" title="{topicrow.TOPIC_TITLE}">{topicrow.TOPIC_TITLE}</a>
+					<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> &nbsp;<!-- ENDIF -->
+					<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->&nbsp;
+					<!-- IF topicrow.PAGINATION --><p class="gensmall"> [ {GOTO_PAGE_IMG}{L_GOTO_PAGE}: {topicrow.PAGINATION} ] </p><!-- ENDIF -->
+					
+					<p class="topicdetails"><!-- IF topicrow.TOPIC_AUTHOR_FULL -->{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL}<!-- ENDIF --> {L_POSTED_ON_DATE} {topicrow.FIRST_POST_TIME}</p>
+					<!-- IF not S_SINGLE_FORUM and topicrow.U_VIEW_FORUM --><p class="topicdetails">{L_IN} <a href="{topicrow.U_VIEW_FORUM}" style="font-weight: bold;">{topicrow.FORUM_NAME}</a></p><!-- ENDIF -->
+		</td>
+		<!-- IF DISPLAY_LAST_POST -->
+		<td class="row1" width="140" align="center">
+			<p class="topicdetails"><a href="{topicrow.U_MINI_POST}" title="{L_LAST_POST} : {topicrow.TOPIC_LAST_POST_TITLE}">{LAST_POST_IMG} {topicrow.TOPIC_LAST_POST_TITLE}</a></p>
+			<p class="topicdetails">
+				<!-- IF topicrow.TOPIC_AUTHOR_FULL -->{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL} <!-- ENDIF -->
+				{L_POSTED_ON_DATE} {topicrow.LAST_POST_TIME}
+			</p>
+		</td>
+		<!-- ENDIF -->
+	</tr>
+<!-- BEGINELSE -->
+	<tr>
+		<td class="row1" colspan="5" align="center"><p class="gensmall">{L_HTML_NO_ITEMS}</p></td>
+	</tr>
+<!-- END topicrow -->
+</table>
+<!-- IF DISPLAY_PAGINATION -->
+<table width="100%" cellspacing="1">
+	<tr align="right">
+		<!-- IF DISPLAY_PAGE_NUMBER --><td class="nav" valign="middle" nowrap="nowrap">&nbsp;{DISPLAY_PAGE_NUMBER}<br /></td><!-- ENDIF -->
+		<td class="gensmall" nowrap="nowrap">&nbsp;[ {DISPLAY_TOTAL_TOPICS} ]&nbsp;</td>
+		<!-- IF DISPLAY_PAGINATION --><td class="gensmall" width="100%" align="{S_CONTENT_FLOW_END}" nowrap="nowrap"><b><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{L_GOTO_PAGE}</a> {DISPLAY_PAGINATION}</b><!-- ENDIF --></td>
+		
+	</tr>
+</table><br/>
+<!-- ENDIF -->

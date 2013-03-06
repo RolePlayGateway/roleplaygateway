@@ -1,0 +1,11 @@
+Subject: Reminder from "{SITENAME}"! 
+
+Dear {USERNAME},
+
+We are writing to you as we have noticed that you have not logged in to {SITENAME} for a while.
+
+Please have a look at {U_BOARD} to have a look at our recent topics on our board. 
+
+We look forward to seeing you back shortly.
+
+{EMAIL_SIG}

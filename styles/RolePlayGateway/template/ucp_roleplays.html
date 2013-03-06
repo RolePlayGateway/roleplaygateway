@@ -1,0 +1,77 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>Roleplay Management</h2>
+
+<form id="ucp" method="post" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit">
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<p>Use this page to manage your roleplays.  Active roleplays from this page will be listed in the <a href="http://www.roleplaygateway.com/roleplay/">directory of active roleplays</a>.</p>
+		
+		<h2>Activity in your roleplays...</h2>
+		<ul class="topiclist cplist">
+		<!-- BEGIN roleplay_activity -->
+			<li class="row" style="font-size:1.1em; padding: 3px;">
+			{roleplay_activity.MESSAGE}
+			</li>
+		<!-- END roleplay_activity -->
+		</ul>
+		
+		
+		<h2>Your Roleplays</h2>
+
+		<ul class="topiclist cplist">
+		
+		<!-- BEGIN roleplays -->
+
+			<li class="row bg1">
+				<dl class="icon">
+					<dt style="padding-bottom:5px; padding-top: 10px; width: 90%;">
+						<div style="float:right;"><!-- IF roleplays.S_CAN_MANAGE --><a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit&id={roleplays.ID}">Edit</a> | <!-- ENDIF --><a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=abandon&roleplay_id={roleplays.ID}">ABANDON</a></div>
+						<a href="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/" class="topictitle">{roleplays.TITLE}</a>
+
+						<p>{roleplays.DESCRIPTION}</p>
+						
+						<table width="100%">
+							<tr>
+								<td valign="top" width="33%" style="padding-right:10px;">
+									<h3><a href="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/#places">Places</a><!-- IF roleplays.S_CAN_MANAGE --> (<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_place&roleplay_id={roleplays.ID}">Add New &raquo;</a>)<!-- ENDIF --></h3>
+									<ul>
+									<!-- BEGIN places -->
+										<li><!-- IF roleplays.S_CAN_MANAGE --><a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit_place&place_id={places.ID}" style="float:right;">Edit &raquo;</a><!-- ENDIF --><a href="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/places/{roleplays.places.URL}/" style="display:block;">{roleplays.places.NAME}</a></li>
+									<!-- END places -->
+									</ul>
+								</td>
+								<td valign="top" width="33%">
+									<h3><a href="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/#characters">Characters</a></h3>
+									<ul>
+									<!-- BEGIN characters -->
+										<li><!-- IF roleplays.S_CAN_MANAGE -->{roleplays.characters.APPROVE} <a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=remove_player&roleplay_id={roleplays.ID}&character_id={roleplays.characters.CHARACTER_ID}" style="float:right;">Remove &raquo;</a><!-- ENDIF --><a href="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/characters/{roleplays.characters.URL}/" style="display:block;">{roleplays.characters.CHARACTER_NAME}</a></li>
+									<!-- END characters -->
+									</ul>
+								</td>
+								<td valign="top" width="33%">
+									<h3><a href="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/#ooc">OOC Threads</a><!-- IF roleplays.S_CAN_MANAGE --> (<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_thread&roleplay_id={roleplays.ID}">Add New &raquo;</a>)<!-- ENDIF --></h3>
+									<ul>
+									<!-- BEGIN ooc -->
+										<li><a href="http://www.roleplaygateway.com/viewtopic.php?t={roleplays.ooc.THREAD_ID}" style="display:block;">{roleplays.ooc.TOPIC_TITLE}</a></li>
+									<!-- END ooc -->
+									</ul>
+								</td>
+							</tr>
+						</table>					
+
+					</dt>
+				</dl>
+			</li>
+	
+		<!-- END roleplays -->
+		
+		</ul>
+		
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

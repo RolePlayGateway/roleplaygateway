@@ -1,0 +1,127 @@
+<div id="posting-container">
+
+					<script type="text/javascript">
+						// fieldname, warningname, remainingname, maxchars
+						function CheckFieldLength(fn,wn,rn,mc) {
+							var len = fn.value.length;
+							var wordcount = (fn.value.split(" ").length) - 1;
+							var wc = "wordcount";
+							
+							if (wordcount > 9000) {
+								document.getElementById("postingtip").style.color = "#000";
+								document.getElementById("postingtip").innerHTML = "<img src=\"http://www.roleplaygateway.com/images/over_9000.gif\" style=\"float:left; margin:10px;\" /><p>Vegeta! What does the scouter say about his power level?!</p><p><strong>It's over NINE THOUSAAAAANNNNDDDDD!!!111oneone1eleven!";
+							}
+							
+							/* if (len > mc) {
+							fn.value = fn.value.substring(0,mc);
+							len = mc;
+							} */
+							
+							document.getElementById(wn).innerHTML = len;
+							document.getElementById(wc).innerHTML = wordcount;
+						}
+					</script>
+
+
+				
+	<form id="write" method="post" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=write&action=submit">
+
+		<input type="hidden" name="roleplay_id" value="{ID}" />
+
+		<div id="reply_options">
+		
+		  <!-- <input type="button" onclick="return false;" value="Invite other players to edit this post &raquo;" /> -->
+		
+			<!-- IF S_SINGLE_PLACE -->
+			<input type="hidden" name="place" value="{PLACE_ID}" />
+			<label for="where">You will be posting this in &ldquo;{PLACE_NAME}&rdquo;.</label>
+			<!-- ELSE -->
+			<label for="where">Where?</label>
+			<select name="place">
+				<!-- BEGIN posting_places -->
+				<option value="{posting_places.ID}"{posting_places.SELECTED}>{posting_places.NAME}</option>
+				<!-- END posting_places -->
+			</select>
+			<!-- ENDIF -->
+		</div>
+
+		<script type="text/javascript">edToolbar('reply_content');</script>
+		<textarea name="reply_content" id="reply_content" class="ed inputbox" style="width: 100%; height: 400px;" onkeyup="CheckFieldLength(reply_content, 'charcount', 'remaining', 20);"></textarea>
+
+    <div style="vertical-align: middle; padding-top: 0.5em; padding-bottom: 1em;">
+		  <div style="font-size:120%; font-weight:bold; float:left;">
+			  <span id="charcount">0</span> characters in this post.<br />
+			  <span id="wordcount">0</span> words in this post.
+		  </div>
+		
+		  <div id="characterTagging" style="float:left;">
+        <input id="characterSearch" name="characterSearch" style="padding: 0.2em;" placeholder="Tag a character" />
+        <input type="hidden" id="taggedCharacterList" name="taggedCharacterList" />
+        <div id="taggedCharacters" style="display:inline-block;"></div>
+		  </div>		
+		
+		  <input type="submit" name="Submit" value="My post is flawless. Submit! &raquo;" class="button1" />
+
+		  <div id="postingtip" style="clear:both;"></div>
+		</div>
+
+		<style type="text/css">
+		  #characterTagging { font-size: 1.4em; vertical-align: middle; margin-left: 1em; }
+		  #taggedCharacters { display: inline-block; margin-left: 5px; }
+		  .hovered { border: 1px dotted red; }
+		  .micro { height: 30px; margin-right: 5px; vertical-align: middle; }
+		  .prettyCenter { font-weight: bold; }
+		  .selectedCharacter { display: inline-block; border-radius: 3px; background: #ccc; margin-left: 5px; margin-right: 5px; padding-right: 5px; border: 1px solid black; }
+		</style>
+		
+		<script type="text/javascript">
+		
+		  var taggedCharacters = [];
+		  
+		  $('#characterSearch').keypress(function(e) {
+		    if ( e.which == 13 ) return false;
+		  });
+		
+      $('#characterSearch').autocomplete({
+        source: function(request, response) {
+          $.ajax({
+            url: 'http://www.roleplaygateway.com/roleplay/{URL}/characters.json',
+            dataType: 'json',
+            data: {
+              search: request.term
+            },
+            success: function(data) {
+              response( $.map( data, function (character) {
+                return {
+                  label: '<div class="prettyCenter"><img class="micro" src="http://www.roleplaygateway.com/roleplay/{URL}/characters/'+ character.url + '/image">' + character.name + '</div>',
+                  value: character.name,
+                  id: character.id
+                }
+              }));
+            }
+          });
+        },
+        // minLength: 1,
+        delay: 250,
+        select: function (event, ui) {
+        					
+					$('#taggedCharacters').append('<div class="selectedCharacter">' + ui.item.label + '</div>');
+					$('#characterSearch').val('');
+					
+					taggedCharacters.push(ui.item.id);
+					$('#taggedCharacterList').val(taggedCharacters);
+					
+					return false;
+					
+        },
+        open: function() {
+          $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+        },
+        close: function() {
+          $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+        }
+      });
+		</script>
+
+	</form>
+</div>

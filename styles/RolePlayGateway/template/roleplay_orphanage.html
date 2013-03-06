@@ -1,0 +1,62 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<style type="text/css">
+  .character {
+    height: 130px;
+  }
+  .character:hover {
+    background: inherit;
+    cursor: inherit;
+  }
+  .button {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    background: #bfd1d7;
+    float: right;
+  }
+  a.button:hover {
+    text-decoration: none;
+  }
+</style>
+
+<h1 style="color:#596E7C;"><a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a> &raquo; <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/orphanage">Orphanage</a></h1>
+
+<p>Characters that have been abandoned by their authors can be adopted by other players, but cannot be edited.  You will be expected to play that character as the original author intended, but you will be free to develop and grow them on your own.  Click on "Sightings" for any existing character to see how previous writers have portrayed them.</p>
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_CHARACTERS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+    <div class="postbody" style="width:inherit;"><div class="">
+
+      <!-- BEGIN characters -->
+      <div class="character" style="">
+	      <img src="http://www.roleplaygateway.com/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
+	      <div>
+          <a href="http://www.roleplaygateway.com/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}#story" style="float:right;">{characters.SIGHTINGS} sightings &raquo;</a>
+		      <a href="http://www.roleplaygateway.com/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}/"><strong>{characters.NAME}</strong></a>
+		      <p><em> as created by {characters.CREATOR_USERNAME}</em></p>
+	      </div>
+	      <p>{characters.SYNOPSIS}</p>
+	      <a href="http://www.roleplaygateway.com/ucp.php?i=characters&mode=adopt&character_id={characters.ID}" class="button">Adopt &raquo;</a>
+      </div>
+      <!-- BEGINELSE -->
+	      <p class="supersize">This roleplay does not have any available characters!</p>
+      <!-- END characters -->
+
+    </div></div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_CHARACTERS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<!-- INCLUDE overall_footer.html -->

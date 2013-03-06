@@ -1,0 +1,149 @@
+<!-- IF DISPLAY_POSTS_H1 --><h1 id="news"><!-- IF U_POSTS --><a href="{U_POSTS}" title="{H1_POSTS}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {H1_POSTS}</a><!-- ELSE -->{H1_POSTS}<!-- ENDIF --></h1><!-- ENDIF -->
+<!-- IF FORUM_MAP_URL or FORUM_NEWS_URL --><h3><!-- IF FORUM_MAP_URL --><a href="{FORUM_MAP_URL}" title="{FORUM_MAP}">{FORUM_MAP}</a><!-- ENDIF --> <strong>&raquo;</strong> <a href="{FORUM_URL}" title="{FORUM_NAME}">{L_FORUM} : {FORUM_NAME}</a></h3><!-- ENDIF -->
+<!-- IF NEWS_DESC --><span>{NEWS_DESC}<br /></span><!-- ENDIF -->
+<!-- IF NEWS_RULES or NEWS_RULES_LINK -->
+	<div class="rules">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<!-- IF NEWS_RULES_LINK -->
+			<a href="{NEWS_RULES_LINK}">{L_FORUM_RULES}</a>
+		<!-- ELSE -->
+			<strong>{L_FORUM_RULES}</strong><br />
+			{NEWS_RULES}
+		<!-- ENDIF -->
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- ENDIF -->
+<!-- IF DISPLAY_PAGINATION -->
+<div class="topic-actions">
+	<div class="pagination">
+		{DISPLAY_TOTAL_TOPICS}
+		<!-- IF DISPLAY_PAGE_NUMBER --><!-- IF DISPLAY_PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{DISPLAY_PAGE_NUMBER}</a> &bull; <span>{DISPLAY_PAGINATION}</span><!-- ELSE --> &bull; {DISPLAY_PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+	</div>
+</div>
+<div class="clear"></div>
+<!-- ELSE -->
+<br/>
+<!-- ENDIF -->
+<div class="forumbg">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+			<ul class="topiclist">
+				<li class="header">
+					<dl class="icon">
+						<dt style="width:85%;"><!-- IF FORUM_MAP_URL --><a href="{FORUM_MAP_URL}" title="{FORUM_MAP}">{FORUM_MAP}</a> <strong>&raquo;</strong> <!-- ENDIF --><!-- IF U_POSTS --><a href="{U_POSTS}" title="{H1_POSTS}">{H1_POSTS}</a><!-- ELSE -->{H1_POSTS}<!-- ENDIF --></dt>
+					</dl>
+				</li>
+			</ul>
+			<div style="background-color:#fff;padding:2px">
+<!-- BEGIN postrow -->
+	<div id="p{postrow.POST_ID}" class="post <!-- IF postrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF postrow.S_UNREAD_POST --> unreadpost<!-- ENDIF --><!-- IF postrow.S_POST_REPORTED --> reported<!-- ENDIF --><!-- IF DISPLAY_USER_INFO --><!-- IF postrow.S_ONLINE --> online<!-- ENDIF --><!-- ENDIF -->">
+		<div class="inner">
+			<span class="corners-top"><span></span></span>
+			<div class="postbody" <!-- IF not DISPLAY_USER_INFO -->style="width:100%;"<!-- ENDIF -->>
+				<!-- IF DISPLAY_POST_BUTTONS -->
+				<!-- IF postrow.U_QUOTE or postrow.U_INFO or postrow.U_DELETE or postrow.U_EDIT -->
+				<ul class="profile-icons">
+					<!-- IF postrow.U_QUOTE --><li class="quote-icon"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_EDIT --><li class="edit-icon"><a href="{postrow.U_EDIT}" title="{L_EDIT_POST}"><span>{L_EDIT_POST}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_DELETE --><li class="delete-icon"><a href="{postrow.U_DELETE}" title="{L_DELETE_POST}"><span>{L_DELETE_POST}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_REPORT --><li class="report-icon"><a href="{postrow.U_REPORT}" title="{L_REPORT_POST}"><span>{L_REPORT_POST}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_WARN --><li class="warn-icon"><a href="{postrow.U_WARN}" title="{L_WARN_USER}"><span>{WARN_USER}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_INFO --><li class="info-icon"><a href="{postrow.U_INFO}" title="{L_INFORMATION}"><span>{L_INFORMATION}</span></a></li><!-- ENDIF -->
+				</ul>
+				<!-- ENDIF -->
+				<!-- ENDIF -->
+				<h3 <!-- IF postrow.S_FIRST_ROW -->class="first"<!-- ENDIF -->><!-- IF postrow.POST_ICON_IMG --><img src="{T_ICONS_PATH}{postrow.POST_ICON_IMG}" width="{postrow.POST_ICON_IMG_WIDTH}" height="{postrow.POST_ICON_IMG_HEIGHT}" alt="{postrow.POST_SUBJECT}" /> <!-- ENDIF --><!-- IF postrow.U_MINI_POST --><a href="{postrow.U_MINI_POST}" title="{postrow.POST_SUBJECT}">{postrow.POST_SUBJECT}</a><!-- ELSE -->{postrow.POST_SUBJECT}<!-- ENDIF --></h3>
+				<!-- IF postrow.POST_AUTHOR_FULL --><p class="author"><a href="{postrow.U_MINI_POST}">{postrow.MINI_POST_IMG}</a>{L_POST_BY_AUTHOR} <strong>{postrow.POST_AUTHOR_FULL}</strong> {L_POSTED_ON_DATE} {postrow.POST_DATE}</p><!-- ENDIF -->
+				<!-- IF postrow.S_POST_UNAPPROVED or postrow.S_POST_REPORTED -->
+				<p class="rules">
+					<!-- IF postrow.S_POST_UNAPPROVED -->{UNAPPROVED_IMG} <a href="{postrow.U_MCP_APPROVE}"><strong>{L_POST_UNAPPROVED}</strong></a><!-- ENDIF -->
+					<!-- IF postrow.S_POST_REPORTED -->{REPORTED_IMG} <a href="{postrow.U_MCP_REPORT}"><strong>{L_POST_REPORTED}</strong></a><!-- ENDIF -->
+				</p>
+				<!-- ENDIF -->
+				<div class="content">{postrow.MESSAGE}</div>
+				<!-- IF postrow.S_HAS_ATTACHMENTS -->
+				<dl class="attachbox">
+					<dt>{L_ATTACHMENTS}</dt>
+					<!-- BEGIN attachment -->
+						<dd>{postrow.attachment.DISPLAY_ATTACHMENT}</dd>
+					<!-- END attachment -->
+				</dl>
+				<!-- ENDIF -->
+				<!-- IF postrow.S_DISPLAY_NOTICE --><div class="rules">{L_DOWNLOAD_NOTICE}</div><!-- ENDIF -->
+				<!-- IF postrow.SIGNATURE --><div id="sig{postrow.POST_ID}" class="signature">{postrow.SIGNATURE}</div><!-- ENDIF -->
+				<!-- IF postrow.U_MINI_POST -->
+				<div class="notice">
+					<strong>{L_HTML_MORE} :</strong> <a href="{postrow.U_MINI_POST}" title="{postrow.POST_SUBJECT}">{postrow.POST_SUBJECT}</a> | <strong>{L_VIEWS} :</strong> {postrow.VIEWS} | <strong>{L_REPLIES} :</strong> {postrow.REPLIES}<!-- IF not S_SINGLE_FORUM and postrow.U_VIEW_FORUM --> | <strong>{L_FORUM} :</strong> <a href="{postrow.U_VIEW_FORUM}" title="{postrow.FORUM_NAME}">{postrow.FORUM_NAME}</a><!-- ENDIF -->
+				</div>
+				<!-- ENDIF -->
+			</div>
+			<!-- IF DISPLAY_USER_INFO -->
+			<!-- IF not postrow.S_IGNORE_POST -->
+			<dl class="postprofile" id="profile{postrow.POST_ID}">
+				<dt>
+					<!-- IF postrow.POSTER_AVATAR -->
+						<!-- IF postrow.U_POST_AUTHOR --><a href="{postrow.U_POST_AUTHOR}">{postrow.POSTER_AVATAR}</a><!-- ELSE -->{postrow.POSTER_AVATAR}<!-- ENDIF --><br />
+					<!-- ENDIF -->
+					<!-- IF not postrow.U_POST_AUTHOR --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ELSE -->{postrow.POST_AUTHOR_FULL}<!-- ENDIF -->
+				</dt>
+
+				<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd>{postrow.RANK_TITLE}<!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><br /><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->
+
+				<dd>&nbsp;</dd>
+
+				<!-- IF postrow.POSTER_POSTS != '' --><dd><strong>{L_POSTS}:</strong> {postrow.POSTER_POSTS}</dd><!-- ENDIF -->
+				<!-- IF postrow.POSTER_JOINED --><dd><strong>{L_JOINED}:</strong> {postrow.POSTER_JOINED}</dd><!-- ENDIF -->
+				<!-- IF postrow.POSTER_FROM --><dd><strong>{L_LOCATION}:</strong> {postrow.POSTER_FROM}</dd><!-- ENDIF -->
+
+				<!-- IF postrow.S_PROFILE_FIELD1 -->
+				<!-- Use a construct like this to include admin defined profile fields. Replace FIELD1 with the name of your field. -->
+				<dd><strong>{postrow.PROFILE_FIELD1_NAME}:</strong> {postrow.PROFILE_FIELD1_VALUE}</dd>
+				<!-- ENDIF -->
+
+				<!-- BEGIN custom_fields -->
+				<dd><strong>{postrow.custom_fields.PROFILE_FIELD_NAME}:</strong> {postrow.custom_fields.PROFILE_FIELD_VALUE}</dd>
+				<!-- END custom_fields -->
+
+				<!-- IF DISPLAY_USER_INFO -->
+				<!-- IF postrow.U_PM or postrow.U_EMAIL or postrow.U_WWW or postrow.U_MSN or postrow.U_ICQ or postrow.U_YIM or postrow.U_AIM -->
+				<dd>
+					<ul class="profile-icons">
+						<!-- IF postrow.U_PM --><li class="pm-icon"><a href="{postrow.U_PM}" title="{L_PRIVATE_MESSAGE}"><span>{L_PRIVATE_MESSAGE}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_EMAIL --><li class="email-icon"><a href="{postrow.U_EMAIL}" title="{L_EMAIL}"><span>{L_EMAIL}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_WWW --><li class="web-icon"><a href="{postrow.U_WWW}" title="{L_VISIT_WEBSITE}: {postrow.U_WWW}"><span>{L_WEBSITE}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_MSN --><li class="msnm-icon"><a href="{postrow.U_MSN}" onclick="popup(this.href, 550, 320); return false;" title="{L_MSNM}"><span>{L_MSNM}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_ICQ --><li class="icq-icon"><a href="{postrow.U_ICQ}" onclick="popup(this.href, 550, 320); return false;" title="{L_ICQ}"><span>{L_ICQ}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_YIM --><li class="yahoo-icon"><a href="{postrow.U_YIM}" onclick="popup(this.href, 780, 550); return false;" title="{L_YIM}"><span>{L_YIM}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_AIM --><li class="aim-icon"><a href="{postrow.U_AIM}" onclick="popup(this.href, 550, 320); return false;" title="{L_AIM}"><span>{L_AIM}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_JABBER --><li class="jabber-icon"><a href="{postrow.U_JABBER}" onclick="popup(this.href, 550, 320); return false;" title="{L_JABBER}"><span>{L_JABBER}</span></a></li><!-- ENDIF -->
+					</ul>
+				</dd>
+				<!-- ENDIF -->
+				<!-- ENDIF -->
+			</dl>
+			<!-- ENDIF -->
+			<!-- ENDIF -->
+			<div class="back2top"><a href="#wrap" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a></div>	
+			<span class="corners-bottom"><span></span></span>
+		</div>
+	</div>
+	<hr class="divider" /><br/>
+<!-- BEGINELSE -->
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<p>{L_HTML_NEWS_NONE}</p>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- END postrow -->
+		</div><span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+<!-- IF DISPLAY_PAGINATION -->
+<div class="topic-actions">
+	<div class="pagination">
+		{DISPLAY_TOTAL_TOPICS}
+		<!-- IF DISPLAY_PAGE_NUMBER --><!-- IF DISPLAY_PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{DISPLAY_PAGE_NUMBER}</a> &bull; <span>{DISPLAY_PAGINATION}</span><!-- ELSE --> &bull; {DISPLAY_PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+	</div>
+</div>
+<div class="clear"></div>
+<!-- ENDIF -->

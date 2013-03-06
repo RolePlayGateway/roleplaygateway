@@ -1,0 +1,143 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>Add New Roleplay</h2>
+
+<form id="ucp" method="post" enctype="multipart/form-data" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=new&action=submit">
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	
+		<h3>Roleplay Details</h3>
+
+		<div class="rules">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<h4>Some tips:</h4>
+				<ul>
+					<li><strong><u>Don't</u> create a high school roleplay.</strong> There's <a href="http://www.roleplaygateway.com/tag/school">already a bunch</a>, join one of those instead.</li>
+					<li><strong><u>Do</u> create something original.</strong>  Don't <a href="http://www.roleplaygateway.com/tag/fanfic">steal someone else's universe</a>, be <a href="http://www.roleplaygateway.com/tag/original">original</a> and come up with one of your own.</li>
+					<li><strong><u>Do</u> take your time.</strong> Once you submit your roleplay, it is public for the whole world to see.  Take your time and <u>make it look good</u>.</li>
+				</ul>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+		<fieldset>
+			<dl>
+				<dt>
+					<label for="roleplay_title">Title:</label><br />
+					<span>What do you want your roleplay to be called? <strong>You can only change this for up to 24 hours.</strong> Pick wisely!</span>
+				</dt>
+				<dd><input type="text" class="inputbox" id="roleplay_title" name="roleplay_title" value="{ROLEPLAY_TITLE}" maxlength="45"></dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="roleplay_description">Description:</label><br />
+					<span>Give a brief overview of the roleplay.</span>
+				</dt>
+				<dd><textarea name="roleplay_description" id="roleplay_description" maxlength="255" class="inputbox">{ROLEPLAY_DESCRIPTION}</textarea></dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="roleplay_tags">Tags:</label><br />
+					<span>Please provide at least 3 tags for your roleplay. Be careful! Choosing a tag can not only help you promote your roleplay to interested parties (as it will make your roleplay show up in tag searches), but it will also hide it from people who have chosen to ignore roleplays with that tag.</span>
+				</dt>
+				<dd><textarea name="roleplay_tags" id="roleplay_tags" maxlength="255" class="inputbox">{ROLEPLAY_TAGS}</textarea></dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="roleplay_image">Roleplay Thumbnail</label><br />
+					<span>Upload a small 100x100 image that will represent your roleplay.</span>
+				</dt>
+				<dd>
+					<input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
+					<input name="userfile" type="file" />
+				</dd>
+			</dl>			
+			<dl>
+				<dt>
+					<label for="roleplay_setting">Setting:</label><br />
+					<span>What is the name of your roleplay's setting (or "universe")?</span>
+				</dt>
+				<dd><input type="text" class="inputbox" id="roleplay_setting" maxlength="45" name="roleplay_setting" value="{ROLEPLAY_SETTING}"></dd>
+			</dl>			
+			<!-- 
+			<dl>
+				<dt>
+					<label for="roleplay_slots">Number of players allowed:</label><br />
+					<span>How many total player slots are available?</span>
+				</dt>
+				<dd><input type="text" name="roleplay_slots" id="roleplay_slots" maxlength="5" class="inputbox" style="width:30px;" /></dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="roleplay_slots">Posting Requirements</label><br />
+					<span>How long should posts be?</span>
+				</dt>
+				<dd>
+					<input type="text" name="posting_requirements_minimum" value="Min" id="posting_requirements_minimum" maxlength="5" class="inputbox" style="width:30px;"
+						onFocus="this.value = ''" onBlur="if(this.value == ''){ this.value = 'Min'; }"
+					/>
+					<input type="text" name="posting_requirements_maximum" value="Max" id="posting_requirements_maximum" maxlength="5" class="inputbox" style="width:30px;"
+						onFocus="this.value = ''" onBlur="if(this.value == ''){ this.value = 'Max'; }"
+					/>
+					<select name="posting_requirements_type" id="posting_requirements_type">
+						<option value="words" selected>Words</option>
+						<option value="characters">Characters</option>
+						<option value="sentences">Sentences</option>
+						<option value="paragraphs">Paragraphs</option>
+					</select>
+				</dd>
+			</dl>
+			-->
+			<dl>
+				<dt>
+					<label for="roleplay_approval">Character Approval</label><br />
+					<span>What characters are allowed to join this roleplay?</span>
+				</dt>
+				<dd>
+					<input type="radio" name="roleplay_approval" value="0" checked> <strong>Allow All Characters</strong>
+					<input type="radio" name="roleplay_approval" value="1"> <strong>Require Character Approval</strong>
+				</dd>
+			</dl>
+
+			<dl>
+				<dt>
+					<label for="roleplay_original">Is this roleplay original?</label><br />
+					<span>Did you create everything in this roleplay with your own skill?</span>
+				</dt>
+				<dd>
+					<input type="radio" name="roleplay_original" value="yes" onclick="$('#citations_content').slideUp();"> <strong>Yes, this roleplay is <em>completely</em> my own content, and I did not base any of it on a book, movie, game, etc., that is already published.</strong>
+					<input type="radio" name="roleplay_original" value="no" onclick="$('#citations_content').slideDown();"> <strong>No, this roleplay is based on someone else's work.</strong>
+
+          <div id="citations_content" style="display:none;">
+            <h4>Citations</h4>
+            <p>Please provide at least one link to the original content.</p>
+            <textarea name="roleplay_citations" id="roleplay_citations" rows="5" class="inputbox" style="width:100%;">{ROLEPLAY_CITATIONS}</textarea>
+          </div>
+				</dd>
+			</dl>
+
+			<ul class="topiclist cplist">
+				<h3>Rules</h3>
+				<p>These are your custom rules that govern this roleplay.</p>
+				<script type="text/javascript">edToolbar('roleplay_rules');</script>
+				<textarea name="roleplay_rules" id="roleplay_rules" rows="10" class="inputbox" style="width:100%;">{ROLEPLAY_RULES}</textarea>
+			</ul>			
+			<ul class="topiclist cplist">
+				<h3>Introduction</h3>
+				<p>This is the overview of your roleplay's general storyline.</p>
+				<script type="text/javascript">edToolbar('roleplay_introduction');</script>
+				<textarea name="roleplay_introduction" id="roleplay_introduction" rows="50" class="ed inputbox" style="width:100%;">{ROLEPLAY_INTRODUCTION}</textarea>
+			</ul>
+		</fieldset>
+		
+		<fieldset class="submit-buttons">
+			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
+			<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+		</fieldset>
+		
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

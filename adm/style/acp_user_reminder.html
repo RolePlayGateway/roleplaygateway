@@ -1,0 +1,103 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<p>{L_TITLE_EXPLAIN}</p>
+
+<form id="acp_user_reminder" method="post" action="{U_ACTION}">
+
+	<fieldset>
+			<legend>{L_GENERAL_CONFIGURATION}</legend>
+
+	<dl> 
+		<dt><label for="user_reminder_enable">{L_USER_REMINDER_ENABLE}:</label><br /><span>{L_USER_REMINDER_ENABLE_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" name="user_reminder_enable" value="1"<!-- IF USER_REMINDER_ENABLE --> id="user_reminder_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="user_reminder_enable" value="0"<!-- IF not USER_REMINDER_ENABLE --> id="user_reminder_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+	</dl>
+	<dl> 
+		<dt><label for="user_reminder_ignore_no_email">{L_USER_REMINDER_IGNORE_NO_EMAIL}:</label><br /><span>{L_USER_REMINDER_IGNORE_NO_EMAIL_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" name="user_reminder_ignore_no_email" value="1"<!-- IF USER_REMINDER_IGNORE_NO_EMAIL --> id="user_reminder_ignore_no_email" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="user_reminder_ignore_no_email" value="0"<!-- IF not USER_REMINDER_IGNORE_NO_EMAIL --> id="user_reminder_ignore_no_email" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+	</dl>
+	<dl> 
+		<dt><label for="user_reminder_protected_users">{L_USER_REMINDER_PROTECTED_USERS}:</label><br /><span>{L_USER_REMINDER_PROTECTED_USERS_EXPLAIN}</span></dt>
+		<dd><textarea id="user_reminder_protected_users" name="user_reminder_protected_users" cols="60" rows="8">{USER_REMINDER_PROTECTED_USERS}</textarea></dd>
+		<dd>[ <a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a> ]</dd>
+		
+
+	</dl>
+	
+	
+<!-- IF S_CAN_DELETE_USER -->
+	<dl> 
+		<dt><label for="user_reminder_delete_choice">{L_USER_REMINDER_DELETE_CHOICE}:</label><br /><span>{L_USER_REMINDER_DELETE_CHOICE_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" name="user_reminder_delete_choice" value="1"<!-- IF user_reminder_delete_choice --> id="user_reminder_delete_choice" checked="checked"<!-- ENDIF --> /> {L_RETAIN_POSTS}</label>
+			<label><input type="radio" class="radio" name="user_reminder_delete_choice" value="0"<!-- IF not user_reminder_delete_choice --> id="user_reminder_delete_choice" checked="checked"<!-- ENDIF --> /> {L_DELETE_POSTS}</label></dd>
+	</dl>
+<!-- ENDIF -->
+</fieldset>	
+<fieldset>
+			<legend>{L_CATEGORY_CONFIGURATION}</legend>
+<fieldset>
+	<dl> 
+		<dt><label for="user_reminder_zero_poster_enable">{L_USER_REMINDER_ZERO_POSTER_ENABLE}:</label></dt>
+		<dd><label><input type="radio" class="radio" name="user_reminder_zero_poster_enable" value="1"<!-- IF USER_REMINDER_ZERO_POSTER_ENABLE --> id="user_reminder_zero_poster_enable" checked="checked"<!-- ENDIF --> /> {L_MANUAL}</label>
+			<label><input type="radio" class="radio" name="user_reminder_zero_poster_enable" value="0"<!-- IF not USER_REMINDER_ZERO_POSTER_ENABLE --> id="user_reminder_zero_poster_enable" checked="checked"<!-- ENDIF --> /> {L_AUTOMATIC}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="user_reminder_zero_poster_days">{L_USER_REMINDER_ZERO_POSTER_DAYS}:</label><br /><span>{L_USER_REMINDER_ZERO_POSTER_DAYS_EXPLAIN}</span></dt>
+		<dd><input class="tiny" name="user_reminder_zero_poster_days" type="text" id="user_reminder_zero_poster_days" value="{USER_REMINDER_ZERO_POSTER_DAYS}" maxlength="5" /></dd>
+	</dl>
+</fieldset>	
+<fieldset>
+<dl> 
+		<dt><label for="user_reminder_inactive_enable">{L_USER_REMINDER_INACTIVE_ENABLE}:</label></dt>
+		<dd><label><input type="radio" class="radio" name="user_reminder_inactive_enable" value="1"<!-- IF USER_REMINDER_INACTIVE_ENABLE --> id="user_reminder_inactive_enable" checked="checked"<!-- ENDIF --> /> {L_MANUAL}</label>
+			<label><input type="radio" class="radio" name="user_reminder_inactive_enable" value="0"<!-- IF not USER_REMINDER_INACTIVE_ENABLE --> id="user_reminder_inactive_enable" checked="checked"<!-- ENDIF --> /> {L_AUTOMATIC}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="user_reminder_inactive_days">{L_USER_REMINDER_INACTIVE_DAYS}:</label><br /><span>{L_USER_REMINDER_INACTIVE_DAYS_EXPLAIN}</span></dt>
+		<dd><input class="tiny" name="user_reminder_inactive_days" type="text" id="user_reminder_inactive_days" value="{USER_REMINDER_INACTIVE_DAYS}" maxlength="5" /></dd>
+	</dl>
+</fieldset>	
+<fieldset>
+	<dl> 
+		<dt><label for="user_reminder_not_logged_in_enable">{L_USER_REMINDER_NOT_LOGGED_IN_ENABLE}:</label></dt>
+		<dd><label><input type="radio" class="radio" name="user_reminder_not_logged_in_enable" value="1"<!-- IF USER_REMINDER_NOT_LOGGED_IN_ENABLE --> id="user_reminder_not_logged_in_enable" checked="checked"<!-- ENDIF --> /> {L_MANUAL}</label>
+			<label><input type="radio" class="radio" name="user_reminder_not_logged_in_enable" value="0"<!-- IF not USER_REMINDER_NOT_LOGGED_IN_ENABLE --> id="user_reminder_not_logged_in_enable" checked="checked"<!-- ENDIF --> /> {L_AUTOMATIC}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="user_reminder_not_logged_in_days">{L_USER_REMINDER_NOT_LOGGED_IN_DAYS}:</label><br /><span>{L_USER_REMINDER_NOT_LOGGED_IN_DAYS_EXPLAIN}</span></dt>
+		<dd><input class="tiny" name="user_reminder_not_logged_in_days" type="text" id="user_reminder_not_logged_in_days" value="{USER_REMINDER_NOT_LOGGED_IN_DAYS}" maxlength="5" /></dd>
+	</dl>
+</fieldset>	
+<fieldset>
+	<dl> 
+		<dt><label for="user_reminder_inactive_still_enable">{L_USER_REMINDER_INACTIVE_STILL_ENABLE}:</label><br /><span>{L_USER_REMINDER_INACTIVE_STILL_ENABLE_EXPLAIN}</span></dt>
+		<dd><label><input type="radio" class="radio" name="user_reminder_inactive_still_enable" value="1"<!-- IF USER_REMINDER_INACTIVE_STILL_ENABLE --> id="user_reminder_inactive_still_enable" checked="checked"<!-- ENDIF --> /> {L_MANUAL}</label>
+			<label><input type="radio" class="radio" name="user_reminder_inactive_still_enable" value="0"<!-- IF not USER_REMINDER_INACTIVE_STILL_ENABLE --> id="user_reminder_inactive_still_enable" checked="checked"<!-- ENDIF --> /> {L_AUTOMATIC}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="user_reminder_inactive_still_options">{L_USER_REMINDER_INACTIVE_STILL_OPTIONS}:</label><br /><span>{L_USER_REMINDER_INACTIVE_STILL_OPTIONS_EXPLAIN}</span></dt>
+		<dd><label><input type="checkbox" class="radio" name="user_reminder_inactive_still_opt_zero" value="1" id="user_reminder_inactive_still_opt_zero" <!-- IF USER_REMINDER_INACTIVE_STILL_OPT_ZERO --> checked="checked"<!-- ENDIF --> /> {L_ACP_USER_REMINDER_ZERO_POSTER}</label>
+			<label><input type="checkbox" class="radio"  name="user_reminder_inactive_still_opt_inactive" value="1"<!-- IF USER_REMINDER_INACTIVE_STILL_OPT_INACTIVE --> id="user_reminder_inactive_still_opt_inactive" checked="checked"<!-- ENDIF --> /> {L_ACP_USER_REMINDER_INACTIVE}</label>
+			<label><input type="checkbox" class="radio" name="user_reminder_inactive_still_opt_not_logged_in" value="1"<!-- IF USER_REMINDER_INACTIVE_STILL_OPT_NOT_LOGGED_IN --> id="user_reminder_inactive_still_opt_not_logged_in" checked="checked"<!-- ENDIF --> /> {L_ACP_USER_REMINDER_NOT_LOGGED_IN}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="user_reminder_inactive_still_days">{L_USER_REMINDER_INACTIVE_STILL_DAYS}:</label><br /><span>{L_USER_REMINDER_INACTIVE_STILL_DAYS_EXPLAIN}</span></dt>
+		<dd><input class="tiny" name="user_reminder_inactive_still_days" type="text" id="user_reminder_inactive_still_days" value="{USER_REMINDER_INACTIVE_STILL_DAYS}" maxlength="5" /></dd>
+	</dl>
+</fieldset>
+</fieldset>
+<fieldset>
+	<p class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</p>
+	{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

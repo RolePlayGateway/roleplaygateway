@@ -1,0 +1,42 @@
+Subject: Bienvenue sur "{SITENAME}"
+
+{WELCOME_MSG}
+
+En accord avec la COPPA, votre compte est actuellement inactif.
+
+Imprimez ce message et le faire signer et dater par vos parents ou vos tuteurs. Puis, faxez-le à:
+
+{FAX_INFO}
+
+Ou envoyez-le à l'adresse e-mail suivante:
+
+{MAIL_INFO}
+
+------------------------------ DECOUPEZ ICI ------------------------------
+Permission de participer à "{SITENAME}" - {U_BOARD}
+
+Nom d'utilisateur: {USERNAME}
+E-mail: {EMAIL_ADDRESS}
+
+J'AI VERIFIE LES INFORMATIONS FOURNIES PAR MON ENFANT ET DONNE LA PERMISSION A "{SITENAME}" DE STOCKER CETTE INFORMATION.
+JE CONÇOIS QUE CES INFORMATIONS PEUVENT ETRE MODIFIEES A TOUT MOMENT EN ENTRANT UN MOT DE PASSE.
+JE SAIS QUE JE PEUX DEMANDER LE RETRAIT DE CES INFORMATIONS A "{SITENAME}" A TOUT MOMENT.
+
+
+Parent ou tuteur
+(Imprimez votre nom ici): _____________________
+
+(Signez ici): __________________ 
+
+Date: _______________
+
+------------------------------ DECOUPEZ ICI ------------------------------
+
+
+Une fois que l'administrateur aura reçu le texte ci-dessus par fax ou par e-mail, votre compte sera activé.
+
+Votre mot de passe a été stocké de manière sécurisée dans notre base de données et ne pourra pas être retrouvé. Dans le cas où vous l'auriez oublié, vous pourrez le réinitialiser en utilisant l'adresse e-mail associée à votre compte.
+
+Merci de vous être enregistré.
+
+{EMAIL_SIG}

@@ -1,0 +1,176 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<!-- IF S_EDIT -->
+	<script type="text/javascript">
+	// <![CDATA[
+
+		var form_name = 'acp_pages';
+		var text_name = 'content';
+
+		// Define the bbCode tags
+		var bbcode = new Array();
+		var bbtags = new Array('[b]','[/b]','[i]','[/i]','[u]','[/u]','[quote]','[/quote]','[code]','[/code]','[list]','[/list]','[list=]','[/list]','[img]','[/img]','[url]','[/url]','[flash=]', '[/flash]','[size=]','[/size]'<!-- BEGIN custom_tags -->, {custom_tags.BBCODE_NAME}<!-- END custom_tags -->);
+		var imageTag = false;
+
+		// Helpline messages
+		var help_line = {
+			b: '{LA_BBCODE_B_HELP}',
+			i: '{LA_BBCODE_I_HELP}',
+			u: '{LA_BBCODE_U_HELP}',
+			q: '{LA_BBCODE_Q_HELP}',
+			c: '{LA_BBCODE_C_HELP}',
+			l: '{LA_BBCODE_L_HELP}',
+			o: '{LA_BBCODE_O_HELP}',
+			p: '{LA_BBCODE_P_HELP}',
+			w: '{LA_BBCODE_W_HELP}',
+			s: '{LA_BBCODE_S_HELP}',
+			f: '{LA_BBCODE_F_HELP}',
+			e: '{LA_BBCODE_E_HELP}',
+			d: '{LA_BBCODE_D_HELP}',
+			t: '{LA_BBCODE_T_HELP}',
+			tip: '{L_STYLES_TIP}'
+			<!-- BEGIN custom_tags -->
+				,cb_{custom_tags.BBCODE_ID}: '{custom_tags.A_BBCODE_HELPLINE}'
+			<!-- END custom_tags -->
+		}
+
+	// ]]>
+	</script>
+	<script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>
+	<a href="{U_BACK}" style="float: {S_CONTENT_FLOW_END};">&laquo; {L_BACK}</a>
+
+	<h1>{L_ACP_MANAGE_PAGES}</h1>
+
+	<p>{L_ACP_PAGES_EXPLAIN}</p>
+
+	<form id="acp_pages" method="post" action="{U_ACTION}">
+	
+	<fieldset>
+		<legend>{L_ACP_PAGES}</legend>
+	<!-- IF not S_ADD -->
+	<dl>
+		<dt><label for="title">{L_PAGE_LINK}:</label></dt>
+		<dd><a href="{U_PAGE}">{L_GO_TO_PAGE}</a></dd>
+	</dl>
+	<!-- ENDIF -->
+	<dl>
+		<dt><label for="title">{L_PAGE_TITLE}:</label></dt>
+		<dd><input name="title" type="text" id="title" value="{PAGE_EDIT_TITLE}" maxlength="255" size="30" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="desc">{L_PAGE_DESC}:</label><br /><span>{L_PAGE_DESC_EXPLAIN}</span></dt>
+		<dd><input name="desc" type="text" id="desc" value="{PAGE_DESC}" maxlength="255" size="50" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="url">{L_PAGE_URL}:</label><br /><span>{L_PAGE_URL_EXPLAIN}</span></dt>
+		<dd><input name="url" type="text" id="url" value="{PAGE_URL}" maxlength="255" size="30" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="content">{L_PAGE_CONTENT}:</label></dt>
+		<dd><div id="format-buttons">
+			<input type="button" class="button2" accesskey="b" name="addbbcode0" value=" B " style="font-weight:bold; width: 30px;" onclick="bbstyle(0)" onmouseover="helpline('b')" onmouseout="helpline('tip')" />
+			<input type="button" class="button2" accesskey="i" name="addbbcode2" value=" i " style="font-style:italic; width: 30px;" onclick="bbstyle(2)" onmouseover="helpline('i')" onmouseout="helpline('tip')" />
+			<input type="button" class="button2" accesskey="u" name="addbbcode4" value=" u " style="text-decoration: underline; width: 30px;" onclick="bbstyle(4)" onmouseover="helpline('u')" onmouseout="helpline('tip')" />
+			<input type="button" class="button2" accesskey="q" name="addbbcode6" value="Quote" style="width: 50px" onclick="bbstyle(6)" onmouseover="helpline('q')" onmouseout="helpline('tip')" />
+			<input type="button" class="button2" accesskey="c" name="addbbcode8" value="Code" style="width: 40px" onclick="bbstyle(8)" onmouseover="helpline('c')" onmouseout="helpline('tip')" />
+			<input type="button" class="button2" accesskey="l" name="addbbcode10" value="List" style="width: 40px" onclick="bbstyle(10)" onmouseover="helpline('l')" onmouseout="helpline('tip')" />
+			<input type="button" class="button2" accesskey="o" name="addbbcode12" value="List=" style="width: 40px" onclick="bbstyle(12)" onmouseover="helpline('o')" onmouseout="helpline('tip')" />
+			<input type="button" class="button2" accesskey="t" name="addlitsitem" value="[*]" style="width: 40px" onclick="bbstyle(-1)" onmouseover="helpline('e')" onmouseout="helpline('tip')" />
+			<input type="button" class="button2" accesskey="p" name="addbbcode14" value="Img" style="width: 40px" onclick="bbstyle(14)" onmouseover="helpline('p')" onmouseout="helpline('tip')" />
+			<input type="button" class="button2" accesskey="w" name="addbbcode16" value="URL" style="text-decoration: underline; width: 40px" onclick="bbstyle(16)" onmouseover="helpline('w')" onmouseout="helpline('tip')" />
+			<input type="button" class="button2" accesskey="d" name="addbbcode18" value="Flash" onclick="bbstyle(18)" onmouseover="helpline('d')" onmouseout="helpline('tip')" />
+
+
+			<label for="addbbcode20">{L_FONT_SIZE}:</label> <select name="addbbcode20" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]');this.form.addbbcode20.selectedIndex = 2;" title="{L_FONT_SIZE}" onmouseover="helpline('f')" onmouseout="helpline('tip')">
+				<option value="50">{L_FONT_TINY}</option>
+				<option value="85">{L_FONT_SMALL}</option>
+				<option value="100" selected="selected">{L_FONT_NORMAL}</option>
+				<option value="150">{L_FONT_LARGE}</option>
+				<option value="200">{L_FONT_HUGE}</option>
+			</select>
+		<!-- IF .custom_tags -->
+			<br />
+			<!-- BEGIN custom_tags -->
+				<input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})"<!-- IF custom_tags.BBCODE_HELPLINE !== '' --> onmouseover="helpline('cb_{custom_tags.BBCODE_ID}')" onmouseout="helpline('tip')"<!-- ENDIF --> />
+			<!-- END custom_tags -->
+		<!-- ENDIF -->
+
+		</div>
+
+		<p><input type="text" class="text full" style="border: 0; background: none;" name="helpbox" value="{L_STYLES_TIP}" /></p>
+		<textarea name="content" id="content" rows="40" cols="75" style="width: 95%; padding: 5px; overflow: scroll;" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" >{PAGE_CONTENT}</textarea></dd>
+	</dl>
+	<div id="posts">
+		<dl>
+			<dt><label for="order">{L_PAGE_ORDER}:</label><br /><span>{L_PAGE_ORDER_EXPLAIN}</span></dt>
+			<dd><input name="order" type="text" id="order" maxlength="10" value="{PAGE_ORDER}" /></dd>
+		</dl>
+		<dl>
+				<dt><label for=display">{L_PAGE_DISPLAY}:</label><br /><span>{L_PAGE_DISPLAY_EXPLAIN}</span></dt>
+				<dd><label><input type="radio" class="radio" name="display" value="1"<!-- IF S_PAGE_DISPLAY --> id="display" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+				<label><input type="radio" class="radio" name="display" value="0"<!-- IF not S_PAGE_DISPLAY --> id="display" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>
+		<dl>
+				<dt><label for=display_guests">{L_PAGE_DISPLAY_GUESTS}:</label><br /><span>{L_PAGE_DISPLAY_GUESTS_EXPLAIN}</span></dt>
+				<dd><label><input type="radio" class="radio" name="display_guests" value="1"<!-- IF S_PAGE_DISPLAY_GUESTS --> id="display" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+				<label><input type="radio" class="radio" name="display_guests" value="0"<!-- IF not S_PAGE_DISPLAY_GUESTS --> id="display" checked="checked"<!-- ENDIF --> /> {L_NO}</label></dd>
+		</dl>
+	</div>
+
+	<p class="submit-buttons">
+		<input type="hidden" name="action" value="save" />
+
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+		{S_FORM_TOKEN}
+	</p>
+	</fieldset>
+	</form>
+
+<!-- ELSE -->
+
+	<h1>{L_ACP_MANAGE_PAGES}</h1>
+
+	<p>{L_ACP_PAGES_EXPLAIN}</p>
+
+	<form id="acp_ranks" method="post" action="{U_ACTION}">
+	<fieldset class="tabulated">
+	<legend>{L_ACP_MANAGE_PAGES}</legend>
+
+	<table cellspacing="1">
+	<thead>
+	<tr>
+		<th>{L_PAGE_TITLE}</th>
+		<th>{L_PAGE_DESC}</th>
+		<th>{L_PAGE_AUTHOR}</th>
+		<th>{L_PAGE_DISPLAY}</th>
+		<th>{L_PAGE_LINK}</th>
+		<th>{L_ACTION}</th>
+	</tr>
+	</thead>
+	<tbody>
+	<!-- BEGIN pages -->
+		<!-- IF pages.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+		<td style="text-align: center;"><a href="{pages.U_EDIT}">{pages.PAGE_TITLE}</a></td>
+		<td style="text-align: center;">{pages.PAGE_DESC}</td>
+		<td style="text-align: center;">{pages.PAGE_AUTHOR}</td>
+		<td style="text-align: center;"><a href="{pages.U_DISPLAY}">{pages.PAGE_SWITCH_DISPLAY}</a></td>
+		<td style="text-align: center;"><a href="{pages.U_PAGE}">{L_GO_TO_PAGE}</a></td>
+		<td style="text-align: center;"><a href="{pages.U_EDIT}">{ICON_EDIT}</a> <a href="{pages.U_DELETE}">{ICON_DELETE}</a></td>
+	</tr>
+	<!-- END pages -->
+	</tbody>
+	</table>
+
+	<p class="quick">
+		<input class="button2" name="add" type="submit" value="{L_ADD_PAGE}" />
+		{S_FORM_TOKEN}
+	</p>
+	</fieldset>
+	</form>
+
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

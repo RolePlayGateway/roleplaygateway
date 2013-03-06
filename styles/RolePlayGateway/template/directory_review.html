@@ -1,0 +1,27 @@
+<!-- INCLUDE overall_header.html -->
+<h2>Review {TITLE}</h2>
+<div class="panel">
+	<div class="inner" style="text-align:center;"><span class="corners-top"><span></span></span>
+		<form name="send" action="http://www.roleplaygateway.com/directory/review.php?id={SITE_ID}" method="post">
+			<input type="hidden" name="site_id" value="{SITE_ID}">
+			<span><strong>On a scale of 1 to 10, how would you rate {TITLE}?</strong></span>
+			<div id="rating">
+				<input type="radio" name="rating" value="1"> 1
+				<input type="radio" name="rating" value="2"> 2
+				<input type="radio" name="rating" value="3"> 3
+				<input type="radio" name="rating" value="4"> 4
+				<input type="radio" name="rating" value="5"> 5
+				<input type="radio" name="rating" value="6"> 6
+				<input type="radio" name="rating" value="7"> 7
+				<input type="radio" name="rating" value="8"> 8
+				<input type="radio" name="rating" value="9"> 9
+				<input type="radio" name="rating" value="10"> 10
+			</div>
+			<br />
+			<span><strong>Why?  Post any additional feedback or review here.</strong></span>
+			<div id="review"><textarea name="review" rows="10" cols="76"></textarea></div>
+			<input class="btnlite" type="reset" value="{L_RESET}" />&nbsp;&nbsp;<input class="btnmain" type="submit" name="submit" value="{L_SUBMIT}" />
+		</form>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- INCLUDE overall_footer.html -->

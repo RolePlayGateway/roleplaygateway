@@ -1,0 +1,153 @@
+<!-- INCLUDE overall_header.html -->
+<h2>{L_TITLE}</h2>
+
+<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+<tr>
+	<td class="row1">
+		{L_TITLE_EXPLAIN}
+	</td>
+</tr>
+</table>
+<br />
+<!-- IF S_PREVIEW -->
+<h3>{L_TRACKER_PREVIEW}</h3>
+<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+<tr>
+	<td class="row1">
+		<div class="postbody">{TICKET_PREVIEW}</div>
+	</td>
+</tr>
+</table>
+<br />
+<!-- ENDIF -->
+
+<form action="{U_ACTION}" method="post"{S_FORM_ENCTYPE}>
+<table class="tablebg" width="100%" cellspacing="1">
+<tr>
+	<td colspan="2" class="cat"><b class="genmed">{L_TRACKER_SUBMIT_A_TICKET}</b></td>
+</tr>
+<tr>
+	<th colspan="2"><b>{L_TRACKER_PROJECT_INFO}</b></th>
+</tr>
+<!-- IF ERROR -->
+	<tr>
+		<td class="row2" colspan="2" align="center"><span class="genmed error">{ERROR}</span></td>
+	</tr>
+<!-- ENDIF -->
+<tr>
+	<td class="row1" width="22%"><b class="genmed">{L_TRACKER}:</b></td>
+	<td class="row2" width="78%">{PROJECT_TYPE}</td>
+</tr>
+<tr>
+	<td class="row1" width="22%"><b class="genmed">{L_TRACKER_PROJECT_NAME}:</b></td>
+	<td class="row2" width="78%">{PROJECT_NAME}</td>
+</tr>
+<!-- IF S_COMPONENT_OPTIONS and S_TICKET_COMPONENT-->
+<tr>
+	<td class="row1" width="22%"><b class="genmed">{L_TRACKER_COMPONENT}:</b></td>
+	<td class="row2" width="78%"><select id="component_id" name="component_id">{S_COMPONENT_OPTIONS}</select></td>
+</tr>
+<!-- ENDIF -->
+<!-- IF S_VERSION_OPTIONS and S_TICKET_VERSION-->
+<tr>
+	<td class="row1" width="22%"><b class="genmed">{L_TRACKER_VERSION}:</b></td>
+	<td class="row2" width="78%"><select id="version_id" name="version_id">{S_VERSION_OPTIONS}</select></td>
+</tr>
+<!-- ENDIF -->
+<!-- IF S_TICKET_ENVIRONMENT and (S_SHOW_PHP or S_SHOW_DBMS) -->
+<tr>
+	<th colspan="2"><b>{L_TRACKER_ENVIRONMENT}</b></th>
+</tr>
+<tr>
+	<td class="row2" colspan="2" align="center"><span class="genmed">{L_TRACKER_ENVIRONMENT_EXPLAIN}</span></td>
+</tr>
+<!-- IF S_SHOW_PHP -->
+<tr>
+	<td class="row1" width="22%"><b class="genmed">{L_TRACKER_TICKET_PHP}:</b><br />{L_TRACKER_TICKET_PHP_EXPLAIN}</td>
+	<td class="row2" width="78%"><input type="text" id="ticket_php" name="ticket_php" value="{TICKET_PHP}" size="45" maxlength="60" /><br /><span class="small">{L_TRACKER_TICKET_PHP_EXPLAIN_BAD}<br />{L_TRACKER_TICKET_PHP_EXPLAIN_GOOD}</span></td>
+</tr>
+<!-- ENDIF -->
+<!-- IF S_SHOW_DBMS -->
+<tr>
+	<td class="row1" width="22%"><b class="genmed">{L_TRACKER_TICKET_DBMS}:</b><br />{L_TRACKER_TICKET_DBMS_EXPLAIN}</td>
+	<td class="row2" width="78%"><input type="text" id="ticket_dbms" name="ticket_dbms" value="{TICKET_DBMS}" size="45" maxlength="60" /><br /><span class="small">{L_TRACKER_TICKET_DBMS_EXPLAIN_BAD}<br />{L_TRACKER_TICKET_DBMS_EXPLAIN_GOOD}</span></td>
+</tr>
+<!-- ENDIF -->
+<!-- ENDIF -->
+<tr>
+	<th colspan="2"><b>{L_TRACKER_TICKET}</b></th>
+</tr>
+<tr>
+	<td class="row1" width="22%"><b class="genmed">{L_TRACKER_TICKET_TITLE}:</b><br />{L_TRACKER_TICKET_TITLE_EXPLAIN}</td>
+	<td class="row2" width="78%"><input type="text" id="ticket_title" name="ticket_title" value="{TICKET_TITLE}" size="45" maxlength="60" /><br /><span class="small">{L_TRACKER_TICKET_TITLE_EXPLAIN_BAD}<br />{L_TRACKER_TICKET_TITLE_EXPLAIN_GOOD}</span></td>
+</tr>
+<!-- IF S_EDIT_REASON -->
+	<tr>
+		<td class="row1" width="22%"><b class="genmed">{L_TRACKER_EDIT_REASON}:<br /><span>{L_TRACKER_EDIT_REASON_EXPLAIN}</span></td>
+		<td class="row2" width="78%"><input type="text" id="edit_reason" name="edit_reason" value="{EDIT_REASON_TEXT}" size="45" maxlength="60" /></td>
+	</dl>
+<!-- ENDIF -->
+<tr>
+	<td class="row1" width="22%"><b class="genmed">{L_TRACKER_TICKET_DESC}:</b><br />{L_TRACKER_TICKET_DESC_EXPLAIN}</td>
+	<td class="row2" width="78%"><textarea id="ticket_desc" name="ticket_desc" rows="15" cols="76">{TICKET_DESC}</textarea></td>
+</tr>
+<!-- IF S_MANAGE_TICKET or S_TICKET_SECURITY -->
+<tr>
+	<th colspan="2"><b>{L_OPTIONS}</b></th>
+</tr>
+<!-- IF S_TICKET_SECURITY -->
+<tr>
+	<td class="row1" width="22%"><b class="genmed">{L_TRACKER_SECURITY_TICKET}:</b></td>
+	<td class="row2" width="78%"><input type="checkbox" name="ticket_security" id="ticket_security" value="1"<!-- IF TICKET_SECURITY --> checked="checked"<!-- ENDIF --> /></td>
+</tr>
+<!-- ENDIF -->
+<!-- IF S_MANAGE_TICKET -->
+<tr>
+	<td class="row1" width="22%"><b class="genmed">{L_TRACKER_HIDE_TICKET}:</b></td>
+	<td class="row2" width="78%"><input type="checkbox" name="ticket_hidden" id="ticket_hidden" value="1"<!-- IF TICKET_HIDDEN --> checked="checked"<!-- ENDIF --> /></td>
+</tr>
+<tr>
+	<td class="row1" width="22%"><b class="genmed">{L_TRACKER_LOCK_TICKET}:</b></td>
+	<td class="row2" width="78%"><input type="checkbox" name="ticket_status" id="ticket_status" value="1"<!-- IF S_IS_LOCKED --> checked="checked"<!-- ENDIF --> /></td>
+</tr>
+<!-- ENDIF -->
+<!-- ENDIF -->
+<!-- IF S_CAN_ATTACH and not S_HAS_ATTACHMENTS-->
+<tr>
+	<th colspan="2"><b>{L_TRACKER_ATTACHMENTS}</b></th>
+</tr>
+<tr>
+	<td class="row1" width="22%"><b class="genmed">{L_TRACKER_ATTACHMENTS_UPLOAD}:</b></td>
+	<td class="row2" width="78%"><input type="file" name="attachment" id="attachment" size="45" /></td>
+</tr>
+<tr>
+	<td class="row1" colspan="2"><input type="submit" name="add_attachment" value="{L_TRACKER_ATTACHMENTS_ADD}" class="btnlite" /></td>
+</tr>
+<!-- ENDIF -->
+<!-- IF S_HAS_ATTACHMENTS -->
+<tr>
+	<th colspan="2"><b>{L_POSTED_ATTACHMENTS}</b></th>
+</tr>
+<tr>
+	<td class="row1" colspan="2">
+		<a href="{U_VIEW_ATTACHMENT}" class="{S_CONTENT_FLOW_END}">{FILENAME}</a><br /><input type="submit" name="delete_attachment" value="{L_DELETE_FILE}" class="btnlite" />
+		{S_HIDDEN}
+	</td>
+</tr>
+<!-- ENDIF -->
+<tr>
+	<th colspan="2"><b>{L_TRACKER_SUBMIT_TICKET}</b></th>
+</tr>
+<tr>
+	<td class="row1" colspan="2" align="center"><span class="genmed">{L_TRACKER_SUBMIT_TICKET_EXPLAIN}</span></td>
+</tr>
+<tr>
+	<td class="cat" colspan="2" align="center"><input type="submit" name="preview" value="{L_TRACKER_PREVIEW_TICKET}" class="btnlite" /> <input type="submit" name="submit" value="{L_TRACKER_SUBMIT_TICKET}" class="btnmain" accesskey="s" /></td>
+</tr>
+</table>
+{S_FORM_TOKEN}
+</form>
+
+<!-- INCLUDE tracker/tracker_footer.html -->
+
+<!-- INCLUDE overall_footer.html -->

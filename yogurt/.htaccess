@@ -1,0 +1,2 @@
+RewriteCond %{REQUEST_URI} ^/view/(.*).png$ [NC]
+RewriteRule ^.*$ /view.php?id=%1

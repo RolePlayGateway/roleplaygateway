@@ -1,0 +1,23 @@
+<!-- $Id: user_menu.html,v 1.3 2007/04/11 01:44:52 angelside Exp $ //-->
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+		<h3>{L_USER_MENU}</h3>
+		<span style="font-size:1.1em;">
+			<div align="center">
+				<span<!-- IF USERNAME_COLOR -->{USERNAME_COLOR}<!-- ENDIF -->>{USERNAME}</span><br /><br />
+				<a href="{U_PROFILE}"><!-- IF USER_AVATAR -->{USER_AVATAR}<!-- ELSE --><img src="{T_THEME_PATH}/images/no_avatar.gif" alt="" /><!-- ENDIF --></a>
+			</div><hr />
+		
+			<a href="search.php?search_id=newposts">{L_SEARCH_NEW}</a><br />
+			<a href="search.php?search_id=egosearch">{L_SEARCH_SELF}</a><br />
+			<a href="ucp.php?i=main&mode=bookmarks">{L_UM_BOOKMARKS}</a><br />
+			<a href="ucp.php?i=main&mode=subscribed">{L_UM_MAIN_SUBSCRIBED}</a><br />
+			<a href="ucp.php?i=pm&folder=inbox">{L_PRIVATE_MESSAGES}</a><hr />
+			
+			<a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a>
+		</span>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+<br clear="all" />

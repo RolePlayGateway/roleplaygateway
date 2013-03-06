@@ -1,0 +1,37 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<img src="/roleplay/{ROLEPLAY_URL}/image" style="float:left; height: 100px; width: 100px; margin-right: 10px;" />
+<h1 style="color:#596E7C;"><a href="/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/arcs">Arcs</a><!-- IF S_CAN_EDIT --> [<a href="/ucp.php?i=roleplays&mode=edit_arc&arc_id={ARC_ID}&roleplay_id={ROLEPLAY_ID}">Edit</a>]<!-- ENDIF --></h1>
+<p style="margin-bottom: 0;">{ROLEPLAY_SYNOPSIS}</p>
+
+<div>
+  <h3 style="font-size: 1.2em; margin-top: 0.5em;">Plots, Arcs, Stories, and Bundles</h3>
+  <p style="font-size: 1.4em;">Create your own Bundle by using the "Add to Bundle" button to the right of any post in <strong>{ROLEPLAY_NAME}</strong>.</p>
+</div>
+<br style="clear: both;" />
+
+<br class="clear: both;" />
+
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+    <div class="postbody" style="width:100%;"><div class="content">
+
+			<!-- BEGIN arcs -->
+			<div class="place">
+				<div>
+					<a href="/roleplay/{ROLEPLAY_URL}/arcs/{arcs.SLUG}"><strong>{arcs.NAME}</strong></a> [ {arcs.CREATOR_USERNAME} ]
+				</div>
+				<span>{arcs.DESCRIPTION}</span>
+			</div>
+			<!-- BEGINELSE -->
+				<p class="supersize">This roleplay doesn't have any Arcs!</p>
+			<!-- END arcs -->
+
+    </div></div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

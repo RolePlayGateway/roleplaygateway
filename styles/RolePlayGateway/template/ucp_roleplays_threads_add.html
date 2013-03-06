@@ -1,0 +1,39 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>Add OOC Thread</h2>
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<form id="ucp" method="post" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_thread&action=submit">
+	
+	
+		<fieldset>
+			<dl>
+				<dt>
+					<label for="title">OOC Thread Name:</label><br />
+					<span>Do <strong>not</strong> add tags (like [OOC]) here! We do that automatically!</span>
+				</dt>
+				<dd><input type="text" name="title" id="title" maxlength="45" class="inputbox" /></dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="text">Contents</label><br />
+					<span>Go ahead and put the contents of your topic here.</span>
+				</dt>
+			</dl>
+			<ul class="topiclist cplist">
+				<script type="text/javascript">edToolbar('text');</script>
+				<textarea name="text" id="text" rows="20" class="inputbox" style="width:100%;"></textarea>
+			</ul>
+		</fieldset>
+	
+	<input type="hidden" name="roleplay_id" value="{ROLEPLAY_ID}" />
+	<input type="submit" name="submit" value="Add this thread" />
+	
+	</form>
+		
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- INCLUDE ucp_footer.html -->

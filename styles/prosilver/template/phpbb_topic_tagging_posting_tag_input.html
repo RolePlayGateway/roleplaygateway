@@ -1,0 +1,20 @@
+	<div class="panel bg3" id="phpbb_topic_tagging-panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<p>{L_PTT_ADD_TAGS_DESCRIPTION}</p>
+
+	<fieldset class="fields2">
+		<dl>
+			<dt><label for="poll_option_text">{L_PTT_TAGS}:</label><span></dt>
+			<dd><textarea onclick="activate(this.id);" name="ptt_tags" onkeyup="searchSuggest('ptt_tags', 'suggestions_div');" autocomplete="off" id="ptt_tags" rows="5" cols="35" class="inputbox"></textarea></dd>
+		</dl>
+        <dl>
+			<dt>
+				<label for="poll_option_text">{L_PTT_SUGGESTIONS}:</label><span>
+			</dt>
+			<dd><div id="suggestions_div" class="suggestions suggest_posting"></div></dd>
+		</dl>
+	</fieldset>
+	<script language="JavaScript" type="text/javascript" src="phpbb_topic_tagging.js"></script>
+	<span class="corners-bottom"><span></span></span></div>
+</div>

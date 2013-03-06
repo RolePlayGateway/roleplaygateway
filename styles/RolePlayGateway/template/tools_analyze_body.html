@@ -1,0 +1,65 @@
+<!-- INCLUDE overall_header.html -->
+
+<script type="text/javascript" language="javascript">
+   var http_request = false;
+   function makePOSTRequest(url, parameters) {
+      http_request = false;
+      if (window.XMLHttpRequest) { // Mozilla, Safari,...
+         http_request = new XMLHttpRequest();
+         if (http_request.overrideMimeType) {
+         	// set type accordingly to anticipated content type
+            //http_request.overrideMimeType('text/xml');
+            http_request.overrideMimeType('text/html');
+         }
+      } else if (window.ActiveXObject) { // IE
+         try {
+            http_request = new ActiveXObject("Msxml2.XMLHTTP");
+         } catch (e) {
+               http_request = new ActiveXObject("Microsoft.XMLHTTP");
+         }
+      }
+      if (!http_request) {
+         alert('Cannot create XMLHTTP instance');
+         return false;
+      }
+      
+      http_request.onreadystatechange = alertContents;
+      http_request.open('POST', url, true);
+      http_request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      http_request.setRequestHeader("Content-length", parameters.length);
+      http_request.setRequestHeader("Connection", "close");
+      http_request.send(parameters);
+   }
+
+   function alertContents() {
+      if (http_request.readyState == 4) {
+         if (http_request.status == 200) {
+            //alert(http_request.responseText);
+            result = http_request.responseText;
+            document.getElementById('myspan').innerHTML = "<h3>Your Results:</h3>"+result;
+			document.getElementById("message").innerHTML = "Analyze more by filling this box and clicking submit again.";            
+         } else {
+            alert('There was a problem with the request.');
+         }
+      }
+   }
+   
+   function getResponse(obj) {
+      var poststr = "message=" + encodeURI( document.getElementById("message").value );
+      makePOSTRequest('http://www.roleplaygateway.com/tools/readability.php', poststr);
+   }
+</script>
+
+<h2>Writing Analysis</h2>
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<h3>Analyze your writing!</h3>
+		<p><strong class="supersize">Post the writing you want to analyze here:</strong></p>
+		<form action="javascript:get(document.getElementById('myform'));" name="myform" id="myform">
+			<p><textarea id="message" class="inputbox" style="height:250px; width:100%; font-size:1.2em;"></textarea></p>
+			<p style="text-align:right;"><span class="supersize">To see your results, cross your fingers and <input name="button" class="button1" value="Submit." onclick="javascript:getResponse(this.parentNode);" type="button"></span></p>
+		</form>
+		<div name="myspan" id="myspan"></div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- INCLUDE overall_footer.html -->

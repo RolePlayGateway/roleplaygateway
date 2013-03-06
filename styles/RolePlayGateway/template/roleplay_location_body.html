@@ -1,0 +1,232 @@
+<!-- INCLUDE overall_header.html -->
+<style type="text/css">
+
+#roleplay h1 {
+	color: black;
+}
+
+#statistics {
+	float:right;
+	font-size: 1.2em;
+	width:20%;
+	margin:10px;
+}
+
+#tabs {
+	font-size: 1.3em;
+}
+
+h2 a {
+	display: block;
+	padding: 10px;
+}
+h2 a:hover {
+	text-decoration:none;
+	background: #ccc;
+}
+
+
+.content, #introduction {
+	padding:5px;
+	font-size:1.3em;
+	line-height:1.4em;
+	margin-bottom:1.5em;
+	background:
+}
+
+.content {
+	padding-top: 10px;
+}
+
+#introduction h2 {
+	margin-bottom: 10px;
+}
+
+#activity, #places {
+	clear:both;
+}
+
+.activity {
+	clear: both;
+}
+
+span.location, span.time  {
+	font-weight:bold;
+	font-size: 1.2em;
+}
+
+.character {
+	height: 100px;
+	width: 32%;
+	padding:5px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	float:left;
+}
+
+.character img {
+	float:left;
+	height:100px;
+	width: 100px;
+	padding-right:5px;
+}
+
+.place {
+	padding:5px;
+	clear:both;
+}
+
+.place img {
+	float:left;
+	height: 100px;
+	width: 100px;
+	padding-right:5px;
+}
+
+.author {
+	font-style: italic;
+}
+
+#reply_options {
+	font-size: 1.5em;
+	padding: 5px;
+	float:right;
+}
+
+#reply_content {
+	font-size: 1.4em;
+}
+
+input.button1 {
+	font-size: 1.5em;
+	padding:5px;
+	float:right;
+}
+
+#write {
+	clear:both;
+}
+
+.button {
+	border: 1px solid #ccc;
+	margin: 1px;
+	padding: 2px;
+}
+
+.button:hover {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+	-moz-opacity: 0.6;
+	opacity: 0.6;
+}
+</style>
+<div id="roleplay">
+	
+	<h1>{TITLE}</h1>
+	<span>{DESCRIPTION}</span>
+	
+	<div id="tabs">
+		<li><a href="#introduction"><span>Introduction</span></a></li>
+		<li><a href="#characters"><span>Characters</span></a></li>
+		<li><a href="#places"><span>Places</span></a></li>
+		<li><a href="#activity"><span>Activity</span></a></li>
+		<li><a href="#posting"><span>Posting</span></a></li>
+	</div>
+	
+	<div id="content" class="panel bg3">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div id="introduction">
+
+			<div id="statistics" class="panel">
+				<div class="inner"><span class="corners-top"><span></span></span>
+				
+				<strong>Characters:</strong><br />
+				<strong>Total Words:</strong><br />
+				<strong>Readability:</strong><br />
+				<strong>Last Active:</strong>
+				<span class="corners-bottom"><span></span></span></div>
+			</div>	
+
+			<h2><a href="#introduction" name="introduction">Introduction</a></h2>
+			{INTRODUCTION}
+			
+		</div>
+
+		<div id="characters">
+			<h2><a href="#characters" name="characters">Characters</a></h2> 
+			<!-- BEGIN characters -->
+			<div class="character">
+				<img src="#" alt="Character Portrait: {characters.NAME}" />
+				<div>
+					<a href="http://www.roleplaygateway.com/characters/{characters.NAME}"><strong>{characters.NAME}</strong></a> <span><em>played by {characters.OWNER_USERNAME}</em></span>
+				</div>
+				<p>{characters.SYNOPSIS}</p>
+			</div>
+			<!-- END characters -->
+		</div>
+
+		<div id="places">
+			<h2><a href="#places"  name="places">Places</a></h2>
+			<!-- BEGIN places -->
+			<div class="place">
+				<img src="#" alt="Location Thumbnail" />
+				<div>
+					<strong><a href="#">{places.NAME}</a></strong>
+				</div>
+				<p>{places.DESCRIPTION}</p>
+				<div class="snippets">
+					<!-- BEGIN snippets -->
+					<div>{places.snippets.TEXT}</div>
+					<!-- END snippets -->
+				</div>			
+			</div>
+			<!-- END places -->
+		</div>
+
+		<div id="activity">
+			<h2><a href="#activity"  name="activity">Activity</a></h2>
+			<!-- BEGIN activity -->
+				<div class="activity" id="a{activity.ID}">
+					<div class="author"><span class="location"><a href="">{activity.LOCATION}</a></span>, <span class="time">{activity.TIME_AGO}</span>, as written by <strong>{activity.AUTHOR}</strong></div>
+					<div class="content">
+						{activity.CONTENT}
+					</div>
+					<hr />
+				</div>
+			<!-- END content -->
+		</div>
+
+		<div id="posting">
+			<h2><a href="#posting" name="posting">Posting! D:</a></h2>
+			
+			<script type="text/javascript" src="includes/bbeditor/ed.js"></script>
+			
+			<form id="write" method="post" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=write&action=submit">
+			
+				<input type="hidden" name="roleplay_id" value="{ID}" />
+			
+				<div id="reply_options">
+					<label for="where">Where?</label>
+					<select name="place">
+						<!-- BEGIN posting_places -->
+						<option value="{posting_places.ID}">{posting_places.NAME}</option>
+						<!-- END posting_places -->
+					</select>
+				</div>				
+			
+				<script>edToolbar('reply_content');</script>
+				<textarea name="reply_content" id="reply_content" class="ed inputbox" style="width: 100%; height: 400px;">Whew! Check this baby out. :)</textarea>
+				
+				<input type="submit" name="Submit" value="My post is flawless. Submit! &raquo;" class="button1" />				
+				
+			</form>
+		</div>
+		
+
+		
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+</div>
+
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,105 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>Review Roleplay</h2>
+
+<form id="ucp" method="post" enctype="multipart/form-data" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=review&roleplay_id={ROLEPLAY_ID}&action=submit">
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	
+		<h3>Grading Rubric</h3>
+		<p>This rubric is intended to guide you in providing an accurate and standardized review of a roleplay.</p>
+		
+		<style type="text/css">
+			fieldset dt {
+				width: 150px;
+			}
+			fieldset dd {
+				margin-left: 170px;
+			}
+			fieldset dd div {
+				margin:10px;
+			}
+		</style>
+
+		<fieldset>
+			<dl>
+				<dt>
+					<label for="characterization"><h4>Characterization:</h4></label>
+				</dt>
+				<dd>
+					<div><input type="radio" name="characterization" value="Advanced"> <strong>Advanced:</strong> <span>Characters are strongly drawn, clearly separate and fully developed. The main character(s) are presented in multiple ways (appearance, action, thoughts, speech, etc.). They behave "within" their character. They have a past and a future.</span></div>
+					<div><input type="radio" name="characterization" value="Proficient"> <strong>Proficient:</strong> <span>Characters are clear and reasonably developed. The main character(s) have identifiable characteristics. They may seem to lack a past or future.</span></div>
+					<div><input type="radio" name="characterization" value="In-Progress"> <strong>In-Progress</strong> <span>Characters are unclear. They may be little more than a name and a description or do not rise beyond stereotype. They may be unbelievably inconsistent, or there may not be enough information to form a judgement about them.</span></div>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="plot"><h4>Plot:</h4></label>
+				</dt>
+				<dd>
+					<div><input type="radio" name="plot" value="Advanced"> <strong>Advanced:</strong> <span>What the conflict is in the story is clear and the importance of it to the characters is convincing. Actions will produce new situations which will produce new actions. The characters will struggle with their problems in interesting and meaningful ways. The story will have a satisfying and logical climax that is the culmination of the proceeding events.</span></div>
+					<div><input type="radio" name="plot" value="Proficient"> <strong>Proficient:</strong> <span>What the conflict is in the story is clear. The importance of the conflict to the characters may be fuzzy, although it will clearly be important. Actions will produce new situations which will produce new actions. The characters will struggle with their problems. The story will have a climax that is the culmination of the proceeding events.</span></div>
+					<div><input type="radio" name="plot" value="In-Progress"> <strong>In-Progress</strong> <span>The conflict may be unclear or absent. The conflict may be clear, but the importance of it to the characters will never be communicated. There may be no actions (the story is static), or the actions do not seem related to an identifiable conflict. The characters may be passive and not struggle. The story may lack a climax that is the culmination of the proceeding events. </span></div>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="depth"><h4>Depth:</h4></label>
+				</dt>
+				<dd>
+					<div><input type="radio" name="depth" value="Advanced"> <strong>Advanced:</strong> <span>Where the story takes place is clearly drawn and has an impact on the story. The reader will experience the story through multiple appeals to several senses. An appropriate amount of the story is shown rather than told.</span></div>
+					<div><input type="radio" name="depth" value="Proficient"> <strong>Proficient:</strong> <span>Where the story takes place is clear. The story makes appeals to the senses. Some of the story is shown rather than told.</span></div>
+					<div><input type="radio" name="depth" value="In-Progress"> <strong>In-Progress</strong> <span>Where the story takes place may be unclear or setting may be absent altogether. The story may make very limited or no appeals to the senses. Most of the story is told rather than shown.</span></div>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="style"><h4>Style:</h4></label>
+				</dt>
+				<dd>
+					<div><input type="radio" name="style" value="Advanced"> <strong>Advanced:</strong> <span>The style is appropriate to the story and heightens its effectiveness. This may include interesting and appropriate figurative language, diction and syntax. Sentences will be varied in length and type. The relationships between the parts of the story will be smoothly handled and clear.</span></div>
+					<div><input type="radio" name="style" value="Proficient"> <strong>Proficient:</strong> <span>The style will not interfere with the understanding of the story. Writing will be workmanlike and clear. The relationships between the parts of the story will be clear.</span></div>
+					<div><input type="radio" name="style" value="In-Progress"> <strong>In-Progress</strong> <span>The style will interfere with the understanding of the story. Sentences may need to be reread for meaning. Transitions may be absent. The relationships between the parts of the story may be unclear.</span></div>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="mechanics"><h4>Mechanics:</h4></label>
+				</dt>
+				<dd>
+					<div><input type="radio" name="mechanics" value="Advanced"> <strong>Advanced:</strong> <span>The story will be closely proofread and will contain few or no errors in punctuation, sentence structure, grammar, spelling, capitalization, etc. The manuscript is "clean" and in proper format.</span></div>
+					<div><input type="radio" name="mechanics" value="Proficient"> <strong>Proficient:</strong> <span>The story will be reasonably well proofread. There may be some errors, but they do not interfere with the understanding of the story. The manuscript is "clean" and in proper format.</span></div>
+					<div><input type="radio" name="mechanics" value="In-Progress"> <strong>In-Progress</strong> <span>The story will show little evidence of proofreading. Proofreading errors will be pervasive and interfere with the understanding of the story. The manuscript may be sloppy or not in proper format.</span></div>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="overall"><h4>Overall:</h4></label>
+				</dt>
+				<dd>
+					<div><input type="radio" name="overall" value="Advanced"> <strong>Advanced:</strong> <span>All the elements of the story will work together in a successful way. The meaningfulness of the narrative will be apparent, compelling and artful.</span></div>
+					<div><input type="radio" name="overall" value="Proficient"> <strong>Proficient:</strong> <span>The story is competently told. The meaningfulness of the narrative will be apparent.</span></div>
+					<div><input type="radio" name="overall" value="In-Progress"> <strong>In-Progress</strong> <span>The elements of the story may not work together. The meaningfulness of the narrative may be absent or confusing.</span></div>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="commentary">Commentary:</label><br />
+					<span>Provide any additonal notes or commentary here. This will have no impact on the scoring.</span>
+				</dt>
+				<dd><textarea name="commentary" id="commentary" rows="25" class="inputbox"></textarea></dd>
+			</dl>
+		</fieldset>
+		
+		<fieldset class="submit-buttons">
+			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
+			<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+		</fieldset>
+		
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

@@ -1,0 +1,347 @@
+<style type="text/css">
+
+#roleplay h1 {
+	color: black;
+}
+
+#statistics {
+	float:right;
+	font-size: 1.2em;
+	width:250px;
+	margin:10px;
+}
+
+#tabs {
+	font-size: 1.3em;
+}
+
+h2 a {
+	display: block;
+	padding: 10px;
+}
+h2 a:hover {
+	text-decoration:none;
+	background: #ccc;
+}
+
+
+.content, #introduction {
+	padding:5px;
+	font-size:1.3em;
+	line-height:1.4em;
+	margin-bottom:1.5em;
+	background:
+}
+
+#introduction #recent {
+	font-size:0.8em;
+}
+
+.content {
+	padding-top: 10px;
+}
+
+.controls {
+	font-size:1.2em;
+}
+
+#introduction h2 {
+	margin-bottom: 10px;
+}
+
+#activity, #places {
+	clear:both;
+}
+
+.activity {
+	clear: both;
+}
+
+span.location, span.time  {
+	font-weight:bold;
+	font-size: 1.2em;
+}
+
+.character {
+	width: 32%;
+	padding:5px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	float:left;
+}
+
+.character img {
+	float:left;
+	height:100px;
+	width: 100px;
+	overflow: hidden;
+	border: 1px solid black;
+	margin-right: 10px;
+}
+
+.character:hover {
+	background: #ccc;
+	cursor: pointer;
+}
+
+.place {
+	height:100px;
+	padding:5px;
+	clear:both;
+}
+
+.place:hover {
+	/* cursor: pointer; */
+}
+
+.place img {
+	float:left;
+	height: 100px;
+	width: 100px;
+	margin-right:5px;
+}
+
+.place .snippets {
+	width:50%;
+	float:right;
+}
+
+.author {
+	font-style: italic;
+}
+
+#reply_options {
+	font-size: 1.5em;
+	padding: 5px;
+	float:right;
+}
+
+#reply_content {
+	font-size: 1.4em;
+}
+
+input.button1 {
+	font-size: 1.5em;
+	padding:5px;
+	float:right;
+}
+
+#write {
+	clear:both;
+}
+
+.button {
+	font-weight: bold;    padding: 5px;    border-radius: 5px;    background: #bfd1d7;
+}
+
+a.button:hover {    text-decoration: none;  }
+
+.button:hover {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+	-moz-opacity: 0.6;
+	opacity: 0.6;
+}
+
+#ooc .ooc {
+	padding: 10px;
+}
+
+#ooc .ooc .ooc_post {
+	margin-right: 220px;
+}
+
+#ooc .ooc h3 {
+	font-style: italic;
+}
+
+#ooc .ooc .author {
+	font-style: normal;
+	font-size: 1.5em;
+	float:right;
+	width: 200px;
+}
+
+.controls {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+#reviews dl {
+	clear:left;
+	float:left;
+	padding:20px;
+	margin:20px;
+}
+
+#reviews dl dd {
+	float:left;
+}
+
+#reviews .score {
+	float:left;
+	padding: 20px;
+	font-size:3em;
+	font-weight: bold;
+}
+
+#reviews .score span {
+	font-size: 0.75em;
+}
+
+#event-list {
+	margin-right:250px;
+}
+
+#events #calendar {
+	float:right;
+}
+
+.event h3 {
+	font-size: 2em;
+}
+.event span {
+	font-style: italic;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+
+
+dl.roleplay .tags {
+	font-style:italic;
+}
+
+dl.roleplay {
+	min-height: 110px;
+}
+
+dl.roleplay dt {
+	padding-left: 120px;
+}
+
+dl.roleplay .author {
+
+}
+.pagination {
+	font-size: 1.2em;
+}
+.featured, .favorite {
+	background-color:#ffffe0;
+}
+
+span.tag a {
+	background: #ccc;
+	padding: 2px;
+	margin: 2px;
+}
+
+.content ol, .content ul {
+	list-style-position: inside;
+	margin-left: 2em;
+}
+
+.dialogue-bubble {
+  background: #ecedee;									  
+  padding: 20px;
+  margin-right: 20px;
+  margin-left: 110px;
+  position: relative; /* This is the only really important part */
+}
+
+.dialogue-bubble>span.pointer {
+  display: block;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  font-size: 0;
+  line-height: 1px;
+  left: -10px; /* Determines the length of the tail */
+  top: 30px;
+  border-top: 7px solid transparent; /* Angle of the triangle. */
+  border-bottom: 7px solid transparent;
+  border-right: 10px solid #ecedee; /* The triangle */
+}
+
+.content blockquote.uncited,
+.content blockquote.uncited div {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  display: inline;
+  font-size: 1em;
+}
+
+.content blockquote.uncited:before {
+  content: '\201C';
+}
+
+.content blockquote.uncited:after {
+  content: '\201D';
+}
+
+.place h2 * {
+  display: inline-block;
+}
+.place .place {
+  margin: 0 0 1em 1em;
+  padding-left: 1em;
+  border-left: 1px dashed #040;
+  border-bottom-left-radius: 6em;
+  -webkit-transform: scale(0.965, 0.965);
+}
+.place-details p {
+  max-height: 4em;
+  overflow: hidden;
+}
+
+.place-icon {
+  height: 90px;
+  vertical-align: top;
+  width: 100px;
+  overflow: hidden;
+  margin: 0.25em;
+}
+
+.place-icon img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a.anchor {
+  display: none;
+  position: absolute;
+  top: 40px;
+}
+
+.thing-icon {
+  text-align:center;
+  display: inline-block;
+  height: 205px;
+  vertical-align: top;
+  width: 220px;
+  overflow: hidden;
+  margin: 1em;
+  padding: 1em;
+}
+.thing-icon img {
+  height: 100px;
+  width: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.5em;
+}
+.thing-icon p {
+  font-size: 1em;
+  text-align: justify;
+}
+.thing-icon a:hover {
+  text-decoration: none;
+}
+.thing-icon a p,
+.thing-icon a:hover p {
+  color: rgb(51, 51, 51);
+}
+
+</style>

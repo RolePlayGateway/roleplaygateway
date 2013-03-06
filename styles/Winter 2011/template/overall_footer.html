@@ -1,0 +1,40 @@
+</div>
+
+</div>
+
+<footer>
+
+	<nav class="nav-links">
+		<a href="{U_INDEX}" accesskey="h">{L_INDEX}</a>
+        <!-- IF not S_IS_BOT -->
+            <!-- IF S_WATCH_FORUM_LINK --><a href="{S_WATCH_FORUM_LINK}" title="{S_WATCH_FORUM_TITLE}">{S_WATCH_FORUM_TITLE}</a><!-- ENDIF -->
+            <!-- IF U_WATCH_TOPIC --><a href="{U_WATCH_TOPIC}" title="{L_WATCH_TOPIC}">{L_WATCH_TOPIC}</a><!-- ENDIF -->
+            <!-- IF U_BOOKMARK_TOPIC --><a href="{U_BOOKMARK_TOPIC}" title="{L_BOOKMARK_TOPIC}">{L_BOOKMARK_TOPIC}</a><!-- ENDIF -->
+            <!-- IF U_BUMP_TOPIC --><a href="{U_BUMP_TOPIC}" title="{L_BUMP_TOPIC}">{L_BUMP_TOPIC}</a><!-- ENDIF -->
+        <!-- ENDIF -->
+        <div class="rightside">
+            <!-- IF U_TEAM --><a href="{U_TEAM}">{L_THE_TEAM}</a> &bull; <!-- ENDIF --><!-- IF not S_IS_BOT --><a href="{U_DELETE_COOKIES}">{L_DELETE_COOKIES}</a> &bull; <!-- ENDIF --><span class="time">{S_TIMEZONE}</span>
+        </div>
+	</nav>
+
+	<div class="copyright">
+	    <p class="copy-left">
+	        Powered by <a href="http://www.phpbb.com/">phpBB</a> &copy; phpBB Group.
+	    	<!-- IF TRANSLATION_INFO --><br />{TRANSLATION_INFO}<!-- ENDIF -->
+    		<!-- IF DEBUG_OUTPUT --><br />{DEBUG_OUTPUT}<!-- ENDIF -->
+		</p>
+		<p class="copy-right">
+		    Style designed by <a href="http://www.artodia.com/">Artodia</a>.
+        </p>
+		<!-- IF U_ACP --><strong><a href="{U_ACP}">{L_ACP}</a></strong><!-- ENDIF -->
+	</div>
+	
+	
+    <div>
+        <!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
+    </div>
+	
+</footer>
+
+</body>
+</html>

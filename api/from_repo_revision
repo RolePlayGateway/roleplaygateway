@@ -1,0 +1,52 @@
+# Lines That should already be in your .htacess
+<Files "config.php">
+Order Allow,Deny
+Deny from All
+</Files>
+<Files "common.php">
+Order Allow,Deny
+Deny from All
+</Files>
+
+# You may need to un-comment the following line
+# Options +FollowSymlinks
+# REMEBER YOU ONLY NEED TO STARD MOD REWRITE ONCE
+RewriteEngine On
+# REWRITE BASE
+RewriteBase /
+# HERE IS A GOOD PLACE TO ADD THE WWW PREFIXE REDIRECTION
+
+#####################################################
+# PHPBB SEO REWRITE RULES - ADVANCED
+#####################################################
+# AUTHOR : dcz www.phpbb-seo.com
+# STARTED : 01/2006
+#################################
+# FORUMS PAGES
+###############
+# FORUM INDEX REWRITERULE WOULD STAND HERE IF USED. 'forum' REQUIRES TO BE SET As FORUM INDEX
+# RewriteRule ^forum\.html$ /index.php [QSA,L,NC]
+# FORUM
+RewriteRule ^[a-z0-9_-]*-f([0-9]+)(-([0-9]+))?\.html$ /viewforum.php?f=$1&start=$3 [QSA,L,NC]
+# TOPIC WITH VIRTUAL FOLDER
+RewriteRule ^[a-z0-9_-]*-f([0-9]+)/[a-z0-9_-]*-t([0-9]+)(-([0-9]+))?\.html$ /viewtopic.php?f=$1&t=$2&start=$4 [QSA,L,NC]
+# GLOBAL ANNOUNCES WITH VIRTUAL FOLDER
+RewriteRule ^announces/[a-z0-9_-]*-t([0-9]+)(-([0-9]+))?\.html$ /viewtopic.php?t=$1&start=$3 [QSA,L,NC]
+# TOPIC WITHOUT FORUM ID & DELIM
+RewriteRule ^[a-z0-9_-]*/?[a-z0-9_-]*-t([0-9]+)(-([0-9]+))?\.html$ /viewtopic.php?t=$1&start=$3 [QSA,L,NC]
+# POST
+RewriteRule ^post([0-9]+)\.html$ /viewtopic.php?p=$1 [QSA,L,NC]
+#PROFILES
+RewriteRule ^member([0-9]+)\.html$ /memberlist.php?mode=viewprofile&u=$1 [QSA,L,NC]
+# THE TEAM
+RewriteRule ^the-team\.html$ /memberlist.php?mode=leaders [QSA,L,NC]
+# HERE IS A GOOD PLACE TO ADD OTHER PHPBB RELATED REWRITERULES
+
+# FORUM WITHOUT ID & DELIM
+# THESE FOUR LINES MUST BE LOCATED AT THE END OF YOUR HTACCESS TO WORK PROPERLY
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^[a-z0-9_-]+(-([0-9]+))?\.html$ /viewforum.php?start=$2 [QSA,L,NC]
+# END PHPBB PAGES
+##################################################### 

@@ -1,0 +1,79 @@
+<!-- INCLUDE ucp_header.html -->
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<div class="postbody">
+	
+		<h2><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{TITLE}</a></h2>
+
+		<p>{DESCRIPTION}</p>
+		
+		<!-- IF S_USER_LOGGED_IN -->
+		<!-- IF PLAYER_SLOTS > 0 -->
+		<div class="panel" style="float:right;">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<form id="ucp" method="post" name="add_player" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_player">
+					Join this roleplay with... 
+					<select name="character_id" id="character_id">
+						<!-- BEGIN user_characters -->
+						<option value="{user_characters.CHARACTER_ID}">{user_characters.CHARACTER_NAME}</option>
+						<!-- END user_characters -->
+					</select>
+					<input type="hidden" name="roleplay_id" value="{ROLEPLAY_ID}" />
+					<input type="submit" class="button2" />
+				</form>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+		<hr style="clear:both;" />
+		<!-- ENDIF -->
+		<!-- ENDIF -->
+		
+		<table width="100%">
+			<tr>
+				<td valign="top">
+					<h3><acronym title="Out Of Character">OOC Threads</acronym>:</h3>
+					<ul>
+					<!-- BEGIN ooc_threads -->
+						<li><a href="http://www.roleplaygateway.com/viewtopic.php?t={ooc_threads.THREAD_ID}">{ooc_threads.THREAD_TITLE}</a></li>
+					<!-- END ooc_threads -->
+					</ul>
+				</td>
+				<td valign="top">
+					<h3><acronym title="In Character">IC Threads</acronym>:</h3>
+					<ul>
+					<!-- BEGIN ic_threads -->
+						<li><a href="http://www.roleplaygateway.com/viewtopic.php?t={ic_threads.THREAD_ID}">{ic_threads.THREAD_TITLE}</a></li>
+					<!-- END ic_threads -->
+					</ul>
+				</td>
+				<td valign="top">
+					<h3>Current Characters:</h3>
+					<ul>
+					<!-- BEGIN characters -->
+						<li><a href="http://www.roleplaygateway.com/characters/{characters.CHARACTER_ID}">{characters.CHARACTER_NAME}</a></li>
+					<!-- END characters -->
+					</ul>
+				</td>
+			</tr>
+		</table>
+		
+		<style type="text/css">
+			#activities a { display:block; }
+			#activities a:hover { background:#ddd; text-decoration:none; }
+		</style>
+		
+		<h3>Recent Activity</h3>
+		<div id="activities">
+		<!-- BEGIN activities -->
+			<div class="{activities.CLASS}">
+				<a href="{activities.URL}">
+					<em>{activities.TIME}</em> <strong>{activities.TITLE}</strong> {activities.CONTENT}
+				</a>
+			</div>
+		<!-- END activities -->
+		</div>
+		
+	</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- INCLUDE ucp_footer.html -->

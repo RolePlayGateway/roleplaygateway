@@ -1,0 +1,27 @@
+<!-- INCLUDE overall_header.html -->
+<script src="http://webchat.darkmyst.org/chat/cgiirc.js"></script>
+<form name="cgiirclogin" method="post" onsubmit="return openCgiIrc(this, 0)" action="http://webchat.darkmyst.org/chat/irc.cgi">
+<input type="hidden" name="interface" value="nonjs" />
+<table border="0" cellpadding="5" cellspacing="0">
+	<tr>
+		<td colspan="2" align="center" bgcolor="#d9d9d9"><b>WebChat Login</b></td>
+	</tr>
+	<tr>
+		<td align="right" bgcolor="#f1f1f1">Nickname</td>
+		<td align="left" bgcolor="#f1f1f1"><input type="text" name="Nickname" value="" /></td>
+	</tr>
+	<tr>
+		<td align="right" bgcolor="#f1f1f1">Realname</td>
+		<td align="left" bgcolor="#f1f1f1"><input type="text" name="Realname" value="DarkMyst WebChat Service" /></td>
+	</tr>
+	<tr>
+		<td align="right" bgcolor="#f1f1f1">Channel</td>
+		<td align="left" bgcolor="#f1f1f1"><input type="text" name="Channel" value="#RPGateway" /></td>
+	</tr>
+	<tr>
+		<td align="left" bgcolor="#d9d9d9"></td>
+		<td align="right" bgcolor="#d9d9d9"><input type="submit" value="Login" style="background-color: #d9d9d9"></td>
+	</tr>
+</table>
+</form>
+<!-- INCLUDE overall_footer.html -->

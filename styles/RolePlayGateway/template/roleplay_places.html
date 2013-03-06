@@ -1,0 +1,50 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<img src="/roleplay/{ROLEPLAY_URL}/image" class="crisp-border" style="float:left; margin-right: 1em;" />
+<h1 style="color:#596E7C; margin-top: 0;"><a href="/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_NAME}</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/places">Places</a></h1>
+<p style="margin-bottom: 0;">{ROLEPLAY_SYNOPSIS}</p>
+
+<div>
+  <h3 style="font-size: 1.2em; margin-top: 0.5em;">Places in {ROLEPLAY_NAME}</h3>
+  <p style="font-size: 1.4em;">This is a list of locations that can be found in <strong>{ROLEPLAY_NAME}</strong>.</p>
+</div>
+<br style="clear: both;" />
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_PLACES} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+    <div class="postbody"  style="width:inherit;"><div class="">
+
+      <!-- BEGIN places -->
+      <div class="place" style="height: auto;">
+	      <a href="/roleplay/{ROLEPLAY_URL}/places/{places.URL}/"><img src="/roleplay/{ROLEPLAY_URL}/places/{places.URL}/image" alt="{places.NAME}" class="crisp-border" /></a>
+	      <div>
+		      <h3>
+            <small style="float:right;">{places.POSTS} posts</small>
+            <small># {places.ID}</small> 
+            <a href="/roleplay/{ROLEPLAY_URL}/places/{places.URL}/">{places.NAME}</a> 
+            <small><strong>Owner: {places.OWNER_USERNAME}</strong></small>
+            <small>Last Activity: <a href="/roleplay/{ROLEPLAY_URL}/places/{places.URL}/#roleplay{places.LAST_POST_ID}">{places.LAST_POST_DATE} &raquo;</a></small>
+          </h3>
+	      </div>
+	      <p>{places.SYNOPSIS}</p>
+      </div>
+      <!-- BEGINELSE -->
+	      <p class="supersize">There are no places in this roleplay!</p>
+      <!-- END places -->
+
+    </div></div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_PLACES} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,12 @@
+Subject: Sujet refusé - {TOPIC_TITLE}
+
+Bonjour {USERNAME},
+
+Vous recevez cet e-mail car votre message "{TOPIC_TITLE}" sur "{SITENAME}" a été refusé par un modérateur ou un administrateur.
+
+Il l'a été pour la raison suivante:
+
+{REASON}
+
+
+{EMAIL_SIG}

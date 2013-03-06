@@ -1,0 +1,20 @@
+Hello {USERNAME},
+
+You are receiving this notification because a comment was added to your
+ticket #{TICKET_ID} in the {PROJECT_NAME} - {TRACKER_TYPE} at {SITE_NAME} by {CHANGE_USERNAME}.
+
+Ticket details
+--------------------------
+Title: {TICKET_TITLE}
+Status: {TICKET_STATUS}
+More information:
+{TICKET_URL}
+
+Comment
+--------------------------
+{TICKET_DESC}
+
+--
+{SITE_NAME}
+{PROJECT_NAME} - {TRACKER_TYPE}
+{TRACKER_URL}

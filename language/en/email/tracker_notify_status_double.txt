@@ -1,0 +1,24 @@
+Hello {USERNAME},
+
+You are receiving this notification because one or more details of your
+ticket #{TICKET_ID} in the {PROJECT_NAME} - {TRACKER_TYPE} at {SITE_NAME} have been changed. Please
+review the changes below and act accordingly if they require any attention.
+
+These changes were made by "{CHANGE_USERNAME}".
+
+Field name: {FIELD_NAME1}
+Old value: {OLD_VALUE1}
+New value: {NEW_VALUE1}
+------------------
+Field name: {FIELD_NAME2}
+Old value: {OLD_VALUE2}
+New value: {NEW_VALUE2}
+
+Ticket title: {TICKET_TITLE}
+More information:
+{TICKET_URL}
+
+--
+{SITE_NAME} 
+{PROJECT_NAME} - {TRACKER_TYPE}
+{TRACKER_URL}

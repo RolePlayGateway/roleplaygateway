@@ -1,0 +1,12 @@
+Subject: A new user has registered
+
+A new user has registered on your board "{SITENAME}".
+
+User details:
+
+Username:			{USERNAME}
+E-mail:				{USER_MAIL}
+Registered on:		{USER_REGDATE}
+
+
+{EMAIL_SIG}
