@@ -1,19 +1,4 @@
 <?php
-/**
-*
-* @package phpBB3
-* @version $Id: index.php 9614 2009-06-18 11:04:54Z nickvergessen $
-* @copyright (c) 2005 phpBB Group
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-*
-*/
-
-/**
-*/
-
-/**
-* @ignore
-*/
 define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
