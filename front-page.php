@@ -19,8 +19,8 @@ $sql = "SELECT DISTINCT r.id,
 				ON r.owner = u.user_id
 			INNER JOIN rpg_roleplay_stats s
 				ON s.roleplay_id = r.id
-			WHERE r.status = 'Open'
-				( AND s.posts > 0
+			WHERE r.status = 'Open' AND
+				( s.posts > 0
 				AND s.average_words > 5
 				AND s.average_grade_level > 5
 				AND length(r.image) > 0
