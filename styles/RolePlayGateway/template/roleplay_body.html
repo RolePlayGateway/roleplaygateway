@@ -1,0 +1,778 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE roleplay_controls.html -->
+<script type="text/javascript">
+<!-- IF S_SINGLE_PLACE -->
+	var panels = new Array('activity', 'chat', 'ooc');
+<!-- ELSE -->
+	var panels = new Array('introduction', 'reviews', 'characters', 'places', 'groups', 'arcs', 'quests', 'events', 'activity', 'chat', 'ooc');
+<!-- ENDIF -->
+</script>
+
+<div id="roleplay">
+
+	<!-- IF S_SINGLE_PLACE -->
+	<img src="/roleplay/{URL}/places/{PLACE_URL}/image" alt="{TITLE}" class="crisp-border" style="float:left; margin-right: 10px;" />
+	<!-- ELSE -->
+	<img src="/roleplay/{URL}/image" alt="{TITLE}" class="crisp-border" style="float:left; margin-right: 10px;" />
+	<!-- ENDIF -->
+
+	<h1 style="margin-right:0;">
+	  <a href="/roleplay/{URL}" name="roleplay">{TITLE}</a> {STATUS} <!-- IF S_SINGLE_PLACE -->&raquo; <a href="/roleplay/{URL}/places">Places</a> &raquo; <a href="/roleplay/{URL}/places/{PLACE_URL}">{PLACE_NAME}</a><!-- ENDIF --><!-- IF S_CAN_EDIT --> (<a href="/ucp.php?i=roleplays&mode=flag&id={ID}">Flag</a> | <a href="/ucp.php?i=roleplays&mode=remove_tag&id={ID}">Remove Tags</a> |<!-- IF S_SINGLE_PLACE --><a href="/ucp.php?i=roleplays&mode=edit_place&place_id={PLACE_ID}">Edit &raquo;</a><!-- ELSE --><a href="/ucp.php?i=roleplays&mode=edit&id={ID}">Edit &raquo;</a><!-- ENDIF -->)<!-- ENDIF --></h1>
+
+	<div style="font-size:1.2em;">
+    <!-- IF S_SINGLE_PLACE -->
+    <p style="margin-bottom: 0.25em;">{PLACE_SYNOPSIS}</p>
+    <div style="margin-bottom: 1em;">
+      <strong>Sovereignty:</strong> {PLACE_OWNER_USERNAME}
+    </div>
+    <!-- ELSE -->
+	  <p style="margin-bottom: 0.25em;">{DESCRIPTION}</p>
+    <div id="announcementList" style="float:right; width: 250px; max-height: 50px; overflow: hidden;margin-top:-5px;">
+    <h3 style="margin-top: 0;"><a href="#ooc" onclick="subPanels('ooc');" style="float:right;">View More &raquo;</a>Important</h3>
+    <ul style="list-style-position:  inside;">
+		<!-- BEGIN topicrow -->
+			<!-- IF topicrow.S_TOPIC_TYPE == 1 -->
+			<li><a href="{topicrow.U_VIEW_TOPIC}">{topicrow.TOPIC_TITLE}</a></li>
+			<!-- ENDIF -->
+		<!-- END topicrow -->
+		</ul>
+		</div>
+	  <div>
+		  <strong>Owner:</strong> {GAME_MASTER}
+	  </div>
+	  <div>
+		  <strong>Game Masters:</strong> {GAME_MASTERS}
+	  </div>
+	  <div>
+		  <span class="tags"><strong>Tags:</strong> {TAGS} (<a href="//www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_tag&id={ID}">Add Tags &raquo;</a>)</span>
+	  </div>
+	  <!-- ENDIF -->
+
+		<div class="roleplay-news" style="font-size: 1.2em;">
+			<!-- IF FORUM_HAS_NEWS -->
+			<h3><marquee>
+			<!-- BEGIN news_items -->
+				&nbsp;&nbsp;&nbsp;<strong><a href="//www.roleplaygateway.com/post{news_items.POST_ID}.html#p{news_items.POST_ID}">{news_items.TITLE} <em>({news_items.TIME})</em></a></strong>&nbsp;&nbsp;&nbsp;
+			<!-- END news_items -->
+			</marquee></h3>
+			<p></p>
+			<!-- ENDIF -->
+		</div>
+	</div>
+
+	<!-- IF S_SINGLE_PLACE -->
+	<div>
+		<div style="display: inline-block;">
+			<g:plusone annotation="inline" href="//www.roleplaygateway.com/roleplay/{URL}/places/{PLACE_URL}"></g:plusone>
+		</div>
+		<div style="display: inline-block;">
+			<div class="fb-like" data-send="false" data-width="350" data-layout="standard" data-show-faces="false" data-colorscheme="light" data-action="like" data-href="//www.roleplaygateway.com/roleplay/{URL}/places/{PLACE_URL}"></div>
+		</div>
+	</div>
+	<!-- ELSE -->
+	<div>
+		<div style="display: inline-block;">
+			<g:plusone annotation="inline" href="//www.roleplaygateway.com/roleplay/{URL}"></g:plusone>
+		</div>
+		<div style="display: inline-block;">
+			<div class="fb-like" data-send="false" data-width="350" data-layout="standard" data-show-faces="false" data-colorscheme="light" data-action="like" data-href="//www.roleplaygateway.com/roleplay/{URL}"></div>
+		</div>
+	</div>
+	<!-- ENDIF -->
+	<div style="clear:both;"></div>
+
+  <!-- IF ROLEPLAY_CITATIONS -->
+  <div class="rules">
+  <div class="inner"><span class="corners-top"><span></span></span>
+	  <p><strong>Copyright:</strong> The creator of this roleplay has attributed some or all of its content to the following sources:</p>
+	  <blockquote style="padding-left: 25px;">{ROLEPLAY_CITATIONS}</blockquote>
+  <span class="corners-bottom"><span></span></span></div>
+  </div>
+  <!-- ENDIF -->
+
+	<div id="tabs">
+		<!-- IF S_SINGLE_PLACE -->
+		<!-- <li><a href="//www.roleplaygateway.com/roleplay/{URL}"><span>Main Page</span></a></li>
+		<li name="activity-tab"><a href="#activity" onclick="subPanels('activity'); return false;"><span>Activity in &ldquo;{PLACE_NAME}&rdquo;</span></a></li>
+		<li name="chat-tab"><a href="#chat" onclick="subPanels('chat'); return false;"><span>Chat</span></a></li>
+		<li name="posting-tab"><a href="#posting" onclick="subPanels('activity'); toggleDiv('posting');"><span>Posting</span></a></li>
+		<li name="ooc-tab"><a href="#ooc" onclick="subPanels('ooc');"><span>OOC</span></a></li>	-->
+		<!-- ELSE -->
+		<li name="introduction-tab"><a href="#introduction" onclick="subPanels('introduction');"><span>Introduction</span></a></li>
+		<!-- IF REVIEWS --><li name="reviews-tab"><a href="#reviews" onclick="subPanels('reviews');"><span>Reviews</span></a></li><!-- ENDIF -->
+		<li name="characters-tab"><a href="#characters" onclick="subPanels('characters');"><span>Characters</span></a></li>
+		<li name="places-tab"><a href="//www.roleplaygateway.com/roleplay/{URL}/places"><span>Places</span></a></li>
+		<li name="groups-tab"><a href="#groups" onclick="subPanels('groups');"><span>Groups</span></a></li>
+		<li name="arcs-tab"><a href="#arcs" onclick="subPanels('arcs');"><span>Arcs</span></a></li>
+		<li name="quests-tab"><a href="#quests" onclick="subPanels('quests');"><span>Quests</span></a></li>
+		<!-- <li name="events-tab"><a href="#events" onclick="subPanels('events');"><span>Events</span></a></li> -->
+		<li name="activity-tab"><a href="#activity" onclick="subPanels('activity');"><span>Posts</span></a></li>
+		<li name="chat-tab"><a href="#chat" onclick="subPanels('chat');"><span>Chat</span></a></li>
+		<!-- <li name="posting-tab"><a href="#posting" onclick="subPanels('activity');"><span>Posting</span></a></li> -->
+		<li name="ooc-tab"><a href="#ooc" onclick="subPanels('ooc');"><span>Forum</span></a></li>
+		<!-- ENDIF -->
+
+	</div>
+
+	<div id="content" class="panel bg3">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<!-- IF S_SINGLE_PLACE -->
+			<!-- nothing to see here -->
+		<!-- ELSE -->
+		<div id="introduction" class="content">
+
+			<div id="statistics" class="panel">
+				<div class="inner"><span class="corners-top"><span></span></span>
+
+				<strong>Requires Approval:</strong> {REQUIRE_APPROVAL}<br /><br />
+				
+				<strong>You can&hellip;</strong>
+				<ul>
+					<li><a href="/roleplay/{URL}?start=-1#activity">Start Reading &raquo;</a></li>
+					<li><a href="/roleplay/{URL}/characters/new">Submit a Character &raquo;</a></li>
+				</ul>
+				<!--
+				<strong>Characters:</strong><br />
+				<strong>Total Words:</strong><br />
+				<strong>Readability:</strong><br />
+				<strong>Last Active:</strong> -->
+
+				<span class="corners-bottom"><span></span></span></div>
+			</div>
+
+			<h2><a href="#introduction" name="introduction">Introduction</a></h2>
+			<div>
+				{INTRODUCTION}
+			</div>
+
+			<h2><!-- IF S_CAN_EDIT --><a style="float:right;" href="//www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit&id={ID}">Edit &raquo;</a><!-- ENDIF --><a href="#rules" name="rules">Rules</a></h2>
+			<div id="rules">
+				<!-- IF RULES -->
+				{RULES}
+				<!-- ELSE -->
+				The GM of this roleplay hasn't created any rules! You can do whatever you like!
+				<!-- ENDIF -->
+			</div>
+
+			<!-- IF S_DISPLAY_ORPHANAGE -->
+			<h2><a href="//www.roleplaygateway.com/roleplay/{URL}/orphanage" style="float:right;">View All &raquo;</a>Available Characters</h2>
+			<p>These characters are currently marked as <strong>available</strong>.  Why don't you consider viewing their profiles and making a decision on whether or not you can roleplay them accurately?</p>
+			<!-- BEGIN orphanage -->
+			<div class="character">
+				<img src="//www.roleplaygateway.com/roleplay/{URL}/characters/{orphanage.URL}/image" alt="Character Portrait: {orphanage.NAME}" />
+				<div>
+          <span style="float:right;">{orphanage.SIGHTINGS} sightings</span>
+					<a href="//www.roleplaygateway.com/roleplay/{URL}/characters/{orphanage.URL}"><strong>{orphanage.NAME}</strong></a> <span><em>played by {orphanage.OWNER_USERNAME}</em></span>
+				</div>
+				<span>{orphanage.SYNOPSIS}</span>
+				<div>
+					<a href="//www.roleplaygateway.com/ucp.php?i=characters&mode=adopt&character_id={orphanage.ID}">ADOPT {orphanage.NAME}</a>
+				</div>
+			</div>
+			<!-- END orphanage -->
+			<!-- ENDIF -->
+
+			<!-- IF S_HAS_NEWS -->
+			<div id="news">
+				<h2>News</h2>
+				<!-- BEGIN news -->
+				<div class="news">
+					<h3>{news.TITLE}</h3>
+					<div>
+						{news.CONTENT}
+					</div>
+					<hr />
+				</div>
+				<!-- BEGINELSE -->
+				<p>There has not been any news in this roleplay.</p>
+				<!-- END news -->
+			</div>
+			<!-- ENDIF -->
+
+			<div id="authors">
+				<h2><strong>{TOTAL_AUTHORS}</strong> Authors</h2>
+				<!-- BEGIN authors -->
+				<a href="//www.roleplaygateway.com/member/{authors.USERNAME}/" style="border-radius: 3px; margin-left: 5px; padding: 3px; padding-left: 5px; padding-right: 5px; background: #ccc;">{authors.USERNAME}: {authors.PERCENTAGE}%</a>
+				<!-- BEGINELSE -->
+				<p>There has not been any news in this roleplay.</p>
+				<!-- END authors -->
+			</div>
+
+			<!-- IF S_CAN_POST -->
+
+			<!-- ELSE -->
+				<div><h2><a href="/roleplay/{URL}/characters/new">Create a Character to Post Here &raquo;</a></h2></div>
+			<!-- ENDIF -->
+
+		</div>
+
+		<div id="reviews">
+			<h2><!-- IF S_CAN_REVIEW --><a href="//www.roleplaygateway.com/ucp.php?i=roleplays&mode=review&roleplay_id={ID}" style="float:right;">Add Review (moderators only) &raquo;</a><!-- ENDIF --><a href="#reviews" name="reviews">Reviews</a></h2>
+			<div>
+			<!-- BEGIN reviews -->
+				<div>
+					<div class="score">
+						{reviews.SCORE}<span>/30</span>
+					</div>
+						<div>
+							<span><strong>Characterization:</strong> {reviews.CHARACTERIZATION}</span>
+							<span><strong>Plot:</strong> {reviews.PLOT}</span>
+							<span><strong>Depth:</strong> {reviews.DEPTH}</span>
+							<span><strong>Style:</strong> {reviews.STYLE}</span>
+							<span><strong>Mechanics:</strong> {reviews.MECHANICS}</span>
+							<span><strong>Overall:</strong> {reviews.OVERALL}</span>
+						</div>
+					<div class="content"><blockquote><cite>{reviews.USERNAME} wrote:</cite>{reviews.COMMENTARY}</blockquote></div>
+					<br style="clear:both;" />
+				</div>
+			<!-- BEGINELSE -->
+				<p>There haven't been any official reviews of this roleplay yet!</p>
+			<!-- END reviews -->
+			</div>
+		</div>
+
+
+		<div id="characters" class="position:relative;">
+			<a name="characters" class="anchor"></a>
+			<h2><a href="/roleplay/{URL}/characters/new" style="float:right;">Add New &raquo;</a><a href="/roleplay/{URL}/characters" style="float:right;">Show All &raquo;</a><a href="#characters">Characters</a></h2>
+
+			<!-- BEGIN characters -->
+			<div class="character">
+				<img src="/images/character_avatar.php?character_id={characters.ID}" alt="Character Portrait: {characters.NAME}" />
+				<div>
+					<a href="//www.roleplaygateway.com/roleplay/{URL}/characters/{characters.URL}"><strong>{characters.NAME}</strong></a> <span><em>played by {characters.OWNER_USERNAME}</em></span>
+				</div>
+				<span>{characters.SYNOPSIS}</span>
+			</div>
+			<!-- BEGINELSE -->
+				<p class="supersize">There are no characters in this roleplay!</p>
+			<!-- END characters -->
+
+			<!-- IF S_CAN_EDIT -->
+			<hr />
+			<h3>Characters Pending Approval</h3>
+			<!-- BEGIN pending_characters -->
+			<div class="character">
+				<img src="//www.roleplaygateway.com/images/character_avatar.php?character_id={pending_characters.ID}" alt="Character Portrait: {pending_characters.NAME}" />
+				<div>
+					<a href="//www.roleplaygateway.com/roleplay/{URL}/characters/{pending_characters.URL}"><strong>{pending_characters.NAME}</strong></a> <span><em>played by {pending_characters.OWNER_USERNAME}</em></span>
+				</div>
+				<span>{pending_characters.SYNOPSIS}</span>
+				<div><a href="//www.roleplaygateway.com/ucp.php?i=characters&mode=reject&character_id={pending_characters.ID}">Reject</a> or <a href="//www.roleplaygateway.com/ucp.php?i=characters&mode=approve&character_id={pending_characters.ID}">Approve</a></div>
+			</div>
+			<!-- BEGINELSE -->
+			<p>There are no unapproved characters in this roleplay.</p>
+			<!-- END pending_characters -->
+			<!-- ENDIF -->
+			<hr />
+
+			<h3><a href="//www.roleplaygateway.com/roleplay/{URL}/orphanage" style="float:right;">View All &raquo;</a>Available Characters</h3>
+			<p>These poor, unfortunate souls were once a part of this great world, but have been abandoned. Why don't you consider viewing their profiles and making a decision on whether or not you can roleplay them accurately?</p>
+			<!-- BEGIN orphanage -->
+			<div class="character">
+				<img src="//www.roleplaygateway.com/roleplay/{URL}/characters/{orphanage.URL}/image" alt="Character Portrait: {orphanage.NAME}" />
+				<div>
+          <span style="float:right;">{orphanage.SIGHTINGS} sightings</span>
+					<a href="//www.roleplaygateway.com/roleplay/{URL}/characters/{orphanage.URL}"><strong>{orphanage.NAME}</strong></a> <span><em>played by {orphanage.OWNER_USERNAME}</em></span>
+				</div>
+				<span>{orphanage.SYNOPSIS}</span>
+				<div>
+					<a href="//www.roleplaygateway.com/ucp.php?i=characters&mode=adopt&character_id={orphanage.ID}">ADOPT {orphanage.NAME}</a>
+				</div>
+			</div>
+			<!-- END orphanage -->
+
+			<!-- IF S_MORE_CHARACTERS -->
+				<h2 style="float:right;"><a href="//www.roleplaygateway.com/roleplay/{URL}/characters">There are {MORE_CHARACTERS_COUNT} more characters in this roleplay than are listed here.  View All &raquo;</a></h2>
+			<!-- ENDIF -->
+
+			<hr />
+
+		</div>
+
+		<div id="places">
+			<h2><!-- IF S_CAN_EDIT --><a href="//www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_place&roleplay_id={ID}" style="float:right;">Add New &raquo;</a><!-- ENDIF --><a href="//www.roleplaygateway.com/roleplay/{URL}/places" style="float:right;">View All &raquo;</a><a href="#places" name="places">Places in {TITLE}</a></h2>
+			<!-- IF PLACES_LIST -->
+        <!-- IF HAS_MAP -->
+        <h3>Map</h3>
+        <div style="text-align: center;">
+          <img src="//www.roleplaygateway.com/roleplay/{URL}/map" style="max-width: 100%;" />
+        </div>
+        <!-- ENDIF -->
+
+				{PLACES_LIST}
+
+			<!-- ELSE -->
+				<p class="supersize">There are no places in this roleplay!</p>
+			<!-- ENDIF -->
+		</div>
+
+		<div id="groups">
+			<h2><a href="/ucp.php?i=roleplays&mode=add_group&roleplay_id={ID}" style="float:right;">Create New &raquo;</a><a href="//www.roleplaygateway.com/roleplay/{URL}/groups" style="float:right;">View All &raquo;</a><a href="#groups"  name="groups">Groups</a></h2>
+			<div id="group-list">
+      <!-- BEGIN groups -->
+      <div class="place">
+        <img src="//www.roleplaygateway.com/roleplay/{URL}/groups/{groups.SLUG}/logo" class="crisp-border" />
+	      <h2>
+          <div style="float:right; clear:right;"><strong>{groups.CHARACTERS}</strong> characters</div>
+          <div style="float:right; clear:right;"><strong>{groups.UNIQUE_PLAYERS}</strong> players</div>
+		      <a href="//www.roleplaygateway.com/roleplay/{URL}/groups/{groups.SLUG}"><strong>{groups.NAME}</strong>
+	      </h2>
+	      <p>[{groups.OWNER_LINK}] {groups.SYNOPSIS}</p>
+      </div>
+      <!-- BEGINELSE -->
+	      <p class="supersize">There are no groups in this roleplay!</p>
+      <!-- END groups -->
+			</div>
+		</div>
+
+		<div id="arcs">
+			<h2><a href="//www.roleplaygateway.com/roleplay/{URL}/arcs" style="float:right;">View All &raquo;</a><a href="#arcs"  name="arcs">Arcs</a></h2>
+			<p>Arcs are bundles of posts that you can organize on your own.  They're useful for telling a story that might span long periods of time or space.</p>
+			
+			<div id="group-list">
+			<!-- BEGIN bundles -->
+				<div class="group">
+					<h3><a href="//www.roleplaygateway.com/roleplay/{URL}/arcs/{bundles.SLUG}">{bundles.NAME}</a></h3>
+					<p>{bundles.DESCRIPTION}</p>
+				</div>
+			<!-- BEGINELSE -->
+			<p>There are no arcs in this roleplay.</p>
+			<!-- END bundles -->
+			</div>
+		</div>
+
+		<div id="quests">
+			<h2><a href="//www.roleplaygateway.com/roleplay/{URL}/quests" style="float:right;">View All &raquo;</a><a href="#quests"  name="quests">Quests</a></h2>
+			<div id="group-list">
+			<!-- BEGIN quests -->
+				<div class="group">
+					<h3><a href="//www.roleplaygateway.com/roleplay/{URL}/quests/{quests.ID}">Quest #{quests.ID}</a></h3>
+					<p>{quests.SYNOPSIS}</p>
+				</div>
+			<!-- BEGINELSE -->
+			<p>There are no quests in this roleplay.</p>
+			<!-- END quests -->
+			</div>
+		</div>
+
+		<!-- ENDIF -->
+
+
+		<!-- IF EVENTS_ENABLED -->
+		<div id="events">
+			<h2><a href="#events"  name="events">Events</a></h2>
+			<div id="calendar">
+
+			</div>
+			<div id="event-list">
+				<!-- BEGIN events -->
+				<div class="event">
+					<h3><a href="//www.roleplaygateway.com/roleplay/{URL}/events/{events.URL}">{events.TITLE}</a></h3>
+					<span><abbr title="{events.START_TIME_ISO}">{events.START_TIME}</abbr> - <abbr title="{events.END_TIME_ISO}">{events.END_TIME}</abbr></span>
+					<hr />
+					<p>{events.DESCRIPTION}</h3>
+				</div>
+				<!-- BEGINELSE -->
+				<p>Soon&trade;.</p>
+				<!-- END events -->
+			</div>
+		</div>
+		<!-- ENDIF -->
+
+		<div id="activity">
+			<!-- <a href="#activity" onclick="updateStream();" name="activity">Activity (click me to refresh)</a></h2> -->
+
+			<!-- IF S_SINGLE_PLACE -->
+			<div class="content" style="clear:both;">
+			  <div class="place-navigation">
+			  	<!-- IF PARENT_ID -->
+			  	<h4><!-- IF S_CAN_EDIT --><a href="/ucp.php?i=roleplays&mode=add_place&parent_id={PLACE_ID}&roleplay_id={ID}" style="float:right;">Add Place Here &raquo;</a><!-- ENDIF -->{PLACE_NAME} is a part of <a href="/roleplay/{URL}/places/{PARENT_SLUG}"><img src="/roleplay/{URL}/places/{PARENT_SLUG}/image" style="height: 1.2em; margin-right: 0.25em; vertical-align: middle;" class="crisp-border" />{PARENT_NAME}</a>.</h4>
+			  	<!-- ELSE -->
+			  	<h4><!-- IF S_CAN_EDIT --><a href="/ucp.php?i=roleplays&mode=add_place&parent_id={PLACE_ID}&roleplay_id={ID}" style="float:right;">Add Place Here &raquo;</a><!-- ENDIF -->{PLACE_NAME} is a part of <a href="/roleplay/{URL}"><img src="/roleplay/{URL}/image" style="height: 1.2em; margin-right: 0.25em; vertical-align: middle;" class="crisp-border" />{TITLE}</a>.</h4>.
+			  	<!-- ENDIF -->
+
+
+				<div class="universal-navigation">
+					<table style="text-align: center; vertical-align: top; width: 400px; float:right;">
+					  	<tr>
+					  		<td><h6>northwest</h6></td>
+					  		<td>
+					  			<h6>north</h6>
+					  			<!-- IF EXIT_NORTH_SLUG -->
+						  		<div class="place-icon" style="text-align:center; display: inline-block; max-width: 60px;">
+						  			<a href="/roleplay/{URL}/places/{EXIT_NORTH_SLUG}">
+						  				<img src="/roleplay/{URL}/places/{EXIT_NORTH_SLUG}/image" title="{EXIT_NORTH_SYNOPSIS}" class="crisp-border" style="height: 50px; width: 50px; display: block;" />
+						  				<h5 style="">{EXIT_NORTH_NAME}</h5>
+						  			</a>
+						  		</div>
+						  		<!-- ENDIF -->
+					  		</td>
+					  		<td><h6>northeast</h6></td>
+					  		<td>
+					  			<h6>up</h6>
+					  			<!-- IF EXIT_UP_SLUG -->
+						  		<div class="place-icon" style="text-align:center; display: inline-block; max-width: 60px;">
+						  			<a href="/roleplay/{URL}/places/{EXIT_UP_SLUG}">
+						  				<img src="/roleplay/{URL}/places/{EXIT_UP_SLUG}/image" title="{EXIT_UP_SYNOPSIS}" class="crisp-border" style="height: 50px; width: 50px; display: block;" />
+						  				<h5 style="">{EXIT_UP_NAME}</h5>
+						  			</a>
+						  		</div>
+						  		<!-- ENDIF -->
+					  		</td>
+					  	</tr>
+					  	<tr>
+					  		<td>
+					  			<h6>west</h6>
+					  			<!-- IF EXIT_WEST_SLUG -->
+						  		<div class="place-icon" style="text-align:center; display: inline-block; max-width: 60px;">
+						  			<a href="/roleplay/{URL}/places/{EXIT_WEST_SLUG}">
+						  				<img src="/roleplay/{URL}/places/{EXIT_WEST_SLUG}/image" title="{EXIT_WEST_SYNOPSIS}" class="crisp-border" style="height: 50px; width: 50px; display: block;" />
+						  				<h5 style="">{EXIT_WEST_NAME}</h5>
+						  			</a>
+						  		</div>
+						  		<!-- ENDIF -->
+					  		</td>
+					  		<td>
+					  			<h4>You are here.</h4>
+					  			<a href="//www.roleplaygateway.com/roleplay/{URL}/places/{PLACE_URL}/map">View Full Minimap</a>
+					  		</td>
+					  		<td>
+					  			<h6>east</h6>
+					  			<!-- IF EXIT_EAST_SLUG -->
+						  		<div class="place-icon" style="text-align:center; display: inline-block; max-width: 60px;">
+						  			<a href="/roleplay/{URL}/places/{EXIT_EAST_SLUG}">
+						  				<img src="/roleplay/{URL}/places/{EXIT_EAST_SLUG}/image" title="{EXIT_EAST_SYNOPSIS}" class="crisp-border" style="height: 50px; width: 50px; display: block;" />
+						  				<h5 style="">{EXIT_EAST_NAME}</h5>
+						  			</a>
+						  		</div>
+						  		<!-- ENDIF -->
+					  		</td>
+					  		<td>
+					  			<h6>out</h6>
+					  			<!-- IF EXIT_OUT_SLUG -->
+						  		<div class="place-icon" style="text-align:center; display: inline-block; max-width: 60px;">
+						  			<a href="/roleplay/{URL}/places/{EXIT_OUT_SLUG}">
+						  				<img src="/roleplay/{URL}/places/{EXIT_OUT_SLUG}/image" title="{EXIT_OUT_SYNOPSIS}" class="crisp-border" style="height: 50px; width: 50px; display: block;" />
+						  				<h5 style="">{EXIT_OUT_NAME}</h5>
+						  			</a>
+						  		</div>
+						  		<!-- ENDIF -->
+					  		</td>
+					  	</tr>
+					  	<tr>
+					  		<td><h6>southwest</h6></td>
+					  		<td>
+					  			<h6>south</h6>
+					  			<!-- IF EXIT_SOUTH_SLUG -->
+						  		<div class="place-icon" style="text-align:center; display: inline-block; max-width: 60px;">
+						  			<a href="/roleplay/{URL}/places/{EXIT_SOUTH_SLUG}">
+						  				<img src="/roleplay/{URL}/places/{EXIT_SOUTH_SLUG}/image" title="{EXIT_SOUTH_SYNOPSIS}" class="crisp-border" style="height: 50px; width: 50px; display: block;" />
+						  				<h5 style="">{EXIT_SOUTH_NAME}</h5>
+						  			</a>
+						  		</div>
+						  		<!-- ENDIF -->
+					  		</td>
+					  		<td><h6>southeast</h6></td>
+					  		<td>
+					  			<h6>down</h6>
+					  			<!-- IF EXIT_DOWN_SLUG -->
+						  		<div class="place-icon" style="text-align:center; display: inline-block; max-width: 60px;">
+						  			<a href="/roleplay/{URL}/places/{EXIT_DOWN_SLUG}">
+						  				<img src="/roleplay/{URL}/places/{EXIT_DOWN_SLUG}/image" title="{EXIT_DOWN_SYNOPSIS}" class="crisp-border" style="height: 50px; width: 50px; display: block;" />
+						  				<h5 style="">{EXIT_DOWN_NAME}</h5>
+						  			</a>
+						  		</div>
+						  		<!-- ENDIF -->
+					  		</td>
+					  	</tr>
+					</table>
+				</div>
+
+			  	<!-- IF .children -->
+			  	<h4>Places in {PLACE_NAME}:</h4>
+			  	<div class="children" style="margin-top: 0.25em;">
+			  		<!-- BEGIN children -->
+			  		<div class="place-icon" style="text-align:center; display: inline-block; max-width: 100px;">
+			  			<a href="/roleplay/{URL}/places/{children.SLUG}">
+			  				<img src="/roleplay/{URL}/places/{children.SLUG}/image" title="{children.SYNOPSIS}" class="crisp-border" style="height: 50px; width: 50px; display: block;" />
+			  				<h5 style="">{children.NAME}</h5>
+			  			</a>
+			  		</div>
+			  		<!-- END children -->
+			  	</div>
+			  	<!-- ELSE -->
+			  	<h4>There are no Places in {PLACE_NAME}.</h4>
+			  	<!-- ENDIF -->
+			  </div>
+
+				<h4 style="border-bottom:none;">
+					<a name="description" class="anchor"></a>
+					<a href="#posting" name="posting" class="button" style="float:right; clear: both;">Add Post Here &raquo;</a>
+					Description
+				</h4>
+				<div style="clear: both;">
+			  	{PLACE_DESCRIPTION}
+			  </div>
+			  <a href="#posting" name="posting" class="button" style="float:right; clear: both;">Add Post Here &raquo;</a>
+			</div>
+			<!-- ELSE -->
+			  <h2><a href="#posting" name="posting" class="button" style="float:right;"><span>Reply to this roleplay &raquo;</span></a><a href="#activity" name="activity">Activity</a></h2>
+			<!-- ENDIF -->
+
+			<hr style="margin-bottom:20px;" />
+
+			<style type="text/css">
+				div.dialogue > div {
+					clear:both;
+					margin-bottom:20px;
+					margin-top:20px;
+				}
+
+				div.dialogue .speech, div.dialogue .action {
+					font-size: 1.1em;
+					padding-top: 20px;
+					padding-bottom: 20px;
+				}
+
+				.action {
+					font-weight: bold;
+				}
+
+				div.dialogue .speech div {
+					margin-left: 115px;
+				}
+
+				div.dialogue .speech img {
+					float:left;
+					height: 100px;
+					width:	100px;
+					margin-right: 15px;
+					border: 1px solid black;
+				}
+			</style>
+
+			<ul class="linklist" style="clear:both;">
+				<!-- IF S_SINGLE_PLACE -->
+				<!-- ELSE -->
+				<li>{CALENDAR}</li>
+				<!-- ENDIF -->
+				<li class="rightside pagination" style="font-size: 1.4em;">{TOTAL_ACTIVITY} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+			</ul>
+
+			<div id="roleplayStream">
+			<!-- INCLUDE roleplay_stream_body.html -->
+			</div>
+
+			<ul class="linklist" style="clear:both;">
+				<li class="rightside pagination" style="font-size: 1.4em;">{TOTAL_ACTIVITY} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+			</ul>
+
+			<a name="posting" class="anchor"></a>
+			<div id="posting">
+				<!-- IF S_CAN_POST -->
+					<!-- IF S_IS_LOCKED -->
+
+					<!-- ELSE -->
+						<!-- INCLUDE roleplay_posting.html -->
+					<!-- ENDIF -->
+				<!-- ELSE -->
+					<div><h2><a href="/roleplay/{URL}/characters/new">Create a Character to Post Here &raquo;</a></h2></div>
+				<!-- ENDIF -->
+			</div>
+
+		</div>
+
+		<!-- IF S_SINGLE_PLACE -->
+		<!-- ELSE -->
+		<div id="chat">
+			<h2><a href="#chat" name="chat">{TITLE}: Chat</a></h2>
+			<!-- IF S_HAS_PLACES -->
+				<iframe src="//www.roleplaygateway.com/embed/?roleplayID={ID}<!-- IF S_SINGLE_PLACE -->&channelID={PLACE_ID}<!-- ENDIF -->" width="100%" height="650" scrolling="no" frameborder="0" marginwidth="0"></iframe>
+			<!-- ELSE -->
+				<h3 style="color:red;">The owner of this roleplay hasn't added any places yet; so we're dropping you into the Multiverse.</h3>
+				<iframe src="//www.roleplaygateway.com/embed/?roleplayID=1" width="100%" height="650" scrolling="no" frameborder="0" marginwidth="0"></iframe>
+			<!-- ENDIF -->
+			<!-- IF S_CAN_EDIT -->
+			<h2>Embed Your Chat</h2>
+			<p>Want to use your roleplay's chat on another page? Use the following code:</p>
+			<textarea onclick="select();"><div style="display:block;"><div><a href="//www.roleplaygateway.com/roleplay/{URL}/#chat" rel="dofollow" style="font-size:1.3em; display:block;">{TITLE}: Chat</a></div><div><iframe src="https://chat.roleplaygateway.com/embed/?roleplayID={ID}<!-- IF S_SINGLE_PLACE -->&channelID={PLACE_ID}<!-- ENDIF -->" width="100%" height="650" scrolling="no" frameborder="0" marginwidth="0"></iframe></div><div style="text-align:right;"><a href="//www.roleplaygateway.com/chat/" rel="dofollow">RPG Chat</a> powered by <a href="//www.roleplaygateway.com/" rel="dofollow">RolePlayGateway</a>.</div></div></textarea>
+			<!-- ENDIF -->
+		</div>
+
+		<div id="ooc">
+			<h2><a href="#ooc" name="ooc">{TITLE}: <strong>O</strong>ut <strong>O</strong>f <strong>C</strong>haracter (<abbr="Out Of Character">OOC</abbr>)</a></h2>
+
+			<div class="buttons">
+				<div class="post-icon"><a href="//www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_thread&roleplay_id={ID}" title="{L_POST_TOPIC}"><span>{L_POST_TOPIC}</span></a></div>
+			</div>
+
+			<div class="forumbg<!-- IF topicrow.S_TOPIC_TYPE_SWITCH --> announcement<!-- ENDIF -->">
+				<div class="inner"><span class="corners-top"><span></span></span>
+				<ul class="topiclist">
+					<li class="header">
+						<dl class="icon">
+							<dt><!-- IF S_DISPLAY_ACTIVE -->{L_ACTIVE_TOPICS}<!-- ELSEIF topicrow.S_TOPIC_TYPE_SWITCH and topicrow.S_TOPIC_TYPE gt 1 -->{L_ANNOUNCEMENTS}<!-- ELSE -->{L_TOPICS}<!-- ENDIF --></dt>
+							<dd class="posts">{L_REPLIES}</dd>
+							<dd class="views">{L_VIEWS}</dd>
+							<dd class="lastpost"><span>{L_LAST_POST}</span></dd>
+						</dl>
+					</li>
+				</ul>
+				<ul class="topiclist topics">
+			<!-- BEGIN topicrow -->
+
+					<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
+						<dl class="icon" style="background-image: url({topicrow.TOPIC_FOLDER_IMG_SRC}); background-repeat: no-repeat;">
+							<dt style="padding-bottom:5px; <!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS -->background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;<!-- ENDIF -->" title="{topicrow.TOPIC_FOLDER_IMG_ALT}">
+								<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+								<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
+								<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF --><br />
+								<!-- IF topicrow.PAGINATION --><strong class="pagination"><span>{topicrow.PAGINATION}</span></strong><!-- ENDIF -->
+								<!-- IF S_PRS_ENABLED -->{topicrow.PRS_STARS} <!-- ENDIF -->
+								<!-- IF topicrow.ATTACH_ICON_IMG -->{topicrow.ATTACH_ICON_IMG} <!-- ENDIF -->{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL} {L_POSTED_ON_DATE} {topicrow.FIRST_POST_TIME}<br />
+								<!-- IF topicrow.TAG_LIST -->{L_PBF_TAGS_LABEL}: {topicrow.TAG_LIST}<!-- ENDIF -->
+								{topicrow.TOPIC_PREVIEW}
+							</dt>
+							<dd class="posts">{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></dd>
+							<dd class="views">{topicrow.VIEWS} <dfn>{L_VIEWS}</dfn></dd>
+							<dd class="lastpost"><span><dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL}
+								<a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a> <br />{L_POSTED_ON_DATE} {topicrow.LAST_POST_TIME}</span>
+							</dd>
+						</dl>
+					</li>
+
+			<!-- BEGINELSE -->
+				<!-- IF S_IS_POSTABLE -->
+				<div class="panel">
+					<div class="inner"><span class="corners-top"><span></span></span>
+					<strong>{L_NO_TOPICS}</strong>
+					<span class="corners-bottom"><span></span></span></div>
+				</div>
+				<!-- ENDIF -->
+			<!-- END topicrow -->
+					</ul>
+				<span class="corners-bottom"><span></span></span></div>
+			</div>
+
+			<h2>Most recent OOC posts in {TITLE}</h2>
+			<!-- BEGIN ooc -->
+			<div class="ooc">
+				<div class="author">
+					{ooc.POST_AUTHOR}
+				</div>
+				<div class="ooc_post">
+					<h3><a href="//www.roleplaygateway.com/viewtopic.php?p={ooc.POST_ID}#p{ooc.POST_ID}">{ooc.POST_SUBJECT}</a></h3>
+					<div class="postbody content">{ooc.POST_TEXT}</div>
+					<br />
+				</div>
+			</div>
+			<hr />
+			<!-- BEGINELSE -->
+				<p class="supersize">There have been no posts in the OOC topic for this roleplay!</p>
+			<!-- END ooc -->
+		</div>
+		<!-- ENDIF -->
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+function toggleDiv(ID) {
+	$('#'+ID).toggle('slow');
+}
+
+<!-- IF S_SINGLE_PLACE -->
+/*
+$('a').smoothScroll();
+
+if (document.location.hash != "") {
+	var target = document.location.hash.substr(1,8);
+	var targetID = document.location.hash.substr(1);
+
+	if (target == "roleplay") {
+		$(window).load(function() {
+			console.log('document loaded');
+			$.smoothScroll({
+				offset: $('a[name="'+targetID+'"]').offset().top - 40
+			});
+		});
+
+	}
+}
+*/
+<!-- ELSE -->
+{ACTIVE_TAB}
+
+if (document.location.hash != "") {
+
+	target = document.location.hash.substr(1);
+
+	// ignore links to actual roleplay
+	console.log(target.substr(0,8));
+	if (target.substr(0,8) != "roleplay") {
+
+		switch (target) {
+			case 'posting':
+				target = 'activity';
+				toggleDiv("posting");
+			break;
+			case 'join':
+				window.location.href = '/roleplay/{URL}/characters/new';
+			break;
+			case 'rules':
+				target = 'introduction';
+			break;
+		}
+
+		document.location.hash = target;
+		$(window).scrollTop(0);
+
+		subPanels(target);
+
+	} else {
+		subPanels('activity');
+
+		targetID = target.substr(9);
+
+		/*$.smoothScroll({
+			offset: $('a[name='+targetID+']').offset().top - 30
+		});*/
+
+	}
+}
+<!-- ENDIF -->
+
+
+
+function beginActivityStream() {
+	//$('#roleplayStream').load('//www.roleplaygateway.com/ajax.php', {mode: 'activity', roleplay_id: {ID}} );
+
+
+
+	setTimeout('updateStream()', 5000);
+}
+
+
+function updateStream() {
+
+	$.ajax({
+		url: '//www.roleplaygateway.com/ajax.php',
+		data: {mode: 'stream', roleplay_id: {ID}, <!-- IF S_SINGLE_PLACE -->location_id: {PLACE_ID},<!-- ENDIF --> lastID: window.lastID},
+		success: function (data) {
+			$('#roleplayStream').prepend('<div class="newActivity" style="opacity:0;">' + data + '</div>');
+			$('.newActivity').animate({opacity: 3.0}, 5000);
+			$('#roleplayStream .timeago').timeago();
+		}
+	});
+
+}
+
+// beginActivityStream();
+
+</script>
+<!-- INCLUDE overall_footer.html -->
