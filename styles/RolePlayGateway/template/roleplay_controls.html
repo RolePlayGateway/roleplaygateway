@@ -1,0 +1,266 @@
+<style type="text/css">
+.chat-detail {
+  display: none;
+}
+</style>
+
+<div id="content-review-modal" title="Confirm Your Action" style="display:none;">
+  <div class="postbody" style="width:inherit;">
+    <p><strong>You're about to delete the following post:</strong></p>
+    <blockquote id="content-review-post-content"></blockquote><br />
+
+    <div id="chat-details" class="chat-detail">
+      <p><strong>This post was originally posted via chat:</strong></p>
+      <code id="content-review-chat-content"></code>
+    </div>
+
+    <br>
+    <br>
+
+    <p>Deleting content will cause content on this and all subsequent pages to move closer to the front of the universe, creating a bizarre instance in the space-time continuum where previously-saved hyperlinks that others have used may no longer point at their correct destinations.</p>
+
+    <p>This is generally undesirable.</p>
+
+    <p><strong>Are you sure you want permanently delete <span class="chat-detail">both the original chat message and</span> the referenced post?</strong></p>
+  </div>
+</div>
+
+<script type="text/javascript">
+// hello, controls.
+$(document).on('click', '*[data-action=delete-content]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var contentID = $self.data('content-id');
+
+  $.getJSON('/content/'+contentID, function(details) {
+    var $post = $('#content-review-modal #content-review-post-content');
+    var $chat = $('#content-review-modal #content-review-chat-content');
+
+    if (details.content) {
+      $post.html(details.content.text);
+    }
+    if (details.message) {
+      $('.chat-detail').removeClass('chat-detail');
+      $chat.html(details.message.text);
+    }
+
+    $('#content-review-modal').dialog({
+      modal: true,
+      width: 500,
+      buttons: {
+        "Cancel": function() {
+          $(this).dialog('close');
+        },
+        "Yes, delete this post": function() {
+          $(this).dialog('close');
+          $.ajax({
+            type: 'DELETE',
+            url: '/content/'+contentID,
+            success: function(msg) {
+              alert(msg);
+            }
+          });
+        }
+      }
+    });
+
+  });
+
+  return false;
+
+});
+
+
+$(document).on('click', '*[data-action=flag-content]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  console.log('hey!', $self.data('content-id'));
+
+  $('*[id^=content-controls-').slideUp();
+
+  if ($controls.data('state') == 'shown') {
+    return $controls.slideUp().data('state', 'hidden');
+  }
+
+  var emptyButton = $('<a href="#" class="button block" data-action="queue-content-deletion" data-content-id="'+$self.data('content-id')+'">This post is empty.</a>');
+  var duplicateButton = $('<a href="#" class="button block" data-action="queue-content-merge" data-content-id="'+$self.data('content-id')+'">This post is a duplicate.</a>');
+  var tagButton = $('<a href="#" class="button block" data-action="queue-character-tag" data-content-id="'+$self.data('content-id')+'">Characters are missing from the tags.</a>');
+  var moveButton = $('<a href="#" class="button block" data-action="queue-location-move" data-content-id="'+$self.data('content-id')+'">This post belongs in another location.</a>');
+  var oocButton = $('<a href="#" class="button block" data-action="queue-content-edit" data-content-id="'+$self.data('content-id')+'">This post contains OOC content.</a>');
+  var reviewButton = $('<a href="#" class="button block" data-action="queue-review" data-content-id="'+$self.data('content-id')+'">This post violates one or more of this roleplay\'s rules.</a>');
+
+  $controls.hide();
+  $controls.data('state', 'hidden');
+  $controls.html('');
+
+  $controls.append(emptyButton);
+  $controls.append(duplicateButton);
+  $controls.append(tagButton);
+  $controls.append(moveButton);
+  $controls.append(oocButton);
+  $controls.append(reviewButton);
+
+  $controls.slideDown();
+  $controls.data('state', 'shown');
+
+  return false;
+});
+
+$(document).on('click', '*[data-action=queue-content-deletion]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  $.ajax({
+    type: 'POST',
+    url: '/roleplay-comment.php',
+    headers: {
+      'Accept': 'application/json'
+    },
+    data: {
+      'content': 'post is empty, should likely be deleted',
+      'contentID': $self.data('content-id'),
+      'attachment[type]': 'content',
+    }
+  });
+
+  $controls.slideUp(function() {
+    $(this).html('');
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[data-action=queue-content-merge]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  $.ajax({
+    type: 'POST',
+    url: '/roleplay-comment.php',
+    headers: {
+      'Accept': 'application/json'
+    },
+    data: {
+      'content': 'possible duplicate content',
+      'contentID': $self.data('content-id'),
+      'attachment[type]': 'content',
+    }
+  });
+
+  $controls.slideUp(function() {
+    $(this).html('');
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[data-action=queue-character-tag]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  if (confirm('If you know which characters belong in this post, you can use the "tag characters" button on the right hand side to add them.  Do you want to do that now?\n\nClicking "cancel" will submit this report.')) {
+    $('.characterTagging[data-for='+$self.data('content-id')+']').slideToggle();
+    $('*[name=characterSearch][data-for='+$self.data('content-id')+']').focus();
+  } else {
+    $.ajax({
+      type: 'POST',
+      url: '/roleplay-comment.php',
+      headers: {
+        'Accept': 'application/json'
+      },
+      data: {
+        'content': 'missing character tags',
+        'contentID': $self.data('content-id'),
+        'attachment[type]': 'content',
+      }
+    });
+  }
+
+  $controls.slideUp(function() {
+    $(this).html('');
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[data-action=queue-location-move]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  $.ajax({
+    type: 'POST',
+    url: '/roleplay-comment.php',
+    headers: {
+      'Accept': 'application/json'
+    },
+    data: {
+      'content': 'possible wrong location',
+      'contentID': $self.data('content-id'),
+      'attachment[type]': 'content',
+    }
+  });
+
+  $controls.slideUp(function() {
+    $(this).html('');
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[data-action=queue-content-edit]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  $.ajax({
+    type: 'POST',
+    url: '/roleplay-comment.php',
+    headers: {
+      'Accept': 'application/json'
+    },
+    data: {
+      'content': 'contains OOC content, needs edit',
+      'contentID': $self.data('content-id'),
+      'attachment[type]': 'content',
+    }
+  });
+
+  $controls.slideUp(function() {
+    $(this).html('');
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[data-action=queue-review]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  $.ajax({
+    type: 'POST',
+    url: '/roleplay-comment.php',
+    headers: {
+      'Accept': 'application/json'
+    },
+    data: {
+      'content': 'contains rule violation, needs review',
+      'contentID': $self.data('content-id'),
+      'attachment[type]': 'content',
+    }
+  });
+
+  $controls.slideUp(function() {
+    $(this).html('');
+  });
+
+  return false;
+});
+
+</script>
