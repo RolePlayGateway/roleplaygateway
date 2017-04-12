@@ -1,0 +1,169 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<style type="text/css">
+.card {
+  display: inline-block;
+  max-width: 33%;
+  width: 32%;
+}
+
+.tiny.icon.card {
+  display: inline-block;
+  font-size: 0.8em;
+  text-align: center;
+  max-width: 62px;
+  width: 62px;
+  height: 62px;
+  overflow: hidden;
+}
+
+.tiny.icon.card img {
+  max-height: 60px;
+  max-width: 60px;
+}
+
+.scrunched p {
+  margin-bottom: 0.2em;
+}
+
+.card img {
+  max-height: 100px;
+  max-width: 100px;
+}
+
+.card img.tiny {
+  max-height: 34px;
+  max-width: 34px;
+  margin-right: 3px; 
+}
+</style>
+
+<h2>RPG Community Home</h2>
+
+<div>
+  <h3>Latest Post</h3>
+  <div>
+    <!-- INCLUDE roleplay_stream_body.html -->
+  </div>
+</div>
+
+<div>
+  <h3>Featured Users of the Day</h3>
+  <!-- BEGIN featuredusers -->
+  <div class="forabg card">
+    <div class="inner">
+      <span class="corners-top"><span></span></span>
+      <ul class="topiclist fullwidth">
+        <li class="header"><dl><dt><a href="/member/{featuredusers.USERNAME}">{featuredusers.USERNAME}</a> <span>{featuredusers.RANK}</span></dt></dl></li>
+      </ul>
+      <ul class="topiclist forums">
+        <li>
+          <dl>
+            <dd style="width:100%; padding:10px; height: 190px;" class="scrunched">
+              <img src="{featuredusers.USER_AVATAR_URL}" class="crisp-border" style="float: left; margin-right: 1em;" />
+              <p>member for <strong>{featuredusers.TENURE}</strong> years</p>
+              <p>has written <strong>{featuredusers.TOTAL_WORDS}</strong> words</p>
+              <p><small>(~<strong>{featuredusers.NOVELS}</strong> full-length novels)</small></p>
+              <p>
+                <!-- BEGIN medals -->
+                <a href="/medals/{featuredusers.medals.SLUG}" title="{featuredusers.medals.NAME}">
+                  <img src="/images/medals/{featuredusers.medals.IMAGE}" />
+                  <!-- <h4>{featuredusers.medals.NAME}</h4> -->
+                </a>
+                <!-- END medals -->
+              </p>
+              <p>
+                <!-- BEGIN characters -->
+                <a href="/roleplay/{featuredusers.characters.ROLEPLAY_URL}/characters/{featuredusers.characters.URL}" title="{featuredusers.characters.NAME}, with {featuredusers.characters.TOTAL} views">
+                  <img src="/roleplay/{featuredusers.characters.ROLEPLAY_URL}/characters/{featuredusers.characters.URL}/image" class="crisp-border tiny" />
+                  <!-- <h4>{featuredusers.characters.NAME}</h4> -->
+                </a>
+                <!-- END characters -->
+              </p>
+              <hr />
+              <p style="font-size: 1.2em;">{featuredusers.BIO}</p>
+              
+              <!-- IF S_UNIVERSES_ENABLED -->
+              <p>
+                <!-- BEGIN universes -->
+                <a href="/roleplay/{featuredusers.universes.URL}" title="{featuredusers.universes.NAME}, with {featuredusers.universes.TOTAL} views">
+                  <img src="/roleplay/{featuredusers.universes.URL}/image" class="crisp-border tiny" />
+                </a>
+                <!-- END universes -->
+              </p>
+              <!-- ENDIF -->
+            </dd>
+          </dl>
+        </li>
+        
+      </ul>
+      <span class="corners-bottom"><span></span></span>
+    </div>
+  </div>
+  <!-- END featuredusers -->
+</div>
+
+<div>
+  <h3>Most Written Words</h3>
+  <div>
+    <!-- BEGIN mostwords -->
+    <a class="tiny tooltipped icon card" href="/member/{mostwords.USERNAME}" title="{mostwords.USERNAME}, with {mostwords.TOTAL} written words" onmouseover="show_popup({mostwords.ID})" onmouseout="close_popup()">
+      <img src="{mostwords.USER_AVATAR_URL}" class="crisp-border" />
+      <!-- <h4>{mostwords.USERNAME}</h4>
+      <h5>{mostwords.TOTAL} medals</h5> -->
+    </a>
+    <!-- END mostwords -->
+  </div>
+</div>
+
+<div>
+  <h3>Most Decorated Users</h3>
+  <div>
+    <!-- BEGIN topdecorations -->
+    <a class="tiny tooltipped icon card" href="/member/{topdecorations.USERNAME}" title="{topdecorations.USERNAME}, with {topdecorations.TOTAL} medals" onmouseover="show_popup({topdecorations.ID})" onmouseout="close_popup()">
+      <img src="{topdecorations.USER_AVATAR_URL}" class="crisp-border" />
+      <!-- <h4>{topdecorations.USERNAME}</h4>
+      <h5>{topdecorations.TOTAL} medals</h5> -->
+    </a>
+    <!-- END topdecorations -->
+  </div>
+</div>
+
+<div>
+  <h3>Most Viewed Characters</h3>
+  <div>
+    <!-- BEGIN topcharacters -->
+    <a class="tiny tooltipped icon card" href="/roleplay/{topcharacters.ROLEPLAY_URL}/characters/{topcharacters.URL}" title="{topcharacters.NAME}, with {topcharacters.TOTAL} views">
+      <img src="/roleplay/{topcharacters.ROLEPLAY_URL}/characters/{topcharacters.URL}/image" class="crisp-border" />
+      <!-- <h4>{topcharacters.NAME}</h4> -->
+    </a>
+    <!-- END topcharacters -->
+  </div>
+</div>
+
+<div>
+  <h3>Most Viewed Settings</h3>
+  <div>
+    <!-- BEGIN topsettings -->
+    <a class="tiny tooltipped icon card" href="/roleplay/{topsettings.ROLEPLAY_URL}/places/{topsettings.URL}" title="{topsettings.NAME}, a part of {topsettings.ROLEPLAY_NAME}, with {topsettings.TOTAL} views">
+      <img src="/roleplay/{topsettings.ROLEPLAY_URL}/places/{topsettings.URL}/image" class="crisp-border" />
+      <!-- <h4>{topsettings.NAME}</h4> -->
+    </a>
+    <!-- END topsettings -->
+  </div>
+</div>
+
+<div>
+  <h3>Most Viewed Roleplays</h3>
+  <div>
+    <!-- BEGIN toproleplays -->
+    <a href="/roleplay/{toproleplays.URL}" class="tiny tooltipped icon card" title="{toproleplays.TITLE}: {toproleplays.DESCRIPTION}">
+      <img src="/roleplay/{toproleplays.URL}/image" class="crisp-border">
+      <!-- <h4>{toproleplays.TITLE}</h4> -->
+    </a>
+    <!-- END toproleplays -->
+  </div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->
