@@ -1,0 +1,78 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<!-- IF S_CAN_EDIT -->
+<div id="controls" style="float:right;">
+  <a href="/ucp.php?i=characters&amp;mode=edit&amp;character_id={CHARACTER_ID}" class="button">Edit</a>
+</div>
+<!-- ENDIF -->
+
+<img src="/roleplay/{ROLEPLAY_URL}/characters/{CHARACTER_URL}/image" style="float:left; height:100px; width:100px; margin-right:10px;" class="crisp-border" />
+
+<h2>{CHARACTER_NAME}</h2>
+<p class="content" style="padding:5px; min-height:0; margin-bottom: 5px;">{CHARACTER_SYNOPSIS}</p>
+
+<h3 style="margin-top:5px;">
+  <div style="float: right;">{CHARACTER_VIEW_COUNT} views &middot; last seen in <a href="/roleplay/{ROLEPLAY_URL}/places/{PLACE_URL}/"><img src="/roleplay/{ROLEPLAY_URL}/places/{PLACE_URL}/image" class="crisp-border" style="max-height: 1.2em; margin-right: 0.5em;" />{PLACE_NAME}</a></div>
+  a character in &ldquo;<a href="/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_NAME}</a>&rdquo;<!-- IF S_CHARACTER_ANONYMOUS --><!-- ELSE -->, as played by {OWNER_USERNAME}<!-- ENDIF --></h3>
+
+<div class="panel">
+  <div class="inner"><span class="corners-top"><span></span></span>
+    <div class="postbody" style="width:100%;">
+      <div class="">
+      	<!-- IF HAS_GROUPS -->
+        <h3><a href="/roleplay/{ROLEPLAY_URL}/groups">Groups</a></h3>
+        <div>
+          <!-- BEGIN groups -->
+          <div class="group" style="width: 300px; display: inline-block; vertical-align: top;">
+            <img src="/roleplay/{ROLEPLAY_URL}/groups/{groups.SLUG}/logo" style="float:left; height: 30px; width: 30px; margin-right:1em;" class="crisp-border" />
+            <div>
+              <a href="/roleplay/{ROLEPLAY_URL}/groups/{groups.SLUG}"><strong>{groups.NAME}</strong></a>
+            </div>
+            <span>{groups.SYNOPSIS}</span>
+          </div>
+          <!-- END groups -->
+        </div>
+        <div style="clear:both;"></div>
+        <!-- ENDIF -->
+        
+        <!-- IF CHARACTER_DESCRIPTION -->
+        <h3>Description</h3>
+        <div style="text-align:justify;" class="content">{CHARACTER_DESCRIPTION}</div>
+        <!-- ENDIF -->
+        <!-- IF CHARACTER_PERSONALITY -->
+        <h3>Personality</h3>
+        <p style="text-align:justify;">{CHARACTER_PERSONALITY}</p>
+        <!-- ENDIF -->
+        <!-- IF CHARACTER_EQUIPMENT -->
+        <h3>Equipment</h3>
+        <p style="text-align:justify;">{CHARACTER_EQUIPMENT}</p>
+        <!-- ENDIF -->
+        <!-- IF CHARACTER_HISTORY -->
+        <h3>History</h3>
+        <p style="text-align:justify;">{CHARACTER_HISTORY}</p>
+        <!-- ENDIF -->
+
+        <div id="activity">
+          <h3 style="padding-top:2em;">So begins...</h3>
+          <h1><a href="/roleplay/{ROLEPLAY_URL}/characters/{CHARACTER_URL}#story" name="story">{CHARACTER_NAME}'s Story</a></h1>
+          <div>
+            <ul class="linklist">
+              <li class="rightside pagination">Seen <strong>{TOTAL_SIGHTINGS}</strong> Times &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+            </ul>
+
+            <div id="roleplayStream">
+            <!-- INCLUDE roleplay_stream_body.html -->
+            </div>
+
+            <ul class="linklist">
+                      <li class="rightside pagination">Seen <strong>{TOTAL_SIGHTINGS}</strong> Times &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- INCLUDE overall_footer.html -->
