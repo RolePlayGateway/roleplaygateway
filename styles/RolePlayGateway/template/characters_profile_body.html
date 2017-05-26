@@ -36,22 +36,121 @@
         </div>
         <div style="clear:both;"></div>
         <!-- ENDIF -->
-        
+
         <!-- IF CHARACTER_DESCRIPTION -->
         <h3>Description</h3>
         <div style="text-align:justify;" class="content">{CHARACTER_DESCRIPTION}</div>
         <!-- ENDIF -->
-        <!-- IF CHARACTER_PERSONALITY -->
-        <h3>Personality</h3>
-        <p style="text-align:justify;">{CHARACTER_PERSONALITY}</p>
-        <!-- ENDIF -->
-        <!-- IF CHARACTER_EQUIPMENT -->
-        <h3>Equipment</h3>
-        <p style="text-align:justify;">{CHARACTER_EQUIPMENT}</p>
-        <!-- ENDIF -->
-        <!-- IF CHARACTER_HISTORY -->
-        <h3>History</h3>
-        <p style="text-align:justify;">{CHARACTER_HISTORY}</p>
+        <!-- IF CHARACTER_STATS -->
+        <h3>Statistics</h3>
+        <b><u>Body</u></b><br/>
+        <b>Power</b>
+          <select>
+            <option value="F RANK">F (-8)</option>
+            <option value="D RANK">D (-4)</option>
+            <option selected ="selected" value="C RANK">C (+0)</option>
+            <option value="B RANK">B (+4)</option>
+            <option value="A RANK">A (+8)</option>
+            <option value="S RANK">S (+12)</option>
+          </select>
+        <br/>
+        <b>Agility</b>
+          <select>
+            <option value="F RANK">F (-8)</option>
+            <option value="D RANK">D (-4)</option>
+            <option selected ="selected"  value="C RANK">C (+0)</option>
+            <option value="B RANK">B (+4)</option>
+            <option value="A RANK">A (+8)</option>
+            <option value="S RANK">S (+12)</option>
+          </select>
+        <br/>
+        <b>Endurance</b>
+          <select>
+            <option value="F RANK">F (-8)</option>
+            <option value="D RANK">D (-4)</option>
+            <option selected ="selected" value="C RANK">C (+0)</option>
+            <option value="B RANK">B (+4)</option>
+            <option value="A RANK">A (+8)</option>
+            <option value="S RANK">S (+12)</option>
+          </select>
+        <br/><br/><b><u>Mind</u></b><br/>
+        <b>Logic</b>
+          <select>
+            <option value="F RANK">F (-8)</option>
+            <option value="D RANK">D (-4)</option>
+            <option selected ="selected" value="C RANK">C (+0)</option>
+            <option value="B RANK">B (+4)</option>
+            <option value="A RANK">A (+8)</option>
+            <option value="S RANK">S (+12)</option>
+          </select>
+        <br/>
+        <b>Intuition</b>
+          <select>
+            <option value="F RANK">F (-8)</option>
+            <option value="D RANK">D (-4)</option>
+            <option selected ="selected" value="C RANK">C (+0)</option>
+            <option value="B RANK">B (+4)</option>
+            <option value="A RANK">A (+8)</option>
+            <option value="S RANK">S (+12)</option>
+          </select>
+        <br/>
+        <b>Charm</b>
+          <select>
+            <option value="F RANK">F (-8)</option>
+            <option value="D RANK">D (-4)</option>
+            <option selected ="selected" value="C RANK">C (+0)</option>
+            <option value="B RANK">B (+4)</option>
+            <option value="A RANK">A (+8)</option>
+            <option value="S RANK">S (+12)</option>
+          </select>
+        <br/><br/><b><u>Magic</u></b><br/>
+        <b>Invocation</b>
+          <select>
+            <option value="F RANK">F (-8)</option>
+            <option value="D RANK">D (-4)</option>
+            <option selected ="selected" value="C RANK">C (+0)</option>
+            <option value="B RANK">B (+4)</option>
+            <option value="A RANK">A (+8)</option>
+            <option value="S RANK">S (+12)</option>
+          </select>
+        <br/>
+        <b>Shielding</b>
+          <select>
+            <option value="F RANK">F (-8)</option>
+            <option value="D RANK">D (-4)</option>
+            <option selected ="selected" value="C RANK">C (+0)</option>
+            <option value="B RANK">B (+4)</option>
+            <option value="A RANK">A (+8)</option>
+            <option value="S RANK">S (+12)</option>
+          </select>
+        <br/>
+        <b>Influence</b>
+          <select>
+            <option value="F RANK">F (-8)</option>
+            <option value="D RANK">D (-4)</option>
+            <option selected ="selected" value="C RANK">C (+0)</option>
+            <option value="B RANK">B (+4)</option>
+            <option value="A RANK">A (+8)</option>
+            <option value="S RANK">S (+12)</option>
+          </select>
+          <br>
+          <br>
+          <h3>Skills</h3>
+          <b>Skill Name:</b> <input type="text" name="skill">
+          <fieldset class="repeating_skill">
+                      <div class="sheet-table-row">
+                        <select>
+                          <option selected ="selected" value="Untrained">Untrained (-4)</option>
+                          <option value="Training">Training (+0)</option>
+                          <option value="Learned">Learned (+2)</option>
+                          <option value="Familiar">Familiar (+4)</option>
+                          <option value="Skilled">Skilled (+6)</option>
+                          <option value="Exceptional">Exceptional (+8)</option>
+                          <option value="Expert">Expert (+10)</option>
+                          <option value="Masterful">Masterful (+12)</option>
+                        </select>
+                      </div>
+          </fieldset>
         <!-- ENDIF -->
 
         <div id="activity">
