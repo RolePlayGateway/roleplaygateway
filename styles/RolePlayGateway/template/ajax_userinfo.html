@@ -1,0 +1,156 @@
+<style type="text/css">
+.scrunched p {
+	margin-bottom: 0.2em;
+}
+</style>
+<script type="text/javascript">
+// <![CDATA[
+
+	// display the popup
+	function show_popup(UserID) {
+		close_popup()
+		sendRequest(UserID)
+		document.getElementById('popup').style.display='block';
+	}
+
+	// hide the popup
+	function close_popup() {
+		document.getElementById('popup').style.display='none';
+		document.getElementById('ajax_username').innerHTML = '';
+		document.getElementById('ajax_tenure').innerHTML = '';
+		document.getElementById('ajax_awards').innerHTML = '';
+		document.getElementById('ajax_characters').innerHTML = '';
+		document.getElementById('ajax_avatar').src = '/styles/prosilver/theme/images/loading.gif';
+
+		/*//document.getElementById('ajax_reputation').innerHTML = '';
+		document.getElementById('ajax_words_written').innerHTML = '';
+		document.getElementById('ajax_words_per_post').innerHTML = '';
+		document.getElementById('ajax_registert').innerHTML = '';
+	//	document.getElementById('ajax_posts').innerHTML = '';
+		document.getElementById('ajax_from').innerHTML = '';
+		document.getElementById('ajax_last_visit').innerHTML = '';
+		document.getElementById('ajax_avatar').src = '/styles/prosilver/theme/images/loading.gif';
+		document.getElementById('ajax_rank').innerHTML = '';
+		document.getElementById('ajax_website').innerHTML = ''; */
+	}
+
+	// Make the request	
+	function createRequestObject() {
+		var ro;
+		var browser = navigator.appName;
+		if(browser == "Microsoft Internet Explorer"){
+			ro = new ActiveXObject("Microsoft.XMLHTTP");
+		} else {
+			ro = new XMLHttpRequest();
+		}
+		return ro;
+	}
+	
+	var http_getuser = createRequestObject();
+	
+	function sendRequest(UserID) {
+		http_getuser.open('get', '//www.roleplaygateway.com/api/member/'+UserID);
+		http_getuser.onreadystatechange = handleResponse;
+		http_getuser.send(null);
+	}
+
+	// fill in the response
+	function handleResponse() {
+		if(http_getuser.readyState == 4){
+			try {
+				var user = JSON.parse(http_getuser.responseText);
+				document.getElementById('ajax_username').innerHTML = user.username;
+				document.getElementById('ajax_avatar').src = user.avatar;
+				document.getElementById('ajax_rank').innerHTML = user.rank;
+				document.getElementById('ajax_tenure').innerHTML = user.tenure;
+				document.getElementById('ajax_words_written').innerHTML = user.stats.total_words;
+				document.getElementById('ajax_novels').innerHTML = user.stats.novels;
+	
+				user.medals.forEach(function(medal) {
+					var element = document.createElement('a');
+					element.href = '/medals/' + medal.slug;
+					element.innerHTML = '<img src="/images/medals/' + medal.image + '" title="'+medal.name+'" />';
+					document.getElementById('ajax_awards').appendChild(element);
+				});
+				
+				var count = document.createElement('span');
+				count.innerHTML = '&nbsp;(' + user.medals.length + '&times;)';
+
+				document.getElementById('ajax_awards').appendChild(count);
+	
+				user.characters.forEach(function(character) {
+					var element = document.createElement('a');
+					//element.href = '/characters/' + character.slug;
+					element.innerHTML = '<img style="max-height: 34px; margin-right: 3px;" class="tiny crisp-border" src="/roleplay/'+character.roleplay_url+'/characters/' + character.url + '/image" title="'+character.name+'" />';
+					document.getElementById('ajax_characters').appendChild(element);
+				});
+				
+			} catch (e) {
+				
+			}
+			
+			/*
+			var xmlDoc	= http_getuser.responseXML;
+			document.getElementById('ajax_username').innerHTML = xmlDoc.getElementsByTagName('displayName')[0].firstChild.nodeValue;
+			//document.getElementById('ajax_reputation').innerHTML = xmlDoc.getElementsByTagName('reputation')[0].firstChild.nodeValue;
+			document.getElementById('ajax_words_written').innerHTML = xmlDoc.getElementsByTagName('wordswritten')[0].firstChild.nodeValue;
+			document.getElementById('ajax_words_per_post').innerHTML = xmlDoc.getElementsByTagName('wordsperpost')[0].firstChild.nodeValue;
+			document.getElementById('ajax_registert').innerHTML = xmlDoc.getElementsByTagName('regdate')[0].firstChild.nodeValue;
+			// document.getElementById('ajax_posts').innerHTML = xmlDoc.getElementsByTagName('posts')[0].firstChild.nodeValue;
+			document.getElementById('ajax_website').innerHTML = xmlDoc.getElementsByTagName('website')[0].firstChild.nodeValue;
+			document.getElementById('ajax_from').innerHTML = xmlDoc.getElementsByTagName('from')[0].firstChild.nodeValue;
+			document.getElementById('ajax_last_visit').innerHTML = xmlDoc.getElementsByTagName('lastvisit')[0].firstChild.nodeValue;
+			document.getElementById('ajax_rank').innerHTML = xmlDoc.getElementsByTagName('rank')[0].firstChild.nodeValue;
+			document.getElementById('ajax_avatar').innerHTML = xmlDoc.getElementsByTagName('avatar')[0].firstChild.nodeValue; */
+		}
+	}
+	
+	// set popup to mouse possition
+	document.onmousemove = set_div_to_mouse;
+	function set_div_to_mouse(e) {
+		var docX, docY;
+		if(e) {
+			if(typeof(e.pageX) == 'number') { docX = e.pageX; docY = e.pageY;}
+			else {docX = e.clientX; docY = e.clientY;}
+		} else {
+			e = window.event;
+			docX = e.clientX; docY = e.clientY;
+			if(document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+				docX += document.documentElement.scrollLeft; docY += document.documentElement.scrollTop;
+			}
+			else if(document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+				docX += document.body.scrollLeft; docY += document.body.scrollTop;
+			}
+		}
+		if (docX > document.body.offsetWidth - 400) {
+			document.getElementById('popup').style.left = (docX - 350) + "px";
+		} else {
+			document.getElementById('popup').style.left = (docX - 5) + "px";
+		}
+		document.getElementById('popup').style.top    = (docY + 30) + "px";
+	}
+// ]]>
+</script>
+<div class="forabg" id="popup" style="display: none;">
+   <div class="inner">
+      <span class="corners-top"><span></span></span>
+      <ul class="topiclist fullwidth">
+         <li class="header"><dl><dt><strong id="ajax_username"></strong> <span id="ajax_rank"></span></dt></dl></li>
+      </ul>
+      <ul class="topiclist forums">
+         <li><dl>
+            <dd style="width:100%; padding:10px;" class="scrunched">
+               <img id="ajax_avatar" class="crisp-border" />
+							 <p>member for <strong id="ajax_tenure"></strong> years</p>
+							 <p>has written <strong id="ajax_words_written"></strong> words</p>
+							 <p><small>(~<strong id="ajax_novels"></strong> full-length novels)</small></p>
+							 <p id="ajax_awards"></p>
+							 <p id="ajax_bio"></p>
+							 <p id="ajax_characters"></p>
+						 
+            </dd>
+         </dl></li>
+      </ul>
+      <span class="corners-bottom"><span></span></span>
+   </div>
+</div>
