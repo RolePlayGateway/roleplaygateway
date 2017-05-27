@@ -1,0 +1,94 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<style type="text/css">
+.panel p {
+  min-height: 0;
+  font-size: 1.1em;
+}
+
+.searchable-list-item {
+  margin-bottom: 5px;
+  min-height: 52px;
+  margin-left: 5px;
+}
+</style>
+
+<div class="panel">
+	
+	<h2>Place Management</h2>
+  <p>Use this page to manage your places.</p>
+  
+  <h3>Your Places</h3>
+  
+  <div class="searchable-list">
+    <input class="searchable-list-input" style="width: 350px; font-size: 1.2em; margin:0.5em; padding: 0.25em;" type="text" placeholder="Type here to filter by name or roleplay." />
+    <div class="searchable-list-items">
+      <!-- BEGIN places -->
+      <div class="searchable-list-item" data-name="{places.NAME}" data-roleplay-name="{places.ROLEPLAY}">
+        <img class="crisp-border quick-float-left" src="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}/image" />
+        <!-- IF S_IS_BETA -->
+          <div class="quick-float-right">
+            <!-- IF places.S_IS_FOR_SALE -->
+            <div class="button group">
+              <a class="pricing" on-tap="_promptAndSetPrice" data-link="/places/{places.ID}">
+                <small>INK</small>
+                <span data-bind="sale-price">{places.SALE_PRICE}</span>
+              </a>
+
+              <!-- IF places.S_CAN_EDIT -->
+              <div>
+                <a class="header" on-tap="_promptAndSetPrice" data-link="/places/{places.ID}"><small>change</small></a>
+                <a class="header" on-tap="_cancelOrder" data-link="/orders/{orders.ORDER_ID}" title="cancel this order"><small>close</small></a>
+              </div>
+              <!-- ELSE -->
+              <!-- IF places.S_CAN_AFFORD -->
+              <a class="header" on-tap="_fillOrder" data-link="/orders/{places.ORDER_ID}" data-price="{places.SALE_PRICE}">Buy Now</a>
+              <!-- ELSE -->
+              <div class="header">
+                <small>not enough INK</small><br />
+                <a href="/medals" data-price="{places.SALE_PRICE}">Earn to Buy</a>
+              </div>
+              <!-- ENDIF -->
+              <!-- ENDIF -->
+            </div>
+            <!-- ELSE -->
+            <!-- IF places.S_CAN_EDIT -->
+            <a class="button" on-tap="_promptAndSetPrice" data-link="/places/{places.ID}">sell</a>
+            <!-- ENDIF -->
+            <!-- ENDIF -->
+          </div>
+        <!-- ENDIF -->
+        <div>
+          <h3>
+            <!-- IF places.PARENT_ID gt 0 -->
+            <small style="display:block;">
+              <a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.PARENT_SLUG}/">{places.PARENT_NAME}</a>
+            </small>
+            &#8618;
+            <!-- ENDIF -->
+            <a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}" class="forumtitle">{places.NAME}</a><small>, a part of <a href="/roleplay/{places.ROLEPLAY_URL}">{places.ROLEPLAY_TITLE}</a></small>
+          </h3>
+          <p>{places.SYNOPSIS}</p>
+        </div>
+      </div>
+      <!-- END places -->
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('.searchable-list .searchable-list-input').keyup(function() {
+    var filter = $(this).val();
+    if (filter.length > 0) {
+      $('.searchable-list .searchable-list-item').hide();
+      $('.searchable-list .searchable-list-item[data-name*="'+filter+'"]').show();
+      $('.searchable-list .searchable-list-item[data-roleplay-name*="'+filter+'"]').show();
+    } else {
+      $('.searchable-list .searchable-list-item').show();
+    }
+  });
+</script>
+<!-- INCLUDE overall_footer.html -->
