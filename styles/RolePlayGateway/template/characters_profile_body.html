@@ -15,7 +15,8 @@
 
 <h3 style="margin-top:5px;">
   <div style="float: right;">{CHARACTER_VIEW_COUNT} views &middot; last seen in <a href="/roleplay/{ROLEPLAY_URL}/places/{PLACE_URL}/"><img src="/roleplay/{ROLEPLAY_URL}/places/{PLACE_URL}/image" class="crisp-border" style="max-height: 1.2em; margin-right: 0.5em;" />{PLACE_NAME}</a></div>
-  a character in &ldquo;<a href="/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_NAME}</a>&rdquo;<!-- IF S_CHARACTER_ANONYMOUS --><!-- ELSE -->, as played by {OWNER_USERNAME}<!-- ENDIF --></h3>
+  a character in &ldquo;<a href="/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_NAME}</a>&rdquo;<!-- IF S_CHARACTER_ANONYMOUS --><!-- ELSE -->, <!-- IF S_IS_NEW_OWNER -->originally authored by {CREATOR_USERNAME}, <!-- ENDIF -->as played by {OWNER_USERNAME}<!-- ENDIF -->
+</h3>
 
 <div class="panel">
   <div class="inner"><span class="corners-top"><span></span></span>
