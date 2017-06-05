@@ -1,6 +1,10 @@
 <!-- INCLUDE overall_header.html -->
 <!-- INCLUDE stylesheet_roleplay.html -->
 <style type="text/css">
+	.small.list h4 {
+		font-size: 1.2em;
+		text-transform: uppercase;
+	}
 
 	.statistic {
 		text-align:center;
@@ -18,6 +22,28 @@
 	.crisp-border {
 		max-width: none;
 	}
+	
+	dl.details dt {
+		width: 8em;
+	}
+	
+	dl.details dd {
+		margin-left: 8em;
+	}
+	
+	.column1 {
+		width: 30%;
+	}
+	
+	.column2 {
+		width: 65%;
+	}
+	
+	/* from community.html */
+	/* TODO: DRY */
+	.tiny.icon.card img {
+	  max-width: 62px;
+	}
 </style>
 
 <!-- IF AVATAR_IMG -->
@@ -27,13 +53,28 @@
 	</dl>
 <!-- ENDIF -->
 
+<div style="float:right;">
+	<!-- IF S_IS_SELF -->
+	<a href="/ucp.php?i=164" class="button">Edit</a>
+	<!-- ENDIF -->
+	<!-- IF U_USER_ADMIN -->
+	<a href="//www.roleplaygateway.com/spam.php?user_id={USER_ID}" class="button">ID as SpamBot</a>
+	<!-- ENDIF -->
+</div>
 
-<!-- IF U_USER_ADMIN -->
-<a href="//www.roleplaygateway.com/spam.php?user_id={USER_ID}" style="float:right" class="button">ID as SpamBot</a>
-<pre>{USER_REAL_IP}</pre>
-<!-- ENDIF -->
-<h2>{USERNAME}<small style="margin-left: 1em;"><!-- IF RANK_TITLE -->{RANK_TITLE} &amp;<!-- ENDIF -->member of RPG for <strong>{TENURE}</strong> years</small>
+<h2>
+	{USERNAME}
+	<small style="margin-left: 1em;">
+		<!-- IF RANK_TITLE -->{RANK_TITLE} &amp; <!-- ENDIF -->
+		member of RPG for <strong>{TENURE}</strong> years
+	</small>
 </h2>
+
+<p style="margin-bottom: 0.2em; padding: 0;">
+	<!-- BEGIN awards -->
+	<a href="/medals/{awards.SLUG}"><img src="{awards.IMAGE}" border="0" alt="{awards.NAME}" title="{awards.NAME}" /></a>
+	<!-- END awards -->
+</p>
 
 <!-- BEGIN custom_fields -->
 <!-- IF custom_fields.PROFILE_FIELD_NAME == 'Biography' -->
@@ -41,24 +82,10 @@
 <!-- ENDIF -->
 <!-- END custom_fields -->
 
-<p>
-	<!-- BEGIN medals -->
-	<!-- IF medals.S_HAS_MEDALS or medals.S_HAS_NOMINATIONS --><dd><strong>{L_MEDALS}:</strong> {medals.MEDALS_COUNT}{medals.MEDALS_NOMINATED}</dd><!-- ENDIF -->
-		<!-- BEGIN medal_row -->
-		<dd>
-			<!-- BEGIN medal_col -->
-				<img src="{medals.medal_row.medal_col.MEDAL_IMAGE}" border="0" alt="{medals.medal_row.medal_col.MEDAL_NAME} {medals.medal_row.medal_col.MEDAL_COUNT}" title="{medals.medal_row.medal_col.MEDAL_NAME} {medals.medal_row.medal_col.MEDAL_COUNT}" {medals.medal_row.medal_col.MEDAL_WIDTH} {medals.medal_row.medal_col.MEDAL_HEIGHT} />
-			<!-- END medal_col -->
-		</dd>
-		<!-- END medal_row -->
-	<!-- END medals -->	
-</p>
-
 <form method="post" action="{S_PROFILE_ACTION}" id="viewprofile">
 <div class="panel bg1<!-- IF S_ONLINE --> online<!-- ENDIF -->">
 	<div class="inner"><span class="corners-top"><span></span></span>
 	<div class="column1">
-		
 		<dl class="left-box details">
 			<h3>Basic Information</h3>
 			<dt>{L_USERNAME}:</dt>
@@ -79,6 +106,9 @@
 			<!-- IF S_GROUP_OPTIONS --><dt>{L_USERGROUPS}:</dt> <dd><select name="g">{S_GROUP_OPTIONS}</select> <input type="submit" name="submit" value="{L_GO}" class="button2" /></dd><!-- ENDIF -->
 			<!-- BEGIN custom_fields -->
 			<!-- IF custom_fields.PROFILE_FIELD_NAME == 'Biography' -->
+			
+			<!-- ELSEIF custom_fields.PROFILE_FIELD_NAME == 'Twitter' -->
+				<dt>{custom_fields.PROFILE_FIELD_NAME}:</dt> <dd><a href="https://twitter.com/{custom_fields.PROFILE_FIELD_VALUE}" rel="self">@{custom_fields.PROFILE_FIELD_VALUE}</a></dd>
 			<!-- ELSE -->
 			<dt>{custom_fields.PROFILE_FIELD_NAME}:</dt> <dd>{custom_fields.PROFILE_FIELD_VALUE}</dd>
 			<!-- ENDIF -->
@@ -96,6 +126,10 @@
 				<!-- ENDIF -->
 			<!-- ENDIF -->
 			
+			<!-- IF U_USER_ADMIN -->
+			<dt>Real IP:</dt> <dd><pre>{USER_REAL_IP}</pre></dd>
+			<!-- ENDIF -->
+			
 			<h3>{L_USER_FORUM}</h3>
 			<dt>{L_JOINED}:</dt> <dd>{JOINED}</dd>
 			<dt>{L_VISITED}:</dt> <dd>{VISITED}</dd>
@@ -109,8 +143,6 @@
 				<dt>{L_ACTIVE_IN_FORUM}:</dt> <dd><!-- IF ACTIVE_FORUM --><strong><a href="{U_ACTIVE_FORUM}">{ACTIVE_FORUM}</a></strong><br />({ACTIVE_FORUM_POSTS} / {ACTIVE_FORUM_PCT})<!-- ELSE --> - <!-- ENDIF --></dd>
 				<dt>{L_ACTIVE_IN_TOPIC}:</dt> <dd><!-- IF ACTIVE_TOPIC --><strong><a href="{U_ACTIVE_TOPIC}">{ACTIVE_TOPIC}</a></strong><br />({ACTIVE_TOPIC_POSTS} / {ACTIVE_TOPIC_PCT})<!-- ELSE --> - <!-- ENDIF --></dd>
 			<!-- ENDIF -->
-	
-			
 			
 			<h3>{L_CONTACT_USER} {USERNAME}</h3>
 			<!-- IF U_EMAIL --><dt>{L_EMAIL_ADDRESS}:</dt> <dd><a href="{U_EMAIL}">{L_SEND_EMAIL_USER} {USERNAME}</a></dd><!-- ENDIF -->
@@ -125,18 +157,68 @@
 			<!-- IF S_PROFILE_FIELD_1 -->
 				<!-- NOTE: Use a construct like this to include admin defined profile fields. Replace FIELD1 with the name of your field. -->
 				<dt>{postrow.PROFILE_FIELD1_NAME}:</dt> <dd>{postrow.PROFILE_FIELD1_VALUE}</dd>
-			<!-- ENDIF -->
-			
-				
+  		<!-- ENDIF -->
 		</dl>
-		
-		
+
+		<style type="text/css">
+			.namespace-profile-icon img {
+				max-height: 16px;
+				max-width: 16px;
+			}
+		</style>
+
+		<h3>Elsewhere</h3>
+		<div>
+			<!-- IF S_HAS_TWITCH -->
+				<a href="https://twitch.tv/{PROFILE_TWITCH_USERNAME}" class="namespace-profile-icon"><img src="/img/twitch.png" /></a>
+			<!-- ELSE -->
+				<!-- IF S_IS_BETA -->
+				<a href="/auth/twitch" class="button">Add Twitch &raquo;</a>
+				<!-- ENDIF -->
+			<!-- ENDIF -->
+			<!-- IF S_HAS_TWITTER -->
+				<a href="https://twitter.com/{PROFILE_TWITTER_USERNAME}" class="namespace-profile-icon"><img src="/img/twitter.png" /></a>
+			<!-- ELSE -->
+			<!-- ENDIF -->
+		</div>
+
 	</div>
 	
 	<div class="column2">
+		<h3 style="clear: both;">Author Statistics</h3>
+		<div>
+			<!-- <div class="statistic">
+				<span>{TOTAL_ROLEPLAYS}</span> universes joined.
+			</div> -->
+			<div class="statistic">
+				<span>{TOTAL_WORDS}</span> words written.
+			</div>
+			<div class="statistic">
+				<span>{TOTAL_POSTS}</span> total posts.
+			</div>
+			<div class="statistic">
+				<span>{AVERAGE_WORDS}</span> words per post.
+			</div>
+			<div class="statistic">
+				<span>{AVERAGE_POSTS}</span> posts per roleplay.
+			</div>
+			<div class="statistic">
+				<span>{AVERAGE_DAYS}</span> average days in a roleplay.
+			</div>
+    </div>
+	
+		<h3 style="clear: both;"><a href="/member/{USERNAME}/characters">Characters</a></h3>
+		<div>
+			<!-- BEGIN characters -->
+			<a class="tiny tooltipped icon card" href="/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}" title="{characters.NAME}, with {characters.TOTAL} views">
+				<img src="/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}/image" class="crisp-border" />
+				<!-- <h4>{characters.NAME}</h4> -->
+			</a>
+			<!-- END characters -->
+		</div>
 	
 		<!-- IF S_GAME_MASTER -->
-		<h2>Roleplay Stats</h2>
+		<h3 style="clear: both;"><a href="/member/{USERNAME}/roleplays">Universes</a></h3>
 		<div>
 			<div class="statistic">
 				<span>{ROLEPLAYS_CREATED}</span> created.
@@ -150,52 +232,41 @@
 			<div class="statistic">
 				<span>{ROLEPLAYS_COMPLETED}</span> completed.
 			</div>
-			<div class="statistic">
+			<!-- <div class="statistic">
 				<span>{ROLEPLAYS_SUCCESS}%</span> success ratio.
-			</div>
-			
+			</div> -->
 			<br style="clear:both;" />
 		</div>
 		<!-- ENDIF -->
-
-    <h2>Writing Stats</h2>
-		<div>
-			<div class="statistic">
-				<span>{TOTAL_WORDS}</span> words written.
-			</div>
-			<div class="statistic">
-				<span>{TOTAL_POSTS}</span> total posts.
-			</div>
-			<div class="statistic">
-				<span>{AVERAGE_WORDS}</span> words per post.
-			</div>
-			<div class="statistic">
-				<span>{TOTAL_ROLEPLAYS}</span> roleplays played.
-			</div>
-			<div class="statistic">
-				<span>{AVERAGE_POSTS}</span> posts per roleplay.
-			</div>
-			<div class="statistic">
-				<span>{AVERAGE_DAYS}</span> average days in a roleplay.
-			</div>
-
-      <br style="clear:both;" />
-    </div>
-
-		<h2><a href="//www.roleplaygateway.com/member/{USERNAME}/roleplays" style="float:right;">View All &raquo;</a>Roleplays</h2>
-		<div>
-		<!-- BEGIN roleplays -->
+		<div style="clear: both;">
+			<h3>Completed Stories</h3>
+			<!-- BEGIN completed -->
 			<div class="roleplay" style="clear: both; margin-bottom: 5px;">
-				<img src="//www.roleplaygateway.com/roleplay/{roleplays.URL}/image" style="float:left; margin-bottom: 5px; margin-right: 5px; height: 50px;" class="crisp-border" />
+				<img src="/roleplay/{completed.URL}/image" style="float:left; margin-bottom: 5px; margin-right: 5px; height: 50px;" class="crisp-border" />
 				<div>
-					<h3><a href="//www.roleplaygateway.com/roleplay/{roleplays.URL}/">{roleplays.TITLE}</a></h3>
+					<h3><a href="/roleplay/{completed.URL}/">{completed.TITLE}</a> <span class="label">{completed.STATUS}</span></h3>
+					<p style="font-size: 10px;">{completed.DESCRIPTION}</p>
+				</div>
+			</div>
+			<!-- BEGINELSE -->
+			<p>Finishing a roleplay can be hard work, but it earns you <a href="/medals/completionist">the "Completionist" medal</a>!</p>
+			<!-- END completed -->
+		</div>
+	
+		<div style="clear: both;">
+			<h3>Universes Created</h3>
+			<!-- BEGIN roleplays -->
+			<div class="roleplay" style="clear: both; margin-bottom: 5px;">
+				<img src="/roleplay/{roleplays.URL}/image" style="float:left; margin-bottom: 5px; margin-right: 5px; height: 50px;" class="crisp-border" />
+				<div>
+					<h3><a href="/roleplay/{roleplays.URL}/">{roleplays.TITLE}</a></h3>
 					<p style="font-size: 10px;">{roleplays.DESCRIPTION}</p>
 				</div>
 			</div>
-		<!-- BEGINELSE -->
+			<!-- BEGINELSE -->
 			<p>This user hasn't created any roleplays!</p>
-		<!-- END roleplays -->
-		</div>		
+			<!-- END roleplays -->
+		</div>
 		
 		
 		<!--
@@ -212,17 +283,17 @@
 
 <div class="panel bg2">
 	<div class="inner"><span class="corners-top"><span></span></span>
-		<h2><a href="//www.roleplaygateway.com/member/{USERNAME}/characters" style="float:right;">View All &raquo;</a>Characters</h2>
+		<h3 style="clear: both;"><a href="/medals">Medals</a></h3>
 		<div>
-			<!-- BEGIN characters -->
-			<div class="character">
-				<img src="//www.roleplaygateway.com/images/character_avatar.php?character_id={characters.ID}" alt="Character Portrait: {characters.NAME}" />
-				<h3>
-					<a href="//www.roleplaygateway.com/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}/"><strong>{characters.NAME}</strong></a>
-				</h3>
-				<span>{characters.SYNOPSIS}</span>
+			<!-- BEGIN awards -->
+			<div>
+				<img src="{awards.IMAGE}" border="0" alt="{awards.NAME}" title="{awards.NAME}" style="float:left; margin: 1em;" />
+				<div class="small list">
+					<h4><a href="/medals/{awards.SLUG}">{awards.NAME}</a></h4>
+					<p>{awards.DESCRIPTION}</p>
+				</div>
 			</div>
-			<!-- END characters -->
+			<!-- END awards -->
 		</div>
 	<span class="corners-bottom"><span></span></span></div>
 </div>

@@ -137,6 +137,12 @@ while ($row = $db->sql_fetchrow($result)) {
     'S_HAS_DESCRIPTION' => ($row['descriptionLength'] > 0) ? true : false,
     'S_HAS_IMAGE' => ((int) $row['imageSize'] !== 40000) ? true : false,
     'S_IS_LAZY' => ($row['synopsis'] == $row['description']) ? true : false,
+    
+    'S_IS_EXCEPTION' => (
+      (($row['synopsisLength'] <= 12 || $row['synopsisLength'] == 75) ? true : false)
+      || (($row['descriptionLength'] <= 21 || $row['synopsisLength'] == 75) ? true : false)
+    ),
+
     'S_CAN_EDIT' > ($owner['id'] == $user->data['user_id']) ? true : false,
     'S_CAN_SELL' > ($owner['id'] == $user->data['user_id']) ? true : false,
   ));

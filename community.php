@@ -126,6 +126,16 @@ $sql = 'SELECT u.user_id as id, u.username, u.user_avatar, u.user_avatar_type, u
 ORDER BY RAND(CURRENT_DATE()) LIMIT 3';
 $result = $db->sql_query($sql);
 while ($author = $db->sql_fetchrow($result)) {
+  $medals = array();
+
+  $sql = 'SELECT m.id, m.name, m.slug, m.description, m.image FROM gateway_medals_awarded a
+    INNER JOIN gateway_medals m ON a.medal_id = m.id
+    WHERE a.user_id = '.(int) $author['id'];
+  $medalsResult = $db->sql_query($sql);
+  while ($medal = $db->sql_fetchrow($medalsResult)) {
+    $medals[] = $medal;
+  }
+
   $sql = 'SELECT prs_reputation,total_words,average_words
     FROM gateway_user_stats
     WHERE user_id = '. (int) $author['id'];
@@ -141,13 +151,10 @@ while ($author = $db->sql_fetchrow($result)) {
     'BIO' => $author['bio'],
     'TOTAL_WORDS' => $user_stats['total_words'],
     'NOVELS' => $user_stats['novels'],
+    'MEDAL_COUNT' => count($medals),
   ));
-
-  $sql = 'SELECT m.id, m.name, m.slug, m.description, m.image FROM gateway_medals_awarded a
-    INNER JOIN gateway_medals m ON a.medal_id = m.id
-    WHERE a.user_id = '.(int) $author['id'];
-  $medalsResult = $db->sql_query($sql);
-  while ($medal = $db->sql_fetchrow($medalsResult)) {
+  
+  foreach ($medals as $medal) {
     $template->assign_block_vars('featuredusers.medals', array(
       'ID' => $medal['id'],
       'NAME' => $medal['name'],

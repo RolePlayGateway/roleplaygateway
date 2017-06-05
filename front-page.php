@@ -74,18 +74,23 @@ $start      = (int) @$_REQUEST['start'];
 
 $places = array();
 
-$placeIDs = array();
-$sql = 'SELECT DISTINCT place_id as id FROM rpg_content
-  ORDER BY written DESC LIMIT 100';
+/*$placeIDs = array();
+$sql = 'SELECT c.place_id as id FROM rpg_content c
+	INNER JOIN rpg_places p ON p.id = c.place_id
+	WHERE c.roleplay_id > 1
+	ORDER BY c.id DESC
+	LIMIT 10000';
 $activityResult = $db->sql_query($sql);
 while ($place = $db->sql_fetchrow($activityResult)) {
 	$placeIDs[] = $place['id'];
 }
-$db->sql_freeresult($activityResult);
+$db->sql_freeresult($activityResult);*/
 
-
-$sql = 'SELECT id, name, synopsis, owner, url, parent_id, roleplay_id FROM rpg_places WHERE id IN ('.implode($placeIDs, ',').')
-	AND length(image) > 0';
+$sql = 'SELECT p.id, p.name, p.synopsis, p.owner, p.url, p.parent_id, p.roleplay_id
+	FROM rpg_places p
+	WHERE roleplay_id <> 1
+		AND length(p.image) > 0 AND length(p.synopsis) > 4
+	ORDER BY last_activity DESC';
 $result = $db->sql_query_limit($sql, 10);
 while ($row = $db->sql_fetchrow($result)) {
 

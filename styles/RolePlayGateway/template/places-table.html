@@ -22,21 +22,22 @@ tr:hover {
 <h1 style="color: black;">DOOMSHEET SUPREME</h1>
 <h2>{TOTAL_PLACES} non-hidden locations</h2>
 
-<table style="width: 100%;">
+<table style="width: 100%;" class="tablesorted">
   <thead>
     <tr>
       <th><input type="checkbox" /></th>
-      <th>#</th>
+      <th data-sort-method="dotsep">#</th>
       <th>Name</th>
       <th>Owner</th>
       <th>Creator</th>
       <th>synopsis?</th>
-      <th>size</th>
+      <th data-sort-method="number">size</th>
       <th>description?</th>
-      <th>size</th>
+      <th data-sort-method="number">size</th>
       <th>image?</th>
-      <th>size</th>
+      <th data-sort-method="number">size</th>
       <th>syn/desc match?</th>
+      <th>exception</th>
       <th>Controls</th>
     </tr>
   </thead>
@@ -55,6 +56,7 @@ tr:hover {
       <td><!-- IF places.S_HAS_IMAGE --><span class="green label">yes</span><!-- ELSE --><span class="red label">no</span><!-- ENDIF --></td>
       <td>{places.IMAGE_SIZE}</td>
       <td><!-- IF places.S_IS_LAZY --><span class="red label">yes</span><!-- ELSE --><span class="green label">no</span><!-- ENDIF --></td>
+      <td><!-- IF places.S_IS_EXCEPTION --><span class="red label">yes</span><!-- ELSE --><span class="green label">no</span><!-- ENDIF --></td>
       <td>
         <!-- IF places.S_CAN_EDIT -->
         <a class="button" href="/ucp.php?i=roleplays&amp;mode=edit_place&amp;place_id={places.ID}" style="margin: 1em;">edit &raquo;</a>
@@ -72,5 +74,11 @@ tr:hover {
   <li>{owners.USERNAME}, with {owners.OWNED_COUNT} locations</li>
   <!-- END owners -->
 </div>
+
+<script src="/js/tablesort.min.js"></script>
+<script src="/js/tablesort.number.js"></script>
+<script type="text/javascript">
+  new Tablesort(document.querySelector('.tablesorted'));
+</script>
 
 <!-- INCLUDE overall_footer.html -->

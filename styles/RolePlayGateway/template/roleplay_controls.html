@@ -26,6 +26,7 @@
 </div>
 
 <script type="text/javascript">
+
 // hello, controls.
 $(document).on('click', '*[data-action=delete-content]', function(e) {
   e.preventDefault();
@@ -259,6 +260,110 @@ $(document).on('click', '*[data-action=queue-review]', function(e) {
   $controls.slideUp(function() {
     $(this).html('');
   });
+
+  return false;
+});
+
+$(document).on('click', '*[on-tap=_fillOrder]', function(e) {
+  var self = this;
+  var link = $(self).data('link');
+  var price = $(self).data('price');
+  var agree = confirm('Are you sure you want to buy "' + link + '"?  ' + price + ' INK will be deducted from your account.');
+
+  var wallet = $('*[data-link="/members/{S_USER_ID}"][data-bind="stats.balance"]');
+  var balance = parseFloat(wallet.html());
+  
+  if (agree) {
+    wallet.html((balance - parseFloat(price)).toFixed(2));
+    
+    $.ajax({
+      url: '/transactions',
+      type: 'POST',
+      data: {
+        order: link
+      },
+      success: function(data) {
+        if (!data) return alert('Unexpected response:', data);
+        if (data.status == 'success') {
+          alert(data.message);
+        } else {
+          alert('Error: ' + data.message);
+        }
+      },
+      error: function(data) {
+        if (data && data.message && data.status == 'error') {
+          alert(data.message);
+        } else {
+          alert('Unexpected response:', data);
+        }
+      }
+    });
+  }
+  
+  return false;
+});
+
+$(document).on('click', '*[on-tap=_promptToEarn]', function(e) {
+  var self = this;
+  var link = $(self).data('link');
+  
+  alert('Earn Achievements to acquire more INK.');
+  
+  return false;
+});
+
+$(document).on('click', '*[on-tap=_cancelOrder]', function(e) {
+  var self = this;
+  var agree = confirm('Are you sure you want to cancel this order?');
+  if (agree) {
+    var link = $(self).data('link');
+
+    $.ajax({
+      url: link,
+      type: 'PATCH',
+      data: {
+        status: 'closed'
+      },
+      success: function(data) {
+        alert('Order closed!');
+      }
+    });
+  }
+  
+  return false;
+});
+  
+$(document).on('click', '*[on-tap=_promptAndSetPrice]', function(e) {
+  var self = this;
+  var price = prompt('What would you like to set the price to?');
+  if (price) {
+    var link = $(self).data('link');
+
+    $.ajax({
+      url: '/orders',
+      type: 'POST',
+      data: {
+        asset: link,
+        price: price
+      },
+      success: function(data) {
+        if (!data) return alert('Unexpected response:', data);
+        if (data.status == 'success') {
+          alert(data.message);
+        } else {
+          alert('Error: ' + data.message);
+        }
+      }
+    });
+  }
+  
+  return false;
+});
+
+
+$(document).on('click', '*[on-tap=_followCharacter]', function(e) {
+  var self = this;
+  var link = $(self).data('link');
 
   return false;
 });

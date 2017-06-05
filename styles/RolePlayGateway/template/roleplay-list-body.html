@@ -1,49 +1,4 @@
-<div class="forabg">
-	<div class="inner"><span class="corners-top"><span></span></span>
-	<ul class="topiclist">
-		<li class="header">
-			<dl class="icon">
-				<dt>Settings</dt>
-				<dd class="topics">Posts</dd>
-				<dd class="posts">Characters</dd>
-				<dd class="lastpost"><span>Last Activity</span></dd>
-			</dl>
-		</li>
-	</ul>
-	<ul class="topiclist forums">
-		<!-- BEGIN places -->
-		<li class="row bg1 icon roleplay" style="clear:left; padding-bottom: 0.5em;">
-			<a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}/"><img src="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}/image" alt="{places.NAME}" class="crisp-border roleplay-image" /></a>
-			<div>
-				<h3 class="simple">
-					<div style="float:right;">
-						{places.POSTS} posts &middot;
-						{places.CHARACTER_COUNT} characters present &middot;
-						<span style="width: 25%;">
-							Last Activity <a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}/#roleplay{places.LAST_POST_ID}">{places.LAST_POST_DATE} &raquo;</a>
-						</span>
-					</div>
-					<!-- IF places.PARENT_ID gt 0 -->
-					<small style="display:block;">
-						<a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.PARENT_SLUG}/">{places.PARENT_NAME}</a>
-					</small>
-					&#8618;
-					<!-- ENDIF -->
-					<!-- <small># {places.ID}</small> -->
-					<a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}/">{places.NAME}</a>
-					<small><strong>Writer: {places.OWNER_USERNAME}</strong></small>
-					<small><strong>Universe: <a href="/roleplay/{places.ROLEPLAY_URL}">{places.ROLEPLAY_NAME}</a></strong></small>
-					
-				</h3>
-			</div>
-			
-			<a class="right floated button" href="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}/#roleplay{places.LAST_POST_ID}">Read the Latest</a>
-			<p>{places.SYNOPSIS}</p>
-		</li>
-		<!-- END places -->
-	</ul>
-	<span class="corners-bottom"><span></span></span></div>
-</div>
+<!-- INCLUDE place-list-body.html -->
 
 <div class="forabg">
 	<div class="inner"><span class="corners-top"><span></span></span>
@@ -63,12 +18,12 @@
 				<div>
 					<!-- IF roleplays.S_CAN_EDIT -->
 					<div id="controls" style="float:right;">
-						<a href="/ucp.php?i=roleplays&mode=edit&id={roleplays.ID}">Edit</a>
+						<a href="/ucp.php?i=roleplays&amp;mode=edit&amp;id={roleplays.ID}">Edit</a>
 					</div>
 					<!-- ENDIF -->
 					<a href="/roleplay/{roleplays.URL}" class="topictitle">{roleplays.TITLE}</a> <span class="author">by {roleplays.OWNER_USERNAME}</span>
 					<p class="roleplay-description">{roleplays.DESCRIPTION}</p>
-					<span class="tags"><strong>Tags:</strong> {roleplays.TAGS} (<a href="//www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_tag&id={roleplays.ID}">Add Tags &raquo;</a>)</span>
+					<span class="tags"><strong>Tags:</strong> {roleplays.TAGS} (<a href="//www.roleplaygateway.com/ucp.php?i=roleplays&amp;mode=add_tag&amp;id={roleplays.ID}">Add Tags &raquo;</a>)</span>
 				</div>
 			</dt>
 			<!-- <dd>{roleplays.LAST_ACTIVITY}</dd> -->
@@ -82,40 +37,10 @@
 		
 		<h1 style="color:#226A87;">Welcome to RolePlayGateway!</h1>
 		<p style="font-size:1.4em; padding: 10px; line-height:1.7em;">
-			RolePlayGateway works a bit differently than your typical play-by-post roleplaying site. When you <a href="//www.roleplaygateway.com/ucp.php?i=roleplays&mode=new">create your own roleplay</a>, you get your own set of message boards and chat that you can configure and share to your friends that embodies the world that you, as the author, have defined.  Attach images and descriptions to individual places in your world, and control what characters can join through a powerful character approval system.
-			<a href="//www.roleplaygateway.com/roleplay/" style="float:right; font-size:1.2em;">Learn More &raquo;</a>
+			RolePlayGateway works a bit differently than your typical play-by-post roleplaying site. When you <a href="/ucp.php?i=roleplays&amp;mode=new">create your own roleplay</a>, you get your own set of message boards and chat that you can configure and share to your friends that embodies the world that you, as the author, have defined.  Attach images and descriptions to individual places in your world, and control what characters can join through a powerful character approval system.
+			<a href="/roleplay/" style="float:right; font-size:1.2em;">Learn More &raquo;</a>
 		</p>
 
 		<hr style="clear:left;" />
 		
 -->
-
-<style type="text/css">
-img.roleplay-image {
-	max-height: 75px;
-	float: left;
-	margin: 0.5em;
-	margin-left: 44px;
-}
-li.roleplay {
-	list-style-type: none;
-	height: 83px;
-	overflow: hidden;
-}
-.panel p {
-	min-height: 2.8em;
-}
-.roleplay-description {
-	margin-bottom: 0;
-}
-h3.simple {
-	border: none;
-	margin-top: 0.5em;
-}
-.right.floated.button {
-	float: right;
-	padding: 0.5em 2em 0.5em 1em;
-	margin-right: 2em;
-	font-size: 1.2em;
-}
-</style>

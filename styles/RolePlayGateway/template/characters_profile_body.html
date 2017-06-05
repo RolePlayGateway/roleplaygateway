@@ -3,8 +3,11 @@
 <!-- INCLUDE roleplay_controls.html -->
 
 <!-- IF S_CAN_EDIT -->
-<div id="controls" style="float:right;">
+<div id="controls" class="quick-float-right">
   <a href="/ucp.php?i=characters&amp;mode=edit&amp;character_id={CHARACTER_ID}" class="button">Edit</a>
+  <!-- IF S_IS_BETA -->
+    <button class="button" on-tap="_followCharacter"><abbr title="You'll receive a notification when this character is tagged in a post.">follow</abbr></button>
+  <!-- ENDIF -->
 </div>
 <!-- ENDIF -->
 
@@ -17,6 +20,10 @@
   <div style="float: right;">{CHARACTER_VIEW_COUNT} views &middot; last seen in <a href="/roleplay/{ROLEPLAY_URL}/places/{PLACE_URL}/"><img src="/roleplay/{ROLEPLAY_URL}/places/{PLACE_URL}/image" class="crisp-border" style="max-height: 1.2em; margin-right: 0.5em;" />{PLACE_NAME}</a></div>
   a character in &ldquo;<a href="/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_NAME}</a>&rdquo;<!-- IF S_CHARACTER_ANONYMOUS --><!-- ELSE -->, <!-- IF S_IS_NEW_OWNER -->originally authored by {CREATOR_USERNAME}, <!-- ENDIF -->as played by {OWNER_USERNAME}<!-- ENDIF -->
 </h3>
+
+<div>
+  <g:plusone annotation="inline" href="/roleplay/{ROLEPLAY_URL}/characters/{CHARACTER_URL}"></g:plusone>
+</div>
 
 <div class="panel">
   <div class="inner"><span class="corners-top"><span></span></span>
@@ -53,7 +60,8 @@
         <!-- IF CHARACTER_HISTORY -->
         <h3>History</h3>
         <p style="text-align:justify;">{CHARACTER_HISTORY}</p>
-        <!-- IF CHARACTER_STATS -->
+        <!-- ENDIF -->
+        <!-- IF S_IS_BETA -->
         <h3>Statistics</h3>
         <b><u>Body</u></b><br/>
         <b>Power</b>
@@ -163,7 +171,6 @@
                         </select>
                       </div>
           </fieldset>
-        <!-- ENDIF -->
         <!-- ENDIF -->
 
         <div id="activity">

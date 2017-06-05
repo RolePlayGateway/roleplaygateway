@@ -1,7 +1,7 @@
 <style type="text/css">
 
-#roleplay h1 {
-	color: black;
+#roleplay h1, h1:not(.inverted) {
+	color: #2B363C;
 }
 
 #statistics {
@@ -23,7 +23,6 @@ h2 a:hover {
 	text-decoration:none;
 	background: #ccc;
 }
-
 
 .content, #introduction {
 	padding:5px;
@@ -47,6 +46,12 @@ h2 a:hover {
 
 #introduction h2 {
 	margin-bottom: 10px;
+}
+
+#activity h4 {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 0.5em;
+	margin-bottom: 0.5em;
 }
 
 #activity, #places {
@@ -130,8 +135,19 @@ input.button1 {
 	clear:both;
 }
 
+.label, .button {
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.label {
+	text-transform: uppercase;
+	/*font-size: 0.7em;*/
+}
+
 .button {
-	font-weight: bold;    padding: 5px;    border-radius: 5px;    background: #bfd1d7;
+	font-weight: bold;
+	background: #bfd1d7;
 }
 
 .button.block {
@@ -359,6 +375,154 @@ a.anchor {
 
 .crisp-border {
   max-width: 90%;
+}
+
+img.roleplay-image {
+	max-height: 75px;
+	float: left;
+	margin: 0.5em !important;
+}
+li.roleplay {
+	list-style-type: none;
+	height: 83px;
+	overflow: hidden;
+}
+.panel p {
+	min-height: 2.8em;
+}
+.roleplay-description {
+	margin-bottom: 0;
+}
+h3.simple {
+	border: none;
+	margin-top: 0.5em;
+}
+.right.floated.button {
+	float: right;
+	padding: 0.5em 2em 0.5em 1em;
+	margin-right: 2em;
+	font-size: 1.2em;
+}
+
+.universal-navigation {
+	width: 400px;
+	background: #EDF2F2 !important;
+}
+
+.universal-navigation table {
+	text-align: center;
+	vertical-align: top;
+}
+
+.universal-navigation .huge-only {
+	display: none;
+}
+
+.quick-float-left {
+  float:left;
+  margin-right: 10px;
+}
+
+.quick-float-right {
+  float:right;
+  margin-left: 10px;
+}
+
+.underhint {
+  margin-top: 3px;
+}
+
+*[on-tap] {
+  cursor: pointer;
+}
+
+.searchable-list-item {
+  margin-bottom: 5px;
+  min-height: 57px;
+}
+.searchable-list-item img {
+  clear: both;
+  max-height: 50px;
+  max-width: 50px;
+}
+
+a.right {
+	background-image: none !important;
+}
+
+.group.button {
+	text-align: center;
+	padding: 1em;
+}
+
+.group.button:hover {
+  opacity: 1.0 !important;
+}
+
+.group.button a:hover {
+  text-decoration: none;
+}
+
+.button.group .header {
+  text-transform: uppercase;
+	font-size: 1.2em !important;
+}
+
+.right.attached.button {
+  border-left: 1px solid #ccc !important;
+  padding: 3px;
+}
+
+.marginalized {
+	margin: 1em;
+	margin-bottom: 0;
+}
+
+.pricing {
+  font-size: 1.5em !important;
+}
+
+@media (max-width: 960px) {
+	#wrap {
+		width: auto;
+	}
+	
+	.desktop-only {
+		display: none !important;
+	}
+}
+
+@media (max-width: 1919px) {
+	.universal-navigation {
+		float: right;
+	}
+	.universal-navigation table {
+		float:right;
+		width: 400px;
+	}
+}
+
+@media (min-width: 1920px) {
+  .universal-navigation {
+		background: /*url('/images/compass.png') -7% 68%*/ #CEE2E7;
+		background-size: 80%;
+    background-repeat: no-repeat;
+    border: 1px solid black;
+    display: inline-block;
+    position: fixed;
+    right: 42px;
+    top: 42px;
+		padding: 10px;
+		text-align: center;
+	}
+	
+	.universal-navigation table {
+		width: 100%;
+	}
+	
+	.universal-navigation .huge-only {
+		display: inherit;
+	}
 }
 
 </style>

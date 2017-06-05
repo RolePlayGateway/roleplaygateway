@@ -4,7 +4,13 @@
 {SEO_BASE_HREF}
 <meta http-equiv="content-type" content="text/html; charset={S_CONTENT_ENCODING}" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <title>{PAGE_TITLE}<!-- IF S_IN_MCP -->&bull; {L_MCP} <!-- ELSEIF S_IN_UCP --> &bull; {L_UCP}<!-- ENDIF --></title>
+
+<!-- IF S_IS_BETA -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- ENDIF -->
+
 <meta http-equiv="content-style-type" content="text/css" />
 <meta http-equiv="content-language" content="{S_USER_LANG}" />
 <meta http-equiv="imagetoolbar" content="no" />
@@ -158,6 +164,7 @@
 <script src="/includes/jquery.timeago.js" type="text/javascript" charset="UTF-8"></script>
 <script src="/includes/jquery.smooth-scroll.min.js" type="text/javascript" charset="UTF-8"></script>
 <!-- <script src="/semantic/dist/semantic.min.js" type="text/javascript" charset="UTF-8"></script> -->
+<script src="/hashcasher.js" type="text/javascript" charset="UTF-8"></script>
 
 <!-- BROKEN (site crash):
 <script src="/includes/jquery.gritter.min.js" type="text/javascript" charset="UTF-8"></script>
@@ -187,6 +194,7 @@
 <!-- ENDIF -->
 
 <link type="text/css" rel="stylesheet" id="arrowchat_css" media="all" href="/im/external.php?type=css" charset="utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Arvo|Roboto+Condensed" rel="stylesheet" />
 
 <!-- IF S_IS_ERIC -->
 <!--
@@ -307,6 +315,12 @@
       color: #2C8FAA;
       font-size:1.1em;
 	  }
+		
+		.header-bar a img.avatar {
+			max-height: 30px;
+			margin: -7px 0 -9px -10px;
+		}
+		
     .header-bar ul {
       list-style-type: none;
       display: inline-block;
@@ -361,6 +375,11 @@
     #settings {
       float:right; display:inline-block;
     }
+		
+		.notification-count.unread {
+			background-color: maroon;
+			color: white;
+		}
 
     /* IE7 hacks */
     .header-bar ul.nav > li {
@@ -379,19 +398,31 @@
         <li>
           <a href="https://www.roleplaygateway.com/"><img src="/images/roleplaygateway.png" height="14" style="margin-bottom:-3px;" alt="RolePlayGateway Logo" /> RPG</a>
           <ul>
-            <li><a href="/forum.html">RPG Chat</a></li>
-            <li><a href="/chat">RPG Forum</a></li>
-            <li><a href="https://write.roleplaygateway.com">RPG Write</a></li>
-            <li><a href="http://www.cafepress.com/roleplaygateway">RPG Store</a></li>
-            <li><a href="/directory">RPG Directory</a></li>
+            <li><a href="/medals">Achievements</a></li>
+						<!-- IF S_IS_BETA -->
+            <li><a href="/orders">Marketplace <small class="button">beta</small></a></li>
+            <li><a href="/invitations">Invitations <small class="button">beta</small></a></li>
+						<!-- ENDIF -->
+            <li><a href="https://write.roleplaygateway.com">Etherpad</a></li>
             <li><a href="/changelog">Changelog</a></li>
             <li><a href="/about/">About</a></li>
+						<li>
+							<a href="/introducing-rpg-achievements-t104679.html">News <span style="color:red;">!</span></a>
+							<ul>
+								<li><a href="/introducing-rpg-achievements-t104679.html">Introducing RPG Achievements <span style="color:red;">!</span></a></li>
+								<li><a href="/rpg-new-design-team-t100940.html">RPG's New Design Team</a></li>
+								<li><a href="/now-open-rpg-staff-applications-t98816.html">Now Open: RPG Staff Applications</a></li>
+								<li><a href="https://blog.roleplaygateway.com/posts/our-greatest-quest-yet">Our Greatest Quest Yet</a></li>
+								<li><a href="/the-multiverse-renewal-t98478.html">The Multiverse: A Renewal</a></li>
+								<li><a href="/years-roleplaygateway-share-your-story-t98298.html">10 Years of RolePlayGateway: Share Your Story</a></li>
+							</ul>
+						</li>
           </ul>
         </li>
         <li>
           <a href="/roleplay/">Roleplay</a>
           <ul>
-            <li><a href="/roleplay/">Browse All</a></li>
+            <li><a href="/roleplay/">Browse All &raquo;</a></li>
             <li>
               <a href="/ucp.php?i=roleplays">My Roleplays</a>
               <ul>
@@ -408,6 +439,7 @@
               </ul>
             </li>
             <li><a href="/ucp.php?i=characters&amp;mode=personal">My Characters</a></li>
+            <li><a href="/member/{S_USERNAME}/places">My Places</a></li>
             <li><a href="/ucp.php?i=roleplays&amp;mode=new">Create New Roleplay &raquo;</a></li>
           </ul>
         </li>
@@ -422,16 +454,22 @@
           </ul>
         </li>
         <li><a href="/chat/">Chat</a></li>
-        <li>
-        	<a href="https://blog.roleplaygateway.com/">News <span style="color:red;">!</span></a>
-        	<ul>
-						<li><a href="/rpg-new-design-team-t100940.html">RPG's New Design Team <span style="color:red;">!</span></a></li>
-						<li><a href="/now-open-rpg-staff-applications-t98816.html">Now Open: RPG Staff Applications</a></li>
-        		<li><a href="https://blog.roleplaygateway.com/posts/our-greatest-quest-yet">Our Greatest Quest Yet</a></li>
-        		<li><a href="/the-multiverse-renewal-t98478.html">The Multiverse: A Renewal</a></li>
-        		<li><a href="/years-roleplaygateway-share-your-story-t98298.html">10 Years of RolePlayGateway: Share Your Story</a></li>
-        	</ul>
-        </li>
+				<li class="desktop-only">
+					<a href="/donate">Donate!</a>
+					<ul>
+						<li><a href="/donate">RPG is expensive to run, so every little donation helps!</a></li>
+						<li style="padding: 10px;">
+							<strong>Donate Now with Internet Money</strong>
+							<p style="font-weight: normal;">Clicking the code below will launch your Bitcoin wallet, or you can simply scan it with your mobile wallet.  Don't have one?  <a style="display: inline-block; font-size: inherit;" href="https://copay.io">Install Copay &raquo;</a></p>
+							<center>
+								<a href="bitcoin:3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66">
+									<img src="/images/3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66.png" style="max-height: 100px; max-width: 100px;" />
+								</a>
+								<a href="bitcoin:3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66"><small><abbr title="This is a Bitcoin address: just like an Email address, but for money!"><code>3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66</code></abbr></small></a>
+							</center>
+						</li>
+					</ul>
+				</li>
         <!-- <li>
           <a href="/tools/">Resources</a>
           <ul>
@@ -447,7 +485,7 @@
             <li><a href="/rules">Our Rules</a></li>
           </ul>
         </li> -->
-        <li>
+        <li class="desktop-only">
           <form action="/site_search.php" id="search">
           <fieldset>
             <input type="hidden" name="cx" value="partner-pub-4532443596754933:ugg366-4578" />
@@ -466,10 +504,24 @@
 		    <a href="/mcp.php">MCP</a>
 		    <!-- ENDIF -->
         <!-- IF S_USER_LOGGED_IN -->
-        <a href="/notifications" title="0 notifications">0</a>
+				<!-- IF S_IS_BETA -->
+				<ul>
+					<li><a href="/ledger?account={S_USER_ID}#balance" title="{CREDITS_BALANCE}"><small>INK</small> <span data-link="/members/{S_USER_ID}" data-bind="stats.balance">{CREDITS_BALANCE}</span></a></li>
+				</ul>
+				<!-- ENDIF -->
         <ul>
+					<li><a href="/notifications" title="{NOTIFICATION_COUNT} notifications" data-bind="notifications" class="notification-count {NOTIFICATION_STATUS}">{NOTIFICATION_COUNT}</a></li>
+					<ul>
+						<li><a href="/notifications">You have {NOTIFICATION_COUNT} unread notifications.</a></li>
+					</ul>
+				</ul>
+				<ul>
           <li>
-            <a href="/ucp.php?i=164"><!-- IF PRIVATE_MESSAGE_INFO --><span style="color:red;">!</span> <!-- ENDIF -->Profile</a>
+            <a href="/member/{USERSLUG}">
+							<!-- IF PRIVATE_MESSAGE_INFO --><span style="color:red;">!</span><!-- ENDIF -->
+							<img src="{S_AVATAR_URL}" class="unpadded avatar" />
+							{S_USERNAME}
+						</a>
             <ul>
               <li><a href="/ucp.php?i=164">Edit Profile</a></li>
               <li><a href="/ucp.php?i=profile&amp;mode=signature">Edit Signature</a></li>
@@ -478,13 +530,13 @@
               <li><a href="/ucp.php?i=main&amp;mode=subscribed">View Your Forum Subscriptions</a></li>
               <li><a href="/search.php?search_id=egosearch">View Your Posts</a></li>
               <li><a href="/ucp.php?i=pm&amp;folder=inbox"><!-- IF PRIVATE_MESSAGE_INFO -->{PRIVATE_MESSAGE_INFO} <!-- ENDIF -->Private Messages</a></li>
+							<li><a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="l">Logout</a></li>
             </ul>
+					</li>
         </ul>
-			</li>
-		    <a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="l">{L_LOGIN_LOGOUT}</a>
         <!-- ELSE -->
         <a href="/ucp.php?mode=register#form">Register</a>
-        <a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="l">{L_LOGIN_LOGOUT}</a>
+        <a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="l">Login</a>
         <!-- ENDIF -->
 		  </div>
 		</div>
@@ -507,6 +559,7 @@
 				font-weight: bold;
 				font-family: 'Lato','Helvetica Neue',Arial,Helvetica,sans-serif;
 				margin: -20px;
+				margin-bottom: 1em;
 				width: 880px;
 				height: 298px;
 			}
@@ -535,7 +588,7 @@
 
 		<!-- IF not S_USER_LOGGED_IN -->
 			<div class="hero panel">
-				<h1 style="margin-top: 1.5em;">Our universe is vast.</h1>
+				<h1 style="margin-top: 1.5em; color: white;">Our universe is vast.</h1>
 				<p style="font-size: 1.1em;">Amidst an endless sea of stars, what will you discover?</p>
 
 				<!-- IF not S_PAGE_ONLY -->
@@ -548,8 +601,7 @@
 
 			</div>
 		<!-- ENDIF -->
-		
-		
+
     <!-- IF S_PAGE_ONLY and not S_HIDE_AD -->
 		<div>
 			<center>
@@ -568,6 +620,81 @@
     <!-- ENDIF -->
 	
 	
+		<!-- IF S_IS_BETA -->
+			<!-- INCLUDE stylesheet_quill.html -->
+			
+			<script type="text/javascript">
+				$(document).on('click', '*[on-tap=_dismissForever]', function(e) {
+				  e.preventDefault();
+					var self = this;
+					var link = $(self).data('link');
+					Cookies.set('dismissed['+link+']', true);
+					$('*[data-link='+link+'][data-type=alert]').fadeOut().remove();
+				});
+
+				$(document).on('ready', function() {
+					$('*[data-type=alert]').each(function(el, i) {
+						var self = this;
+						var link = $(self).data('link');
+						if (!Cookies.get('dismissed['+link+']')) {
+							$('*[data-link='+link+'][data-type=alert]').show();
+						}
+					});
+				});
+			</script>
+			
+			<style type="text/css">
+				*[data-type=alert] {
+					display: none;
+				}
+			</style>
+
+			<!-- IF S_IS_CONTRIBUTOR -->
+			<div class="special panel" data-type="alert" data-link="/alerts/contributor-thanks">
+				<a href="#" class="quick-float-right" on-tap="_dismissForever" data-link="/alerts/contributor-thanks">&times;</a>
+				<h1>Thank you for your contributions!</h1>
+				<p>We wouldn't be here without all of your help.  Thanks making RolePlayGateway everything it is today! <a href="/medals/contributor">See your Contributor medal &raquo;</a></p>
+			</div>
+			<!-- ELSE -->
+			<div class="special panel" data-type="alert" data-link="/alerts/donation-drive">
+				<a href="#" class="quick-float-right" on-tap="_dismissForever" data-link="/alerts/donation-drive">&times;</a>
+				
+				<h1>RPG Donation Drive <small>(experimental, visible only to beta medal holders)</small></h1>
+				<p>We've got some exciting things planned for you.  Lend us a hand and we'll show you the way.</p>
+
+				<table>
+					<tr>
+						<td width="50%" valign="top">
+							<h2>Donate Now and receive <a href="/medals/contributor">the "Contributor" Medal</a>!</h2>
+							<p>Medals are one small token of appreciation you can earn.  Medals come with a small amount of <small>INK</small>, a form of virtual currency used around the site.</p>
+							
+							<center style="margin-top: 10em;">If someone records a video explaining achievements and <small>INK</small>, I'll put it here.</center>
+							
+							<center style="margin-top: 5em;">We could also put a meter here.</center>
+							
+							<center style="margin-top: 5em;">Donations could earn <small>INK</small>, too?</center>
+							<center><small>Special rewards unlocked at various amounts?</small></center>
+						</td>
+						<td width="50%" valign="top">
+							<h2>Donate with Bitcoin <small>(currency of the Internet)</small></h2>
+							<p>Clicking the code below will launch your Bitcoin wallet (if you have one), or you can simply scan it with your mobile wallet.  Don't have one?  <a href="https://copay.io">Install Copay &raquo;</a></p>
+							<center>
+								<a href="bitcoin:3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66">
+									<img src="/images/3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66.png" />
+								<a/>
+								<br />
+								<a href="bitcoin:3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66">
+									3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66
+								</a>
+							</center>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!-- ENDIF -->
+
+		<!-- ENDIF -->
+	
   <!-- IF S_PAGE_ONLY eq false -->
 	<div id="page-header" style="margin-bottom:-20px;">
 
@@ -581,7 +708,7 @@
 				<a href="{U_INDEX}" title="{SITE_DESCRIPTION}">
 				  <img src="/images/roleplaygateway.png" width="50" height="55" alt="RolePlayGateway Logo" title="RolePlayGateway" id="logo" />
 				  <!-- <img src="/images/roleplaygateway-winter-2011.png" height="70" alt="RolePlayGateway Logo" title="RolePlayGateway" id="logo" /> -->
-				  <h1>{SITENAME}</h1>
+				  <h1 class="inverted">{SITENAME}</h1>
 				</a>
 				<p style="margin-bottom:0.2em;">{SITE_DESCRIPTION}</p>
 				<!--  <a href="http://quotes.roleplaygateway.com/">RPG Quotes</a> | <a href="http://jobs.roleplaygateway.com/">RPG Jobs</a> |  -->
@@ -811,6 +938,7 @@
 		<span class="corners-bottom"><span></span></span></div>
 	</div>
 	<!-- ENDIF -->
+
 	<a name="start_here"></a>
 	<div id="page-body">
   <!-- ENDIF -->

@@ -1,12 +1,6 @@
 <!-- INCLUDE overall_header.html -->
 <!-- INCLUDE stylesheet_roleplay.html -->
 
-<style type="text/css">
-img.roleplay-image {
-	margin-left: 5px !important;
-}
-</style>
-
 <!-- IF S_DISPLAY_SEARCH or (S_USER_LOGGED_IN and not S_IS_BOT) -->
 <ul class="linklist">
 	<!-- IF S_DISPLAY_SEARCH -->
@@ -19,9 +13,19 @@ img.roleplay-image {
 <!-- IF not S_USER_LOGGED_IN -->
 <div id="content" class="panel bg3">
 	<div class="inner" style="font-size: 1.5em;"><span class="corners-top"></span>
-		<h2>What is this?</h2>
-		<p>RolePlayGateway is a community of <!-- over 100,000 --> writers working collaboratively to create universes in which they can tell engaging stories.  We've been working on this project for <a href="/about/">the better part of 20 years</a> and are excited to share <a href="/changelog">what we've built along the way</a>.</p>
-		<p>You're looking at the latest content published by our authors, who come from all around the world to create things together.  <strong>Go ahead.  Have a read.</strong></p>
+		<style type="text/css">
+			h3.special {
+				font-weight: normal;
+				border-bottom: 1px solid #CCCCCC;
+				font-size: 1.6em;
+				margin-top: 0.5em;
+				margin-bottom: 0.5em;
+				padding-bottom: 0.5em;
+			}
+		</style>
+
+		<!-- INCLUDE explainer.html -->
+
 		<span class="clearfix"></span>
 	<span class="corners-bottom"></span></div>
 </div>
