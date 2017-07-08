@@ -2,14 +2,45 @@
 <!-- INCLUDE stylesheet_roleplay.html -->
 <!-- INCLUDE roleplay_controls.html -->
 
-<!-- IF S_CAN_EDIT -->
+<style type="text/css">
+.special.button.group {
+  text-align: center;
+  display: inline-block;
+}
+
+.button.group .metric {
+  display: block;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 0.5em;
+}
+
+.special.button.group .action {
+  font-size: 1.2em;
+  border-top 1px solid gray;
+}
+</style>
+
+
 <div id="controls" class="quick-float-right">
+  <!-- IF S_CAN_EDIT -->
   <a href="/ucp.php?i=characters&amp;mode=edit&amp;character_id={CHARACTER_ID}" class="button">Edit</a>
+  <!-- ENDIF -->
   <!-- IF S_IS_BETA -->
-    <button class="button" on-tap="_followCharacter"><abbr title="You'll receive a notification when this character is tagged in a post.">follow</abbr></button>
+    <div class="special button group">
+      <div class="metric">
+        <div data-link="/characters/{CHARACTER_ID}" data-bind="/stats/followers">{FOLLOWER_COUNT}</div>
+        <small>followers</small>
+      </div>
+      <!-- IF S_IS_FOLLOWING -->
+        <span class="action" on-tap="_unfollowCharacter" data-id="{CHARACTER_ID}" data-link="/characters/{CHARACTER_ID}/followers/{USER_ID}"><abbr title="You are receiving notifications when this character is tagged.  Press to stop.">unfollow</abbr></span>
+      <!-- ELSE -->
+        <span class="action" on-tap="_followCharacter" data-id="{CHARACTER_ID}" data-link="/characters/{CHARACTER_ID}/followers"><abbr title="You'll receive a notification when this character is tagged in a post.">follow</abbr></span>
+      <!-- ENDIF -->
+    </div>
   <!-- ENDIF -->
 </div>
-<!-- ENDIF -->
 
 <img src="/roleplay/{ROLEPLAY_URL}/characters/{CHARACTER_URL}/image" style="float:left; height:100px; width:100px; margin-right:10px;" class="crisp-border" />
 
