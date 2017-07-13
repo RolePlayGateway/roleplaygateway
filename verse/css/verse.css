@@ -1,0 +1,33 @@
+* {
+  color: white;
+  background: black;
+  font-family: "Arvo", serif !important;
+}
+
+.component {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+}
+
+.scrollbox {
+  max-height: 30em;
+  overflow-y: scroll;
+}
+
+textarea {
+  width: 100%;
+}
+
+textarea, textarea:active, textarea:focus {
+  border: 0 !important;
+  outline: none;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment  {
+  height: 30px;
+  display: block;
+  background-color: transparent;
+}
