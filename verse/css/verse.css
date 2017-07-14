@@ -2,6 +2,7 @@
   color: white;
   background: black;
   font-family: "Arvo", serif !important;
+  text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
 }
 
 .component {
@@ -30,4 +31,175 @@ textarea, textarea:active, textarea:focus {
   height: 30px;
   display: block;
   background-color: transparent;
+}
+/* CSS Designed by Vexar 2017 */
+
+* {
+  color: white !important;
+  background: #33404e;
+  font-family: "Verdana" !important;
+}
+
+.component {
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  padding: 10px;
+  padding-bottom: 20px;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #435363;
+  border-color: #718394;
+  -webkit-box-shadow: 0px 10px 23px -1px rgba(0,0,0,0.64);
+  -moz-box-shadow: 0px 10px 23px -1px rgba(0,0,0,0.64);
+  box-shadow: 0px 10px 23px -1px rgba(0,0,0,0.64);
+}
+
+.scrollbox {
+  max-height: 30em;
+  overflow-y: scroll;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #718394;
+  padding: 1px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment  {
+  height: 30px;
+  display: block;
+  background-color: transparent;
+}
+
+/* alternating background color */
+.rowOdd {
+  background-color: #596877;
+}
+
+.rowEven {
+  background-color: #647586;
+}
+
+/* chat row alignment */
+
+.rowOdd, .rowEven {
+  padding: 2px;
+  flex-flow: row nowrap;
+  margin-top: 1px; 
+}
+
+/* inherited colors */
+
+div, span, hr, a, i, p {
+  background-color: inherit;
+}
+
+/* row display */
+
+.rowOdd, .rowEven {
+  display: flex;
+}
+
+span {
+  line-height: normal;
+}
+
+/* username styles */
+
+.user, .moderator, .administrator, .chatBot {
+  font-weight: bold;
+  cursor: pointer;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.user {
+  color: #3bc2ff !important;
+  text-shadow: -1px 0 #002f44,0 1px #002f44,1px 0 #002f44,0 -1px #002f44;
+}
+
+.moderator {
+  color: #78e000 !important;
+  text-shadow: -1px 0 #2c5200,0 1px #2c5200,1px 0 #2c5200,0 -1px #2c5200;
+}
+
+.administrator {
+  color: #F44336 !important;
+  text-shadow: -1px 0 #520600,0 1px #520600,1px 0 #520600,0 -1px #520600;
+}
+
+.chatBot {
+  color: #FF5722 !important;
+  text-shadow: -1px 0 #611700,0 1px #611700,1px 0 #611700,0 -1px #611700;
+}
+
+.username {
+  display: flex;
+
+}
+
+/* Textarea resizes vertically only */
+
+textarea {
+  resize: vertical;
+  width: 800px !important;
+  margin-top: 5px !important;
+}
+
+#inputField {
+  background-color: #212427;
+  width: 794px !important;
+}
+
+textarea, textarea:active, textarea:focus {
+  border: 1 !important;
+  border-color: #141e29;
+  outline: none;
+}
+
+abbr {
+  float: right;
+  line-height: initial;
+  background-color: inherit;
+  color: #aed1d6 !important;
+  font-weight: bold;
+  font-size: small;
+  text-decoration: underline;
+  text-shadow: -1px 0 #212427,0 1px #212427,1px 0 #212427,0 -1px #212427;
+}
+
+#chatLag {
+  color: #aed1d6 !important;
+  font-weight: normal;
+  float: right;
+  text-decoration: underline;
+  padding-left: 1px;
+  text-shadow: -1px 0 #212427,0 1px #212427,1px 0 #212427,0 -1px #212427;
+}
+
+#messageLengthCounter {
+  float: left;
+  background-color: inherit;
+  color: #aed1d6 !important;
+  font-weight: bold;
+  font-size: small;
+  text-decoration: underline;
+  text-shadow: -1px 0 #212427,0 1px #212427,1px 0 #212427,0 -1px #212427;
+}
+
+/* Action display */
+.action {
+  font-style: oblique;
+}
+
+/* link decorations */
+
+a {
+  text-decoration: none;
+  color: #CDDC39 !important;
+}
+
+a:hover {
+  font-weight: bold;
 }
