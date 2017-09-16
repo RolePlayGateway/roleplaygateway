@@ -7,7 +7,6 @@
   text-align: center;
   display: inline-block;
 }
-
 .button.group .metric {
   display: block;
   font-size: 1.2em;
@@ -15,7 +14,6 @@
   text-align: center;
   padding-bottom: 0.5em;
 }
-
 .special.button.group .action {
   font-size: 1.2em;
   border-top 1px solid gray;
@@ -93,120 +91,75 @@
         <p style="text-align:justify;">{CHARACTER_HISTORY}</p>
         <!-- ENDIF -->
         <!-- IF S_IS_BETA -->
+        <button onclick="myFunction(stats)">Display Stats</button>
+        <script type="text/javascript">function myFunction(stats) {
+            var x = document.getElementById('stats');
+            if (x.style.display === 'none') {
+                x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+            }
+        }</script>
+        <div id="stats">
         <h3>Statistics</h3>
         <b><u>Body</u></b><br>
-        <b>Power</b>
-          <select name="power">
-            <option title="Power F RANK" value="-8">F (-8)</option>
-            <option title="Power D RANK" value="-4">D (-4)</option>
-            <option selected ="selected" title="Power C RANK" value="+0">C (+0)</option>
-            <option title="Power B RANK" value="+4">B (+4)</option>
-            <option title="Power A RANK" value="+8">A (+8)</option>
-            <option title="Power S RANK" value="+12">S (+12)</option>
-          </select>
+        <b>Power</b><br>
+        F: <input type="radio" name="POW" value="-8"> | D: <input type="radio" name="POW" value="-4"> | C: <input type="radio" name="POW" value="0"> | B: <input type="radio" name="POW" value="4"> | A: <input type="radio" name="POW" value="8"> | S: <input type="radio" name="POW" value="12">
         <br>
-        <b>Agility</b>
-          <select name="agility">
-            <option title="F RANK" value="-8">F (-8)</option>
-            <option title="D RANK" value="-4">D (-4)</option>
-            <option selected ="selected" title="C RANK" value="+0">C (+0)</option>
-            <option title="B RANK" value="+4">B (+4)</option>
-            <option title="A RANK" value="+8">A (+8)</option>
-            <option title="S RANK" value="+12">S (+12)</option>
-          </select>
+        <b>Agility</b><br>
+        F: <input type="radio" name="AGI" value="-8"> | D: <input type="radio" name="AGI" value="-4"> | C: <input type="radio" name="AGI" value="0"> | B: <input type="radio" name="AGI" value="4"> | A: <input type="radio" name="AGI" value="8"> | S: <input type="radio" name="AGI" value="12">
         <br>
-        <b>Endurance</b>
-          <select name="endurance">
-            <option title="F RANK" value="-8">F (-8)</option>
-            <option title="D RANK" value="-4">D (-4)</option>
-            <option selected ="selected" title="C RANK" value="+0">C (+0)</option>
-            <option title="B RANK" value="+4">B (+4)</option>
-            <option title="A RANK" value="+8">A (+8)</option>
-            <option title="S RANK" value="+12">S (+12)</option>
-          </select>
+        <b>Endurance</b><br>
+        F: <input type="radio" name="END" value="-8"> | D: <input type="radio" name="END" value="-4"> | C: <input type="radio" name="END" value="0"> | B: <input type="radio" name="END" value="4"> | A: <input type="radio" name="END" value="8"> | S: <input type="radio" name="END" value="12">
         <br><br><b><u>Mind</u></b><br>
-        <b>Logic</b>
-          <select name="logic">
-            <option title="F RANK" value="-8">F (-8)</option>
-            <option title="D RANK" value="-4">D (-4)</option>
-            <option selected ="selected" title="C RANK" value="+0">C (+0)</option>
-            <option title="B RANK" value="+4">B (+4)</option>
-            <option title="A RANK" value="+8">A (+8)</option>
-            <option title="S RANK" value="+12">S (+12)</option>
-          </select>
+        <b>Logic</b><br>
+        F: <input type="radio" name="LOG" value="-8"> | D: <input type="radio" name="LOG" value="-4"> | C: <input type="radio" name="LOG" value="0"> | B: <input type="radio" name="LOG" value="4"> | A: <input type="radio" name="LOG" value="8"> | S: <input type="radio" name="LOG" value="12">
         <br>
-        <b>Intuition</b>
-          <select name="intuition">
-            <option title="F RANK" value="-8">F (-8)</option>
-            <option title="D RANK" value="-4">D (-4)</option>
-            <option selected ="selected" title="C RANK" value="+0">C (+0)</option>
-            <option title="B RANK" value="+4">B (+4)</option>
-            <option title="A RANK" value="+8">A (+8)</option>
-            <option title="S RANK" value="+12">S (+12)</option>
-          </select>
+        <b>Intuition</b><br>
+        F: <input type="radio" name="INT" value="-8"> | D: <input type="radio" name="INT" value="-4"> | C: <input type="radio" name="INT" value="0"> | B: <input type="radio" name="INT" value="4"> | A: <input type="radio" name="INT" value="8"> | S: <input type="radio" name="INT" value="12">
         <br>
-        <b>Charm</b>
-          <select name="charm">
-            <option title="F RANK" value="-8">F (-8)</option>
-            <option title="D RANK" value="-4">D (-4)</option>
-            <option selected ="selected" title="C RANK" value="+0">C (+0)</option>
-            <option title="B RANK" value="+4">B (+4)</option>
-            <option title="A RANK" value="+8">A (+8)</option>
-            <option title="S RANK" value="+12">S (+12)</option>
-          </select>
-        <br/><br/><b><u>Magic</u></b><br/>
-        <b>Invocation</b>
-          <select name="invocation">
-            <option title="F RANK" value="-8">F (-8)</option>
-            <option title="D RANK" value="-4">D (-4)</option>
-            <option selected ="selected" title="C RANK" value="+0">C (+0)</option>
-            <option title="B RANK" value="+4">B (+4)</option>
-            <option title="A RANK" value="+8">A (+8)</option>
-            <option title="S RANK" value="+12">S (+12)</option>
-          </select>
+        <b>Charm</b><br>
+        F: <input type="radio" name="CHA" value="-8"> | D: <input type="radio" name="CHA" value="-4"> | C: <input type="radio" name="CHA" value="0"> | B: <input type="radio" name="CHA" value="4"> | A: <input type="radio" name="CHA" value="8"> | S: <input type="radio" name="CHA" value="12">
+        <br><br><b><u>Magic</u></b><br>
+        <b>Invocation</b><br>
+        F: <input type="radio" name="INV" value="-8"> | D: <input type="radio" name="INV" value="-4"> | C: <input type="radio" name="INV" value="0"> | B: <input type="radio" name="INV" value="4"> | A: <input type="radio" name="INV" value="8"> | S: <input type="radio" name="INV" value="12">
         <br>
-        <b>Shielding</b>
-          <select name="shielding">
-            <option title="F RANK" value="-8">F (-8)</option>
-            <option title="D RANK" value="-4">D (-4)</option>
-            <option selected ="selected" title="C RANK" value="+0">C (+0)</option>
-            <option title="B RANK" value="+4">B (+4)</option>
-            <option title="A RANK" value="+8">A (+8)</option>
-            <option title="S RANK" value="+12">S (+12)</option>
-          </select>
+        <b>Shielding</b><br>
+        F: <input type="radio" name="SHI" value="-8"> | D: <input type="radio" name="SHI" value="-4"> | C: <input type="radio" name="SHI" value="0"> | B: <input type="radio" name="SHI" value="4"> | A: <input type="radio" name="SHI" value="8"> | S: <input type="radio" name="SHI" value="12">
         <br>
-        <b>Influence</b>
-          <select name="influence">
-            <option title="F RANK" value="-8">F (-8)</option>
-            <option title="D RANK" value="-4">D (-4)</option>
-            <option selected ="selected" title="C RANK" value="+0">C (+0)</option>
-            <option title="B RANK" value="+4">B (+4)</option>
-            <option title="A RANK" value="+8">A (+8)</option>
-            <option title="S RANK" value="+12">S (+12)</option>
-          </select>
+        <b>Influence</b><br>
+        F: <input type="radio" name="INF" value="-8"> | D: <input type="radio" name="INF" value="-4"> | C: <input type="radio" name="INF" value="0"> | B: <input type="radio" name="INF" value="4"> | A: <input type="radio" name="INF" value="8"> | S: <input type="radio" name="INF" value="12">
           <br>
           <br>
           <h3>Defenses</h3>
-            <i>HP:</i> <input type="number" value="15" disabled><br>
-            <i>Fortitude Defense:</i> <input type="number" value="10" disabled><br>
-            <i>Reflex Defense:</i> <input type="number" value="10" disabled><br>
-            <i>Will Defense:</i> <input type="number" value="10" disabled><br>
+            <i>HP:</i> <input type="number" value="30" min="0" max="50"><br>
+            <i>Fortitude Defense:</i> <input type="number" value="10" min="0" max="22"><br>
+            <i>Reflex Defense:</i> <input type="number" value="10" min="0" max="22"><br>
+            <i>Will Defense:</i> <input type="number" value="10" min="0" max="22"><br>
           <br>
           <br>
           <h3>Skills</h3>
-          <fieldset class="repeating_skill">
-          <b>Skill Name:</b> <input type="text" name="skill" value="Skill name here">
-                        <select>
-                          <option selected ="selected" value="Untrained">Untrained (-4)</option>
-                          <option value="Training">Training (+0)</option>
-                          <option value="Learned">Learned (+2)</option>
-                          <option value="Familiar">Familiar (+4)</option>
-                          <option value="Skilled">Skilled (+6)</option>
-                          <option value="Exceptional">Exceptional (+8)</option>
-                          <option value="Expert">Expert (+10)</option>
-                          <option value="Masterful">Masterful (+12)</option>
-                        </select>
-          </fieldset>
+          <b>Skills Equipped:</b> <input type="number" name="Skill Amount" value="0" min="0" max="5">
+          <br>
+          <br>
+          <b>Skill Name:</b> <input type="text" name="Skill Name 1" value="N/A">
+          <b>Description:</b> <input type="text" name="Skill Desc. 1" value="N/A">
+          <br>
+          <br>
+          <b>Skill Name:</b> <input type="text" name="Skill Name 2" value="N/A">
+          <b>Description:</b> <input type="text" name="Skill Desc. 2" value="N/A">
+          <br>
+          <br>
+          <b>Skill Name:</b> <input type="text" name="Skill Name 3" value="N/A">
+          <b>Description:</b> <input type="text" name="Skill Desc. 3" value="N/A">
+          <br>
+          <br>
+          <b>Skill Name:</b> <input type="text" name="Skill Name 4" value="N/A">
+          <b>Description:</b> <input type="text" name="Skill Desc. 4" value="N/A">
+          <br>
+          <br>
+          <b>Skill Name:</b> <input type="text" name="Skill Name 5" value="N/A">
+          <b>Description:</b> <input type="text" name="Skill Desc. 5" value="N/A">
           <br>
           <br>
           <h3>Items</h3>
@@ -221,7 +174,7 @@
                 <option title="S RANK" value="+8">S (+8 to Hit)</option>
               </select>
               <br>
-            <i>Damage:</i>
+            <i>Damage:</i><br>
               <select name="wep-damage">
                 <option title="F RANK" value="0">F (0 Damage)</option>
                 <option title="D RANK" value="1">D (1 Damage)</option>
@@ -234,17 +187,18 @@
             <i>Block:</i>
               <select name="wep-block">
                 <option title="F RANK" value="0">F (0 AP)</option>
-                <option title="D RANK" value="0">D (0 AP)</option>
-                <option selected ="selected" title="C RANK" value="1">C (1 AP)</option>
-                <option title="B RANK" value="2">B (2 AP)</option>
+                <option title="D RANK" value="1">D (1 AP)</option>
+                <option selected ="selected" title="C RANK" value="2">C (2 AP)</option>
+                <option title="B RANK" value="3">B (3 AP)</option>
                 <option title="A RANK" value="4">A (4 AP)</option>
-                <option title="S RANK" value="6">S (6 AP)</option>
+                <option title="S RANK" value="5">S (5 AP)</option>
               </select>
             <br><br>
-           <b>Armor:</b>
+           <b>Armor:</b> <input type="text" name="armor" value="Armor name here">
              <br><i>Kinetic Reflection:</i> <input type="number" min="0" value="0" name="KR">
              <br><i>Energy Reflection:</i> <input type="number" min="0" value="0" name="ER">
              <br><i>Agility to Reflex Defense</i> <input type="number" min="0" value="0" name="AGItoRefDef">
+          </div>
         <!-- ENDIF -->
 
         <div id="activity">
