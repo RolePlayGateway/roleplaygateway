@@ -1,0 +1,84 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<style type="text/css">
+.green.label, .red.label {
+  color: white;
+}
+
+.green.label {
+  background-color: darkgreen;
+}
+.red.label {
+  background-color: darkred;
+}
+
+tr:hover {
+  background-color: lightyellow;
+}
+
+</style>
+
+<h1 style="color: black;">DOOMSHEET SUPREME</h1>
+<h2>{TOTAL_PLACES} non-hidden locations</h2>
+
+<table style="width: 100%;" class="tablesorted">
+  <thead>
+    <tr>
+      <th><input type="checkbox" /></th>
+      <th data-sort-method="dotsep">#</th>
+      <th>Name</th>
+      <th>Owner</th>
+      <th>Creator</th>
+      <th>synopsis?</th>
+      <th data-sort-method="number">size</th>
+      <th>description?</th>
+      <th data-sort-method="number">size</th>
+      <th>image?</th>
+      <th data-sort-method="number">size</th>
+      <th>syn/desc match?</th>
+      <th>exception</th>
+      <th>Controls</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- BEGIN places -->
+    <tr>
+      <td><input type="checkbox" /></td>
+      <td>{places.ID}</td>
+      <td><a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}">{places.NAME}</a></td>
+      <td>{places.OWNER_USERNAME}</td>
+      <td>{places.CREATOR_USERNAME}</td>
+      <td><!-- IF places.S_HAS_SYNOPSIS --><span class="green label">yes</span><!-- ELSE --><span class="red label">no</span><!-- ENDIF --></td>
+      <td>{places.SYNOPSIS_LENGTH}</td>
+      <td><!-- IF places.S_HAS_DESCRIPTION --><span class="green label">yes</span><!-- ELSE --><span class="red label">no</span><!-- ENDIF --></td>
+      <td>{places.DESCRIPTION_LENGTH}</td>
+      <td><!-- IF places.S_HAS_IMAGE --><span class="green label">yes</span><!-- ELSE --><span class="red label">no</span><!-- ENDIF --></td>
+      <td>{places.IMAGE_SIZE}</td>
+      <td><!-- IF places.S_IS_LAZY --><span class="red label">yes</span><!-- ELSE --><span class="green label">no</span><!-- ENDIF --></td>
+      <td><!-- IF places.S_IS_EXCEPTION --><span class="red label">yes</span><!-- ELSE --><span class="green label">no</span><!-- ENDIF --></td>
+      <td>
+        <!-- IF places.S_CAN_EDIT -->
+        <a class="button" href="/ucp.php?i=roleplays&amp;mode=edit_place&amp;place_id={places.ID}" style="margin: 1em;">edit &raquo;</a>
+        <!-- ENDIF -->
+      </td>
+    </tr>
+    <!-- END places -->
+  </tbody>
+  
+</table>
+
+<h3><a name="holders" href="#holders">Top Sovereignty Holders</a></h3>
+<div>
+  <!-- BEGIN owners -->
+  <li>{owners.USERNAME}, with {owners.OWNED_COUNT} locations</li>
+  <!-- END owners -->
+</div>
+
+<script src="/js/tablesort.min.js"></script>
+<script src="/js/tablesort.number.js"></script>
+<script type="text/javascript">
+  new Tablesort(document.querySelector('.tablesorted'));
+</script>
+
+<!-- INCLUDE overall_footer.html -->

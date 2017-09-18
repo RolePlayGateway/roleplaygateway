@@ -1,3 +1,8 @@
+<style type="text/css">
+.scrunched p {
+	margin-bottom: 0.2em;
+}
+</style>
 <script type="text/javascript">
 // <![CDATA[
 
@@ -12,19 +17,24 @@
 	function close_popup() {
 		document.getElementById('popup').style.display='none';
 		document.getElementById('ajax_username').innerHTML = '';
-		document.getElementById('ajax_reputation').innerHTML = '';
+		document.getElementById('ajax_tenure').innerHTML = '';
+		document.getElementById('ajax_awards').innerHTML = '';
+		document.getElementById('ajax_characters').innerHTML = '';
+		document.getElementById('ajax_avatar').src = '/styles/prosilver/theme/images/loading.gif';
+
+		/*//document.getElementById('ajax_reputation').innerHTML = '';
 		document.getElementById('ajax_words_written').innerHTML = '';
 		document.getElementById('ajax_words_per_post').innerHTML = '';
 		document.getElementById('ajax_registert').innerHTML = '';
 	//	document.getElementById('ajax_posts').innerHTML = '';
 		document.getElementById('ajax_from').innerHTML = '';
 		document.getElementById('ajax_last_visit').innerHTML = '';
-		document.getElementById('ajax_avatar').innerHTML = '<img src="http://www.roleplaygateway.com/styles/prosilver/theme/images/loading.gif" alt="" />';
+		document.getElementById('ajax_avatar').src = '/styles/prosilver/theme/images/loading.gif';
 		document.getElementById('ajax_rank').innerHTML = '';
-		document.getElementById('ajax_website').innerHTML = '';
+		document.getElementById('ajax_website').innerHTML = ''; */
 	}
 
-	// Make the request	
+	// Make the request
 	function createRequestObject() {
 		var ro;
 		var browser = navigator.appName;
@@ -39,7 +49,7 @@
 	var http_getuser = createRequestObject();
 	
 	function sendRequest(UserID) {
-		http_getuser.open('get', 'http://www.roleplaygateway.com/api/member/'+UserID);
+		http_getuser.open('get', '//www.roleplaygateway.com/api/member/'+UserID);
 		http_getuser.onreadystatechange = handleResponse;
 		http_getuser.send(null);
 	}
@@ -47,9 +57,42 @@
 	// fill in the response
 	function handleResponse() {
 		if(http_getuser.readyState == 4){
+			try {
+				var user = JSON.parse(http_getuser.responseText);
+				document.getElementById('ajax_username').innerHTML = user.username;
+				document.getElementById('ajax_avatar').src = user.avatar;
+				document.getElementById('ajax_rank').innerHTML = user.rank;
+				document.getElementById('ajax_tenure').innerHTML = user.tenure;
+				document.getElementById('ajax_words_written').innerHTML = user.stats.total_words;
+				document.getElementById('ajax_novels').innerHTML = user.stats.novels;
+	
+				user.medals.forEach(function(medal) {
+					var element = document.createElement('a');
+					element.href = '/medals/' + medal.slug;
+					element.innerHTML = '<img src="/images/medals/' + medal.image + '" title="'+medal.name+'" />';
+					document.getElementById('ajax_awards').appendChild(element);
+				});
+				
+				var count = document.createElement('span');
+				count.innerHTML = '&nbsp;(' + user.medals.length + '&times;)';
+
+				document.getElementById('ajax_awards').appendChild(count);
+	
+				user.characters.forEach(function(character) {
+					var element = document.createElement('a');
+					//element.href = '/characters/' + character.slug;
+					element.innerHTML = '<img style="max-height: 34px; margin-right: 3px;" class="tiny crisp-border" src="/roleplay/'+character.roleplay_url+'/characters/' + character.url + '/image" title="'+character.name+'" />';
+					document.getElementById('ajax_characters').appendChild(element);
+				});
+				
+			} catch (e) {
+				
+			}
+			
+			/*
 			var xmlDoc	= http_getuser.responseXML;
 			document.getElementById('ajax_username').innerHTML = xmlDoc.getElementsByTagName('displayName')[0].firstChild.nodeValue;
-			document.getElementById('ajax_reputation').innerHTML = xmlDoc.getElementsByTagName('reputation')[0].firstChild.nodeValue;
+			//document.getElementById('ajax_reputation').innerHTML = xmlDoc.getElementsByTagName('reputation')[0].firstChild.nodeValue;
 			document.getElementById('ajax_words_written').innerHTML = xmlDoc.getElementsByTagName('wordswritten')[0].firstChild.nodeValue;
 			document.getElementById('ajax_words_per_post').innerHTML = xmlDoc.getElementsByTagName('wordsperpost')[0].firstChild.nodeValue;
 			document.getElementById('ajax_registert').innerHTML = xmlDoc.getElementsByTagName('regdate')[0].firstChild.nodeValue;
@@ -58,7 +101,7 @@
 			document.getElementById('ajax_from').innerHTML = xmlDoc.getElementsByTagName('from')[0].firstChild.nodeValue;
 			document.getElementById('ajax_last_visit').innerHTML = xmlDoc.getElementsByTagName('lastvisit')[0].firstChild.nodeValue;
 			document.getElementById('ajax_rank').innerHTML = xmlDoc.getElementsByTagName('rank')[0].firstChild.nodeValue;
-			document.getElementById('ajax_avatar').innerHTML = xmlDoc.getElementsByTagName('avatar')[0].firstChild.nodeValue;
+			document.getElementById('ajax_avatar').innerHTML = xmlDoc.getElementsByTagName('avatar')[0].firstChild.nodeValue; */
 		}
 	}
 	
@@ -92,20 +135,19 @@
    <div class="inner">
       <span class="corners-top"><span></span></span>
       <ul class="topiclist fullwidth">
-         <li class="header"><dl><dt><span id="ajax_username"></span> <span id="ajax_rank"></span></dt></dl></li>
+         <li class="header"><dl><dt><strong id="ajax_username"></strong> <span id="ajax_rank"></span></dt></dl></li>
       </ul>
       <ul class="topiclist forums">
          <li><dl>
-            <dd style="width:100%; padding:10px;">
-               <div id="ajax_avatar"></div>
-               <strong>Reputation:</strong> <span id="ajax_reputation"></span><br />
-               <strong>Words written:</strong> <span id="ajax_words_written"></span><br />
-               <strong>Words per post:</strong> <span id="ajax_words_per_post"></span><br />
-               <strong>{L_JOINED}:</strong> <span id="ajax_registert"></span><br />
-               <strong>{L_LAST_VISIT}:</strong> <span id="ajax_last_visit"></span><br />
-               <strong>{L_LOCATION}:</strong> <span id="ajax_from"></span><br />
-               <strong>{L_WEBSITE}:</strong> <span id="ajax_website"></span>
-               <br style="clear: both;" />
+            <dd style="width:100%; padding:10px;" class="scrunched">
+               <img id="ajax_avatar" class="crisp-border" />
+							 <p>member for <strong id="ajax_tenure"></strong> years</p>
+							 <p>has written <strong id="ajax_words_written"></strong> words</p>
+							 <p><small>(~<strong id="ajax_novels"></strong> full-length novels)</small></p>
+							 <p id="ajax_awards"></p>
+							 <p id="ajax_bio"></p>
+							 <p id="ajax_characters"></p>
+						 
             </dd>
          </dl></li>
       </ul>

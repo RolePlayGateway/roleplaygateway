@@ -6,26 +6,10 @@
 			</div>
 	<!-- ENDIF -->
 
-
 	</div>
 
 	<div id="page-footer" style="margin-bottom:15px;">
-		
-		<div class="navbar">
-			<div class="inner"><span class="corners-top"><span></span></span>
-			<ul class="linklist">
-				<li class="icon-home"><a href="{U_INDEX}" accesskey="h">{L_INDEX}</a></li>
-					<!-- IF not S_IS_BOT -->
-						<!-- IF S_WATCH_FORUM_LINK --><li <!-- IF S_WATCHING_FORUM -->class="icon-unsubscribe"<!-- ELSE -->class="icon-subscribe"<!-- ENDIF -->><a href="{S_WATCH_FORUM_LINK}" title="{S_WATCH_FORUM_TITLE}">{S_WATCH_FORUM_TITLE}</a></li><!-- ENDIF -->
-						<!-- IF U_WATCH_TOPIC --><li <!-- IF S_WATCHING_TOPIC -->class="icon-unsubscribe"<!-- ELSE -->class="icon-subscribe"<!-- ENDIF -->><a href="{U_WATCH_TOPIC}" title="{L_WATCH_TOPIC}">{L_WATCH_TOPIC}</a></li><!-- ENDIF -->
-						<!-- IF U_BOOKMARK_TOPIC --><li class="icon-bookmark"><a href="{U_BOOKMARK_TOPIC}" title="{L_BOOKMARK_TOPIC}">{L_BOOKMARK_TOPIC}</a></li><!-- ENDIF -->
-						<!-- IF U_BUMP_TOPIC --><li class="icon-bump"><a href="{U_BUMP_TOPIC}" title="{L_BUMP_TOPIC}">{L_BUMP_TOPIC}</a></li><!-- ENDIF -->
-					<!-- ENDIF -->
-				<li class="rightside"><a href="{U_TEAM}">{L_THE_TEAM}</a> &bull; <!-- IF not S_IS_BOT --><a href="{U_DELETE_COOKIES}">{L_DELETE_COOKIES}</a> &bull; <!-- ENDIF -->{S_TIMEZONE}</li>
-			</ul>
-			<span class="corners-bottom"><span></span></span></div>
-		</div>
-			
+
 		<!-- IF AD_CODE6 -->
 			<h3>Our Sponsors</h3>
 			<div align="center">{AD_CODE6}</div><br />
@@ -40,8 +24,7 @@
 				google_ad_height = 90;
 				//-->
 				</script>
-				<script type="text/javascript"
-				src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+				<script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 				</script>
 			</center>
 		
@@ -72,30 +55,33 @@
 			</table> -->
 		</div>
 		
-		<!-- <div class="sponsor"> 
-			<div> 
+		<!-- <div class="sponsor">
+			<div>
 				Powered by the <a href="http://www.rackspace.com ">Dedicated Servers</a> and<br/>
 				<a href="http://www.rackspace.com">Cloud Computing</a> of Rackspace Hosting<span>&reg;</span>
 			</div>
-			<a href="http://www.rackspace.com"> 
-				<img alt="Dedicated Server" src="http://www.roleplaygateway.com/images/rackspace_logo.png" /> 
-			</a> 
+			<a href="http://www.rackspace.com">
+				<img alt="Dedicated Server" src="//www.roleplaygateway.com/images/rackspace_logo.png" />
+			</a>
 		</div> -->
 
 		<div class="copyright">
 			<!-- IF TRANSLATION_INFO --><br />{TRANSLATION_INFO}<!-- ENDIF -->
 			<!-- IF DEBUG_OUTPUT --><br />{DEBUG_OUTPUT}<!-- ENDIF -->
-			<!-- IF U_ACP --><br /><strong><a href="{U_ACP}">{L_ACP}</a></strong><!-- ENDIF -->
-			<br />RolePlayGateway is proudly powered by obscene amounts of caffeine, duct tape, and support from people like you.  It operates under a "don't like it, suggest an improvement" platform, and we gladly take suggestions for improvements or changes.
-			<br /><br />The custom-built "roleplay" system was designed and implemented by <a href="http://www.ericmartindale.com">Eric Martindale</a> as of July 2009.  All attempts to replicate or otherwise emulate this system and its method of organizing roleplay are strictly prohibited without his express written and contractual permission; violators will be prosecuted to the fullest extent of the law.
+			<!-- IF U_ACP --><p><strong><a href="{U_ACP}">{L_ACP}</a></strong></p><!-- ENDIF -->
+			
+			<p><a href="/about">About</a> &middot; <a href="https://quill.is/docs/terms-of-use">Terms</a> &middot; <a href="https://quill.is/docs/privacy-policy">Privacy</a> &middot; <a href="https://github.com/RolePlayGateway">Source Code</a></p>
+	
 			<br /><br />
-			<p>&copy; RolePlayGateway, LLC | with the support of <a href="https://localsense.com/">LocalSense</a></p>
+			<p>&copy; RolePlayGateway, LLC </p>
 		</div>
 
 	</div>
 </div>
 
-		<script>
+		<script type="text/javascript">
+			$('.timeago').timeago();
+
 			var previewTimeout;
       $('.previewable').keyup(function(e) {
         var self = this;
@@ -157,7 +143,10 @@
 			}, 5000); */
 
 		</script>
-	
+
+		<script type="text/javascript" src="/im/external.php?type=djs" charset="utf-8"></script>
+		<script type="text/javascript" src="/im/external.php?type=js" charset="utf-8"></script>
+
 		<!-- IF S_IS_ERIC_TESTING_STUFF -->
 		<div id="activitybar">
 			
@@ -178,7 +167,6 @@
 					}
 				</script>
 			</div>
-		
 
 			<a href="#" onclick="$('#activitybar').css('height', 350);">Handle</a>
 			Hello, Eric.
@@ -189,28 +177,149 @@
 
 <div>
 	<a id="bottom" name="bottom" accesskey="z"></a>
-	<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
-	<!-- IF S_IS_ERIC -->
+	<!-- real ip: {REAL_IP} -->
+	<!-- ban result: {BAN_RESULT} -->
+	<!-- cookies: {COOKIE} -->
+	<!-- IF S_IS_ULTRABANNED -->
+	<script type="text/javascript">
+		Cookies('ubr', true);
+	</script>
 	<!-- ENDIF -->
+	<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
 </div>
 
 <!-- <script src="http://tweetboard.com/tb.js?v=1.0&user=RolePlayGateway" type="text/javascript"></script>
 <script type="text/javascript" src="http://twitter.com/javascripts/blogger.js"></script>
 <script type="text/javascript" src="http://twitter.com/statuses/user_timeline/RolePlayGateway.json?callback=twitterCallback2&amp;count=1"></script> -->
 
-<script type="text/javascript">
-  var uvOptions = {};
-  (function() {
-    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/4s8uFkynBiB2y1GhttDBbQ.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-  })();
+<script>
+// Include the UserVoice JavaScript SDK (only needed once on a page)
+UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/af4PYcyzDMD0gx594kduUQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+
+//
+// UserVoice Javascript SDK developer documentation:
+// https://www.uservoice.com/o/javascript-sdk
+//
+
+// Set colors
+UserVoice.push(['set', {
+  accent_color: '#448dd6',
+  trigger_color: 'white',
+  trigger_background_color: '#e23a39'
+}]);
+</script>
+
+<!-- IF S_USER_LOGGED_IN -->
+<script>
+// Identify the user and pass traits
+// To enable, replace sample data with actual user traits and uncomment the line
+UserVoice.push(['identify', {
+	name: "{U_USERNAME}", // Full name
+	email: "{U_EMAIL}", // Email address
+	created_at: 1312182000 // Signup date as a Unix timestamp
+  //email:      'john.doe@example.com', // User’s email address
+  //name:       'John Doe', // User’s real name
+  //created_at: 1364406966, // Unix timestamp for the date the user signed up
+  //id:         123, // Optional: Unique id of the user (if set, this should not change)
+  //type:       'Owner', // Optional: segment your users by type
+  //account: { // Account traits are only available on some plans
+  //  id:           123, // Optional: associate multiple users with a single account
+  //  name:         'Acme, Co.', // Account name
+  //  created_at:   1364406966, // Unix timestamp for the date the account was created
+  //  monthly_rate: 9.99, // Decimal; monthly rate of the account
+  //  ltv:          1495.00, // Decimal; lifetime value of the account
+  //  plan:         'Enhanced' // Plan name for the account
+  //}
+}]);
+</script>
+<!-- ENDIF -->
+
+<script>
+// Add default trigger to the bottom-right corner of the window:
+UserVoice.push(['addTrigger', {mode: 'feedback', trigger_position: 'bottom-right' }]);
+
+// Or, use your own custom trigger:
+//UserVoice.push(['addTrigger', '#id', { mode: 'feedback' }]);
+
+// Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+UserVoice.push(['autoprompt', {}]);
 </script>
 
 
+<!-- UserVoice JavaScript SDK (only needed once on a page) -->
+<!-- <script>(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/af4PYcyzDMD0gx594kduUQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()</script> -->
+<!-- A tab to launch the Classic Widget -->
+<!--
+<script>
+UserVoice = window.UserVoice || [];
+UserVoice.push(['showTab', 'classic_widget', {
+  mode: 'full',
+  primary_color: '#cc6d00',
+  link_color: '#007dbf',
+  default_mode: 'feedback',
+  forum_id: 22249,
+  tab_label: 'Feedback & Support',
+  tab_color: '#cc6d00',
+  tab_position: 'middle-left',
+  tab_inverted: false
+}]);
+</script>
+-->
+
+<!-- IF S_INTERCOM -->
+<!-- IF S_USER_LOGGED_IN -->
+<script>
+  window.intercomSettings = {
+    app_id: "nu5vyruh",
+    name: "{U_USERNAME}", // Full name
+    email: "{U_EMAIL}", // Email address
+    created_at: 1312182000 // Signup date as a Unix timestamp
+  };
+</script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/nu5vyruh';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+<!-- ELSE -->
+<script>
+  window.intercomSettings = {
+    app_id: "nu5vyruh"
+  };
+</script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/nu5vyruh';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- disabled by Eric on 11/17 s blab is gone! -->
+<!-- TODO: find a replacement. -->
+<!-- <script>
+(function () {
+	window._BlabNS = {};
+	window._BlabNS.user_id = 'c049620211034d5a8aa3e61644824197';
+	window._BlabNS.enableMobile = true;
+	var s = document.createElement('script');
+	s.type = 'text/javascript';
+	s.async = true;
+	s.src = 'https://cdn.blab.im/tinyplayer/js/sdk.js';
+	var x = document.getElementsByTagName('script')[0];
+	x.parentNode.insertBefore(s, x);
+})();
+</script> -->
+
+<!-- IF TIMESTAMP is even -->
+<div></div>
+<!-- ELSE -->
+<div></div>
+<!-- ENDIF -->
+
+<!-- disabled 2016-11-17 -->
+<!--
+<iframe src="https://write.roleplaygateway.com/auth_session?sessionID={SESSION_ID}" height="0" width="0" border="0"></iframe>
+-->
+
+<!--<iframe src="http://digsouthinteractivefestival2015.sched.org/speaker/eric234" height="0" border="0"></iframe>
+<iframe src="http://digsouthinteractivefestival2015.sched.org/event/8b2b8c1fe7d297e5f1af7dbee845b8f8" height="0" border="0"></iframe>
+-->
 <!--[if IE 6]>
-<script type="text/javascript"> 
-	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; } 
+<script type="text/javascript">
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; }
 	var IE6UPDATE_OPTIONS = {
 		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
 	}

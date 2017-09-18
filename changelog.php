@@ -12,6 +12,9 @@ $user->session_begin();
 $auth->acl($user->data);
 $user->setup('viewforum');
 
+$template->assign_vars(array(
+  'S_PAGE_ONLY' => true,
+));
 
 page_header('Recent '.$config['sitename'] . ' Changes');
 
@@ -21,3 +24,5 @@ $template->set_filenames(array(
 );
 
 page_footer();
+
+?>

@@ -1,50 +1,61 @@
-<!-- INCLUDE ucp_header.html -->
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
 
-<h2>Edit Character</h2>
 
-<form id="ucp" enctype="multipart/form-data" method="post" action="http://www.roleplaygateway.com/ucp.php?i=characters&mode=edit&action=submit">
+<img src="/roleplay/{ROLEPLAY_URL}/characters/{CHARACTER_URL}/image" style="float:left; margin-bottom: 1em; margin-right: 1em;" class="crisp-border" />
+
+<h2>Editing &ldquo;{NAME}&rdquo;, a character in {ROLEPLAY_TITLE}.</h2>
+<p>{ROLEPLAY_DESCRIPTION}</p>
+
+<form id="ucp" enctype="multipart/form-data" method="post" action="//www.roleplaygateway.com/ucp.php?i=characters&mode=edit&action=submit" style="clear:both;">
 <input type="hidden" name="character_id" value="{CHARACTER_ID}" />
 
 <div class="panel">
 	<div class="inner"><span class="corners-top"><span></span></span>
-	
-		<h3>Character Details: {NAME}</h3>
 
 		<fieldset>
 			<dl>
 				<dt>
 					<label for="character_synopsis">Synopsis:</label><br />
-					<span>Give a brief overview of your character. This is used as your introduction in our roleplay chat when you type the following command to go In Character (IC):
-/ic Character Name</span>
+					<span>Give a brief overview of your character.</span>
 				</dt>
 				<dd><input type="text" value="{SYNOPSIS}" maxlength="255" size="255" name="character_synopsis" id="character_synopsis" class="inputbox" /></dd>
 			</dl>
 			<dl>
 				<dt>
 					<label for="character_image">Character Avatar:</label><br />
-					<span>Upload a small 100x100 avatar for your character. This will be displayed in various places around your roleplay, such as dialogue.</span>
+					<span>Upload a small <strong>100x100</strong> avatar for your character. This will be displayed in various places around your roleplay, such as dialogue.  You can leave this empty if you don't want to change the existing image.</span>
+					<br /><br />
+
+					<span style="font-size: 0.9em;"><strong>Note:</strong> If you upload a new image, it might take up to 24 hours to display (or until you <a href="http://www.infront.com/support/clearing-your-cache">clear your cache</a>).  Rest assured, we've got it.</span>
 				</dt>
 				<dd>
 					<input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
 					<input name="userfile" type="file" />
+					<p style="border-radius: 5px; background: #FCC475; padding: 1em;  margin-top: 0.5em;">If your image is not 100x100, <strong>your upload will be rejected</strong>.  You can use <a href="http://www.image-resizer.co.uk/">an online image-resizer</a> if you're not familiar with image editing.</p>
 				</dd>
 			</dl>
 
 		</fieldset>
 		
-		<h3>Important Details</h3>
-		<p>Filling one or more of these fields out will allow it to display on your character's profile, but leaving it empty will prevent it from being displayed. If you so choose, you can use the "Description" field to add any detailed information that does not fit into other fields. BBcode <strong>is</strong> enabled in these fields.</p>
-		<fieldset>		
-			<dl>
-				<dt>
-					<label for="character_description">Description:</label><br />
-					<span>Describe the physical appearance of your character. Words are better than pictures.</span>
-				</dt>
-			</dl>
-			<ul class="topiclist cplist">
-				<script type="text/javascript">edToolbar('character_description');</script>
-				<textarea name="character_description" id="character_description" rows="15" class="inputbox" style="width:100%;">{DESCRIPTION}</textarea>
+		<h3>Character Sheet</h3>
+		<p>You can add any information here that you'd like, including BBCode.  Some good ideas of what to include:
+			<ul style="list-style-position: inside; padding-left: 1em; font-size: 1.2em;">
+				<li><strong>Physical description:</strong>  what does your character look like?</li>
+				<li><strong>Personality:</strong>  what kind of person is this, what's their general demeanor?</li>
+				<li><strong>Equipment & Abilities:</strong>  in your character's adventures, what do they rely on to get them through trouble?</li>
+				<li><strong>Historical Background:</strong>  how was your character's childhood, how did they get where they are today?</li>
 			</ul>
+		</p>
+		<p>You can also simply not include anything at all, and encourage other players to explore this character's personality through roleplaying with them.</p>
+		<p>Be mindful of <a href="/roleplay/{ROLEPLAY_URL}#rules">this roleplay's rules</a>.</p>
+		<fieldset>
+			<ul class="topiclist cplist">
+				<div class="quick-float-right"><br />Want some help?  Try <a href="/bbcode-formatting-and-chat-commands-sov-guide-t98760.html">ChaoticMarin's BBCode Formatting Guide</a>.</div>
+				<script type="text/javascript">edToolbar('character_description');</script>
+				<textarea name="character_description" id="character_description" rows="15" class="inputbox previewable" style="width:100%;">{DESCRIPTION}</textarea>
+			</ul>
+			<!-- IF PERSONALITY -->
 			<dl>
 				<dt>
 					<label for="character_personality">Personality:</label><br />
@@ -53,8 +64,10 @@
 			</dl>
 			<ul class="topiclist cplist">
 				<script type="text/javascript">edToolbar('character_personality');</script>
-				<textarea name="character_personality" id="character_personality" rows="15" class="inputbox" style="width:100%;">{PERSONALITY}</textarea>
+				<textarea name="character_personality" id="character_personality" rows="25" class="inputbox" style="width:100%;">{PERSONALITY}</textarea>
 			</ul>
+			<!-- ENDIF -->
+			<!-- IF EQUIPMENT -->
 			<dl>
 				<dt>
 					<label for="character_equipment">Equipment:</label><br />
@@ -65,6 +78,8 @@
 				<script type="text/javascript">edToolbar('character_equipment');</script>
 				<textarea name="character_equipment" id="character_equipment" rows="15" class="inputbox" style="width:100%;">{EQUIPMENT}</textarea>
 			</ul>
+			<!-- ENDIF -->
+			<!-- IF HISTORY -->
 			<dl>
 				<dt>
 					<label for="character_history">History:</label><br />
@@ -75,16 +90,22 @@
 				<script type="text/javascript">edToolbar('character_history');</script>
 				<textarea name="character_history" id="character_history" rows="15" class="inputbox" style="width:100%;">{HISTORY}</textarea>
 			</ul>
+			<!-- ENDIF -->
 		</fieldset>
 		
 		<fieldset class="submit-buttons">
-			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
 			<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
 		</fieldset>
+
+		<div class="postbody" style="width: auto;">
+	    <div class="content">
+	      <div id="innerPreview"></div>
+	    </div>
+	  </div>
 		
 	<span class="corners-bottom"><span></span></span></div>
 </div>
 
 </form>
 
-<!-- INCLUDE ucp_footer.html -->
+<!-- INCLUDE overall_footer.html -->

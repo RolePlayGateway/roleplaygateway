@@ -1,0 +1,40 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<h2>Invitations</h2>
+<p>Earn <small>INK</small> for inviting your friends.</p>
+
+<form action="/invitations" method="POST">
+  <input name="email" type="email" />
+  <button type="submit">Invite &raquo;</button>
+</form>
+
+<div class="special panel">
+  <table style="width: 100%;">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>From</td>
+        <td>To</td>
+        <td>Email</td>
+        <td>Status</td>
+        <td>Timestamp</td>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- BEGIN invitations -->
+      <tr>
+        <td>{invitations.ID}</td>
+        <td>{invitations.FROM_NAME}</td>
+        <td>{invitations.TO_NAME}</td>
+        <td>{invitations.EMAIL}</td>
+        <td>{invitations.STATUS}</td>
+        <td>{invitations.TIMESTAMP}</td>
+      </tr>
+      <!-- END invitations -->
+    </tbody>
+  </table>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

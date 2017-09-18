@@ -1,0 +1,46 @@
+<!-- INCLUDE place-list-body.html -->
+
+<div class="forabg">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<ul class="topiclist">
+		<li class="header">
+			<dl class="icon">
+				<dt><a href="/roleplay">Newest Worlds</a></dt>
+				<dd class="lastpost"><a href="/roleplay">Browse All</a></dd>
+			</dl>
+		</li>
+	</ul>
+	<ul class="topiclist forums">
+		<!-- BEGIN roleplays -->
+		<li class="row bg1 icon roleplay" style="clear:left; padding-bottom: 0.5em;">
+			<a href="/roleplay/{roleplays.URL}"><img src="/roleplay/{roleplays.URL}/image" class="crisp-border roleplay-image" style="float:left;" /></a>
+			<dt style="padding-bottom:5px;">
+				<div>
+					<!-- IF roleplays.S_CAN_EDIT -->
+					<div id="controls" style="float:right;">
+						<a href="/ucp.php?i=roleplays&amp;mode=edit&amp;id={roleplays.ID}">Edit</a>
+					</div>
+					<!-- ENDIF -->
+					<a href="/roleplay/{roleplays.URL}" class="topictitle">{roleplays.TITLE}</a> <span class="author">by {roleplays.OWNER_USERNAME}</span>
+					<p class="roleplay-description">{roleplays.DESCRIPTION}</p>
+					<span class="tags"><strong>Tags:</strong> {roleplays.TAGS} (<a href="//www.roleplaygateway.com/ucp.php?i=roleplays&amp;mode=add_tag&amp;id={roleplays.ID}">Add Tags &raquo;</a>)</span>
+				</div>
+			</dt>
+			<!-- <dd>{roleplays.LAST_ACTIVITY}</dd> -->
+		</li>
+		<!-- END roleplays -->
+	</ul>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!--
+		
+		<h1 style="color:#226A87;">Welcome to RolePlayGateway!</h1>
+		<p style="font-size:1.4em; padding: 10px; line-height:1.7em;">
+			RolePlayGateway works a bit differently than your typical play-by-post roleplaying site. When you <a href="/ucp.php?i=roleplays&amp;mode=new">create your own roleplay</a>, you get your own set of message boards and chat that you can configure and share to your friends that embodies the world that you, as the author, have defined.  Attach images and descriptions to individual places in your world, and control what characters can join through a powerful character approval system.
+			<a href="/roleplay/" style="float:right; font-size:1.2em;">Learn More &raquo;</a>
+		</p>
+
+		<hr style="clear:left;" />
+		
+-->
