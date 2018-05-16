@@ -48,45 +48,161 @@
 }
 #content #copyright {
 	position:absolute;
-	right:20px;
+	right:0px;
 	top:20px;
 }
 #content #headlineContainer {
 	position:absolute;
-	left:20px;
+	left:0px;
 	top:5px;
 }
+
+#content #placeControls {
+	position: relative;
+	left: 0px;
+	top: 3px;
+	width: auto;
+	padding: 3px;
+}
+
+#content #sessionControls {
+	position:absolute;
+	right: 0px;
+	top: 3px;
+	padding: 3px;
+	z-index: 1;
+}
+
 #content #logoutChannelContainer {
 	position:absolute;
-	left:20px;
-	top:50px;
+	left:0px;
+	right:0px;
+	top:0px;
+  
+  padding-left: 10px;
 }
+
+#content #chatListColumn {
+	position:absolute;
+	left:10px;
+	right:220px;
+	top:0px;
+	bottom:0px;
+}
+
 #content #chatList {
 	position:absolute;
-	left:20px;
-	right:230px;
-	top:85px;
-	bottom:150px;
+	left:0px;
+	right:0px;
+	top:35px;
+	bottom:95px;
+	overflow:auto;
+	opacity: 1.0;
+}
+
+#content #viewList {
+	position:absolute;
+	left:0px;
+	width: 180px;
+	top:35px;
+	bottom:0px;
 	overflow:auto;
 }
+#content #viewList img {
+	height: 30px;
+	float: left;
+	margin-right: 5px;
+}
+
+#content #viewList #viewListToggler {
+	padding: 5px;
+	font-weight: bold;
+	font-size: 2em;
+	cursor: pointer;
+}
+
+#content #viewList .viewListRoleplay h3{
+	margin: 0px;
+}
+
+#content #viewList span {
+	font-size: 0.7em;
+	font-style: italic;
+	clear:both;
+}
+
+#content #viewList .viewListRoleplayOOC {
+	margin-top:-2px;
+	border-bottom: 2px solid gray;
+	border-top: 2px solid gray;
+	cursor: pointer;
+}
+
+#content #viewList .viewListCharacter, #content #viewList .viewListRoleplayOOC, #content #viewList #viewListToggler {
+	opacity: 0.6;
+}
+#content #viewList .viewListCharacter:hover, #content #viewList .viewListRoleplayOOC:hover, #content #viewList #viewListToggler:hover, .active {
+	background-color:#ffffe0;
+	opacity: 1.0;
+}
+
+#content #viewList .viewListCharacter {
+	display:block;
+	clear:both;
+	cursor: pointer;
+	border-bottom: 1px solid gray;
+}
+
+#content #placeSynopsis {
+	height: 35px;
+	overflow: hidden;
+	white-space:nowrap;
+	width: 200px;
+}
+
+#content #userCardContainer {
+	position:absolute;
+	left: 0px;
+	bottom: 10px;
+  height: 57px;
+  width: 154px;
+  padding: 10px;
+}
+
 #content #inputFieldContainer {
 	position:absolute;
-	left:20px;
-	right:20px;
-	bottom:95px;
-	padding-right:4px;
+	left:180px;
+	right:10px;
+	bottom:40px;
+}
+#content #characterSelectContainer {
+	position:absolute;
+	left:0px;
+	width: 175px;
+	bottom:40px;
+	height:45px;
+	cursor: pointer;
 }
 #content #submitButtonContainer {
+	width: 200px;
 	position:absolute;
-	right:20px;
-	bottom:60px;
+	right: 10px;
+	bottom:40px;
+	height: 50px;
+}
+#content #submitButtonContainer span.messageLengthCounter {
+	display:block;
+}
+#content #submitButtonContainer #lagContainer {
+	float:right;
+	width:100px;
 }
 #content #onlineListContainer {
 	position:absolute;
-	right:20px;
-	top:85px;
+	right:10px;
+	top:35px;
 	width:200px;
-	bottom:150px;
+	bottom:95px;
 }
 #content #helpContainer {
 	position:absolute;
@@ -97,34 +213,40 @@
 }
 #content #settingsContainer {
 	position:absolute;
-	right:20px;
+	right:0px;
 	top:85px;
 	width:360px;
-	bottom:150px;
+	bottom:95px;
+}
+#content #otherSettingsContainer {
+	position:absolute;
+	right:0px;
+	bottom:0px;
+	padding:3px;
 }
 #content #bbCodeContainer {
 	position:absolute;
-	left:20px;
-	bottom:20px;
+	left: 180px;
+	bottom: 10px;
 	padding:3px;
 }
 #content #colorCodesContainer {
 	position:absolute;
-	left:20px;
-	bottom:55px;
+	left:0px;
+	bottom:35px;
 	padding:3px;
 	z-index:1;
 }
 #content #emoticonsContainer {
 	position:absolute;
-	left:20px;
-	bottom:57px;
+	left:0px;
+	bottom:37px;
 	padding:3px;
 }
 #content #optionsContainer {
 	position:absolute;
-	right:20px;
-	bottom:20px;
+	right:0px;
+	bottom:0px;
 	padding:3px;
 	padding-right:0px;
 }
@@ -158,10 +280,7 @@
 	margin-top:12px;
 }
 #content #chatList div {
-	padding-left:10px;
-	padding-top:2px;
-	padding-right:10px;
-	padding-bottom:2px;
+
 }
 #content #chatList img {
 	vertical-align:middle;
@@ -170,6 +289,11 @@
 #content #chatList cite {
 	margin-right:5px;
 }
+#content #chatList .bbCodeImage {
+	vertical-align:top;
+	overflow:auto;
+	margin:5px;
+}
 #content #chatList .delete {
 	display:block;
 	float:right;
@@ -177,6 +301,15 @@
 	height:10px;
 	margin-top:2px;
 	padding-left:5px;
+}
+#content #chatList .timestamp {
+	display:block;
+	float:right;
+	height:10px;
+	margin-top:2px;
+	padding-left:5px;
+	font-size: 0.6em;
+	color:#666;
 }
 #content #inputFieldContainer #inputField {
 	width:100%;
@@ -239,3 +372,23 @@
 	vertical-align:middle;
 	margin-bottom:2px;
 }
+
+									.dialogue-bubble {
+									  background: #ecedee;
+									  padding: 10px;
+									  position: relative; /* This is the only really important part */
+									}
+
+									.dialogue-bubble>span.pointer {
+									  display: block;
+									  position: absolute;
+									  width: 1px;
+									  height: 1px;
+									  font-size: 0;
+									  line-height: 1px;
+									  left: 30px; /* Determines the length of the tail */
+									  top: -10px;
+									  border-left: 7px solid transparent; /* Angle of the triangle. */
+									  border-right: 7px solid transparent;
+									  border-bottom: 10px solid #ecedee; /* The triangle */
+									}
