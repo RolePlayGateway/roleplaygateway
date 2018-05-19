@@ -1,0 +1,33 @@
+<h2><!-- IF HTML_NEWS_URL --><a href="{HTML_NEWS_URL}" title="{HTML_NEWS_TITLE}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {HTML_NEWS_TITLE}</a> <!-- ENDIF --><!-- IF HTML_URL --><strong>&raquo;</strong> <a href="{HTML_URL}" title="{HTML_SITENAME}">{HTML_SITENAME}</a><!-- ENDIF --></h2>
+<!-- IF HTML_SITEDESC --><span>{HTML_SITEDESC}<br /></span><!-- ENDIF --><br clear="all" />
+<!-- BEGIN module -->
+<table class="tablebg" cellspacing="1" width="100%">
+	<tr>
+		<td class="cat" colspan="2" align="left"><h4><!-- IF module.NEWS_URL --><a href="{module.NEWS_URL}" title="{module.NEWS_TITLE}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {module.NEWS_TITLE}</a> <!-- ENDIF --><!-- IF module.MAP_URL --> <strong>&raquo;</strong> <a href="{module.MAP_URL}" title="{module.MAP_TITLE}">{module.MAP_TITLE}</a><br /><!-- ENDIF --></h4></td>
+	</tr>
+	<!-- BEGIN links -->
+	<tr style="padding:10px;">
+		<td class="row<!-- IF module.links.S_ROW_COUNT is odd -->2<!-- ELSE -->1<!-- ENDIF -->" <!-- IF not(module.links.NEWS_URL and module.links.MAP_URL) -->colspan="2"<!-- ELSE -->width="50%"<!-- ENDIF -->>
+			<!-- IF module.links.NEWS_URL -->
+			<a class="forumlink" href="{module.links.NEWS_URL}" title="{module.links.NEWS_TITLE}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {module.links.NEWS_TITLE}</a>	
+			<!-- ELSE -->
+			<a class="forumlink" href="{module.links.MAP_URL}" title="{module.links.MAP_TITLE}"> <strong>&raquo;</strong> {module.links.MAP_TITLE}</a>
+			<!-- ENDIF -->
+			<!-- IF module.links.NEWS_URL and module.links.MAP_URL -->
+			</td><td class="row<!-- IF module.links.S_ROW_COUNT is odd -->2<!-- ELSE -->1<!-- ENDIF -->" width="50%">
+				<a class="forumlink" href="{module.links.MAP_URL}" title="{module.links.MAP_TITLE}"> <strong>&raquo;</strong> {module.links.MAP_TITLE}</a>
+			<!-- ENDIF -->
+		</td>
+	</tr>
+	<!-- END links -->
+</table>
+<!-- BEGINELSE -->
+<table class="tablebg" cellspacing="1" width="100%">
+	<tr height="15px">
+		<td class="cat" colspan="2" align="left"><h4><a href="{HTML_URL}" title="{HTML_SITENAME}">{HTML_SITENAME}</a></h4></td>
+	</tr>
+	<tr>
+		<td class="row1" colspan="5" align="center"><p class="gensmall">{L_HTML_MAP_NONE}</p></td>
+	</tr>
+</div>
+<!-- END module -->

@@ -1,0 +1,52 @@
+<!-- $Id: recent.html,v 1.4 2007/04/14 02:05:17 angelside Exp $ //-->
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+			<table width="100%">
+			<tr>
+				<td class="row1"><strong>Announcements</strong></td>
+				<td class="row1"><strong>Hot Topics</strong></td>
+				<td class="row1"><strong>New Topics</strong></td>
+				<td class="row1"><strong>Share RolePlayGateway!</strong></td>
+			</tr>
+			<tr>
+				<td class="row1" valign="top">
+					<small>
+					<!-- BEGIN latest_announcements -->
+								<a href="{latest_announcements.U_VIEW_TOPIC}" title="{latest_announcements.FULL_TITLE}">{latest_announcements.TITLE}</a><br />
+					<!-- END latest_announcements -->
+					</small>
+				</td>
+				<td class="row1" valign="top">
+					<small>
+					<!-- BEGIN latest_hot_topics -->
+						<a href="{latest_hot_topics.U_VIEW_TOPIC}" title="{latest_hot_topics.FULL_TITLE}">{latest_hot_topics.TITLE}</a><br />
+					<!-- END latest_hot_topics -->
+					</small>
+				</td>
+				<td class="row1" valign="top">
+					<small>
+					<!-- BEGIN latest_topics -->
+						<a href="{latest_topics.U_VIEW_TOPIC}" title="{latest_topics.FULL_TITLE}">{latest_topics.TITLE}</a><br />
+					<!-- END latest_topics -->
+					</small>
+				</td>
+				<td class="row1" valign="top" style="width:25%;">
+					<small>
+						Please link to <strong>RolePlayGateway</strong>! Use the following HTML:<br><br>
+						<input tabindex="1" size="28" onclick="select();" value="&lt;a&nbsp;href=&quot;http://www.roleplaygateway.com/&quot;&nbsp;title=&quot;Role Playing Games&quot;&gt;RolePlayGateway&lt;/a&gt;" class="inputbox autowidth" type="text"><br><br>
+
+						Or BBcode, for forums:<br><br>
+						<input tabindex="1" size="28" onclick="select();" value="Proud member of [url=http://www.roleplaygateway.com/]RolePlayGatetway[/url]." class="inputbox autowidth" type="text"><br> 
+					<!-- BEGIN random_excerpt -->
+						{random_excerpt.TEXT}
+						<div style="float:right"><a href="{random_excerpt.U_VIEW_TOPIC}">Read more...</a></div>
+					<!-- END random_excerpt -->
+					</small>
+				</td>
+			</tr>
+			</table>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+<br style="clear:both;" />

@@ -1,0 +1,55 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>Character Management</h2>
+
+<form id="ucp" method="post" action="http://www.roleplaygateway.com/ucp.php?i=characters&mode=edit">
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<p>Use this page to manage your characters.</p>
+		
+		<h3>Your Characters</h3>
+
+		<input class="inputbox supersize" style="width: 350px; font-size: 1.2em; margin:0.5em; padding: 0.25em;" type="text" id="characterFilter" placeholder="Type here to filter by name or roleplay." />
+    <strong>We hate scrolling, too.</strong>
+
+		<ul class="topiclist cplist" id="characterList"> 
+		
+		<!-- BEGIN characters -->
+		<li class="row bg1" data-name="{characters.NAME}" data-roleplay-name="{characters.ROLEPLAY}"> 
+			<dl> 
+				<dt>
+          <img class="crisp-border" style="float:left; height: 50px; margin-right: 1em;" src="/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}/image" />
+					<a href="/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}/" class="forumtitle">{characters.NAME}</a>
+					<br />{characters.SYNOPSIS}<br /><i>{characters.MODES}</i>
+				</dt> 
+				<dd class="mark"><a href="http://www.roleplaygateway.com/ucp.php?i=characters&mode=abandon&character_id={characters.ID}">Abandon</a></dd> 
+				<dd class="mark"><a href="http://www.roleplaygateway.com/ucp.php?i=characters&mode=edit&character_id={characters.ID}">Edit</a></dd> 
+				<dd class="mark" style="width: 180px;"><a href="http://www.roleplaygateway.com/roleplay/{characters.ROLEPLAY_URL}/">{characters.ROLEPLAY}</a></dd> 
+			</dl> 
+		</li>	
+	
+		<!-- END characters -->
+		
+		</ul>
+		
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+</form>
+<script type="text/javascript">
+  $('#ucp').submit(function() {
+    return false;
+  });
+  $('#characterFilter').keyup(function() {
+    var filter = $(this).val();
+    if (filter.length > 0) {
+      $('#characterList li').hide();
+      $('#characterList li[data-name*="'+filter+'"]').show();
+      $('#characterList li[data-roleplay-name*="'+filter+'"]').show();
+    } else {
+      $('#characterList li').show();
+    }
+  });
+</script>
+<!-- INCLUDE ucp_footer.html -->

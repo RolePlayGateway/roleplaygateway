@@ -1,0 +1,17 @@
+Subject: {TOPIC_SUBJECT}
+
+Hello {MODERATOR_NAME},
+
+You are receiving this notification because are either an Administrator or a moderator of the {FORUM_NAME} forum.
+
+The following report has been made by {REPORTER} in the topic : {TOPIC_TITLE}
+
+Topic URL      :  {U_TOPIC_URL}
+Report URL     :  {U_REPORT_URL}
+Subject        :  {POST_SUBJECT}
+Report reason  :  {REASON}
+Report message :
+
+{REPORT_TEXT}
+
+{EMAIL_SIG}

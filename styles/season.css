@@ -1,0 +1,30 @@
+#wrap {
+	/* background:#e6e7ee url('http://www.roleplaygateway.com/images/background-winter-2011.jpg') repeat-x bottom; */
+	opacity: 0.9;
+}
+
+.headerbar, .forumbg, .forabg, .navbar {
+  background-image: url('http://www.roleplaygateway.com/images/banner-winter-2011.jpg');
+  background-color: #a2bee6;
+}
+
+.user-avatar {
+  position: relative;
+}
+
+.user-avatar span.frost {
+  position: relative;
+}
+
+.user-avatar span.frost span.innerfrost {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: url('http://www.roleplaygateway.com/download/file.php?id=2484');
+}
+
+/*
+#tabs a span {
+  background-image: url('http://www.roleplaygateway.com/styles/proseafoam/theme/images/bg_tabs2.gif');
+}
+*/

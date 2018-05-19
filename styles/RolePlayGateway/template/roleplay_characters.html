@@ -1,0 +1,43 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<style type="text/css">
+  .character {
+    height: 130px;
+  }
+</style>
+
+<h1 style="color:#596E7C;"><a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_NAME}</a> &raquo; <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters">Characters</a></h1>
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_CHARACTERS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+    <div class="postbody" style="width:inherit;"><div class="">
+
+      <!-- BEGIN characters -->
+      <div class="character">
+	      <img src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
+	      <div>
+          <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}#story" style="float:right;">{characters.SIGHTINGS} sightings &raquo;</a>
+		      <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/"><strong>{characters.NAME}</strong></a> <span><em>played by {characters.OWNER_USERNAME}</em></span>
+	      </div>
+	      <span>{characters.SYNOPSIS}</span>
+      </div>
+      <!-- BEGINELSE -->
+	      <p class="supersize">There are no characters in this roleplay!</p>
+      <!-- END characters -->
+
+    </div></div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_CHARACTERS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<!-- INCLUDE overall_footer.html -->

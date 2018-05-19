@@ -1,0 +1,26 @@
+User-agent: *
+
+Disallow: /adm/
+Disallow: /cache/
+Disallow: /includes/
+Disallow: /language/
+Disallow: /store/
+Disallow: /styles/
+Disallow: /posting.php
+Disallow: /mcp.php
+Disallow: /ucp.php
+Disallow: /posting.php
+Disallow: /report.php
+Disallow: /search.php
+Disallow: /spam.php
+Disallow: /phpBBFolk.php*
+Disallow: /post*
+Disallow: /chat/?ajax=true*
+Disallow: /embed/
+Disallow: /shout/
+Disallow: /*view=print*
+
+Disallow: /xcache-admin/
+Disallow: /memcache.php
+
+Sitemap: http://www.roleplaygateway.com/sitemap.xml.gz

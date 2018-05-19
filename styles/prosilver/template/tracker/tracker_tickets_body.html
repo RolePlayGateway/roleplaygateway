@@ -1,0 +1,124 @@
+<!-- INCLUDE overall_header.html -->
+<h2>{L_TITLE}</h2>
+
+<!-- IF S_FOUND_RESULTS -->
+	<div class="rules">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		{SEARCH_MATCHES}<br />
+		{L_SEARCHED_FOR}: <b>{SEARCH_TERM}</b>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- ENDIF  -->
+
+<div class="post bg2" style="text-align: center;">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	{TRACKER_CURRENTLY_SHOWING}
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<br />
+<div class="topic-actions">
+	<!-- IF S_USER_LOGGED_IN and S_CAN_POST_TRACKER and not S_IS_BOT -->
+		<div class="buttons">
+			<div class="issue-icon"><a href="{U_POST_NEW_TICKET}" title="{L_TRACKER_POST_TICKET}"><span></span>{L_TRACKER_POST_TICKET}</a></div>
+		</div>
+	<!-- ENDIF -->
+
+	<div class="search-box">
+		<form id="st_form" action="{U_ACTION}" method="get">
+		<fieldset>
+			<label for="st">
+				<strong>{L_TRACKER_FILTER_TICKET}:</strong>
+			</label>
+			<select id="st" name="st" onchange="document.getElementById('st_form').submit();">{S_STATUS_OPTIONS}</select>&nbsp;
+			<!-- IF S_VERSION_OPTIONS --><select id="vid" name="vid" onchange="document.getElementById('st_form').submit();">{S_VERSION_OPTIONS}</select>&nbsp;<!-- ENDIF -->
+			<!-- IF S_COMPONENT_OPTIONS --><select id="cid" name="cid" onchange="document.getElementById('st_form').submit();">{S_COMPONENT_OPTIONS}</select><!-- ENDIF -->
+			<noscript><p><input type="submit" name="submit" value="{L_SUBMIT}" class="button2" /></p></noscript>
+			<input type="hidden" name="p" value="{PROJECT_ID}" />
+			<input type="hidden" name="u" value="{TRACKER_USER_ID}" />
+			<input type="hidden" name="at" value="{TRACKER_ASSIGNED_USER_ID}" />
+			{S_HIDDEN_FIELDS}
+		</fieldset>
+		</form>
+	</div>
+	<div class="search-box">
+		<form action="{S_ACTION_SEARCH}" method="post" id="search_tracker">
+			<fieldset>
+				{S_HIDDEN_FIELDS_SEARCH}
+				<input type="text" name="term" maxlength="128" title="{L_TRACKER_SEARCH_DESCRIPTION}" value="<!-- IF SEARCH_TERM-->{SEARCH_TERM}<!-- ELSE -->{L_SEARCH_MINI}<!-- ENDIF -->" onclick="if(this.value=='{LA_SEARCH_MINI}')this.value='';" onblur="if(this.value=='')this.value='{LA_SEARCH_MINI}';" class="inputbox autowidth search" />
+				<input class="button2" type="submit" value="{L_SEARCH}" />
+			</fieldset>
+		</form>
+	</div>
+
+	<div class="pagination">
+		<!-- IF S_CAN_MANAGE and U_MY_ASSIGNED_TICKETS --><a href="{U_MY_ASSIGNED_TICKETS}" title="{TRACKER_MY_ASSIGNED_TICKETS}">{TRACKER_MY_ASSIGNED_TICKETS}</a>&nbsp;&bull;&nbsp;<!-- ENDIF --><a href="{U_MY_TICKETS}" title="{TRACKER_MY_TICKETS}">{TRACKER_MY_TICKETS}</a>
+	</div>
+</div>
+
+
+
+<div class="forabg">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<table class="table1 " cellspacing="0">
+		<thead>
+			<tr>
+				<th style="text-align: left; width: 5%;">#</th>
+				<th style="text-align: left; width: 45%;">{L_TRACKER_TICKET_TITLE}</th>
+				<th style="text-align: center; width: 15%;">{L_TRACKER_COMPONENT}</th>
+				<th style="text-align: center; width: 20%;">{L_TRACKER_ASSIGNED_TO}</th>
+				<th style="text-align: center; width: 15%;">{L_TRACKER_STATUS}</th>
+			</tr>
+		</thead>
+		<tbody>
+		<!-- BEGIN tickets -->
+			<tr class="<!-- IF tickets.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF tickets.TICKET_HIDDEN or tickets.TICKET_SECURITY --> reported<!-- ENDIF -->">
+				<td><strong>{tickets.TICKET_ID}</strong></td>
+				<td>
+					<strong><a href="{tickets.U_VIEW_TICKET}">{tickets.TICKET_TITLE}</a></strong><br />
+					<span class="small">{tickets.TICKET_USERNAME} {L_TRACKER_POSTED_ON_DATE} {tickets.TICKET_TIME}<!-- IF tickets.LAST_POST_USERNAME -->{L_TRACKER_LAST_POST_BY}{tickets.LAST_POST_USERNAME}<!-- ENDIF --></span>
+				</td>
+				<td style="text-align: center;">{tickets.TICKET_COMPONENT}</td>
+				<td style="text-align: center;">{tickets.TICKET_ASSIGNED_TO}</td>
+				<td style="text-align: center; color: red;">{tickets.TICKET_STATUS}</td>
+			</tr>
+		<!-- BEGINELSE -->
+			<tr style="height: 50px">
+				<td class="bg1" colspan="5" align="center">
+					<strong>{L_TRACKER_NO_TICKETS}</strong>
+				</td>
+			</tr>
+		<!-- END tickets -->
+		</tbody>
+	</table>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- IF S_USER_LOGGED_IN and not S_IS_BOT -->
+<div class="buttons">
+	<a href="{U_WATCH_PROJECT}">{L_WATCH_PROJECT}</a>
+</div>
+<!-- ENDIF -->
+<!-- IF PAGINATION or TOTAL_TICKETS -->
+<div class="pagination">
+	{TOTAL_TICKETS}
+	<!-- IF PAGE_NUMBER -->
+		<!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
+	<!-- ENDIF -->
+</div>
+<!-- ENDIF -->
+
+<br />
+
+<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
+<form method="post" action="{S_LOGIN_ACTION}" class="headerspace">
+	<h3><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a>&nbsp; &bull; &nbsp;<a href="{U_REGISTER}">{L_REGISTER}</a></h3>
+	<fieldset class="quick-login">
+		<label for="username">{L_USERNAME}:</label>&nbsp;<input type="text" name="username" id="username" size="10" class="inputbox" title="{L_USERNAME}" />
+		<label for="password">{L_PASSWORD}:</label>&nbsp;<input type="password" name="password" id="password" size="10" class="inputbox" title="{L_PASSWORD}" /> |
+		<label for="autologin">{L_LOG_ME_IN} <input type="checkbox" name="autologin" id="autologin" class="checkbox" /></label> <input type="submit" name="login" value="{L_LOGIN}" class="button2" />
+	</fieldset>
+</form>
+<!-- ENDIF -->
+
+<!-- INCLUDE tracker/tracker_footer.html -->
+
+<!-- INCLUDE overall_footer.html -->

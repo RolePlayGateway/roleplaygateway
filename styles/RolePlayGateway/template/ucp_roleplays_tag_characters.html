@@ -1,0 +1,32 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>Add New Tag</h2>
+
+<form id="ucp" enctype="multipart/form-data" method="post" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_tag&roleplay_id={ROLEPLAY_ID}&action=submit">
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	
+		<h3>Tag Information</h3>
+		<fieldset>
+			<dl>
+				<dt>
+					<label for="tag">Tags:</label><br />
+					<span>You can add multiple tags on this screen by seperating them with <strong>commas</strong>: (e.g., "fantasy, high fantasy")</span>
+				</dt>
+				<dd><input type="text" name="tag" id="tag" maxlength="255" class="inputbox" /></dd>
+			</dl>
+		</fieldset>
+		
+		<fieldset class="submit-buttons">
+			<input type="hidden" name="id" value="{ROLEPLAY_ID}" />
+			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
+			<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+		</fieldset>
+		
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

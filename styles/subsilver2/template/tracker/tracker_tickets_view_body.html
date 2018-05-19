@@ -1,0 +1,438 @@
+<!-- INCLUDE overall_header.html -->
+
+<h2>{L_TITLE}</h2>
+
+<!-- IF TICKET_HIDDEN or TICKET_SECURITY -->
+	<div class="forumrules">
+		<!-- IF TICKET_HIDDEN -->{L_TRACKER_TICKET_HIDDEN_FROM_VIEW}<!-- ENDIF -->
+		<!-- IF TICKET_HIDDEN and TICKET_SECURITY --><br /><!-- ENDIF -->
+		<!-- IF TICKET_SECURITY -->{L_TRACKER_TICKET_SECURITY_FROM_VIEW}<!-- ENDIF -->
+	</div>
+
+	<br clear="all" />
+<!-- ENDIF -->
+
+<div id="col1">
+<!-- IF not S_TICKET_REPLY -->
+	<table class="tablebg" width="100%" cellspacing="1">
+		<tr>
+			<th><b<!-- IF TICKET_CLOSED --> style="text-decoration: line-through;"<!-- ENDIF -->>{TICKET_TITLE}<span> {TICKET_STATUS}</span></b></th>
+		</tr>
+		<tr>
+			<td class="row1">
+				<!-- IF not S_IS_BOT -->
+					<!-- IF S_CAN_DELETE or S_CAN_EDIT -->
+						<div class="postdetails" align="{S_CONTENT_FLOW_END}">
+						<!-- IF S_CAN_EDIT --><a href="{U_EDIT}">{EDIT_IMG}</a> <!-- ENDIF -->
+						<!-- IF S_CAN_DELETE --><a href="{U_DELETE}">{DELETE_IMG}</a> <!-- ENDIF -->
+						</div>
+					<!-- ENDIF -->
+				<!-- ENDIF -->
+				<div class="postbody">{TICKET_DESC}</div>
+				<!-- IF S_SHOW_ATTACHMENTS -->
+					<br clear="all" /><br />
+
+					<table class="tablebg" width="100%" cellspacing="1">
+					<tr>
+						<td class="row3"><b class="genmed">{L_ATTACHMENTS}: </b></td>
+					</tr>
+					<tr>
+						<td class="row2">
+							<span class="genmed">
+								<!-- IF UPLOAD_ICON -->{UPLOAD_ICON} <!-- ENDIF -->
+								<a href="{U_DOWNLOAD_LINK}">{DOWNLOAD_NAME}</a> [{FILESIZE} {SIZE_LANG}]
+							</span>
+						</td>
+					</tr>
+					</table>
+				<!-- ENDIF -->
+				<!-- IF S_DISPLAY_NOTICE -->
+					<span class="gensmall error"><br /><br />{L_DOWNLOAD_NOTICE}</span>
+				<!-- ENDIF -->
+				<!-- IF EDITED_MESSAGE or EDIT_REASON -->
+					<!-- IF EDIT_REASON -->
+						<br /><br />
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><span class="gensmall">{EDITED_MESSAGE}</span></td>
+						</tr>
+						<tr>
+							<td class="row2"><span class="genmed">{EDIT_REASON}</span></td>
+						</tr>
+						</table>
+					<!-- ELSE -->
+						<br /><br />
+						<span class="gensmall">{EDITED_MESSAGE}</span>
+					<!-- ENDIF -->
+				<!-- ENDIF -->
+			</td>
+		</tr>
+	</table>
+
+	<!-- IF S_DISPLAY_COMMENTS -->
+		<br />
+		<table class="tablebg" width="100%" cellspacing="1">
+		<tr>
+			<th><b>{L_TRACKER_TICKET_COMMENTS}</b></th>
+		</tr>
+		<tr>
+			<td class="row1">
+		<!-- BEGIN comments -->
+		<hr />
+			<div id="{comments.POST_ID}" style="border: #ddd solid 1px; padding: 10px; margin: 10px 0 10px 0; clear: both;">
+				<div class="postdetails">
+				<!-- IF not S_IS_BOT -->
+						<!-- IF comments.S_CAN_DELETE or comments.S_CAN_EDIT -->
+							<div style="float: right;">
+							<!-- IF comments.S_CAN_EDIT --><a href="{comments.U_EDIT}">{EDIT_IMG}</a> <!-- ENDIF -->
+							<!-- IF comments.S_CAN_DELETE --><a href="{comments.U_DELETE}">{DELETE_IMG}</a> <!-- ENDIF -->
+							</div>
+						<!-- ENDIF -->
+					<!-- ENDIF --><a href="#{comments.POST_ID}">{POST_IMG}</a> <b>{L_TRACKER_POST_BY_AUTHOR} {comments.COMMENT_POSTER} {L_TRACKER_POSTED_ON_DATE} {comments.COMMENT_TIME}</b></div>
+				<hr />
+				<div class="postbody">{comments.COMMENT_DESC}</div>
+				<!-- IF comments.S_SHOW_ATTACHMENTS -->
+					<br clear="all" /><br />
+
+					<table class="tablebg" width="100%" cellspacing="1">
+					<tr>
+						<td class="row3"><b class="genmed">{L_ATTACHMENTS}: </b></td>
+					</tr>
+					<tr>
+						<td class="row2">
+							<span class="genmed">
+								<!-- IF comments.UPLOAD_ICON -->{comments.UPLOAD_ICON} <!-- ENDIF -->
+								<a href="{comments.U_DOWNLOAD_LINK}">{comments.DOWNLOAD_NAME}</a> [{comments.FILESIZE} {comments.SIZE_LANG}]
+							</span>
+						</td>
+					</tr>
+					</table>
+				<!-- ENDIF -->
+				<!-- IF comments.S_DISPLAY_NOTICE -->
+					<span class="gensmall error"><br /><br />{L_DOWNLOAD_NOTICE}</span>
+				<!-- ENDIF -->
+				<!-- IF comments.EDITED_MESSAGE or comments.EDIT_REASON -->
+					<!-- IF comments.EDIT_REASON -->
+						<br /><br />
+						<table class="tablebg" width="100%" cellspacing="1">
+						<tr>
+							<td class="row3"><span class="gensmall">{comments.EDITED_MESSAGE}</span></td>
+						</tr>
+						<tr>
+							<td class="row2"><span class="genmed">{comments.EDIT_REASON}</span></td>
+						</tr>
+						</table>
+					<!-- ELSE -->
+						<br /><br />
+						<span class="gensmall">{comments.EDITED_MESSAGE}</span>
+					<!-- ENDIF -->
+				<!-- ENDIF -->
+			</div>
+		<!-- BEGINELSE -->
+			<div style="border: #ddd solid 1px; padding: 10px; margin: 10px 0 10px 0; clear: both;">
+				<div class="postbody">{L_TRACKER_TICKET_NO_COMMENTS}</div>
+			</div>
+		<!-- END -->
+			</td>
+		</tr>
+		</table>
+	<!-- ENDIF -->
+
+	<!-- IF S_DISPLAY_HISTORY -->
+	<br />
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th><b>{L_TRACKER_TICKET_HISTORY}</b></th>
+	</tr>
+	<tr>
+		<td class="row1">
+		<!-- BEGIN history -->
+			<hr />
+			<div style="border: #ddd solid 1px; padding: 10px; margin: 10px 0 10px 0px; clear: both;">
+				<div class="postdetails">{history.HISTORY_ACTION}</div>
+				<div style="margin-top: 10px; padding-top: 2px; border-top: 1px dashed #CCCCCC;">{history.HISTORY_ACTION_BY}</div>
+			</div>
+		<!-- BEGINELSE -->
+			<div style="border: #ddd solid 1px; padding: 10px; margin: 10px 0 10px 0; clear: both;">
+				<div class="postbody">{L_TRACKER_TICKET_NO_HISTORY}</div>
+			</div>
+		<!-- END -->
+		</td>
+	</tr>
+	</table>
+	<!-- ENDIF -->
+
+	<!-- IF S_USER_LOGGED_IN and S_CAN_POST_TRACKER and not S_IS_BOT and not S_TICKET_REPLY or TOTAL_POSTS -->
+	<table width="100%" cellspacing="1">
+		<tr>
+			<!-- IF S_USER_LOGGED_IN and S_CAN_POST_TRACKER and not S_IS_BOT and not S_TICKET_REPLY -->
+				<td><a href="{U_POST_REPLY_TICKET}">{REPLY_IMG}</a></td>
+			<!-- ENDIF -->
+			<!-- IF TOTAL_POSTS -->
+			<td class="nav" valign="middle" nowrap="nowrap">&nbsp;{PAGE_NUMBER}<br /></td>
+			<td class="gensmall" nowrap="nowrap">&nbsp;[ {TOTAL_POSTS} ]&nbsp;</td>
+			<td class="gensmall" width="100%" align="right" nowrap="nowrap"><!-- INCLUDE pagination.html --></td>
+			<!-- ENDIF -->
+		</tr>
+	</table>
+	<!-- ENDIF -->
+<!-- ELSE -->
+	<!-- IF S_PREVIEW -->
+	<h3>{L_TRACKER_PREVIEW}</h3>
+	<table class="tablebg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+	<tr>
+		<td class="row1">
+			<div class="postbody">{REPLY_PREVIEW}</div>
+		</td>
+	</tr>
+	</table>
+	<br />
+	<!-- ENDIF -->
+
+	<form action="{U_ACTION}" method="post"{S_FORM_ENCTYPE}>
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="2"><b>{L_TRACKER_REPLY}</b></th>
+	</tr>
+	<tr>
+		<td class="row2" colspan="2" align="center"><span class="genmed">{L_TITLE_EXPLAIN}</span></td>
+	</tr>
+	<!-- IF ERROR -->
+	<tr>
+		<td class="row2" colspan="2" align="center"><span class="genmed error">{ERROR}</span></td>
+	</tr>
+	<!-- ENDIF -->
+	<!-- IF S_EDIT_REASON -->
+	<tr>
+		<td class="row1" width="22%"><b class="genmed">{L_TRACKER_EDIT_REASON}:<br /><span>{L_TRACKER_EDIT_REASON_EXPLAIN}</span></b></td>
+		<td class="row2" width="78%"><input type="text" id="edit_reason" name="edit_reason" value="{EDIT_REASON_TEXT}" size="45" maxlength="60" /></td>
+	</tr>
+	<!-- ENDIF -->
+	<tr>
+		<td class="row1" width="22%"><b class="genmed">{L_MESSAGE}:</b></td>
+		<td class="row2" width="78%"><textarea id="post_text" name="post_text" rows="15" cols="76">{REPLY_DESC}</textarea></td>
+	</tr>
+	<tr>
+		<td class="row2" colspan="2" align="center"><span class="genmed">{TRACKER_REPLY_DETAIL}</span></td>
+	</tr>
+	<!-- IF S_CAN_ATTACH and not S_HAS_ATTACHMENTS-->
+	<tr>
+		<th colspan="2"><b>{L_TRACKER_ATTACHMENTS}</b></th>
+	</tr>
+	<tr>
+		<td class="row1" width="22%"><b class="genmed">{L_TRACKER_ATTACHMENTS_UPLOAD}:</b></td>
+		<td class="row2" width="78%"><input type="file" name="attachment" id="attachment" size="45" /></td>
+	</tr>
+	<tr>
+		<td class="row1" colspan="2"><input type="submit" name="add_attachment" value="{L_TRACKER_ATTACHMENTS_ADD}" class="btnlite" /></td>
+	</tr>
+	<!-- ENDIF -->
+	<!-- IF S_HAS_ATTACHMENTS -->
+	<tr>
+		<th colspan="2"><b>{L_POSTED_ATTACHMENTS}</b></th>
+	</tr>
+	<tr>
+		<td class="row1" colspan="2">
+			<a href="{U_VIEW_ATTACHMENT}" class="{S_CONTENT_FLOW_END}">{FILENAME}</a><br /><input type="submit" name="delete_attachment" value="{L_DELETE_FILE}" class="btnlite" />
+			{S_HIDDEN}
+		</td>
+	</tr>
+	<!-- ENDIF -->
+	<!-- IF S_MANAGE_TICKET -->
+		<tr>
+			<th colspan="2"><b>{L_OPTIONS}</b></th>
+		</tr>
+		<!-- IF S_MANAGE_TICKET and S_ASSIGN_USER_OPTIONS -->
+		<tr>
+			<td class="row1" width="22%"><b class="genmed">{L_TRACKER_ASSIGN_USER}:</b></td>
+			<td class="row2" width="78%"><select id="au" name="au">{S_ASSIGN_USER_OPTIONS}</select></td>
+		</tr>
+		<!-- ENDIF -->
+		<!-- IF S_MANAGE_TICKET and S_STATUS_OPTIONS -->
+		<tr>
+			<td class="row1" width="22%"><b class="genmed">{L_TRACKER_CHANGE_STATUS}:</b></td>
+			<td class="row2" width="78%"><select id="cs" name="cs">{S_STATUS_OPTIONS}</select></td>
+		</tr>
+		<!-- ENDIF -->
+		<!-- IF S_MANAGE_TICKET and S_PRIORITY_OPTIONS -->
+		<tr>
+			<td class="row1" width="22%"><b class="genmed">{L_TRACKER_CHANGE_PRIORITY}:</b></td>
+			<td class="row2" width="78%"><select id="pr" name="pr">{S_PRIORITY_OPTIONS}</select></td>
+		</tr>
+		<!-- ENDIF -->
+		<!-- IF S_MANAGE_TICKET and S_SEVERITY_OPTIONS -->
+		<tr>
+			<td class="row1" width="22%"><b class="genmed">{L_TRACKER_CHANGE_SEVERITY}:</b></td>
+			<td class="row2" width="78%"><select id="s" name="s">{S_SEVERITY_OPTIONS}</select></td>
+		</tr>
+		<!-- ENDIF -->
+		<!-- IF S_TICKET_SECURITY -->
+		<tr>
+			<td class="row1" width="22%"><b class="genmed">{L_TRACKER_SECURITY_TICKET}:</b></td>
+			<td class="row2" width="78%"><input type="checkbox" name="ticket_security" id="ticket_security" value="1"<!-- IF TICKET_SECURITY --> checked="checked"<!-- ENDIF --> /></td>
+		</tr>
+		<!-- ENDIF -->
+		<tr>
+			<td class="row1" width="22%"><b class="genmed">{L_TRACKER_HIDE_TICKET}:</b></td>
+			<td class="row2" width="78%"><input type="checkbox" name="ticket_hidden" id="ticket_hidden" value="1"<!-- IF TICKET_HIDDEN --> checked="checked"<!-- ENDIF --> /></td>
+		</tr>
+		<tr>
+			<td class="row1" width="22%"><b class="genmed">{L_TRACKER_LOCK_TICKET}:</b></td>
+			<td class="row2" width="78%"><input type="checkbox" name="ticket_status" id="ticket_status" value="1"<!-- IF S_IS_LOCKED --> checked="checked"<!-- ENDIF --> /></td>
+		</tr>
+	<!-- ENDIF -->
+	<tr>
+		<td class="cat" colspan="2" align="center"><input type="submit" name="preview" value="{L_TRACKER_PREVIEW_REPLY}" class="btnlite" /> <input type="submit" name="submit" value="{L_TRACKER_SUBMIT_REPLY}" class="btnmain" /></td>
+	</tr>
+	</table>
+	{S_FORM_TOKEN}
+	</form>
+
+	<!-- IF S_DISPLAY_REVIEW -->
+	<br />
+	<div id="ticket-review">
+		<table class="tablebg" width="100%" cellspacing="1">
+		<tr>
+			<th><b>{L_TRACKER_PREVIOUS_POSTS}</b></th>
+		</tr>
+		<tr>
+			<td class="row1">
+			<!-- BEGIN review -->
+				<hr />
+				<div id="{review.POST_ID}" style="border: #ddd solid 1px; padding: 10px; margin: 10px 0 10px 0px; clear: both;<!-- IF review.S_LAST_ROW --> background-color:lightblue;<!-- ENDIF -->">
+					<div class="postdetails">{POST_IMG} <b>{L_TRACKER_POST_BY_AUTHOR} {review.POST_USER} {L_TRACKER_POSTED_ON_DATE} {review.POST_TIME}</b></div>
+					<hr />
+					<div class="postbody">{review.POST_TEXT}</div>
+				</div>
+			<!-- END -->
+			</td>
+		</tr>
+		</table>
+	</div>
+	<!-- ENDIF -->
+<!-- ENDIF -->
+</div>
+<div id="col2">
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="2"><b class="genmed">{L_TRACKER_TICKET_DETAILS}</b></th>
+	</tr>
+	<tr>
+		<td class="row1" width="40%"><b class="genmed">{L_TRACKER_TICKET_ID}:</b></td>
+		<td class="row2" width="60%">{TICKET_ID}</td>
+	</tr>
+	<tr>
+		<td class="row1" width="40%"><b class="genmed">{L_TRACKER_PROJECT_NAME}:</b></td>
+		<td class="row2" width="60%">{PROJECT_NAME}</td>
+	</tr>
+	<tr>
+		<td class="row1" width="40%"><b class="genmed">{L_TRACKER_STATUS}:</b></td>
+		<td class="row2" width="60%">{TICKET_STATUS_DETAILS}</td>
+	</tr>
+	<!-- IF S_TICKET_COMPONENT -->
+	<tr>
+		<td class="row1" width="40%"><b class="genmed">{L_TRACKER_COMPONENT}:</b></td>
+		<td class="row2" width="60%">{TICKET_COMPONENT}</td>
+	</tr>
+	<!-- ENDIF -->
+	<!-- IF S_TICKET_VERSION -->
+	<tr>
+		<td class="row1" width="40%"><b class="genmed">{L_TRACKER_DETAILS_VERSION}:</b></td>
+		<td class="row2" width="60%">{TICKET_VERSION}</td>
+	</tr>
+	<!-- ENDIF -->
+	<!-- IF S_TICKET_PRIORITY -->
+	<tr>
+		<td class="row1" width="40%"><b class="genmed">{L_TRACKER_PRIORITY}:</b></td>
+		<td class="row2" width="60%">{TICKET_PRIORITY}</td>
+	</tr>
+	<!-- ENDIF -->
+	<!-- IF S_TICKET_SEVERITY -->
+	<tr>
+		<td class="row1" width="40%"><b class="genmed">{L_TRACKER_SEVERITY}:</b></td>
+		<td class="row2" width="60%">{TICKET_SEVERITY}</td>
+	</tr>
+	<!-- ENDIF -->
+	<!-- IF S_TICKET_ENVIRONMENT -->
+		<!-- IF S_SHOW_PHP -->
+		<tr>
+			<td class="row1" width="40%"><b class="genmed">{L_TRACKER_TICKET_PHP_DETAIL}:</b></td>
+			<td class="row2" width="60%">{TICKET_PHP}</td>
+		</tr>
+		<!-- ENDIF -->
+		<!-- IF S_SHOW_DBMS -->
+		<tr>
+			<td class="row1" width="40%"><b class="genmed">{L_TRACKER_TICKET_DBMS_DETAIL}:</b></td>
+			<td class="row2" width="60%">{TICKET_DBMS}</td>
+		</tr>
+		<!-- ENDIF -->
+	<!-- ENDIF -->
+	<tr>
+		<td class="row1" width="40%"><b class="genmed">{L_TRACKER_ASSIGNED_TO}:</b></td>
+		<td class="row2" width="60%">{TICKET_ASSIGNED_TO}</td>
+	</tr>
+	<tr>
+		<td class="row1" width="40%"><b class="genmed">{L_TRACKER_REPORTED_BY}:</b></td>
+		<td class="row2" width="60%">{TICKET_REPORTED_BY} (<a href="{U_SEND_PM}">{L_TRACKER_SEND_PM}</a>)</td>
+	</tr>
+	<tr>
+		<td class="row1" width="40%"><b class="genmed">{L_TRACKER_REPORTERS_TICKETS}:</b></td>
+		<td class="row2" width="60%"><a href="{U_REPORTERS_TICKETS}">{L_TRACKER_LIST_ALL_TICKETS}</a></td>
+	</tr>
+	<tr>
+		<td class="row1" width="40%"><b class="genmed">{L_TRACKER_REPORTED_ON}:</b></td>
+		<td class="row2" width="60%">{TICKET_TIME}</td>
+	</tr>
+	<!-- IF TICKET_LAST_VISIT -->
+	<tr>
+		<td class="row1" colspan="2">{TICKET_LAST_VISIT}</td>
+	</tr>
+	<!-- ENDIF -->
+	</table>
+	<br />
+	<!-- IF S_MANAGE_TICKET --><form name="assign_user_form" action="{U_UPDATE_ACTION}" method="post"><!-- ENDIF -->
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th colspan="2"><b class="genmed">{L_OPTIONS}</b></th>
+	</tr>
+	<tr>
+		<td class="row1" colspan="2" align="center"><a href="{U_VIEW_TICKET_HISTORY}">{L_TICKET_HISTORY}</a></td>
+	</tr>
+	<!-- IF S_USER_LOGGED_IN and not S_IS_BOT -->
+	<tr>
+		<td class="row1" colspan="2" align="center"><a href="{U_WATCH_TICKET}">{L_WATCH_TICKET}</a></td>
+	</tr>
+	<!-- ENDIF -->
+		<!-- IF not S_TICKET_REPLY -->
+			<!-- IF S_MANAGE_TICKET and S_ASSIGN_USER_OPTIONS --><tr><td class="row1" width="40%"><b class="genmed"><label for="au">{L_TRACKER_ASSIGN_USER}:</label></b></td><td class="row2" width="60%"><select id="au" name="au">{S_ASSIGN_USER_OPTIONS}</select></td></tr><!-- ENDIF -->
+			<!-- IF S_MANAGE_TICKET and S_STATUS_OPTIONS--><tr><td class="row1" width="40%"><b class="genmed"><label for="cs">{L_TRACKER_CHANGE_STATUS}:</label></b></td><td class="row2" width="60%"><select id="cs" name="cs">{S_STATUS_OPTIONS}</select></td></tr><!-- ENDIF -->
+			<!-- IF S_MANAGE_TICKET and S_PRIORITY_OPTIONS --><tr><td class="row1" width="40%"><b class="genmed"><label for="pr">{L_TRACKER_CHANGE_PRIORITY}:</label></b></td><td class="row2" width="60%"><select id="pr" name="pr">{S_PRIORITY_OPTIONS}</select></td></tr><!-- ENDIF -->
+			<!-- IF S_MANAGE_TICKET and S_SEVERITY_OPTIONS --><tr><td class="row1" width="40%"><b class="genmed"><label for="s">{L_TRACKER_CHANGE_SEVERITY}:</label></b></td><td class="row2" width="60%"><select id="s" name="s">{S_SEVERITY_OPTIONS}</select></td></tr><!-- ENDIF -->
+			<!-- IF S_MANAGE_TICKET --><tr><td class="row2" colspan="2"><input type="submit" name="update" value="{L_SUBMIT}" class="btnlite" /></td></tr><!-- ENDIF -->
+		<!-- ENDIF -->
+	</table>
+	<!-- IF S_MANAGE_TICKET -->
+	{S_FORM_TOKEN}
+	</form>
+	<!-- ENDIF -->
+</div>
+
+<div class="cleaner">&nbsp;</div>
+<!-- IF S_MANAGE_TICKET_MOD and not S_TICKET_REPLY -->
+	<br />
+	<table width="100%" cellspacing="1">
+	<tr>
+		<td align="right" valign="top" nowrap="nowrap">
+			<form method="post" action="{S_MOD_ACTION}">
+				<label>{L_QUICK_MOD}: {S_TICKET_MOD}</label> <input name="submit_mod" type="submit" value="{L_GO}" class="btnlite" />
+				{S_FORM_TOKEN}
+			</form>
+		</td>
+	</tr>
+	</table>
+	<div class="cleaner">&nbsp;</div>
+<!-- ENDIF -->
+
+<!-- INCLUDE tracker/tracker_footer.html -->
+
+<!-- INCLUDE overall_footer.html -->

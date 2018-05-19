@@ -1,0 +1,59 @@
+<ul class="topiclist">
+	<li class="header">
+		<dl class="icon">
+			<dt>{SEO_MENU}</dt>
+		</dl>
+	</li>
+</ul>
+<form id="quick" action="{U_CACHE_ACTION}#seo_top" method="post">
+	<ul class="topiclist forums">
+		<li class="row">
+			<dl class="icon" style="background-image: url({STATUS_IMG}); background-repeat: no-repeat;">
+				<dt id="htaccess"><a href="{U_CACHE_ACTION}#htaccess" class="top2"><b>{TITLE}</b></a><br/><ul style="margin-left:20px">{TITLE_EXPLAIN}</ul><br/>
+				</dt>
+				<dd><a href="http://www.phpbb-seo.com/" title="phpBB SEO"><img src="http://www.phpbb-seo.com/img/phpBB-SEO-mod.gif" alt="phpBB SEO"/></a>
+				</dd>
+			</dl>
+		</li>
+		<!-- BEGIN optionrow -->
+		<li class="row">
+			<dl class="icon" style="background-image: url({optionrow.STATUS_IMG}); background-repeat: no-repeat;">
+				<dt id="{optionrow.OPTION}"><a href="{U_CACHE_ACTION}#{optionrow.OPTION}" class="top2"><b>{optionrow.TITLE}</b></a><br/><ul style="margin-left:20px">{optionrow.TITLE_EXPLAIN}</ul><br/>
+				
+				<dd>
+					<div style="float:right top">
+						<fieldset><legend>{optionrow.TITLE}</legend>
+							<!-- IF not optionrow.S_MORE_OPTION -->
+							<label><input type="radio" class="radio" name="{optionrow.OPTION}" value="1"<!-- IF optionrow.S_CHECKED --> id="{optionrow.OPTION}" checked="checked"<!-- ENDIF --> />{SEO_SLASH_DEFAULT}</label>
+							<label><input type="radio" class="radio" name="{optionrow.OPTION}" value="0"<!-- IF not optionrow.S_CHECKED --> id="{optionrow.OPTION}" checked="checked"<!-- ENDIF --> />{SEO_SLASH_ALT}</label><br/>
+							<!-- ENDIF -->
+							<!-- IF optionrow.S_MORE_OPTION -->
+							<input type="hidden" name="more_options" value="1" />
+							<!-- ENDIF -->
+							<input type="hidden" name="sid_check" value="{SID_CHECK}" />
+							<input class="button1" type="submit" id="submit" name="update" value="{optionrow.SEO_UPDATE}" />&nbsp;
+						</fieldset>
+					</div>
+				</dd>
+			</dl>
+		
+		</li>
+		<!-- END optionrow -->
+		<li class="row">
+		<div class="content"><ul style="margin-left:30px;margin-top:10px;font-weight:bold;font-size:12px;color:red">&rArr;&nbsp;{SEO_HTACCESS_GENED}</ul>
+			<dl style="padding:5px;background-color:#FFFFFF;border:1px solid #d8d8d8;font-size:12px;"><dt style="border-bottom:1px solid #CCCCCC;margin-bottom:3px;font-weight:bold;display:block;">.htaccess: <a href="#" onclick="selectCode(this); return false;">Select all</a></dt>
+				<dd><code style="padding-top:5px;font:Monaco,Courier,mono;line-height:1.3em;color:#8b8b8b;margin:2px 0;font-weight:bold">{HTACCESS_CODE}</code></dd>
+			</dl>
+			<ul style="margin-left:30px;margin-top:10px;font-weight:bold;font-size:12px;">{SEO_HTACCESS_CAPTION}:<br/>
+				<b style="color:blue">&rArr;&nbsp;{SEO_HTACCESS_CAPTION_COMMENT}</b>&nbsp;
+				<b style="color:#A020F0">&rArr;&nbsp;{SEO_HTACCESS_CAPTION_STATIC}</b>&nbsp;
+				<b style="color:#6A5ACD">&rArr;&nbsp;{SEO_HTACCESS_CAPTION_SUFFIX}</b>&nbsp;<br/>	
+				<b style="color:#FF00FF">&rArr;&nbsp;{SEO_HTACCESS_CAPTION_DELIM}</b>&nbsp;
+				<!-- IF SEO_HTACCESS_CAPTION_SLASH -->
+				<b style="color:red">&rArr;&nbsp;{SEO_HTACCESS_CAPTION_SLASH}</b>&nbsp;
+				<!-- ENDIF -->
+			</ul>
+		</div>
+		</li>
+	</ul>
+</form>

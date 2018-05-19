@@ -1,0 +1,57 @@
+<!-- IF DISPLAY_FORUMS_H1 --><h1><!-- IF U_FORUMS --><a href="{U_FORUMS}" title="{H1_FORUMS}">{H1_FORUMS}</a><!-- ELSE -->{H1_FORUMS}<!-- ENDIF --></h1><!-- ENDIF -->
+<!-- IF FORUM_MAP_URL or FORUM_NEWS_URL --><h3><!-- IF FORUM_NEWS_URL --><a href="{FORUM_NEWS_URL}" title="{FORUM_NEWS}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {FORUM_NEWS}</a><!-- ENDIF --><!-- IF FORUM_MAP_URL --> <strong>&raquo;</strong> <a href="{FORUM_MAP_URL}" title="{H1_FORUMS}">{H1_FORUMS}</a><!-- ENDIF --></h3><!-- ENDIF -->
+<!-- IF MAP_DESC --><span>{MAP_DESC}<br /></span><!-- ENDIF --><br />
+<table class="tablebg" cellspacing="1" width="100%">
+	<tr>
+		<td class="cat" colspan="4">&nbsp;</td>
+	</tr>
+	<tr>
+		<th <!-- IF DISPLAY_LAST_POST -->colspan="2"<!-- ELSE -->colspan="3"<!-- ENDIF -->>&nbsp;{L_FORUM}&nbsp;</th>
+		<!-- IF DISPLAY_LAST_POST --><th>&nbsp;{L_LAST_POST}&nbsp;</th><!-- ENDIF -->
+	</tr>
+<!-- BEGIN forumrow -->
+	<!-- IF forumrow.S_IS_CAT or forumrow.S_FIRST_ROW  or forumrow.S_NO_CAT-->
+	<tr>
+		<td class="cat" colspan="3"><h4>
+			<!-- IF forumrow.FORUM_NEWS_LINK -->{forumrow.FORUM_NEWS_LINK} <!-- ENDIF -->
+			<!-- IF forumrow.FORUM_MAP_LINK --> &nbsp; {forumrow.FORUM_MAP_LINK}<!-- ENDIF --></h4>
+		</td>
+	</tr>
+	<!-- ENDIF -->
+	<!-- IF not forumrow.S_IS_CAT -->
+	<tr>
+		<td class="row1" width="50" align="center">{forumrow.FORUM_FOLDER_IMG}</td>
+		<td class="row1" width="<!-- IF DISPLAY_LAST_POST -->75%<!-- ELSE -->100%<!-- ENDIF -->">
+			<!-- IF forumrow.FORUM_IMAGE --><div style="float: {S_CONTENT_FLOW_BEGIN}; margin-{S_CONTENT_FLOW_END}: 5px;">{forumrow.FORUM_IMAGE}</div><div style="float: {S_CONTENT_FLOW_BEGIN};"><!-- ENDIF -->
+			<!-- IF forumrow.FORUM_NEWS_LINK --><span class="forumlink">{forumrow.FORUM_NEWS_LINK}</span> <!-- ENDIF -->
+			<!-- IF forumrow.FORUM_MAP_LINK --><span class="forumlink"> &nbsp; {forumrow.FORUM_MAP_LINK}</span><!-- ENDIF -->
+			<p class="forumdesc">{forumrow.FORUM_DESC}</p>
+			<!-- IF forumrow.MODERATORS -->
+				<p class="forumdesc"><strong>{forumrow.L_MODERATOR_STR}:</strong> {forumrow.MODERATORS}</p>
+			<!-- ENDIF -->
+			<!-- IF forumrow.SUBFORUMS --><div class="gymsublist"><b>{L_SUBFORUMS} :</b><hr/>{forumrow.SUBFORUMS}</div><!-- ENDIF -->
+			<!-- IF forumrow.FORUM_IMAGE --></div><!-- ENDIF -->
+		</td>
+		<!-- IF DISPLAY_LAST_POST and not forumrow.S_IS_LINK -->
+		<td class="row2" align="center"  width="24%">
+			<!-- IF forumrow.LAST_POST_TIME -->
+				<!-- IF forumrow.LAST_POST_LINK -->
+				<p class="topicdetails"><i>{forumrow.LAST_POST_LINK}</i></p>
+				<!-- ENDIF -->
+				<p class="topicdetails">
+					<!-- IF DISPLAY_USER_INFO -->{L_POST_BY_AUTHOR} {forumrow.LAST_POSTER_FULL}<!-- ENDIF -->
+					<a href="{forumrow.U_LAST_POST}">{LAST_POST_IMG}</a> {L_POSTED_ON_DATE} {forumrow.LAST_POST_TIME}
+				</p>
+			<!-- ELSE -->
+				<p class="topicdetails">{L_NO_POSTS}</p>
+			<!-- ENDIF -->
+			</td>
+		</tr>
+		<!-- ENDIF -->
+	<!-- ENDIF -->
+<!-- BEGINELSE -->
+	<tr>
+		<td class="row1" colspan="5" align="center"><p class="gensmall">{L_HTML_MAP_NONE}</p></td>
+	</tr>
+<!-- END forumrow -->
+</table>

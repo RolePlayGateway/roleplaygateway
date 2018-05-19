@@ -1,0 +1,161 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<style type="text/css">
+.character, .place {
+	width: 15%;
+	height: 70px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.character img, .place img {
+	max-height: 50px;
+	max-width: 50px;
+}
+.activity .content {
+	font-size: 1.6em;
+	/* width: 66%; */
+}
+
+#wrap {
+	max-width: 980px;
+}
+
+li.footnote {
+	list-style-position: inside;
+}
+
+h3.place {
+	width: 100%;
+}
+h3.place img {
+	vertical-align: top;
+	border: 1px solid black;
+	margin-right: 5px;
+}
+.place img, .character img {
+	padding-right: 0;
+}
+a.anchor {
+	display: block;
+	position: relative;
+	top: -35px;
+}
+</style>
+
+<img src="/roleplay/{ROLEPLAY_URL}/image" style="float:left; height: 100px; width: 100px; margin-right: 10px;" />
+<h1 style="color:#596E7C; margin-right: 0;"><a href="/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/arcs">Arcs</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/arcs/{ARC_SLUG}">{ARC_NAME}</a><!-- IF S_CAN_EDIT --> [<a href="/ucp.php?i=roleplays&mode=edit_arc&arc_id={ARC_ID}&roleplay_id={ROLEPLAY_ID}">Edit</a>]<!-- ENDIF --></h1>
+<p style="font-size: 1.5em; margin-bottom: 0.5em;">{ARC_DESCRIPTION}</p>
+<div style="margin: 1em;">
+ 	<div style="display:inline;">
+ 		<g:plusone annotation="inline" href="/roleplay/{ROLEPLAY_URL}/arcs/{ARC_SLUG}"></g:plusone>
+	</div>
+	<div style="display:inline;">
+		<div class="fb-like" data-send="false" data-layout="standard" data-width="350" data-show-faces="false" data-colorscheme="light" data-action="like" data-href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/arcs/{ARC_SLUG}"></div>
+	</div>
+</div>
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+    <div class="postbody" style="width:100%;"><div class="">
+
+      <h2><strong>{CONTENT_COUNT}</strong> pieces and <strong>{CHARACTER_COUNT}</strong> characters involved, written by <strong>{PLAYER_COUNT}</strong> different authors.</h2>
+			<!-- BEGIN characters -->
+			<div class="character">
+				<img class="crisp-border" src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
+				<div>
+					<a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}"><strong>{characters.NAME}</strong></a>
+				</div>
+				<span>{characters.SYNOPSIS}</span>
+			</div>
+			<!-- BEGINELSE -->
+				<p class="supersize">There are no characters in this arc!</p>
+			<!-- END characters -->
+
+			<div class="clear"></div>
+      <h2><strong>{PLACE_COUNT}</strong> places involved</h2>
+			<!-- BEGIN places -->
+			<div class="place" style="display: inline-block; width: 24%;">
+				<img class="crisp-border" style="margin-right: 5px;" src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/places/{places.SLUG}/image" alt="Place Image: {places.NAME}" />
+				<div>
+					<a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/places/{places.SLUG}/"><strong>{places.NAME}</strong></a>
+				</div>
+				<span>{activity.places.SYNOPSIS}</span>
+			</div>
+			<!-- BEGINELSE -->
+				<p class="supersize">There are no places involved in this arc!</p>
+			<!-- END places -->
+			
+			<br class="clear" />
+			<br class="clear" />
+			<br class="clear" />
+
+			<h3>As written by: {PLAYER_STRING}</h3>
+			<br class="clear" />
+
+			<h3>So begins...</h3>
+			<h1><a class="anchor" name="story"></a><a href="#story">{ARC_NAME}</a></h1>
+			<div id="roleplayStream">
+				<!-- BEGIN activity -->
+					<!-- IF activity.S_SHOW_LOCATION -->
+					<!-- BEGIN places -->
+						<hr />
+						<h3 class="place"><a href="http://www.roleplaygateway.com/roleplay/{URL}/places/{activity.places.URL}/" title="{activity.places.NAME}"><img src="http://www.roleplaygateway.com/roleplay/{URL}/places/{activity.places.URL}/image" alt="{activity.places.NAME}" style="height:50px;" />Setting: {activity.places.NAME}</a></h3>
+						<hr />
+					<!-- END places -->
+					<!-- ENDIF -->
+					<div class="activity" id="a{activity.ID}"><a class="anchor" name="roleplay{activity.ID}"></a>
+						<div style="float:right; width: 29%; border-left: 1px solid #ccc; padding-left: 10px;">
+							<div>
+								<!-- BEGIN characters -->
+									<a href="http://www.roleplaygateway.com/roleplay/{URL}/characters/{activity.characters.URL}/" title="{activity.characters.NAME}"><img class="crisp-border" src="http://www.roleplaygateway.com/roleplay/{URL}/characters/{activity.characters.URL}/image" alt="Character Portrait: {activity.characters.NAME}" style="height:50px;" /></a>
+								<!-- END characters -->
+								<!-- <a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit_content&content_id={activity.ID}" style="float:right; display:block;" class="button">Add Characters &raquo;</a> -->
+							</div>
+
+							<!-- IF .footnotes -->
+							<h3 style="clear:both;"><a href="" onclick="$(this).parent().next('.footnotes').slideToggle(); return false;">{.footnotes} footnotes &raquo;</a></h3>
+							<div class="footnotes" style="display:none;">
+							  <!-- BEGIN footnotes -->
+							  <p class="footnote">
+							  	{footnotes.CONTENT}
+							  </p>
+							  <!-- END footnotes -->
+							</div>
+							<!-- ENDIF -->
+
+						</div>
+						<div style="margin-right: 29%; padding-right:10px;">
+							<div class="content<!-- IF activity.S_IS_DIALOGUE --> dialogue<!-- ENDIF -->">
+								<!-- IF activity.S_IS_DIALOGUE -->
+									<div class="dialogue-character" style="float:left; width:150px; margin-top: 2em; text-align:center;">
+										<em><a href="http://www.roleplaygateway.com/roleplay/{URL}/characters/{activity.CHARACTER_URL}/">
+											<img src="http://www.roleplaygateway.com/roleplay/{URL}/characters/{activity.CHARACTER_URL}/image" alt="Character Portrait: {activity.CHARACTER_NAME}" style="height:50px; display: block; margin-left: auto; margin-right: auto;" />
+											{activity.CHARACTER_NAME}
+										</a> says,</em>
+									</div>
+
+									<div class="dialogue-bubble" style="clear:none; margin-left: 160px;">
+										<span class="pointer">&nbsp;</span>&ldquo;
+								<!-- ENDIF -->
+										{activity.CONTENT}
+								<!-- IF activity.S_IS_DIALOGUE -->
+									&rdquo;</div>
+								<!-- ENDIF -->
+							</div>
+						</div>
+					</div>
+				<!-- BEGINELSE -->
+					<!-- IF !S_AJAX -->
+					<p class="supersize">There is no activity in this <!-- IF S_SINGLE_PLACE -->location<!-- ELSE -->roleplay<!-- ENDIF -->.</p>
+					<!-- ELSE -->
+					
+					<!-- ENDIF -->
+				<!-- END activity -->	
+			</div>
+
+    </div></div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

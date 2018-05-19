@@ -1,0 +1,13 @@
+
+Bonjour {TO_USERNAME},
+
+Le message suivant vous a été envoyé par {FROM_USERNAME} via son compte sur "{SITENAME}". Si ce message contient du spam, des termes abusifs ou des commentaires que vous trouvez choquants, contactez l'administrateur du forum à partir du lien suivant:
+
+{BOARD_CONTACT}
+
+Dans ce cas, il faudra inclure cet e-mail en entier (particulièrement l'entête).
+
+Voici le message qui vous a été envoyé:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+{MESSAGE}

@@ -1,0 +1,128 @@
+#########################################################################################
+#          File: Read Me.txt                                                            #
+#   Script Name: Donation Meter v4.0.0                                                  #
+# Re-Written By: Michael Milson                                                         #
+#   Web Address: http://www.DonationBooster.info                                        #
+# Email Address: Michael@DonationBooster.info                                           #
+#                                                                                       #
+# Description:                                                                          #
+# Donation Meter is a script allowing you to take donations online via PayPal and store #
+# a record of these donations in a mysql database, using the stored information the     #
+# script generates a donation meter from images supplied depending on the level of the  #
+# total amount of donations received so far.                                            #
+#                                                                                       #
+# Customization of the script and/or images can be done by us for a small fee starting  #
+# from $20.                                                                             #  
+#                                                                                       #
+#                                                                                       #
+# Michael Milson                                                                        #
+# Michael@DonationBooster.info                                                          #
+# http://www.DonationBooster.info                                                       #
+#########################################################################################
+
+
+Included Files:
+
+donationmeter folder containing 19 image files and 4 php files, 
+display.php
+dbsettings.php
+installDB.php
+ipn.php
+Read Me.txt (This File)
+3 Example code php files
+donations-button-example.php
+donations-meter-example.php
+display-last-15-donations.php
+
+
+
+Installation:
+
+Firstly copy all the files into the root of your website folder making sure to keep the files
+that are in the donationmeter folder within that folder, next open the file dbsettings.php
+modify the file to match your database settings
+
+Secondly open the file ipn.php and modify the settings at the top to match your company name, 
+paypal email, web address etc
+
+Thirdly upload all the files to your host and then run http://www.yoursite.com/donationmeter/installDB.php
+this will install the required donations table into your database assuming you entered correct database username password etc in the dbsettings file
+
+Now your ready to check out the contents of the 3 example files and copy the code into your
+web page where needed, modify only as needed and read all the comments to understand what the code 
+does and where you need it etc
+
+If your using a forum or some kind of content management system that uses blocks and does not allow the input of raw php code this is where the meter_code_block.php file comes in to play
+
+You can use an <iframe src=""> etc tag to display the file containing the php code
+
+Such as:
+
+<iframe name="donationmetercode" src="http://www.yoursite.com/donationmeter/meter_code_block.php" width="100%" height="385px" marginwidth="0" marginheight="0" frameborder="0" scrolling="no"></iframe>
+
+This will allow you to place the meter code within your site even if php is not available on the page your putting this code
+
+You can also mdify the width attribute of the img tag within the file meter_code_block.php to modify the size of the meter graphic to fit your site better, if you modify this you also should modify the height attribut of the iframe tag above so that everything fits and looks good on your page
+
+Also something else you may wish to modify is the following
+
+If you want your meter to display a running total from day one until forever then leave it as it is however if you wish to have the meter reset to zero at the end of every month and start counting donations fresh at the beginning of every month modify the following
+
+In the file display.php within the images folder find the line
+
+$dnuid=$_GET['dnuid'];
+
+Underneath this line copy the following 2 lines
+
+$month = date("m");
+$year = date("Y");
+
+Then underneath those you will see a few lines like the following
+
+if(($dnuid=="") or ($dnuid=="0")) {
+$result = mysql_query("SELECT donation FROM `donations`");
+} else {
+$result = mysql_query("SELECT donation FROM `donations` WHERE dnuid = $dnuid");
+}
+
+and replace them with the following lines
+
+if(($dnuid=="") or ($dnuid=="0")) {
+$result = mysql_query("SELECT donation FROM `donations` WHERE month = '$month' AND year = '$year'");
+} else {
+$result = mysql_query("SELECT donation FROM `donations` WHERE dnuid = $dnuid AND month = '$month' AND year = '$year'");
+}
+
+
+Test the script by making a donation using a different paypal account (maybe get a friend to help) and 
+check that the script displays the correct image based on the value of the total donations so 
+far also check that the script says the correct total donation level on the image alt tags.
+
+If it all works your good to go (if needed you can refund the test donation if it was only for testing)
+
+Modification of the images and code in this script can be done by us if needed starting at $20.
+
+Need help visit the help portal at http://www.BlueWaterCentral.org
+
+*********************** Updated In Donation Meter v4.0 *********************
+In version 4.0 we have completely revamped the whole script, you now have more settings you can modify to 
+simplify how the script works without having to modify lots of code, the date displayed against each 
+donation when displaying the last x donations is now fully customizable to show the date in what ever 
+format/timezone you wish, we have also modified and corrected several bugs found in the last version.
+
+Added support for forums blocks and content management systems that do not allow php scripting within the blocks.
+
+********************* Bug Fixed In Donation Meter v3.1 *********************
+
+In version 3.1 we fixed the bug stopping the donation use id and the display name from being added to 
+the database.
+
+************************ Added In Donation Meter v3.0 **********************
+
+In version 3.0 we have updated the script to allow multiple donation meters to be deployed on one site so 
+you can set up donations for different reasons and track each one independantly as well as tracking the 
+total overall, we have also included info on the date a donation is made so you can use this to track donations 
+made in certain days, months, years etc, also included code to display the last x number of donations made 
+and who by, how much, what date etc.
+
+****************************************************************************

@@ -1,0 +1,56 @@
+<h2><!-- IF HTML_NEWS_URL --><a href="{HTML_NEWS_URL}" title="{HTML_NEWS_TITLE}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {HTML_NEWS_TITLE}</a> <!-- ENDIF --><!-- IF HTML_URL --><strong>&raquo;</strong> <a href="{HTML_URL}" title="{HTML_SITENAME}">{HTML_SITENAME}</a><!-- ENDIF --></h2>
+<!-- IF HTML_SITEDESC --><span>{HTML_SITEDESC}<br /></span><!-- ENDIF -->
+<!-- BEGIN module -->
+	<h3><!-- IF module.NEWS_URL --><a href="{module.NEWS_URL}" title="{module.NEWS_TITLE}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {module.NEWS_TITLE}</a><!-- ENDIF --><!-- IF module.MAP_URL --> <strong>&raquo;</strong> <a href="{module.MAP_URL}" title="{module.MAP_TITLE}">{module.MAP_TITLE}</a><br /><!-- ENDIF --></h3>
+<span>{module.DESC}<br /></span><br />
+		<div class="forabg" style="width:100%">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			<ul class="topiclist">
+				<li class="header">
+					<dl>
+						<dt style="width:64%;"><!-- IF module.NEWS_URL --><a href="{module.NEWS_URL}" title="{module.NEWS_TITLE}">{module.NEWS_TITLE}</a> <!-- ENDIF -->
+					<!-- IF module.MAP_URL --> <strong>&raquo;</strong> <a href="{module.MAP_URL}" title="{module.MAP_TITLE}">{module.MAP_TITLE}</a><br /><!-- ENDIF --></dt>
+					</dl>
+				</li>
+			</ul>
+			<ul class="topiclist forums">
+				<!-- BEGIN links -->
+				<li class="row<!-- IF module.links.S_ROW_COUNT is odd --> bg2<!-- ENDIF -->" style="padding:10px;">
+					<!-- IF module.links.NEWS_URL or module.links.MAP_URL -->
+					<h4 class="column1" style="position:relative;">
+						<!-- IF module.links.NEWS_URL -->
+							<a href="{module.links.NEWS_URL}" title="{module.links.NEWS_TITLE}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {module.links.NEWS_TITLE}</a>
+						<!-- ELSE -->
+							<a href="{module.links.MAP_URL}" title="{module.links.MAP_TITLE}"> <strong>&raquo;</strong> {module.links.MAP_TITLE}</a>
+						<!-- ENDIF -->
+					</h4>
+					<!-- ENDIF -->
+					<!-- IF module.links.NEWS_URL and module.links.MAP_URL -->
+					<h4 class="column2" style="position:relative;">
+						<a href="{module.links.MAP_URL}" title="{module.links.MAP_TITLE}"> <strong>&raquo;</strong> {module.links.MAP_TITLE}</a>
+					</h4>
+					<!-- ENDIF -->
+					<div class="clear">&nbsp;</div>
+				</li>
+				<!-- END links -->
+			</ul>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+<!-- BEGINELSE -->
+<div class="forabg">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt style="width:64%;"><a href="{HTML_URL}" title="{HTML_SITENAME}">{HTML_SITENAME}</a></dt>
+				</dl>
+			</li>
+		</ul>
+		<div class="panel">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<p>{L_HTML_MAP_NONE}</p>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- END module -->

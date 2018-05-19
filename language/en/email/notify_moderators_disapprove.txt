@@ -1,0 +1,18 @@
+Subject: {TOPIC_SUBJECT}
+
+Hello {MODERATOR_NAME},
+
+You are receiving this notification because you are either an Administrator or a moderator of the {FORUM_NAME} forum.
+
+The following queued post has been disapproved by {MOD_NAME} in the topic : {TOPIC_TITLE}
+
+Author     :  {AUTHOR_NAME}
+Reason     :  {REASON}
+Subject    :  {POST_SUBJECT}
+Topic type :  {TOPIC_TYPE}
+Queued     :  {MODERATION}
+Message    :
+
+{POST_TEXT}
+
+{EMAIL_SIG}

@@ -1,0 +1,277 @@
+/*
+    Header and footer
+*/
+body > header, #header {
+    position: relative;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+    top: -20px;
+    opacity: 0;
+    left: 0;
+    right: 0;
+    background: url({T_THEME_PATH}/images/header.png) 0 0 repeat-x;
+    background-size: 128px 100%;
+    min-height: 62px;
+    overflow: hidden;
+    border: solid 1px #91b8f6;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    transition-property: top, opacity;
+    -webkit-transition-property: top, opacity;
+    -moz-transition-property: top, opacity;
+    -o-transition-property: top, opacity;
+    transition-duration: 1s;
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-timing-function: ease;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+}
+body.transform > header, #header {
+    opacity: 1;
+    top: 8px;
+}
+
+body.rounded > header, body.rounded #header {
+    margin-top: 8px;
+    margin-bottom: 0;
+    top: 0;
+    border-bottom-right-radius: 0;
+    -moz-border-radius-bottomright: 0;
+    border-bottom-left-radius: 0;
+    -moz-border-radius-bottomleft: 0;
+}
+
+
+#site-description {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    vertical-align: center;
+}
+.old-ie #site-description {
+    position: static;
+    float: left;
+}
+#site-description > a {
+    float: left;
+    padding: 0;
+    line-height: 1em;
+    font-size: 1px;
+    text-decoration: none;
+    border-width: 0;
+}
+#site-description > a > img { 
+    margin: 0; 
+    padding: 0;
+    opacity: 1 !important;
+}
+#site-description > p, #site-description > h1 {
+    position: absolute;
+    left: {IMG_SITE_LOGO_WIDTH}px;
+    margin: 0;
+    padding: 0;
+    padding-left: 8px;
+    white-space: nowrap;
+    font-weight: normal;
+    line-height: 1.4em;
+    font-family: Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+    text-shadow: rgba(0, 0, 0, 0.2) 1px 2px 1px;
+}
+
+#site-description > h1 {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    padding-top: 6px;
+}
+#site-description > p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    padding-top: 35px;
+}
+#site-description .skiplink { display: none; }
+
+body > header nav, .old-ie header nav {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    bottom: -1px;
+    font-size: 12px;
+    line-height: 1em;
+    color: #bed3f6;
+    white-space: nowrap;
+}
+body > header nav a, body > header nav a:visited, body > header nav span {
+    display: inline-block;
+    padding-bottom: 8px;
+    color: #e8f0fc;
+    text-decoration: none;
+}
+body > header nav a:hover {
+    color: #fff;
+    background: url({T_THEME_PATH}/images/menu_border.gif) bottom left repeat-x;
+}
+body > header nav strong { font-weight: normal; }
+
+
+#search-box {
+    position: absolute;
+    bottom: auto;
+    top: 8px;
+    right: 8px;
+    background: rgba(119, 166, 244,  0.3) url({T_THEME_PATH}/images/search.png) center left no-repeat;
+    border: solid 1px #659af0;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    padding-left: 17px;
+}
+#search-box.focused {
+    background-color: rgba(119, 166, 244,  0.5);
+}
+#search-box form { 
+    display: inline; 
+    border-width: 0;
+    margin: 0;
+    padding: 0;
+}
+#search-box input[type="text"] {
+    margin: 0;
+    padding: 4px 3px;
+    border-width: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background: transparent;
+    height: 16px;
+    width: 140px;
+    line-height: 1em;
+    font-size: 11px;
+    color: #e7f0fc;
+    outline-style: none;
+    -webkit-appearance: none;
+}
+#search-box input[type="text"]:hover, #search-box input[type="text"]:focus {
+    color: #fff;
+}
+.browser-ie #search-box {
+    padding-top: 2px;
+}
+.browser-ie #search-box input[type="text"] {
+    height: 14px;
+}
+
+/*
+    Footer
+*/
+body > footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    vertical-align: bottom;
+    line-height: 1.3em;
+    margin: 0;
+    padding: 8px;
+    padding-bottom: 6px;
+    font-size: 11px;
+    color: #666;
+}
+
+body.simple .copyright {
+    text-align: center;
+    color: #666;
+    font-size: 11px;
+}
+
+.copyright .copy-left {
+    float: left;
+    text-align: left;
+    padding-left: 4px;
+}
+.copyright .copy-right {
+    float: right;
+    text-align: right;
+    padding-right: 4px;
+}
+
+/*
+    Wrapper
+*/
+#page-body { padding-bottom: 100px; }
+body.simple #page-body { padding-bottom: 0; }
+#page-body > p { margin: 6px 4px; }
+#page-body > p.rightside { margin: 0; }
+
+body.rounded #page-wrapper {
+    border: solid 1px #91b8f6;
+    border-width: 0 2px;
+    padding: 10px;
+}
+body.rounded #page-header, body.rounded #page-body, body.rounded #page-header .nav-links { margin: 0; }
+body.rounded #page-body { padding-bottom: 0; }
+body.rounded > footer {
+    position: relative;
+    margin-bottom: 8px;
+    padding: 10px;
+    border: solid 2px #91b8f6;
+    border-top-width: 0;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-top-right-radius: 0;
+    -moz-border-radius-topright: 0;
+    border-top-left-radius: 0;
+    -moz-border-radius-topleft: 0;
+}
+
+/*
+    Navigation
+*/
+nav.nav-links {
+    margin: 14px 0 6px;
+    top: 4px;
+    padding: 6px 8px;
+    color: #999;
+    text-align: left;
+}
+nav.nav-links .rightside { float: right; }
+nav.nav-links .time { color: #666; }
+
+nav.nav-extra {
+    text-align: right;
+    font-size: 12px;
+    margin: 8px 4px 4px;
+    color: #999;
+}
+
+footer nav.nav-links { position: relative; }
+footer nav.nav-links .rightside { 
+    position: absolute;
+    top: 6px;
+    right: 10px;
+}
+
+/*
+    Rules
+*/
+div.rules {
+    margin: 6px 0;
+    padding: 6px;
+    background: rgba(228, 80, 96,  0.15);
+    border-color: #e45060;
+}
+div.rules > .inner > strong { 
+    color: #649bf4; 
+    font-family: Arial, 'DejaVu Sans', 'Liberation Sans', Freesans, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.4em;
+}
+#information {
+    text-align: center;
+    padding: 20px;
+}
+

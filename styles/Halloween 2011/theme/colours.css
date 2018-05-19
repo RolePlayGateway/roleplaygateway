@@ -1,0 +1,1029 @@
+/*  	
+--------------------------------------------------------------
+Colours and backgrounds for common.css
+-------------------------------------------------------------- */
+
+html, body {
+	color: #b98347;
+	background-color: #FFFFFF;
+}
+
+h1 {
+	color: #FFFFFF;
+}
+
+h2 {
+	color: #5c3f23;
+}
+
+h3 {
+	border-bottom-color: #CCCCCC;
+	color: #c0580f;
+}
+
+hr {
+	border-color: #FFFFFF;
+	border-top-color: #CCCCCC;
+}
+
+hr.dashed {
+	border-top-color: #CCCCCC;
+}
+
+/* Search box
+--------------------------------------------- */
+
+#search-box {
+	color: #FFFFFF;
+}
+
+#search-box #keywords {
+	background-color: #FFF;
+}
+
+#search-box input {
+	border-color: #d62f00;
+}
+
+/* Round cornered boxes and backgrounds
+---------------------------------------- */
+.headerbar {
+	background-color: #f46037;
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/bg_header.gif");
+	color: #FFFFFF;
+}
+
+.navbar {
+	background-color: #f6e3da;
+}
+
+.forabg {
+	background-color: #d72f00;
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/bg_list.gif");
+}
+
+.forumbg {
+	background-color: #f46037;
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/bg_header.gif");
+}
+
+.panel {
+	background-color: #faf3f2;
+	color: #5c3f23;
+}
+
+.post:target .content {
+	color: #000000;
+}
+
+.post:target h3 a {
+	color: #000000;
+}
+
+.bg1	{ background-color: #fcf5f2; }
+.bg2	{ background-color: #f9efeb;  }
+.bg3	{ background-color: #f6e3da; }
+
+.ucprowbg {
+	background-color: #f2ece4;
+}
+
+.fieldsbg {
+	background-color: #f6f2ed;
+}
+
+span.corners-top {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/corners_left.png");
+}
+
+span.corners-top span {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/corners_right.png");
+}
+
+span.corners-bottom {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/corners_left.png");
+}
+
+span.corners-bottom span {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/corners_right.png");
+}
+
+/* Horizontal lists
+----------------------------------------*/
+
+ul.navlinks {
+	border-bottom-color: #FFFFFF;
+}
+
+/* Table styles
+----------------------------------------*/
+table.table1 thead th {
+	color: #FFFFFF;
+}
+
+table.table1 tbody tr {
+	border-color: #dad6cc;
+}
+
+table.table1 tbody tr:hover, table.table1 tbody tr.hover {
+	background-color: #fbebe0;
+	color: #000;
+}
+
+table.table1 td {
+	color: #b98347;
+}
+
+table.table1 tbody td {
+	border-top-color: #FAFAFA;
+}
+
+table.table1 tbody th {
+	border-bottom-color: #000000;
+	color: #333333;
+	background-color: #FFFFFF;
+}
+
+table.info tbody th {
+	color: #000000;
+}
+
+/* Misc layout styles
+---------------------------------------- */
+dl.details dt {
+	color: #000000;
+}
+
+dl.details dd {
+	color: #b98347;
+}
+
+.sep {
+	color: #f34f24;
+}
+
+/* Pagination
+---------------------------------------- */
+
+.pagination span strong {
+	color: #FFFFFF;
+	background-color: #da7a5a;
+	border-color: #da7a5a;
+}
+
+.pagination span a, .pagination span a:link, .pagination span a:visited {
+	color: #bd7c58;
+	background-color: #f8f3f1;
+	border-color: #dfcabd;
+}
+
+.pagination span a:hover {
+	border-color: #e58552;
+	background-color: #e58552;
+	color: #FFF;
+}
+
+.pagination span a:active {
+	color: #bd7c58;
+	background-color: #f8f3f1;
+	border-color: #dfcabd;
+}
+
+/* Pagination in viewforum for multipage topics */
+.row .pagination {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_pages.gif");
+}
+
+.row .pagination span a, li.pagination span a {
+	background-color: #FFFFFF;
+}
+
+.row .pagination span a:hover, li.pagination span a:hover {
+	background-color: #e58552;
+}
+
+/* Miscellaneous styles
+---------------------------------------- */
+
+.copyright {
+	color: #555555;
+}
+
+.error {
+	color: #e6af1d;
+}
+
+.reported {
+	background-color: #fcf8ee;
+}
+
+li.reported:hover {
+	background-color: #f7f2d9 !important;
+}
+.sticky, .announce {
+	/* you can add a background for stickies and announcements*/
+}
+
+div.rules {
+	background-color: #f7f2d9;
+	color: #e6af1d;
+}
+
+p.rules {
+	background-color: #f7f2d9;
+	background-image: none;
+}
+
+/*  	
+--------------------------------------------------------------
+Colours and backgrounds for links.css
+-------------------------------------------------------------- */
+
+a:link	{ color: #ae440e; }
+a:visited	{ color: #ae440e; }
+a:hover	{ color: #f5b40d; }
+a:active	{ color: #e58552; }
+
+/* Links on gradient backgrounds */
+#search-box a:link, .navbg a:link, .forumbg .header a:link, .forabg .header a:link, th a:link {
+	color: #FFFFFF;
+}
+
+#search-box a:visited, .navbg a:visited, .forumbg .header a:visited, .forabg .header a:visited, th a:visited {
+	color: #FFFFFF;
+}
+
+#search-box a:hover, .navbg a:hover, .forumbg .header a:hover, .forabg .header a:hover, th a:hover {
+	color: #ffd9c6;
+}
+
+#search-box a:active, .navbg a:active, .forumbg .header a:active, .forabg .header a:active, th a:active {
+	color: #ffe8dd;
+}
+
+/* Links for forum/topic lists */
+a.forumtitle {
+	color: #ae440e;
+}
+
+/* a.forumtitle:visited { color: #ae440e; } */
+
+a.forumtitle:hover {
+	color: #e6af1d;
+}
+
+a.forumtitle:active {
+	color: #ae440e;
+}
+
+a.topictitle {
+	color: #ae440e;
+}
+
+/* a.topictitle:visited { color: #e58552; } */
+
+a.topictitle:hover {
+	color: #e6af1d;
+}
+
+a.topictitle:active {
+	color: #ae440e;
+}
+
+/* Post body links */
+.postlink {
+	color: #e58552;
+	border-bottom-color: #e58552;
+}
+
+.postlink:visited {
+	color: #da966f;
+	border-bottom-color: #da966f;
+}
+
+.postlink:active {
+	color: #e58552;
+}
+
+.postlink:hover {
+	background-color: #fbeae0;
+	color: #923a0b;
+}
+
+.signature a, .signature a:visited, .signature a:hover, .signature a:active {
+	background-color: transparent;
+}
+
+/* Profile links */
+.postprofile a:link, .postprofile a:visited, .postprofile dt.author a {
+	color: #ae440e;
+}
+
+.postprofile a:hover, .postprofile dt.author a:hover {
+	color: #f5b40d;
+}
+
+.postprofile a:active {
+	color: #ae440e;
+}
+
+/* Profile searchresults */	
+.search .postprofile a {
+	color: #ae440e;
+}
+
+.search .postprofile a:hover {
+	color: #f5b40d;
+}
+
+/* Back to top of page */
+a.top {
+	background-image: url("{IMG_ICON_BACK_TOP_SRC}");
+}
+
+a.top2 {
+	background-image: url("{IMG_ICON_BACK_TOP_SRC}");
+}
+
+/* Arrow links  */
+a.up		{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/arrow_up.gif") }
+a.down		{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/arrow_down.gif") }
+a.left		{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/arrow_left.gif") }
+a.right		{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/arrow_right.gif") }
+
+a.up:hover {
+	background-color: transparent;
+}
+
+a.left:hover {
+	color: #e58552;
+}
+
+a.right:hover {
+	color: #e58552;
+}
+
+
+/*  	
+--------------------------------------------------------------
+Colours and backgrounds for content.css
+-------------------------------------------------------------- */
+
+ul.forums {
+	background-color: #fdf6f4;
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/gradient.gif");
+}
+
+ul.topiclist li {
+	color: #ab7541;
+}
+
+ul.topiclist dd {
+	border-left-color: #FFFFFF;
+}
+
+.rtl ul.topiclist dd {
+	border-right-color: #fff;
+	border-left-color: transparent;
+}
+
+ul.topiclist li.row dt a.subforum.read {
+	background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/subforum_read.gif");
+}
+
+ul.topiclist li.row dt a.subforum.unread {
+	background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/subforum_unread.gif");
+}
+
+li.row {
+	border-top-color:  #FFFFFF;
+	border-bottom-color: #b02500;
+}
+
+li.row strong {
+	color: #000000;
+}
+
+li.row:hover {
+	background-color: #fbf3e4;
+}
+
+li.row:hover dd {
+	border-left-color: #CCCCCC;
+}
+
+.rtl li.row:hover dd {
+	border-right-color: #CCCCCC;
+	border-left-color: transparent;
+}
+
+li.header dt, li.header dd {
+	color: #FFFFFF;
+}
+
+/* Forum list column styles */
+ul.topiclist dd.searchextra {
+	color: #333333;
+}
+
+/* Post body styles
+----------------------------------------*/
+.postbody {
+	color: #333333;
+}
+
+/* Content container styles
+----------------------------------------*/
+.content {
+	color: #333333;
+}
+
+.content h2, .panel h2 {
+	color: #c0580f;
+	border-bottom-color:  #CCCCCC;
+}
+
+dl.faq dt {
+	color: #333333;
+}
+
+.posthilit {
+	background-color: #faecca;
+	color: #e6af1d;
+}
+
+/* Post signature */
+.signature {
+	border-top-color: #CCCCCC;
+}
+
+/* Post noticies */
+.notice {
+	border-top-color:  #CCCCCC;
+}
+
+/* BB Code styles
+----------------------------------------*/
+/* Quote block */
+blockquote {
+	background-color: #f7f2ea;
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/quote.gif");
+	border-color:#efe9de;
+}
+
+.rtl blockquote {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/quote_rtl.gif");
+}
+
+blockquote blockquote {
+	/* Nested quotes */
+	background-color:#f8f3e9;
+}
+
+blockquote blockquote blockquote {
+	/* Nested quotes */
+	background-color: #f7f2ea;
+}
+
+/* Code block */
+dl.codebox {
+	background-color: #FFFFFF;
+	border-color: #eddbd4;
+}
+
+dl.codebox dt {
+	border-bottom-color:  #CCCCCC;
+}
+
+dl.codebox code {
+	color: #2E8B57;
+}
+
+.syntaxbg		{ color: #FFFFFF; }
+.syntaxcomment	{ color: #fe6c22; }
+.syntaxdefault	{ color: #5d526f; }
+.syntaxhtml		{ color: #000000; }
+.syntaxkeyword	{ color: #007700; }
+.syntaxstring	{ color: #faf200; }
+
+/* Attachments
+----------------------------------------*/
+.attachbox {
+	background-color: #FFFFFF;
+	border-color:  #eddbd4;
+}
+
+.pm-message .attachbox {
+	background-color: #f7f4f5;
+}
+
+.attachbox dd {
+	border-top-color: #eddbd4;
+}
+
+.attachbox p {
+	color: #666666;
+}
+
+.attachbox p.stats {
+	color: #666666;
+}
+
+.attach-image img {
+	border-color: #999999;
+}
+
+/* Inline image thumbnails */
+
+dl.file dd {
+	color: #666666;
+}
+
+dl.thumbnail img {
+	border-color: #666666;
+	background-color: #FFFFFF;
+}
+
+dl.thumbnail dd {
+	color: #666666;
+}
+
+dl.thumbnail dt a:hover {
+	background-color: #EEEEEE;
+}
+
+dl.thumbnail dt a:hover img {
+	border-color: #e58552;
+}
+
+/* Post poll styles
+----------------------------------------*/
+
+fieldset.polls dl {
+	border-top-color: #f2ece4;
+	color: #666666;
+}
+
+fieldset.polls dl.voted {
+	color: #000000;
+}
+
+fieldset.polls dd div {
+	color: #FFFFFF;
+}
+
+.rtl .pollbar1, .rtl .pollbar2, .rtl .pollbar3, .rtl .pollbar4, .rtl .pollbar5 {
+	border-right-color: transparent;
+}
+
+.pollbar1 {
+	background-color: #d39c15;
+	border-bottom-color: #916e0e;
+	border-right-color: #916e0e;
+}
+
+.rtl .pollbar1 {
+	border-left-color: #916e0e;
+}
+
+.pollbar2 {
+	background-color: #e7a512;
+	border-bottom-color: #af8211;
+	border-right-color: #af8211;
+}
+
+.rtl .pollbar2 {
+	border-left-color: #af8211;
+}
+
+.pollbar3 {
+	background-color: #f0ac18;
+	border-bottom-color: #d39c15;
+	border-right-color: #d39c15;
+}
+
+.rtl .pollbar3 {
+	border-left-color: #d39c15;
+}
+
+.pollbar4 {
+	background-color: #f4b024;
+	border-bottom-color: #e7a512;
+	border-right-color: #e7a512;
+}
+
+.rtl .pollbar4 {
+	border-left-color: #e7a512;
+}
+
+.pollbar5 {
+	background-color: #fcb62c;
+	border-bottom-color: #f0ac18;
+	border-right-color: #f0ac18;
+}
+
+.rtl .pollbar5 {
+	border-left-color: #f0ac18;
+}
+
+/* Poster profile block
+----------------------------------------*/
+.postprofile {
+	color: #666666;
+	border-left-color: #FFFFFF;
+}
+
+.rtl .postprofile {
+	border-right-color: #FFFFFF;
+	border-left-color: transparent;
+}
+
+.pm .postprofile {
+	border-left-color: #DDDDDD;
+}
+
+.rtl .pm .postprofile {
+	border-right-color: #DDDDDD;
+	border-left-color: transparent;
+}
+
+.postprofile strong {
+	color: #000000;
+}
+
+.online {
+	background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/en/icon_user_online.gif");
+}
+
+/*  	
+--------------------------------------------------------------
+Colours and backgrounds for buttons.css
+-------------------------------------------------------------- */
+
+/* Big button images */
+.reply-icon, .reply-icon a			{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/en/button_topic_reply.gif"); }
+.post-icon, .post-icon a				{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/en/button_topic_new.gif") ;}
+.locked-icon, .locked-icon a			{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/en/button_topic_locked.gif"); }
+.pmreply-icon, .pmreply-icon a		{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/en/button_pm_reply.gif") ;}
+.newpm-icon, .newpm-icon a			{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/en/button_pm_new.gif") ;}
+.forwardpm-icon, .forwardpm-icon a 	{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/en/button_pm_forward.gif") ;}
+
+a.print {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_print.gif");
+}
+
+a.sendemail {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_sendemail.gif");
+}
+
+a.fontsize {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_fontsize.gif");
+}
+
+/* Icon images
+---------------------------------------- */
+.sitehome						{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_home.gif"); }
+.icon-faq						{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_faq.gif"); }
+.icon-members					{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_members.gif"); }
+.icon-home						{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_home.gif"); }
+.icon-ucp						{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_ucp.gif"); }
+.icon-register					{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_register.gif"); }
+.icon-logout					{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_logout.gif"); }
+.icon-bookmark					{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_bookmark.gif"); }
+.icon-bump						{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_bump.gif"); }
+.icon-subscribe					{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_subscribe.gif"); }
+.icon-unsubscribe				{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_unsubscribe.gif"); }
+.icon-pages						{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_pages.gif"); }
+.icon-search					{ background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_search.gif"); }
+
+/* Profile & navigation icons */
+.email-icon, .email-icon a		{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/icon_contact_email.gif"); }
+.aim-icon, .aim-icon a			{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/icon_contact_aim.gif"); }
+.yahoo-icon, .yahoo-icon a		{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/icon_contact_yahoo.gif"); }
+.web-icon, .web-icon a			{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/icon_contact_www.gif"); }
+.msnm-icon, .msnm-icon a			{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/icon_contact_msnm.gif"); }
+.icq-icon, .icq-icon a			{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/icon_contact_icq.gif"); }
+.jabber-icon, .jabber-icon a		{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/icon_contact_jabber.gif"); }
+.pm-icon, .pm-icon a				{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/en/icon_contact_pm.gif"); }
+.quote-icon, .quote-icon a		{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/en/icon_post_quote.gif"); }
+
+/* Moderator icons */
+.report-icon, .report-icon a		{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/button_summonMod.png"); }
+.edit-icon, .edit-icon a			{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/en/icon_post_edit.gif"); }
+.delete-icon, .delete-icon a		{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/icon_post_delete.gif"); }
+.info-icon, .info-icon a			{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/icon_post_info.gif"); }
+.warn-icon, .warn-icon a			{ background-image: url("http://www.roleplaygateway.com/styles/RolePlayGateway/imageset/icon_user_warn.gif"); } /* Need updated warn icon */
+
+/*  	
+--------------------------------------------------------------
+Colours and backgrounds for cp.css
+-------------------------------------------------------------- */
+
+/* Main CP box
+----------------------------------------*/
+
+#cp-main h3, #cp-main hr, #cp-menu hr {
+	border-color: #debfb0;
+}
+
+#cp-main .panel li.row {
+	border-bottom-color: #e5cec1;
+	border-top-color: #F9F9F9;
+}
+
+ul.cplist {
+	border-top-color: #e5cec1;
+}
+
+#cp-main .panel li.header dd, #cp-main .panel li.header dt {
+	color: #000000;
+}
+
+#cp-main table.table1 thead th {
+	color: #333333;
+	border-bottom-color: #333333;
+}
+
+#cp-main .pm-message {
+	border-color: #f2eae3;
+	background-color: #FFFFFF;
+}
+
+/* CP tabbed menu
+----------------------------------------*/
+#tabs a {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/bg_tabs1.gif");
+}
+
+#tabs a span {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/bg_tabs2.gif");
+	color: #b98347;
+}
+
+#tabs a:hover span {
+	color: #e6af1d;
+}
+
+#tabs .activetab a {
+	border-bottom-color: #f6e3da;
+}
+
+#tabs .activetab a span {
+	color: #333333;
+}
+
+#tabs .activetab a:hover span {
+	color: #000000;
+}
+
+/* Mini tabbed menu used in MCP
+----------------------------------------*/
+#minitabs li {
+	background-color: #f9efeb;
+}
+
+#minitabs li.activetab {
+	background-color: #F9F9F9;
+}
+
+#minitabs li.activetab a, #minitabs li.activetab a:hover {
+	color: #333333;
+}
+
+/* UCP navigation menu
+----------------------------------------*/
+
+/* Link styles for the sub-section links */
+#navigation a {
+	color: #333;
+	background-color: #e7cdc0;
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/bg_menu.gif");
+}
+
+.rtl #navigation a {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/bg_menu_rtl.gif");
+	background-position: 0 100%;
+}
+
+#navigation a:hover {
+	background-image: none;
+	background-color: #e2c5b7;
+	color: #e6af1d;
+}
+
+#navigation #active-subsection a {
+	color: #f5b40d;
+	background-color: #F9F9F9;
+	background-image: none;
+}
+
+#navigation #active-subsection a:hover {
+	color: #f5b40d;
+}
+
+/* Preferences pane layout
+----------------------------------------*/
+#cp-main h2 {
+	color: #333333;
+}
+
+#cp-main .panel {
+	background-color: #F9F9F9;
+}
+
+#cp-main .pm {
+	background-color: #FFFFFF;
+}
+
+#cp-main span.corners-top, #cp-menu span.corners-top {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/corners_left2.gif");
+}
+
+#cp-main span.corners-top span, #cp-menu span.corners-top span {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/corners_right2.gif");
+}
+
+#cp-main span.corners-bottom, #cp-menu span.corners-bottom {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/corners_left2.gif");
+}
+
+#cp-main span.corners-bottom span, #cp-menu span.corners-bottom span {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/corners_right2.gif");
+}
+
+/* Topicreview */
+#cp-main .panel #topicreview span.corners-top, #cp-menu .panel #topicreview span.corners-top {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/corners_left.gif");
+}
+
+#cp-main .panel #topicreview span.corners-top span, #cp-menu .panel #topicreview span.corners-top span {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/corners_right.gif");
+}
+
+#cp-main .panel #topicreview span.corners-bottom, #cp-menu .panel #topicreview span.corners-bottom {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/corners_left.gif");
+}
+
+#cp-main .panel #topicreview span.corners-bottom span, #cp-menu .panel #topicreview span.corners-bottom span {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/corners_right.gif");
+}
+
+/* Friends list */
+.cp-mini {
+	background-color: #fdf6f4;
+}
+
+dl.mini dt {
+	color: #956839;
+}
+
+/* PM Styles
+----------------------------------------*/
+/* PM Message history */
+.current {
+	color: #000000 !important;
+}
+
+/* PM panel adjustments */
+.pm-panel-header,
+#cp-main .pm-message-nav {
+	border-bottom-color: #debfb0;
+}
+
+/* PM marking colours */
+.pmlist li.pm_message_reported_colour, .pm_message_reported_colour {
+	border-left-color: #e6af1d;
+	border-right-color: #e6af1d;
+}
+
+.pmlist li.pm_marked_colour, .pm_marked_colour {
+	border-color: #f27818;
+}
+
+.pmlist li.pm_replied_colour, .pm_replied_colour {
+	border-color: #e0c1b5;
+}
+
+.pmlist li.pm_friend_colour, .pm_friend_colour {
+	border-color: #da966f;
+}
+
+.pmlist li.pm_foe_colour, .pm_foe_colour {
+	border-color: #000000;
+}
+
+/* Avatar gallery */
+#gallery label {
+	background-color: #FFFFFF;
+	border-color: #CCC;
+}
+
+#gallery label:hover {
+	background-color: #EEE;
+}
+
+/*  	
+--------------------------------------------------------------
+Colours and backgrounds for forms.css
+-------------------------------------------------------------- */
+
+/* General form styles
+----------------------------------------*/
+select {
+	border-color: #666666;
+	background-color: #FAFAFA;
+	color: #000;
+}
+
+label {
+	color: #956839;
+}
+
+option.disabled-option {
+	color: graytext;
+}
+
+/* Definition list layout for forms
+---------------------------------------- */
+dd label {
+	color: #333;
+}
+
+/* Hover effects */
+fieldset dl:hover dt label {
+	color: #000000;
+}
+
+fieldset.fields2 dl:hover dt label {
+	color: inherit;
+}
+
+/* Quick-login on index page */
+fieldset.quick-login input.inputbox {
+	background-color: #f7f4f5;
+}
+
+/* Posting page styles
+----------------------------------------*/
+
+#message-box textarea {
+	color: #333333;
+}
+
+/* Input field styles
+---------------------------------------- */
+.inputbox {
+	background-color: #FFFFFF; 
+	border-color: #dfcabd;
+	color: #333333;
+}
+
+.inputbox:hover {
+	border-color: #f55d34;
+}
+
+.inputbox:focus {
+	border-color: #f55d34;
+	color: #ab4c0d;
+}
+
+/* Form button styles
+---------------------------------------- */
+
+a.button1, input.button1, input.button3, a.button2, input.button2 {
+	color: #000;
+	background-color: #FAFAFA;
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/bg_button.gif");
+}
+
+a.button1, input.button1 {
+	border-color: #666666;
+}
+
+input.button3 {
+	background-image: none;
+}
+
+/* Alternative button */
+a.button2, input.button2, input.button3 {
+	border-color: #666666;
+}
+
+/* <a> button in the style of the form buttons */
+a.button1, a.button1:link, a.button1:visited, a.button1:active, a.button2, a.button2:link, a.button2:visited, a.button2:active {
+	color: #000000;
+}
+
+/* Hover states */
+a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, input.button3:hover {
+	border-color: #e6af1d;
+	color: #e6af1d;
+}
+
+input.search {
+	background-image: url("http://www.roleplaygateway.com/styles/Halloween 2011/theme/images/icon_textbox_search.gif");
+}
+
+input.disabled {
+	color: #666666;
+}

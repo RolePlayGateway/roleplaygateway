@@ -1,0 +1,19 @@
+Subject: Notification de réponse à un sujet - {TOPIC_TITLE}
+
+Bonjour {USERNAME},
+
+Vous recevez cet e-mail car vous surveillez le sujet, "{TOPIC_TITLE}" sur "{SITENAME}". Ce sujet a reçu une réponse depuis votre dernière visite. Vous ne recevrez plus aucune autre notification jusqu'à votre prochaine visite sur le sujet.
+
+Pour voir les nouvelles réponses, cliquez sur le lien suivant:
+{U_NEWEST_POST}
+
+Pour voir le sujet dans son ensemble, cliquez sur le lien suivant:
+{U_TOPIC}
+
+Pour visiter le forum, cliquez sur le lien suivant:
+{U_FORUM}
+
+Si vous ne voulez plus surveiller ce sujet, vous pouvez soit cliquer sur le lien "Arrêter de surveiller ce sujet" en bas du sujet ci-dessus, soit cliquer sur le lien suivant:
+{U_STOP_WATCHING_TOPIC}
+
+{EMAIL_SIG}

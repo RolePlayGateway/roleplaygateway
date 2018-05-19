@@ -1,0 +1,24 @@
+<!-- $Id: random_member.html,v 1.3 2007/04/11 01:44:52 angelside Exp $ //-->
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+			<h3>{L_RND_MEMBER}</h3>
+			<!-- BEGIN random_member -->
+			<span style="float:left;font-size:12px;"><a href="{random_member.U_USERNAME}"><span<!-- IF random_member.USERNAME_COLOR -->{random_member.USERNAME_COLOR}<!-- ENDIF -->>{random_member.USERNAME}</span></a></span>
+			<span style="float:right;"></span><br /><br />
+			<span style="float:left;">{L_RND_JOIN}:</span><span style="float:right;padding-right:10px;">{random_member.JOINED}</span><br />
+			<span style="float:left;">{L_RND_POSTS}:</span><span style="float:right;padding-right:10px;">{random_member.USER_POSTS}</span><br />
+			<!-- IF random_member.USER_OCC -->
+			<span style="float:left;">{L_RND_OCC}:</span><span style="float:right;padding-right:10px;">{random_member.USER_OCC}</span><br />
+			<!-- ENDIF -->
+			<!-- IF random_member.USER_FROM -->
+			<span style="float:left;">{L_RND_FROM}:</span><span style="float:right;padding-right:10px;">{random_member.USER_FROM}</span><br />
+			<!-- ENDIF -->
+			<!-- IF random_member.U_WWW -->
+			<span style="float:left;"><a href="{random_member.U_WWW}" title="{random_member.U_WWW}" target="_blank">{L_RND_WWW}</a></span><span style="float:right;"></span><br />
+			<!-- ENDIF -->
+			<!-- END random_member -->	
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+<br clear="all" />

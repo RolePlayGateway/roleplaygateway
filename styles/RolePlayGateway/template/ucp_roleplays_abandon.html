@@ -1,0 +1,26 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>Abandon Roleplay</h2>
+
+<form id="ucp" method="post" action="http://www.roleplaygateway.com/ucp.php?i=characters&mode=abandon&character_id={ID}">
+
+<div class="panel">
+        <div class="inner"><span class="corners-top"><span></span></span>
+
+                <h3>Roleplay: {ROLEPLAY_NAME}</h3>
+		<p>{ROLEPLAY_SYNOPSIS}</p>
+
+		<p>Are you <strong>ABSOLUTELY CERTAIN</strong> that you want to leave this roleplay, abandoning all your characters<!-- IF S_IS_OWNER --> <strong><em>and</em> marking this roleplay as <u>failed</u><!-- ENDIF -->?
+
+                <fieldset class="submit-buttons">
+                        <input type="hidden" name="roleplay_id" value="{ID}" />
+                        <input type="submit" name="submit" value="Yes!  Abandon ship!" class="button1" />
+                </fieldset>
+
+        <span class="corners-bottom"><span></span></span></div>
+</div>
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->
+

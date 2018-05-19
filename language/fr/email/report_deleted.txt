@@ -1,0 +1,7 @@
+Subject: Suppression du rapport - {POST_SUBJECT}
+
+Bonjour {USERNAME},
+
+Vous recevez cet e-mail car le rapport que vous avez fait sur le message "{POST_SUBJECT}" du sujet "{TOPIC_TITLE}" de "{SITENAME}" a été supprimé par un modérateur ou un administrateur.
+
+{EMAIL_SIG}

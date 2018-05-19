@@ -1,0 +1,36 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<h1 style="color:#596E7C;"><a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a> &raquo; <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/collaborations">Collaborations</a></h1>
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_GROUPS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+    <div class="postbody" style="width:inherit;"><div class="">
+
+      <!-- BEGIN collabs -->
+      <div class="place" style="height:auto;">
+	      <h2>
+          <div style="float:right; clear:right;"><strong>{collabs.CHARACTERS}</strong> characters</div>
+		      <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/collaborations/{collabs.ID}"><strong>Collab #{collabs.ID}</strong></a>
+	      </h2>
+	      <p>{collabs.SYNOPSIS}</p>
+      </div>
+      <!-- BEGINELSE -->
+	      <p class="supersize">There are no collaborations in this roleplay!</p>
+      <!-- END collabs -->
+
+    </div></div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_GROUPS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<!-- INCLUDE overall_footer.html -->

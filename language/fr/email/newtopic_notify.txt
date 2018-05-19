@@ -1,0 +1,13 @@
+Subject: Notification de nouveau sujet - {FORUM_NAME}
+
+Bonjour {USERNAME},
+
+Vous recevez cet e-mail car vous surveillez le forum, "{FORUM_NAME}" sur "{SITENAME}". Ce forum a reçu un nouveau sujet depuis votre dernière visite, "{TOPIC_TITLE}". Vous pouvez utiliser le lien suivant pour voir le forum. Aucune autre notification ne vous sera envoyée jusqu'à votre prochaine visite sur le forum.
+
+{U_FORUM}
+
+Si vous ne voulez plus surveiller ce forum, vous pouvez cliquer sur le lien correspondant se trouvant en bas du forum ou cliquer sur celui qui suit:
+
+{U_STOP_WATCHING_FORUM}
+
+{EMAIL_SIG}

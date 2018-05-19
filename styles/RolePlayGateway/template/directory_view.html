@@ -1,0 +1,59 @@
+<!-- INCLUDE overall_header.html -->
+<style type="text/css">
+#reviews th
+{
+	font-size: 13px;
+	font-weight: normal;
+	padding: 8px;
+	background: #b9c9fe;
+	border-top: 4px solid #aabcfe;
+	border-bottom: 1px solid #fff;
+}
+#reviews td
+{
+	padding: 8px;
+	background: #e8edff; 
+	border-bottom: 1px solid #fff;
+	border-top: 1px solid transparent;
+}
+#reviews tr:hover td
+{
+	background: #d0dafd;
+}
+</style>
+<h2>{TITLE} (<a href="{URL}" rel="nofollow">Visit this site...</a>)</h2>
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<img src="http://api.thumbalizr.com/?url={URL}&width=250" style="float:right;" />
+		<p>{DESCRIPTION}</p>
+		<h3>Information</h3>
+		<div id="details">
+			<div><strong>Submitted by: </strong> {OWNER_USERNAME}</div>
+			<div><strong>Status: </strong> {STATUS}</div>
+		</div>
+		<h3>Reviews</h3>
+		<div id="reviews">
+		<p>What do other people think about {TITLE}?</p>
+		<p><a href="http://www.roleplaygateway.com/directory/review.php?id={SITE_ID}">Click here to add your own review...</a></p>
+		<table width="100%">
+			<thead>
+				<tr>
+					<th scope="col">Time</th>  
+					<th scope="col">Username</th>  
+					<th scope="col">Review</th>  
+					<th scope="col">Rating</th>  
+				</tr>			
+			</thead>
+		<!-- BEGIN reviews -->
+			<tr>
+				<td>{reviews.TIME}</td>
+				<td>{reviews.USERNAME}</td>
+				<td>{reviews.REVIEW}</td>
+				<td>{reviews.RATING}</td>
+			</tr>
+		<!-- END reviews -->
+		</table>
+		</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- INCLUDE overall_footer.html -->

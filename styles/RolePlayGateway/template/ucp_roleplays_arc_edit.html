@@ -1,0 +1,32 @@
+<!-- INCLUDE overall_header.html -->
+<style type="text/css">
+  textarea {
+    font-size: 1.2em;
+  }
+</style>
+<div class="panel" id="message">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<div id="posting">
+		<h2><a href="#posting" name="posting">Editing {GROUP_NAME}</a></h2>
+					
+		<form id="write" method="post" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit_group&group_id={GROUP_ID}&roleplay_id={ROLEPLAY_ID}&action=submit">
+
+			<input type="hidden" name="group_id" value="{GROUP_ID}" />			
+
+			<h3>Synopsis</h3>
+			<textarea name="group_synopsis" class="ed inputbox" style="width: 100%;">{SYNOPSIS}</textarea>
+			
+			<h3>Description</h3>
+			<script type="text/javascript">edToolbar('group_description');</script>
+			<textarea name="group_description" id="group_description" class="ed inputbox" style="width: 100%; height: 400px;">{DESCRIPTION}</textarea>
+
+			<input type="submit" name="submit" value="Submit &raquo;" class="button1" />
+
+		</form>
+	</div>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

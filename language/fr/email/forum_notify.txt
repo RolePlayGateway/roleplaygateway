@@ -1,0 +1,19 @@
+Subject: Notification de nouveau message dans le forum - {FORUM_NAME}
+
+Bonjour {USERNAME},
+
+Vous recevez cet e-mail car vous surveillez le forum, "{FORUM_NAME}" de "{SITENAME}". Ce forum a reçu un nouveau message au sujet "{TOPIC_TITLE}" depuis votre dernière visite. Vous pouvez utiliser le lien suivant pour voir la dernière réponse non-lue. Notez que vous ne recevrez plus de notification jusqu'à votre prochaine visite sur le sujet.
+
+{U_NEWEST_POST}
+
+Pour voir le sujet dans son ensemble, cliquez sur le lien suivant:
+{U_TOPIC}
+
+Pour visiter le forum, cliquez sur le lien suivant:
+{U_FORUM}
+
+Si vous ne voulez plus surveiller ce forum, cliquez sur le lien correspondant se trouvant en bas du forum ou cliquez sur le lien suivant:
+
+{U_STOP_WATCHING_FORUM}
+
+{EMAIL_SIG}

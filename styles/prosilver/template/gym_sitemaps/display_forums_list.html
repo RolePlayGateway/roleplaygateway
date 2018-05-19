@@ -1,0 +1,73 @@
+<!-- IF DISPLAY_FORUMS_H1 --><h1><!-- IF U_FORUMS --><a href="{U_FORUMS}" title="{H1_FORUMS}">{H1_FORUMS}</a><!-- ELSE -->{H1_FORUMS}<!-- ENDIF --></h1><!-- ENDIF -->
+<!-- IF FORUM_MAP_URL or FORUM_NEWS_URL --><h3><!-- IF FORUM_NEWS_URL --><a href="{FORUM_NEWS_URL}" title="{FORUM_NEWS}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {FORUM_NEWS}</a><!-- ENDIF --><!-- IF FORUM_MAP_URL --> <strong>&raquo;</strong> <a href="{FORUM_MAP_URL}" title="{H1_FORUMS}">{H1_FORUMS}</a><!-- ENDIF --></h3><!-- ENDIF -->
+<!-- IF MAP_DESC --><span>{MAP_DESC}<br /></span><!-- ENDIF --><br />
+<!-- BEGIN forumrow -->
+	<!-- IF (forumrow.S_IS_CAT and not forumrow.S_FIRST_ROW) or forumrow.S_NO_CAT  -->
+			</ul>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+	<!-- ENDIF -->
+
+	<!-- IF forumrow.S_IS_CAT or forumrow.S_FIRST_ROW  or forumrow.S_NO_CAT  -->
+		<div class="forabg">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			<ul class="topiclist">
+				<li class="header">
+					<dl class="icon">
+						<dt <!-- IF DISPLAY_LAST_POST -->style="width:64%;"<!-- ENDIF -->><!-- IF forumrow.S_IS_CAT --><!-- IF forumrow.FORUM_NEWS_LINK -->{forumrow.FORUM_NEWS_LINK} <!-- ENDIF -->
+					<!-- IF forumrow.FORUM_MAP_LINK --> &nbsp; {forumrow.FORUM_MAP_LINK}<br /><!-- ENDIF --><!-- ELSE -->{L_FORUM}<!-- ENDIF --></dt>
+						<!-- IF DISPLAY_LAST_POST --><dd class="lastpost"><span>{L_LAST_POST}</span></dd><!-- ENDIF -->
+					</dl>
+				</li>
+			</ul>
+			<ul class="topiclist forums">
+	<!-- ENDIF -->
+
+	<!-- IF not forumrow.S_IS_CAT -->
+		<li class="row<!-- IF forumrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+			<dl class="icon" style="background-image: url({forumrow.FORUM_FOLDER_IMG_SRC}); background-repeat: no-repeat;">
+				<dt title="{forumrow.FORUM_FOLDER_IMG_ALT}" <!-- IF DISPLAY_LAST_POST -->style="width:63%;"<!-- ELSE -->style="width:85%;"<!-- ENDIF -->>
+					<!-- IF forumrow.FORUM_IMAGE --><span class="forum-image">{forumrow.FORUM_IMAGE}</span><!-- ENDIF -->
+					<!-- IF forumrow.FORUM_NEWS_LINK -->{forumrow.FORUM_NEWS_LINK} <!-- ENDIF -->
+					<!-- IF forumrow.FORUM_MAP_LINK --> &nbsp; {forumrow.FORUM_MAP_LINK}<!-- ENDIF --><br />
+					{forumrow.FORUM_DESC}<br />
+					<!-- IF forumrow.MODERATORS -->
+						<br /><strong>{forumrow.L_MODERATOR_STR}:</strong> {forumrow.MODERATORS}
+					<!-- ENDIF -->
+				</dt>
+				<!-- IF DISPLAY_LAST_POST and not forumrow.S_IS_LINK -->
+					<dd class="lastpost"><span>
+						<!-- IF forumrow.LAST_POST_TIME --><dfn>{L_LAST_POST}</dfn><!-- IF forumrow.LAST_POST_LINK --><i>{forumrow.LAST_POST_LINK}</i><br/><!-- ENDIF --><!-- IF DISPLAY_USER_INFO --> {L_POST_BY_AUTHOR} {forumrow.LAST_POSTER_FULL}<!-- ENDIF -->
+						<a href="{forumrow.U_LAST_POST}">{LAST_POST_IMG}</a> {L_POSTED_ON_DATE} {forumrow.LAST_POST_TIME}<!-- ELSE -->{L_NO_POSTS}<!-- ENDIF --></span>
+					</dd>
+				<!-- ENDIF -->
+			</dl>
+			<!-- IF forumrow.SUBFORUMS --><div class="gymsublist"><b>{L_SUBFORUMS} :</b><hr/>{forumrow.SUBFORUMS}</div><!-- ENDIF -->
+		</li>
+	<!-- ENDIF -->
+
+	<!-- IF forumrow.S_LAST_ROW -->
+			</ul>
+
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+	<!-- ENDIF -->
+
+<!-- BEGINELSE -->
+<div class="forabg">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt style="width:64%;"><!-- IF FORUM_NEWS_URL --><a href="{FORUM_NEWS_URL}" title="{FORUM_NEWS}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {FORUM_NEWS}</a><!-- ENDIF --><!-- IF FORUM_MAP_URL --> <strong>&raquo;</strong> <a href="{FORUM_MAP_URL}" title="{H1_FORUMS}">{H1_FORUMS}</a><br /><!-- ENDIF --></dt>
+				</dl>
+			</li>
+		</ul>
+		<div class="panel">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<p>{L_HTML_MAP_NONE}</p>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- END forumrow -->

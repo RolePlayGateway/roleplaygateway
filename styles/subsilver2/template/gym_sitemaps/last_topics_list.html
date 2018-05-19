@@ -1,0 +1,23 @@
+<br/><h2>{LASTX_TOPICS_TITLE}</h2>
+<br/>
+<table class="tablebg" cellspacing="1" width="100%">
+	<!-- BEGIN last_forums -->
+	<tr>
+		<td class="cat" colspan="4"><h4><a href="{last_forums.U_VIEWFORUM}" title="{last_forums.FORUM_NAME}" class="forumtitle">{last_forums.FORUM_NAME}</a></h4></td>
+	</tr>
+	<!-- BEGIN last_topics -->
+	<tr class="row<!-- IF last_forums.last_topics.S_ROW_COUNT is odd -->2<!-- ELSE -->1<!-- ENDIF -->">
+		<td width="25" align="center" style="padding:5px;">{last_forums.last_topics.TOPIC_FOLDER_IMG}</td>
+		<!-- IF S_TOPIC_ICONS -->
+		<td width="25" align="center"><!-- IF last_forums.last_topics.TOPIC_ICON_IMG --><img src="{T_ICONS_PATH}{last_forums.last_topics.TOPIC_ICON_IMG}" width="{last_forums.last_topics.TOPIC_ICON_IMG_WIDTH}" height="{last_forums.last_topics.TOPIC_ICON_IMG_HEIGHT}" alt="" title="" /><!-- ENDIF --></td>
+		<!-- ENDIF -->
+		<td>
+			<!-- IF last_forums.last_topics.S_UNREAD_TOPIC --><a href="{last_forums.last_topics.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF -->
+			<a href="{last_forums.last_topics.U_VIEW_TOPIC}">{last_forums.last_topics.TOPIC_TITLE}</a><br/>
+			<!-- IF last_forums.last_topics.PAGINATION --><p class="gensmall"> [ {GOTO_PAGE_IMG}{L_GOTO_PAGE}: {last_forums.last_topics.PAGINATION} ] </p><!-- ENDIF -->
+		</td>
+		<td><a href="{last_forums.last_topics.U_LAST_POST}">{LAST_POST_IMG}</a></td>
+	</tr>
+	<!-- END last_topics -->
+	<!-- END last_forums -->
+</table>

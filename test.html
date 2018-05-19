@@ -1,0 +1,33 @@
+
+<script type="text/javascript" src="http://www.roleplaygateway.com/styles/RolePlayGateway/template/mootools.js"></script>
+<script type="text/javascript">
+window.addEvent('domready', function() {
+	var accordion = new Accordion($$('.toggler'),$$('.element'), {
+		opacity: 0,
+		onActive: function(toggler) { toggler.setStyle('color', '#ff3300'); },
+		onBackground: function(toggler) { toggler.setStyle('color', '#000000'); }
+	});
+});
+</script>
+<style type="text/css">
+.toggler  { cursor:pointer; font-weight:bold; color:#000; margin: 0; padding:5px; font-size:16px; font-family:Arial, sans-serif; }
+.toggler:hover	 { background:#eee; }
+.element	 { padding:0 5px; }
+</style>
+<div id="accordion">
+	<h3 class="toggler">The Beatles</h3>
+	<div class="element">
+		<img src="http://davidwalsh.name/dw-content/accordion/let-it-be.jpg" class="image" />
+		<p>The Beatles were a pop and rock group from Liverpool, England...</p>
+	</div>
+	<h3 class="toggler">Rod Stewart</h3>
+	<div class="element">
+		<img src="http://davidwalsh.name/dw-content/accordion/every-picture.jpg" class="image" />
+		<p>Roderick "Rod" David Stewart, CBE (born January 10, 1945), is a singer and songwriter born and raised in London, England...</p>
+	</div>
+	<h3 class="toggler">Oasis</h3>
+	<div class="element">
+		<img src="http://davidwalsh.name/dw-content/accordion/oasis.jpg" class="image" />
+		<p>Oasis are an English rock band that formed in Manchester in 1991. The group was formed by Liam Gallagher (lead vocals), Paul Arthurs (guitar)...</p>
+	</div>
+</div>

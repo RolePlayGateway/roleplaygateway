@@ -1,0 +1,114 @@
+<!-- IF HTML_URL or HTML_NEWS_URL --><h2><!-- IF HTML_NEWS_URL --><a href="{HTML_NEWS_URL}" title="{HTML_NEWS_TITLE}"><img src="{NEWS_IMG_SRC}" alt="{L_HTML_NEWS}"/> {HTML_NEWS_TITLE}</a> <!-- ENDIF --><!-- IF HTML_URL --><strong>&raquo;</strong> <a href="{HTML_URL}" title="{HTML_SITENAME}">{HTML_SITENAME}</a><!-- ENDIF --></h2>
+<!-- IF HTML_SITEDESC --><span>{HTML_SITEDESC}<br /></span><!-- ENDIF -->
+<!-- ENDIF -->
+<!-- IF GYM_RSS_AGREGATED -->
+	<!-- IF GYM_RSS_SLIDE -->
+	<script type="text/javascript">
+	// <![CDATA[
+		// Message to stop scroller
+		var dn_stopMessage='{L_GYM_RSS_SLIDE_STOP}';
+		// Message to start scroller
+		var dn_startMessage='{L_GYM_RSS_SLIDE_START}';
+		// initial position 
+		var dn_startpos={GYM_RSS_SLIDE_SP_JS}; 			
+		// end position
+		var dn_endpos=-{GYM_RSS_SLIDE_EP}; 			
+		// Speed of scroller higher number = slower scroller 
+		var dn_speed={GYM_RSS_SCRSPEED};				
+		// ID of the news box
+		var dn_newsID='{GYM_RSS_CSSID}';
+		// ID of the generated paragraph
+		var dn_paraID='{GYM_RSS_CSSID}DomID';
+	// ]]>
+	</script>
+	<script type="text/javascript" src="{T_TEMPLATE_PATH}/gym_sitemaps/gym_rss_links.js"></script>
+	<!-- ENDIF -->
+	<!-- IF GYM_CHAN_TITLE --><h3><!-- IF GYM_CHAN_SOURCE --><a href="{GYM_CHAN_SOURCE}" title="{GYM_CHAN_TITLE} - {L_GYM_RSS_SOURCE}"><img src="{ROOT_PATH}gym_sitemaps/images/feed-icon.png" alt="{GYM_CHAN_TITLE} - {L_GYM_RSS_SOURCE}"/> {L_GYM_RSS_SOURCE}</a> <strong>&raquo;</strong> <a href="{GYM_CHAN_LINK}" title="{GYM_CHAN_TITLE}">{GYM_CHAN_TITLE}</a><!-- ELSE -->{GYM_CHAN_TITLE}<!-- ENDIF --></h3><!-- ENDIF -->
+	<div class="forumbg">
+		<div class="inner">
+			<span class="corners-top"><span></span></span>
+		<!-- IF not GYM_RSS_DESC -->
+			<ul class="topiclist">
+				<li class="header">
+					<dl class="icon">
+						<dt<!-- IF not GYM_RSS_DATE --> style="width:72%;"<!-- ENDIF -->>{L_GYM_LINKS}</dt>
+						<!-- IF GYM_RSS_AUTHOR --><dd class="views">{L_AUTHOR}</dd><!-- ENDIF -->
+						<!-- IF GYM_RSS_DATE --><dd class="lastpost"><span>{L_FILEDATE}</span></dd><!-- ENDIF -->
+					</dl>
+				</li>
+			</ul>
+			<div class="bg1">
+				<div id="{GYM_RSS_CSSID}">
+					<ul id="{GYM_RSS_CSSID}scrld" class="topiclist topics">
+					<!-- BEGIN gym_link_list -->
+		
+						<li class="row<!-- IF gym_link_list.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+							<dl class="icon" style="background-image: url({gym_link_list.IMG}); background-repeat: no-repeat;">
+								<dt title="{gym_link_list.TITLE}"><a href="{gym_link_list.LINK}" class="topictitle">{gym_link_list.TITLE}</a>
+									<br/><!-- IF gym_link_list.SOURCE --><a href="{gym_link_list.SOURCE}" title="{gym_link_list.TITLE} - {L_GYM_RSS_SOURCE}"><img src="{ROOT_PATH}gym_sitemaps/images/feed-icon.png" alt="{gym_link_list.TITLE} - {L_GYM_RSS_SOURCE}"/> {L_GYM_RSS_SOURCE}</a><!-- ENDIF --><br/>
+								</dt>
+								<!-- IF gym_link_list.AUTHOR --><dd class="views"><b>{gym_link_list.AUTHOR}</b> <dfn>{L_AUTHOR}</dfn></dd><!-- ENDIF -->
+								<!-- IF gym_link_list.PUBDATE --><dd class="lastpost"><span><dfn>{L_FILEDATE} </dfn>{L_POSTED_ON_DATE} {gym_link_list.PUBDATE}</span></dd><!-- ENDIF -->
+							</dl>
+						</li>
+					<!-- END gym_link_list -->
+					</ul>
+				</div>
+			</div>&nbsp;
+		<!-- ELSE -->
+			<ul class="topiclist">
+				<li class="header">
+					<dl class="icon">
+						<dt>{L_POST}</dt>
+						<dd>&nbsp;</dd>
+					</dl>
+				</li>
+			</ul>
+			<div class="bg1">
+				<div id="{GYM_RSS_CSSID}" style="width:100%;{GYM_RSS_SLIDE_SP}overflow-y:auto;position:relative;overflow-x:hidden;">
+					<div id="{GYM_RSS_CSSID}scrld"  <!-- IF GYM_RSS_SLIDE_SP -->style="width:100%;position:absolute;"<!-- ENDIF -->>
+					<!-- BEGIN gym_link_list -->
+						<div class="post <!-- IF gym_link_list.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
+							<div class="inner">
+								<span class="corners-top"><span></span></span>
+								<div class="postbody">
+									<h3><a href="{gym_link_list.LINK}" title="{gym_link_list.TITLE}">{gym_link_list.TITLE}</a></h3>
+									<!-- IF gym_link_list.AUTHOR --><p class="author">{L_POST_BY_AUTHOR} <b>{gym_link_list.AUTHOR}</b></p><!-- ENDIF -->
+									<div class="content">{gym_link_list.DESC}</div>
+								</div>
+								<dl class="postprofile">
+									<dt>{L_GYM_LINK} : <a href="{gym_link_list.LINK}" title="{gym_link_list.TITLE}">{gym_link_list.TITLE}</a>
+										<!-- IF gym_link_list.SOURCE --><br /><a href="{gym_link_list.SOURCE}" title="{gym_link_list.TITLE} - {L_GYM_RSS_SOURCE}"><img src="{ROOT_PATH}gym_sitemaps/images/feed-icon.png" alt="{gym_link_list.TITLE} - {L_GYM_RSS_SOURCE}"/> {L_GYM_RSS_SOURCE}</a><!-- ENDIF -->
+										<!-- IF gym_link_list.PUBDATE --><br /><span>{L_POSTED_ON_DATE} {gym_link_list.PUBDATE}</span><!-- ENDIF -->
+									</dt>
+									<dd>&nbsp;</dd>
+								</dl>
+								<span class="corners-bottom"><span></span></span>
+							</div>
+						</div>
+					<!-- END gym_link_list -->
+					</div>
+				</div>
+			</div>
+		<!-- ENDIF -->
+			<span class="corners-bottom"><span></span></span>
+		</div>
+	</div>
+<!-- ELSE IF HTML_URL -->
+<div class="forabg">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt style="width:64%;"><a href="{HTML_URL}" title="{HTML_SITENAME}">{HTML_SITENAME}</a></dt>
+				</dl>
+			</li>
+		</ul>
+		<div class="panel">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<p>{L_HTML_NEWS_NONE}</P>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->

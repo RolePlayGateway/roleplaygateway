@@ -1,0 +1,53 @@
+<!-- INCLUDE overall_header.html -->
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<h2 id="seo_top">{MESSAGE_TITLE}</h2>
+	<p>{MESSAGE_TEXT}</p>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- IF not S_CACHE_HTACCESS_ACTION -->
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<h2 id="seo_top">{SEO_FILE_TITLE}</h2>
+	<p>{CACHE_STATUS}</p>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->
+<div class="navbar">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="linklist navlinks">
+			<li><a class="icon-home" href="{U_INDEX}" accesskey="h">{L_INDEX}</a> <strong>&#8249;</strong> <a href="{U_SEO_CACHE}#seo_top" accesskey="h">{SEO_MAIN_TITLE}</a> <!-- BEGIN navlinks --> <strong>&#8249;</strong> <a href="{navlinks.U_VIEW_FORUM}#seo_top">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>
+			<li class="rightside"><a href="#" onclick="fontsizeup(); return false;" class="fontsize" title="{L_CHANGE_FONT_SIZE}">{L_CHANGE_FONT_SIZE}</a></li>
+			</ul>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+<div class="forabg">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+<!-- IF S_CACHE_SETTINGS_ACTION -->
+	<!-- INCLUDE phpbb_seo/phpbb_seo_settings.html -->
+<!-- ENDIF -->
+<!-- IF S_CACHE_FORUM_ACTION -->
+	<!-- INCLUDE phpbb_seo/phpbb_seo_forum.html -->
+<!-- ENDIF -->
+<!-- IF S_CACHE_HTACCESS_ACTION -->
+	<!-- INCLUDE phpbb_seo/phpbb_seo_htaccess.html -->
+<!-- ENDIF -->
+<!-- IF S_CACHE_DEFAULT_ACTION -->
+	<!-- INCLUDE phpbb_seo/phpbb_seo_default.html -->
+<!-- ENDIF -->
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+<div class="navbar">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<ul class="linklist navlinks">
+			<li><a class="icon-home" href="{U_INDEX}" accesskey="h">{L_INDEX}</a> <strong>&#8249;</strong> <a href="{U_SEO_CACHE}#seo_top" accesskey="h">{SEO_MAIN_TITLE}</a> <!-- BEGIN navlinks --> <strong>&#8249;</strong> <a href="{navlinks.U_VIEW_FORUM}#seo_top">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>
+
+			<li class="rightside"><a href="#" onclick="fontsizeup(); return false;" class="fontsize" title="{L_CHANGE_FONT_SIZE}">{L_CHANGE_FONT_SIZE}</a></li>
+			</ul>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+<!-- INCLUDE overall_footer.html -->

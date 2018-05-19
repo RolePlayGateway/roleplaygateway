@@ -1,0 +1,54 @@
+##############################################################
+## MOD Title: 		phpBB SEO GYM SItemaps & RSS 2.0.0 => 2.0.1 update
+## MOD Author: 		dcz <n/a> http://www.phpbb-seo.com/
+## MOD Description: 	This are the update steps for the phpBB SEO GYM SItemaps & RSS 2.0.0 => 2.0.1 update.
+## 			Check http://www.phpbb-seo.com/en/gym-sitemaps-rss/google-yahoo-msn-sitemaps-rss-t2734.html
+## 			for the latest version or to get help with this MOD
+##
+## MOD Version: 	1.0
+##
+## Installation Level: 	(Eazy)
+## Installation Time: 	1 Minute
+## Files To Edit: 	(0)
+##			
+##
+## Included Files: n/a
+##############################################################
+## Author Notes:
+## _____________
+##
+## This are the update steps for the phpBB3 SEO GYM SItemaps & RSS 2.0.0 => 2.0.1 update.
+##
+##############################################################
+## MOD History:
+##
+##	2010-03-01 - 1.0
+##		- First version released
+##
+##############################################################
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD
+##############################################################
+
+
+#
+#-----[ DIY INSTRUCTIONS ]--------------------------------------------------
+#
+
+_________________________________________
+>>>>   INSTALLATION INSTRUCTIONS    <<<<<
+_________________________________________
+
+To update from all 2.0.x (phpBB3) versions you will have to upload all files in the root/ directory of the archive to your phpBB/ ftp directory, after you will have taken care manually of the eventual code change you would have implemented in the template files (directory phpBB/styles/, .html, .js and .xsl) added by the module.
+Once done, just lunch the update script (example.com/phpBB/gym_sitemaps/gym_install.php).
+Your settings will be kept during the update process.
+
+Once you will have updated, you will have to refresh your theme's cache as well as phpBB's cache (ACP => STYLE, Themes => Refresh).
+
+These code changes are the code changes to implement in the phpBB3 files that are modified when first installing this module.
+
+NO code changes required for this update.
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------
+#
+# EoM

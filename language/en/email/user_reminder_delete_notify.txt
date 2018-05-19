@@ -1,0 +1,11 @@
+Subject: Deletion of your user account at "{SITENAME}"! 
+
+Dear {USERNAME},
+
+You have received at least two reminders from us in the recent past. 
+
+As there has been no interest/action on your part to participate in any activities at {SITENAME} it has been decided to delete your account from our site.
+
+Please note that your account cannot be recovered should you wish at a later time to join us again. You would need to register a new account at that time.
+
+{EMAIL_SIG}

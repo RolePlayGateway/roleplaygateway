@@ -1,0 +1,54 @@
+##############################################################
+## MOD Title: 		phpBB SEO GYM SItemaps & RSS MAJ 2.0.0 => 2.0.1
+## MOD Author: 		dcz <n/a> http://www.phpbb-seo.com/
+## MOD Description: 	Ceci est la procédure de mise à jour du MOD GYM SItemaps & RSS pour la transition version 2.0.0 => 2.0.1
+## 			Rendez-vous sur http://www.phpbb-seo.com/fr/gym-sitemaps-rss/sitemaps-rss-google-yahoo-msn-t3136.html
+## 			pour toujours obtenir la dernière version ou de l'aide pour ce MOD.
+##
+## MOD Version: 	1.0
+##
+## Installation Level: 	(Eazy)
+## Installation Time: 	1 Minute
+## Files To Edit: 	(0)
+##			
+##
+## Included Files: n/a
+##############################################################
+## Author Notes:
+## _____________
+##
+## Voici les instructions de mise à jour : phpBB3 SEO GYM SItemaps & RSS 2.0.0 => 2.0.1
+##
+##############################################################
+## MOD History:
+##
+##	2010-03-01 - 1.0
+##		- First version released
+##
+##############################################################
+## Before Adding This MOD To Your Forum, You Should Back Up All Files Related To This MOD
+##############################################################
+
+
+#
+#-----[ DIY INSTRUCTIONS ]--------------------------------------------------
+#
+
+_____________________________________________
+>>>> INSTALLATION POUR VOTRE FORUM <<<<<
+_____________________________________________
+
+Pour mettre à jour depuis n'importe quelle version 2.0.x (phpBB3), vous devrez tout d'abord uploader tous les fichiers contenus dans le dossier root/ de l'archive dans le dossier ftp de phpBB, en prenant soin de conserver vos éventuelles modification des fichiers de template (dossier phpBB/styles/, .html, .js et .xsl) ajoutés par le module. 
+Une fois les fichiers en place, lancez simplement le script de mise à jour (example.com/phpBB/gym_sitemaps/gym_install.php).
+Vos réglages seront conservés lors de la mise à jour.
+
+Une fois les nouveaux fichiers en place, il vous faudra vider le cache de phpBB et rafraichir vos thèmes (ACP => STYLE => Thèmes => Rafraichir).
+
+Les modifications  de ce fichier concernent les fichier de phpBB3 qui ont été modifiés lors de l'installation du module.
+
+Aucune modification requise pour cette mise à jour.
+
+#
+#-----[ SAVE/CLOSE ALL FILES ]------------------------------------------
+#
+# EoM
