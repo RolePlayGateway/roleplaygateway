@@ -1,9 +1,10 @@
 {
   "name": "roleplaygateway",
-  "version": "0.2.0",
+  "version": "0.4.0-pre",
   "description": "collaborative storytelling platform",
   "main": "roleplaygateway.js",
   "directories": {
+    "doc": "docs",
     "test": "tests"
   },
   "scripts": {
@@ -11,23 +12,23 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/martindale/roleplaygateway.git"
+    "url": "git+https://github.com/roleplaygateway/roleplaygateway.git"
   },
   "keywords": [
     "rpg",
     "games",
     "writing",
     "storytelling",
-    "platforms",
-    "services",
     "roleplaying",
     "game",
+    "gaming",
     "tabletop"
+    "roleplay"
   ],
   "author": "Eric Martindale",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/martindale/roleplaygateway/issues"
+    "url": "https://github.com/roleplaygateway/roleplaygateway/issues"
   },
-  "homepage": "https://github.com/martindale/roleplaygateway#readme"
+  "homepage": "https://github.com/roleplaygateway/roleplaygateway#readme"
 }
