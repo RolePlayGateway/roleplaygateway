@@ -7,9 +7,9 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT);
 $dbms = 'mysqli';
 $dbhost = '127.0.0.1';
 $dbport = '';
-$dbname = 'db_gateway';
-$dbuser = 'admin';
-$dbpasswd = 'sky22midnight';
+$dbname = 'db_name_here';
+$dbuser = 'db_user_here';
+$dbpasswd = 'db_pass_here';
 
 $table_prefix = 'gateway_';
 $acm_type = 'apc';
@@ -29,7 +29,7 @@ if (@$_REQUEST['explain']) {
 
 	//$dbms = 'mysql_highload';
 }
-/* 
+/*
 if(
 	@$_SERVER['HTTP_X_FORWARDED_FOR'] ||
 	@$_SERVER['HTTP_FORWARDED_FOR'] ||
