@@ -1,0 +1,59 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<h1>{CHARACTER_NAME} Inventory</h1>
+<h3>A list of items carried by {CHARACTER_NAME}.</h3>
+<p><a href="/characters">Characters in RPG universes</a> can find various <strong>Items</strong> which might help them on their journey.</p>
+
+<div class="special panel">
+  <!-- BEGIN items -->
+  <div style="clear: both;">
+    <div class="special controls">
+      <div class="tiny button group">
+        <!-- IF items.S_IS_FOR_SALE -->
+          <!-- IF S_IS_OWNER -->
+            <a class="marginalized pricing" on-tap="_promptAndSetPrice" data-link="/instances/{items.INSTANCE_ID}">
+              <span data-bind="sale-price" data-price="{items.SALE_PRICE}">{items.SALE_PRICE}</span>
+              <small>INK</small>
+            </a>
+            <div class="header">
+              <a on-tap="_promptAndSetPrice" data-link="/instances/{items.INSTANCE_ID}"><small>change</small></a>
+              <span class="separator subtext"> / </span>
+              <a on-tap="_cancelOrder" data-link="/orders/{items.ORDER_ID}" title="cancel this order"><small>close</small></a>
+            </div>
+          <!-- ELSE -->
+            <!-- IF items.S_CAN_AFFORD -->
+              <a class="marginalized pricing" on-tap="_fillOrderToCharacter" data-link="/orders/{items.ORDER_ID}" data-price="{items.SALE_PRICE}">
+                <span data-bind="sale-price">{items.SALE_PRICE}</span>
+                <small>INK</small>
+              </a>
+              <div class="marginalized">
+                <a class="header clean" on-tap="_fillOrderToCharacter" data-link="/orders/{orders.ID}" data-price="{orders.PRICE}" data-target="">Buy Now</a>
+              </div>
+            <!-- ELSE -->
+              <a class="marginalized pricing" on-tap="_promptToEarn" data-link="/orders/{items.ORDER_ID}" data-price="{items.SALE_PRICE}">
+                <span data-bind="sale-price">{items.SALE_PRICE}</span>
+                  <small>INK</small>
+              </a>
+              <div class="marginalized">
+                <a class="header clean" href="/medals" on-tap="_promptToEarn" data-price="{orders.PRICE}">Earn to Buy</a>
+              </div>
+            <!-- ENDIF -->
+          <!-- ENDIF -->
+        <!-- ELSE -->
+          <!-- IF S_IS_OWNER -->
+            <a class="button" on-tap="_promptAndSetPrice" data-link="/instances/{items.INSTANCE_ID}">sell</a>
+          <!-- ENDIF -->
+        <!-- ENDIF -->
+      </div>
+    </div>
+    
+    <h3>{items.NAME}</h3>
+    <p>{items.DESCRIPTION}</p>
+  </div>
+  <!-- END items -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->

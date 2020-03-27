@@ -1,0 +1,38 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<h2>Manage Your Links</h2>
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<h3>Your Links</h3>
+		<form action="//www.roleplaygateway.com/directory/manage.php?mode=update" method="post">
+			<table style="width:100%;" cellpadding="5">
+				<tr>
+					<th></th>
+					<th><p>Featured</p></th>
+					<th><p>Title</p></th>
+					<th><p>URL</p></th>
+					<th><p>Description</p></th>
+				</tr>
+				<!-- BEGIN owned_sites -->
+				<tr>
+					<td valign="top"><p><input type="checkbox" name="{owned_sites.ID}"></p></td>
+					<td valign="top"><p>{owned_sites.FEATURED}</p></td>
+					<td valign="top"><p>{owned_sites.TITLE}</p></td>
+					<td valign="top"><p>{owned_sites.URL}</p></td>
+					<td valign="top">
+						<p>{owned_sites.DESCRIPTION}<br/>
+						<a href="//www.roleplaygateway.com/directory/manage.php?mode=approve&id={owned_sites.ID}">Approve This Site</a> <strong>or</strong> <a href="//www.roleplaygateway.com/directory/manage.php?mode=deny&id={owned_sites.ID}">DENY This Site</a></p>
+					</td>
+				</tr>
+				<!-- END owned_sites -->
+				<tr>
+					<td colspan="5" align="center" valign="top">
+						<p><input type="submit" class="button2" value="Submit"> <input type="reset" class="button2"></p>
+					</td>
+				</tr>
+			</table>
+		</form>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- INCLUDE overall_footer.html -->

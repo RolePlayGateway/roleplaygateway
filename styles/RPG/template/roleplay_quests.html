@@ -1,0 +1,52 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+
+<img src="/roleplay/{ROLEPLAY_URL}/image" class="crisp-border" style="float:left; margin-right: 1em;" />
+<h1 style="color:#596E7C; margin-top: 0;">
+  <div class="quick-float-right"><a class="button" href="/universes/{ROLEPLAY_URL}/quests/new">Create Quest &raquo;</a></div>
+  <a href="/universes/{ROLEPLAY_URL}">{ROLEPLAY_NAME}</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/places">Quests</a>
+</h1>
+<p style="margin-bottom: 0;">{ROLEPLAY_SYNOPSIS}</p>
+
+<div>
+  <h3 style="font-size: 1.2em; margin-top: 0.5em;">Missions, Challenges, Jobs, and Journeys</h3>
+  <p style="font-size: 1.4em;">This is a list of quests that can be found in <strong>{ROLEPLAY_NAME}</strong>.</p>
+</div>
+<br style="clear: both;" />
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_QUESTS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+    <div class="postbody" style="width:inherit;"><div class="">
+
+      <!-- BEGIN quests -->
+      <div class="place" style="height:auto;">
+	      <h2>
+          <div style="float:right; clear:right;">
+            <strong>{quests.CHARACTERS}</strong> characters
+            &middot;
+            bounty: <strong>{quests.REWARD}</strong> <small>INK</small>
+          </div>
+		      <a href="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/quests/{quests.ID}"><strong>Quest #{quests.ID}: {quests.NAME}</strong></a>
+	      </h2>
+	      <p>{quests.SYNOPSIS}</p>
+      </div>
+      <!-- BEGINELSE -->
+	      <p class="supersize">There are no quests in this roleplay!</p>
+      <!-- END quests -->
+
+    </div></div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_QUESTS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<!-- INCLUDE overall_footer.html -->

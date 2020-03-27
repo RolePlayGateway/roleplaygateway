@@ -1,0 +1,75 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<style class="text/css">
+  #minimap {
+    width: 250px;
+    height: 250px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+</style>
+
+<div id="map-container">
+  <canvas id="minimap" width="500" height="500"></canvas>
+</div>
+
+<script src="/includes/fabric.min.js"></script>
+<script src="/includes/isomer.min.js"></script>
+<script type="text/javascript">
+  const Shape = Isomer.Shape;
+  const Path = Isomer.Path;
+  const Point = Isomer.Point;
+  const Color = Isomer.Color;
+
+  async function main () {
+    let fabric = new Fabric();
+    let isomer = new Isomer(document.getElementById('minimap'));
+    let remote = new Fabric.Remote({ authority: 'api.roleplaygateway.com' });
+
+    // begin loading
+    let character = await remote._GET('/characters/{CLIENT_CHARACTER_ID}');
+    let place = await remote._GET(`/places/${character['location']}`);
+    let current = Shape.Prism(Point.ORIGIN);
+    let exitColor = new Color(50, 60, 160);
+
+    // show current location
+    isomer.add(current);
+
+    // render exits
+    for (let i = 0; i < place.exits.length; i++) {
+      let exit = place.exits[i];
+      let point = null;
+
+      switch (exit.direction) {
+        case 'north':
+          point = Point(1.1, 1.1, 0);
+          break;
+        case 'south':
+          point = Point(-1.1, -1.1, 0);
+          break;
+        case 'east':
+          point = Point(0, 1.1, 0);
+          break;
+        case 'west':
+          point = Point(-1.1, 0, 0);
+          break;
+        case 'up':
+          point = Point(0, 0, 1.1);
+          break;
+        case 'down':
+          point = Point(0, 0, -1.1);
+          break;
+      }
+
+      if (point) {
+        isomer.add(Shape.Prism(point, exitColor));
+      }
+    }
+  }
+
+  main();
+</script>
+
+<!-- INCLUDE overall_footer.html -->

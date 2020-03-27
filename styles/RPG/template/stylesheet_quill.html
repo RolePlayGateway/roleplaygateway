@@ -1,0 +1,234 @@
+<style type="text/css">
+/* from @macco's styleguide
+  source: https://maki-dev.slack.com/files/macco/F5HC39JGL/styleguide.jpg
+	
+	if the rule has an !important, this means some lower-level style is overriding
+	it in another place.  Over time, we'll build this stylesheet and snapshot it
+	for a future Maki-powered version.
+*/
+
+html, body {
+  color: #262626;
+	/* background: #262626 !important; */
+	font-family: 'Arvo', serif;
+}
+
+#wrap {
+  /*background: url('/images/tileable-fabric.jpg') !important;*/
+  /*background: #fff !important;*/
+  /*background: #4F4F4F !important;*/
+}
+
+h1, h2 {
+  font-family: 'Arvo', serif;
+}
+
+h3, h4, h5, h6 {
+  font-family: 'Arvo', serif;
+  font-size: 1em;
+  /*font-family: 'Roboto Condensed', sans-serif;*/
+}
+
+a, .header-bar a {
+  color: #1185A8 !important;
+}
+
+.headerbar {
+	/*background: #1185A8 !important;*/
+}
+
+.panel {
+	/*background: #EDF2F2 !important;*/
+}
+
+.inputbox {
+	background-color: #EEE;
+	color: #262626 !important;
+}
+
+.forabg, #tabs a {
+  background-image: none;
+}
+
+#tabs a, #tabs a span {
+	background: #bed1d5 !important;
+}
+
+#tabs .activetab a, #tabs .activetab a span {
+  background: #CEE2E7 !important;
+}
+
+#tabs a:active {
+	background: #262626 !important;
+}
+
+.copyright {
+	color: #262626;
+}
+
+/* experimental stuff */
+.panel {
+	/* border-bottom: 10px solid white; */
+}
+
+/* special panel might be useful for a future re-design,
+  as a base template with minimal styles.  ~ Eric, May 16 2017 */
+.special.panel {
+  padding: 1em;
+  margin: 1em 0;
+  color: #2B363C;
+}
+
+.special.large.panel {
+  font-size: 1.2em;
+}
+
+.special.padded.panel {
+  padding: 3em;
+}
+
+.special.centered.panel {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.special.panel .special.row {
+  width: 100%;
+}
+
+.special.panel .special.column {
+  display: inline-block;
+  float: left;
+  width: 33%;
+}
+
+/* .special.panel h1,
+.special.panel h2 {
+  margin: 0;
+  padding: 0;
+  color: #2B363C;
+  border-bottom: none;
+}
+
+.special.panel h2 a {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+.special.panel h2 a:hover {
+  margin: 0;
+  padding: 0;
+  display: inline;
+  background: none;
+  text-decoration: underline;
+} */
+
+.special.panel img.image {
+  max-height: 100px;
+  max-width: 100px;
+  border: 1px solid black !important;
+  margin-bottom: 0.5em;
+}
+
+.special.panel img.image.small {
+  max-height: 60px;
+  max-width: 60px;
+}
+
+.special.panel .left.floated {
+  clear: both;
+  float: left;
+  margin-right: 1em;
+}
+
+.special.panel p {
+  min-height: 0;
+}
+
+.special.panel .supersize {
+  font-size: 1.5em;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.labeled.action {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: #bfd1d7;
+}
+
+.labeled.action .special.button {
+  border-left: 0;
+}
+
+.avatar-width.medals-list {
+  max-width: 102px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1em;
+}
+
+.large.featured {
+  font-size: 1.5em;
+  padding: 1.5em;
+}
+
+img.small.crisp-border {
+  max-height: 50px;
+  max-width: 50px;
+}
+
+header h1 {
+  color: black;
+}
+
+header h3 {
+  font-size: 1.2em;
+  margin-top: 0.5em;
+}
+
+header p {
+  font-size: 1.4em;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.row {
+  clear: both;
+}
+
+.row .column {
+  float: left;
+  display: inline-block;
+  width: auto;
+}
+
+.column.third {
+  width: 32.9%;
+}
+
+.leaderboard .item {
+  max-height: 30px;
+  height: 30px;
+  clear: left;
+}
+
+.leaderboard .item > .thumbnail {
+  float: left;
+  margin-right: 5px;
+}
+
+.leaderboard .item p {
+  min-height: 0;
+  max-height: 1em;
+  overflow: hidden;
+}
+
+</style>

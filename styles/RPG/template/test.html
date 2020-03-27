@@ -1,0 +1,266 @@
+<!-- INCLUDE overall_header.html -->
+
+<div class="panel">
+  <div class="inner"><span class="corners-top"><span></span></span>
+    <div class="content2">
+      <textarea id="writing" class="autotaggable" name="input"></textarea>
+    </div>
+  <span class="corners-bottom"><span></span></span></div>
+</div>
+
+<script type="text/javascript">
+(function($){
+
+    $.widget("ui.tagging", {
+        // default options
+        options: {
+            source: [],
+            maxItemDisplay: 3,
+            autosize: true,
+            animateResize: false,
+            animateDuration: 50
+        },
+        _create: function() {
+            var self = this;
+            
+            this.activeSearch = false;
+            this.searchTerm = "";
+            this.beginFrom = 0;
+
+            this.wrapper = $("<div>")
+                .addClass("ui-tagging-wrap");
+            
+            this.highlight = $("<div></div>");
+            
+            this.highlightWrapper = $("<span></span>")
+                .addClass("ui-corner-all");
+
+            this.highlightContainer = $("<div>")
+                .addClass("ui-tagging-highlight")
+                .append(this.highlight);
+
+            this.meta = $("<input>")
+                .attr("type", "hidden")
+                .addClass("ui-tagging-meta");
+
+            this.container = $("<div></div>")
+                .width(this.element.width())
+                .insertBefore(this.element)
+                .addClass("ui-tagging")
+                .append(
+                    this.highlightContainer, 
+                    this.element.wrap(this.wrapper).parent(), 
+                    this.meta
+                );
+            
+            var initialHeight = this.element.height();
+            
+            this.element.height(this.element.css('lineHeight'));
+            
+            this.element.keypress(function(e) {
+                // activate on @
+                if (e.which == 64 && !self.activeSearch) {
+                    self.activeSearch = true;
+                    self.beginFrom = e.target.selectionStart + 1;
+                }
+                // deactivate on space
+                if (e.which == 32 && self.activeSearch) {
+                    self.activeSearch = false;
+                }
+            }).bind("expand keyup keydown change", function(e) {
+                var cur = self.highlight.find("span"),
+                    val = self.element.val(),
+                    prevHeight = self.element.height(),
+                    rowHeight = self.element.css('lineHeight'),
+                    newHeight = 0;
+                cur.each(function(i) {
+                    var s = $(this);
+                    val = val.replace(s.text(), $("<div>").append(s).html());
+                });
+                self.highlight.html(val);
+                newHeight = self.element.height(rowHeight)[0].scrollHeight;
+                self.element.height(prevHeight);
+                if (newHeight < initialHeight) {
+                    newHeight = initialHeight;
+                }
+                if (!$.browser.mozilla) {
+                    if (self.element.css('paddingBottom') || self.element.css('paddingTop')) {
+                        var padInt =
+                            parseInt(self.element.css('paddingBottom').replace('px', '')) + 
+                            parseInt(self.element.css('paddingTop').replace('px', ''));
+                        newHeight -= padInt;
+                    }
+                }
+                self.options.animateResize ?
+                    self.element.stop(true, true).animate({
+                            height: newHeight
+                        }, self.options.animateDuration) : 
+                    self.element.height(newHeight);
+                
+                var widget = self.element.autocomplete("widget");
+                    widget.position({
+                        my: "left top",
+                        at: "left bottom",
+                        of: self.container
+                    }).width(self.container.width()-4);
+                
+            }).autocomplete({
+                minLength: 0,
+                delay: 0,
+                maxDisplay: this.options.maxItemDisplay,
+                open: function(event, ui) {
+                    var widget = $(this).autocomplete("widget");
+                    widget.position({
+                        my: "left top",
+                        at: "left bottom",
+                        of: self.container
+                    }).width(self.container.width()-4);
+                },
+                source: function(request, response) {
+                    if (self.activeSearch) {
+                        self.searchTerm = request.term.substring(self.beginFrom); 
+                        if (request.term.substring(self.beginFrom - 1, self.beginFrom) != "@") {
+                            self.activeSearch = false;
+                            self.beginFrom = 0;
+                            self.searchTerm = "";
+                        }
+                        if (self.searchTerm != "") {
+                            
+                            if ($.type(self.options.source) == "function") {
+                                self.options.source(request, response);                   
+                            } else {
+                                var re = new RegExp("^" + escape(self.searchTerm) + ".+", "i");
+                                var matches = [];
+                                $.each(self.options.source, function() {
+                                    if (this.label.match(re)) {
+                                        matches.push(this);
+                                    }
+                                });
+                                response(matches);
+                            }
+                        }
+                    }
+                },
+                focus: function() {
+                    // prevent value inserted on focus
+                    return false;
+                },
+                select: function(event, ui) {
+                    self.activeSearch = false;
+                    //console.log("@"+searchTerm, ui.item.label);
+                    this.value = this.value.replace("@" + self.searchTerm, ui.item.label) + ' ';
+                    self.highlight.html(
+                        self.highlight.html()
+                            .replace("@" + self.searchTerm,
+                                     $("<div>").append(
+                                         self.highlightWrapper
+                                             .text(ui.item.label)
+                                             .clone()
+                                     ).html()+' ')
+                    );
+                        
+                    self.meta.val((self.meta.val() + " @[" + ui.item.value + ":]").trim());
+                    return false;
+                }
+            });
+
+        }
+    });
+
+})(jQuery);
+
+
+$(function() {
+    
+    var names = [
+        {
+            value: 1,
+            label: "Marcus Ekwall"
+        }
+    ];
+    
+    $("textarea").tagging({
+        source: function(request, response) {
+            $.ajax({
+                type: "post",
+                url: "/data.json",
+                data: { term: request.term, json: JSON.stringify(names) },
+                success: function(data){
+                    response(data);
+                },
+                dataType: "json"
+            });
+        }
+    });
+
+});
+</script>
+
+<style type="text/javascript">
+.autotaggable {
+  width: 100%;
+  height: 20em;
+}
+
+body, html {
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+}
+
+.ui-tagging {
+    position: relative;
+    border: 1px solid #B4BBCD;
+    height: auto;
+}
+
+.ui-tagging .ui-tagging-highlight {
+    position: absolute;
+    padding: 5px;
+    overflow: hidden;
+}
+.ui-tagging .ui-tagging-highlight div {
+    color: transparent;
+    font-size: 13px;
+    line-height: 18px;
+    white-space: pre-wrap;
+}
+
+.ui-tagging .ui-tagging-wrap {
+    position: relative;
+    padding: 5px;
+    overflow: hidden;
+    zoom: 1;
+    border: 0;
+}
+
+.ui-tagging div > span {
+    background-color: #D8DFEA;
+    font-weight: normal !important;
+}
+
+.ui-tagging textarea {
+    display: block;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    background: transparent;
+    border-width: 0;
+    font-size: 13px;
+    height: 18px;
+    outline: none;
+    resize: none;
+    vertical-align: top;
+    width: 100%;
+    line-height: 18px;
+    overflow: hidden;
+}
+
+.ui-autocomplete {
+    font-size: 13px;
+    background-color: white;
+    border: 1px solid black;
+    margin-bottom: -5px;
+    width: 0;
+}
+
+
+</style>
+
+<!-- INCLUDE overall_footer.html -->

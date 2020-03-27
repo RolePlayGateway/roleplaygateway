@@ -1,0 +1,76 @@
+<!-- INCLUDE ucp_header.html -->
+<h2>{L_MEDAL_CP}</h2>
+<form method="post" action="{U_MEDALS_ACTION}" name="post">
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<h2>{L_AWARD_TO} {USERNAME}</h2>
+	<fieldset class="fields1">
+		<dl>
+			<dt><strong>{L_MEDAL}:</strong></dt>
+			<dd>
+				<select name="med" id="medal" onclick="ipreview(this)">{MEDALS}</select><br />
+			</dd>
+		</dl>
+		<dl>
+			<dt><strong>{L_IMAGE_PREVIEW}:</strong></dt>
+			<dd style="height: 70px;"><span id="imagepreview"></span></dd>
+		</dl>
+		<!-- INCLUDE posting_buttons.html -->
+		<div id="smiley-box">
+			<!-- IF .smiley -->
+				<strong>{L_SMILIES}</strong><br />
+				<hr />
+				<!-- BEGIN smiley -->
+					<a href="#" onclick="insert_text('{smiley.A_SMILEY_CODE}', true); return false;"><img src="{smiley.SMILEY_IMG}" width="{smiley.SMILEY_WIDTH}" height="{smiley.SMILEY_HEIGHT}" alt="{smiley.SMILEY_CODE}" title="{smiley.SMILEY_DESC}" /></a>
+				<!-- END smiley -->
+			<!-- ENDIF -->
+			<!-- IF S_SHOW_SMILEY_LINK -->
+				<br /><a href="{U_MORE_SMILIES}" onclick="window.open('{U_MORE_SMILIES}', '_phpbbsmilies', 'HEIGHT=350,resizable=yes,scrollbars=yes,WIDTH=300'); return false;">{L_MORE_SMILIES}</a>
+			<!-- ENDIF -->
+	
+			<!-- IF BBCODE_STATUS -->
+			<hr />
+			{BBCODE_STATUS}<br />
+			<!-- IF S_BBCODE_ALLOWED -->
+				{IMG_STATUS}<br />
+				{FLASH_STATUS}<br />
+				{URL_STATUS}<br />
+				{SMILIES_STATUS}
+			<!-- ENDIF -->
+			<!-- ENDIF -->
+			<!-- IF S_EDIT_DRAFT || S_DISPLAY_REVIEW -->
+				<!-- IF S_DISPLAY_REVIEW --><hr /><!-- ENDIF -->
+				<!-- IF S_EDIT_DRAFT --><strong><a href="{S_UCP_ACTION}">{L_BACK_TO_DRAFTS}</a></strong><!-- ENDIF -->
+				<!-- IF S_DISPLAY_REVIEW --><strong><a href="#review">{L_TOPIC_REVIEW}</a></strong><!-- ENDIF -->
+			<!-- ENDIF -->
+		</div>
+		<div id="message-box">
+			<textarea id="message" name="message" rows="15" cols="76" tabindex="3" wrap="physical" title="" class="inputbox">{MESSAGE}</textarea>
+		</div>
+	</fieldset>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<fieldset class="submit-buttons">
+	<input type="hidden" name="username" value="{FORMUNAME}" />
+	{S_HIDDEN_FIELDS}<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
+	<input type="submit" accesskey="s" tabindex="6" name="submit" value="{L_SUBMIT}" class="button1" />&nbsp;
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<script type="text/javascript">
+	{JS}
+	var form_name = 'post';
+	var text_name = 'message';
+	function ipreview(element)
+	{
+		if (medals[element.value] == '' || medals[element.value] == null)
+			document.getElementById('imagepreview').innerHTML = '<br />{L_IMAGE_ERROR}';		
+		else
+			document.getElementById('imagepreview').innerHTML = '<br /><img src="'+medals[element.value]+'" title="'+medals_desc[element.value]+'" alt="'+medals_desc[element.value]+'" style="max-width: 60px; max-height: 60px;" /> '+medals_desc[element.value];
+	}
+</script>
+
+<!-- INCLUDE ucp_footer.html -->

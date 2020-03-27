@@ -20,6 +20,7 @@ $result = $db->sql_query($sql);
 if ($roleplay = $db->sql_fetchrow($result)) {
 
   $template->assign_vars(array(
+    'S_PAGE_ONLY' 					=> true,
     'ROLEPLAY_TITLE' 					=> $roleplay['title'],
     'ROLEPLAY_URL' 					=> $roleplay['url'],
   ));

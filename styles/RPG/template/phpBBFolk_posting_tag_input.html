@@ -1,0 +1,35 @@
+<table style="width:100%;">
+<tr>
+	<td>{L_PBF_ADD_TAGS_DESCRIPTION}</td>
+	<td onmouseover="searchSuggest('pbf_tags', 'suggestions_div');" style="font-size:1.5em;">
+		<strong>Quick Tags:</strong> 
+		<a class="suggest_link"
+			onclick="javascript:setSearch(this.innerHTML);"
+			onmouseout="javascript:suggestOut(this);"
+			onmouseover="javascript:suggestOver(this);">out of character</a>		
+		<a class="suggest_link"
+			onclick="javascript:setSearch(this.innerHTML);"
+			onmouseout="javascript:suggestOut(this);"
+			onmouseover="javascript:suggestOver(this);">in character</a>	
+		<a class="suggest_link"
+			onclick="javascript:setSearch(this.innerHTML);"
+			onmouseout="javascript:suggestOut(this);"
+			onmouseover="javascript:suggestOver(this);">roleplay</a>
+	</td>
+</tr>
+<tr>
+<td width="50%">
+	<strong><h3>{L_PBF_TAGS}:</h3></strong>
+	<textarea name="pbf_tags" onkeyup="searchSuggest('pbf_tags', 'suggestions_div');"
+		autocomplete="off" id="pbf_tags" rows="5" cols="35" class="inputbox"></textarea>
+</td>
+<td width="50%">
+	<strong><h3>{L_PBF_SUGGESTIONS}:</h3></strong>
+	<noscript>
+		<span class="error">Without Javascript suggestions will not work</span>
+	</noscript>
+	<div id="suggestions_div" class="suggestions suggest_posting"></div>
+</td>
+</tr></table>
+
+<script language="JavaScript" type="text/javascript" src="phpBBFolk.js"></script>

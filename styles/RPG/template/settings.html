@@ -1,0 +1,36 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<h1>RPG Settings</h1>
+<p></p>
+
+<div class="special panel">
+  <!-- BEGIN places -->
+  <div style="margin-bottom: 0.5em; padding: 0.5em 0; clear: both;">
+    <a href="{places.LINK}"><img src="{places.LINK}/image" class="left floated crisp-border" /></a>
+    <div>
+      <h2 style="padding-bottom: 0.5em; margin-bottom: 0.2em;">
+        <small class="quick-float-right">
+          <!-- IF not S_IS_BOT -->
+          <a href="/ucp.php?i=characters&amp;mode=new&amp;roleplay_url={places.ROLEPLAY_URL}&amp;birthplace={places.ID}">Spawn a Character Here &raquo;</a>
+          <!-- ENDIF -->
+        </small>
+        <a href="{places.LINK}">{places.NAME}</a><small>, a setting in <a href="{places.ROLEPLAY_LINK}">{places.ROLEPLAY_NAME}</a></small>
+      </h2>
+      <p>{places.SYNOPSIS}</p>
+      <!-- <p><strong>{places.BIRTH_COUNT}</strong> characters started their journey here.</p> -->
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <!-- END places -->
+
+  <h3><a name="holders" href="#holders">Top Sovereignty Holders</a></h3>
+  <div>
+    <!-- BEGIN owners -->
+    <li>{owners.USERNAME}, with {owners.OWNED_COUNT} locations</li>
+    <!-- END owners -->
+  </div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

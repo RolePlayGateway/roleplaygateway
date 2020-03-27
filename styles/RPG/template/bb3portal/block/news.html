@@ -1,0 +1,34 @@
+<!-- $Id: news.html,v 1.4 2007/04/14 02:05:17 angelside Exp $ //-->
+
+<h3>{L_NEWS}</h3>
+
+<!-- BEGIN news_row -->
+<!-- IF news_row.S_NO_TOPICS -->
+	<center><span class="gensmall"><strong>{L_NO_NEWS}</strong></span></center>
+<!-- ELSE -->
+<div class="post bg2">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<div class="postbody postbody_portal">
+		<h4 class="first">{news_row.ATTACH_ICON_IMG}<!-- IF news_row.S_POLL --> <strong>{L_POLL}: </strong><!-- ENDIF --><a href="{news_row.U_VIEW_COMMENTS}"><strong>{news_row.TITLE}</strong></a></h4>
+		<ul class="linklist">
+			<li>
+				{L_POSTED_BY}: <strong><a href="{news_row.U_USER_PROFILE}">{news_row.POSTER}</a></strong> 
+			</li>
+			<li class="rightside">
+				{news_row.TIME}
+			</li>
+		</ul>		
+		<br />
+		<div class="content">{news_row.TEXT}</div><br />		
+		<span style="float: left;">{news_row.OPEN}<a href="{news_row.U_READ_FULL}">{news_row.L_READ_FULL}</a>{news_row.CLOSE} &nbsp;&bull;&nbsp; <a href="{news_row.U_VIEW_COMMENTS}" title="{L_VIEW_COMMENTS}">{L_COMMENTS}: {news_row.REPLIES}</a> &nbsp;&bull;&nbsp; <a href="{news_row.U_POST_COMMENT}">{L_POST_REPLY}</a></span>	
+	</div>
+	<div class="back2top">
+		<a href="#wrap" title="Top"><img src="./styles/prosilver/theme/images/top.gif" width="11" height="11" alt="Top" /></a>
+	</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<hr class="divider" />
+<!-- ENDIF -->
+<!-- IF news_row.S_NOT_LAST --><!--<br />--><!-- ENDIF -->
+<!-- END news_row -->

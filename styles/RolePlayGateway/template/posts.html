@@ -1,0 +1,25 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<style type="text/css">
+img.roleplay-image {
+  max-height: 75px;
+  float: left;
+  margin: 0.5em;
+  margin-left: 44px;
+}
+</style>
+
+<h1>RPG Forum Posts</h1>
+
+<div class="special panel">
+  <!-- BEGIN posts -->
+  <div>
+    <h3><a href="/posts/{posts.ID}">#{posts.ID}</a></h3>
+    <div>{posts.RAW}</div>
+  </div>
+  <!-- END posts -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->

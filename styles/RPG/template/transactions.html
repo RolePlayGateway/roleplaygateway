@@ -1,0 +1,38 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<h2>Transactions</h2>
+<p>A list of all transaction data.</p>
+
+<div>
+  <table style="width: 100%;">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>From</td>
+        <td>To</td>
+        <td>Amount</td>
+        <td>For</td>
+        <td>Timestamp</td>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- BEGIN transactions -->
+      <tr>
+        <td>{transactions.ID}</td>
+        <td>{transactions.FROM_NAME}</td>
+        <td>{transactions.TO_NAME}</td>
+        <td>{transactions.AMOUNT}</td>
+        <td>{transactions.FOR}</td>
+        <td>{transactions.TIMESTAMP}</td>
+      </tr>
+      <!-- END transactions -->
+    </tbody>
+  </table>
+</div>
+
+<!-- IF FINAL_BALANCE -->
+<h2>Final Balance: <span>{FINAL_BALANCE}</span> <small>INK</small></h2>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

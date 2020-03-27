@@ -1,0 +1,93 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<div style="float: right;">
+  <input id="place-search" placeholder="Search..." class="supersize" />
+</div>
+
+<img src="/universes/{ROLEPLAY_URL}/image" class="crisp-border" style="float:left; margin-right: 1em;" />
+<h1 style="color:#596E7C; margin-top: 0;">
+  <a href="/universes/{ROLEPLAY_URL}/">{ROLEPLAY_NAME}</a> &raquo; <a href="/universes/{ROLEPLAY_URL}/places">Places</a>
+  <!-- IF S_CAN_EDIT --><a href="/ucp.php?i=roleplays&amp;mode=add_place&amp;roleplay_id={ROLEPLAY_ID}" class="button">Add New &raquo;</a><!-- ENDIF -->
+</h1>
+<p style="margin-bottom: 0;">{ROLEPLAY_SYNOPSIS}</p>
+
+<div>
+  <h3 style="font-size: 1.2em; margin-top: 0.5em;">Places in {ROLEPLAY_NAME}</h3>
+  <ul class="linklist" style="font-size: 1.5em; float: right;">
+    <li class="rightside pagination">{TOTAL_PLACES} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+  </ul>
+  <p style="font-size: 1.4em;">
+    This is a list of locations that can be found in <strong>{ROLEPLAY_NAME}</strong>.
+  </p>
+</div>
+<br style="clear: both;" />
+
+<div class="special panel">
+  <!-- IF .buyable_places -->
+    <!-- INCLUDE buyable-places-scroller.html -->
+  <!-- ENDIF -->
+
+  <h2>All Places</h2>
+  <div id="placelist">
+    <!-- BEGIN places -->
+    <div class="place" style="height: auto;" data-name="{places.NAME}" data-synopsis="{places.SYNOPSIS}">
+      <a href="/universes/{ROLEPLAY_URL}/places/{places.URL}/"><img src="/universes/{ROLEPLAY_URL}/places/{places.URL}/image" alt="{places.NAME}" class="crisp-border" style="margin-bottom: 3em;" /></a>
+      <div style="float: right; width: 400px; margin-left: 1em;">
+        <h4 style="text-align: right;">
+          <small><a href="/universes/{ROLEPLAY_URL}/places/{places.URL}#activity">{places.POSTS} posts</a></small>
+            &middot;
+          <small><a href="/universes/{ROLEPLAY_URL}/places/{places.URL}#characters">{places.CHARACTER_COUNT} characters present</a></small>
+            &middot;
+          <small>last post <a href="/universes/{ROLEPLAY_URL}/places/{places.URL}/#roleplay{places.LAST_POST_ID}">{places.LAST_POST_DATE} &raquo;</a></small>
+        </h4>
+        <!-- IF places.LAST_POST_CONTENT -->
+        <div>
+          <blockquote style="max-height: 60px; font-size: 1.2em; overflow: hidden; text-overflow: ellipsis; margin-top: 1em;">
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{places.LAST_POST_CONTENT}</div>
+          </blockquote>
+          <div style="text-align: right;">
+            <a class="button" href="/universes/{ROLEPLAY_URL}/places/{places.URL}#roleplay{places.LAST_POST}">Read More &raquo;</a>
+          </div>
+        </div>
+        <!-- ENDIF -->
+      </div>
+      <div>
+        <h3>
+          <!-- IF places.PARENT_ID gt 0 -->
+          <small style="display:block;">
+            <a href="/universes/{ROLEPLAY_URL}/places/{places.PARENT_SLUG}/">{places.PARENT_NAME}</a>
+          </small>
+          &#8618;
+          <!-- ENDIF -->
+          <!-- <small># {places.ID}</small> -->
+          <a href="/universes/{ROLEPLAY_URL}/places/{places.URL}/">{places.NAME}</a>
+          <small><strong>Owner: {places.OWNER_USERNAME}</strong></small>
+        </h3>
+      </div>
+      <p>{places.SYNOPSIS}</p>
+    </div>
+    <!-- BEGINELSE -->
+      <p class="supersize">There are no places in this roleplay!</p>
+    <!-- END places -->
+  </div>
+</div>
+
+<ul class="linklist" style="font-size: 1.5em;">
+  <li class="rightside pagination">{TOTAL_PLACES} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<script type="text/javascript">
+  $('#place-search').keyup(function() {
+    var filter = $(this).val();
+    if (filter.length > 0) {
+      $('#placelist .place').hide();
+      $('#placelist .place[data-name*="'+filter+'"]').show();
+      $('#placelist .place[data-synopsis*="'+filter+'"]').show();
+    } else {
+      $('#placelist .place').show();
+    }
+  });
+</script>
+
+<!-- INCLUDE overall_footer.html -->

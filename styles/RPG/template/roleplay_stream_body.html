@@ -1,0 +1,193 @@
+<!-- MIC CHECK -->
+<style type="text/css">
+	.characterTagging { font-size: 1.4em; vertical-align: middle; }
+	.taggedCharacters { display: block; padding-top: 0.5em; }
+	.hovered { border: 1px dotted red; }
+	.micro { height: 30px; width: 30px; margin-right: 5px; vertical-align: middle; }
+	.prettyCenter { font-weight: bold; }
+	.postTaggedCharacter { display: block; border-radius: 3px; background: #ccc; margin-left: 5px; margin-right: 5px; padding-right: 5px; border: 1px solid black; }
+	.submitTaggedCharacters { font-weight: bold; margin-top: 0.5em; }
+	.bundleList > div { clear: both; padding: 0.2em; }
+	.bundleList > div > input[type=button] { float: right; }
+	.flyover { position: absolute; background: #333; }
+</style>
+
+<script type="text/javascript">
+	document.taggedCharacters = new Object;
+</script>
+
+<!-- BEGIN activity -->
+	<!-- IF activity.S_IS_DELETED -->
+		<span style="display:none;">Nothing to see here.  Move along, {activity.ID}.</span>
+	<!-- ELSE -->
+	<div class="activity" id="a{activity.ID}" data-content-id="{activity.ID}">
+		<a class="anchor" name="roleplay{activity.ID}"></a>
+    <!-- IF activity.LAST_PLACE_ID > 0 -->
+    <!-- IF activity.LAST_PLACE_ID neq activity.LOCATION_ID -->
+    <div><h3>The setting changes from <a href="/universes/{URL}/places/{activity.LAST_PLACE_URL}">{activity.LAST_PLACE_NAME}</a> to <a href="/universes/{URL}/places/{activity.LOCATION_URL}">{activity.LOCATION}</a></h3></div>
+    <!-- ENDIF -->
+    <!-- ENDIF -->
+		<div class="fill-on-mobile" style="float:right; width: 170px; border-left: 1px solid #ccc; padding-left: 10px;">
+			<!-- IF activity.S_SHOW_CONTROLS -->
+			<!-- IF activity.S_IS_LOCAL_POST -->
+			<!-- ELSE -->
+			<div>
+				<h3>Setting</h3>
+			 	<div><span class="location"><a href="/universes/{URL}/places/{activity.LOCATION_URL}"><img src="/universes/{URL}/places/{activity.LOCATION_URL}/image" class="crisp-border" style="display: inline-block; height: 1.1em; vertical-align: top; margin-right: 0.5em;" /></a><a href="/universes/{URL}/places/{activity.LOCATION_URL}">{activity.LOCATION}</a></span></div>
+      </div>
+      <div>
+				<h3>Characters Present</h3>
+				<div class="postCharacterList" data-for="{activity.ID}">
+				<!-- BEGIN characters -->
+					<a href="/universes/{URL}/characters/{activity.characters.URL}/" title="{activity.characters.NAME}"><img src="/universes/{URL}/characters/{activity.characters.URL}/image" alt="Character Portrait: {activity.characters.NAME}" style="height:50px;" class="crisp-border" /></a>
+				<!-- BEGINELSE -->
+				<p>No characters tagged in this post!</p>
+				<!-- END characters -->
+				</div>
+
+        <!-- IF S_IS_COMPLETED -->
+        
+        <!-- ELSE -->
+        <!-- IF S_CAN_POST -->
+				<a href="#" onclick="$('.characterTagging[data-for={activity.ID}]').slideToggle(); return false;" style="display:block; clear:both;" class="button">Tag Characters &raquo;</a>
+				<div class="characterTagging" data-for="{activity.ID}" style="display: none;">
+					<input class="characterSearch" data-for="{activity.ID}" name="characterSearch" style="padding: 0.2em;" placeholder="Tag a character" />
+					<input type="hidden" class="taggedCharacterList" data-for="{activity.ID}" name="taggedCharacterList" />
+					<div class="taggedCharacters" data-for="{activity.ID}"></div>
+					<div class="taggingStatus" data-for="{activity.ID}"></div>
+          <button type="button" style="float:right;" class="submitTaggedCharacters button" data-for="{activity.ID}">Tag Them! &raquo;</button>
+				</div>
+
+				<a href="#" style="display:block; clear:both;" class="button bundleButton" data-for="{activity.ID}">Add to Arc &raquo;</a>
+				<div class="bundleListWrapper" style="display:none;" data-for="{activity.ID}">
+					<div class="bundleList" data-for="{activity.ID}"></div>
+					<a href="/ucp.php?i=roleplays&amp;mode=add_arc&amp;roleplay_id={ID}&amp;with_post={activity.ID}" class="button" style="float: right; clear: both; font-size: 1.2em;">new arc &raquo;</a>
+				</div>
+        <!-- ENDIF -->
+        <!-- ENDIF -->
+			</div>
+			<div style="clear: both;">
+        <!-- IF .footnotes -->
+				<h3>Footnotes</h3>
+        <!-- ENDIF -->
+				<ol class="footnote-list" data-for="{activity.ID}">
+				<!-- BEGIN footnotes -->
+					<li>
+						<span>{footnotes.FOOTNOTE}</span>
+						<cite><time class="time timeago" title="{footnotes.TIME_ISO}">{footnotes.TIME_AGO}</time> by <a href="https://www.roleplaygateway.com/member/{footnotes.AUTHOR_USERNAME}">{footnotes.AUTHOR_USERNAME}</a></cite>
+					</li>
+				<!-- END footnotes -->
+				</ol>
+        <!-- IF S_IS_COMPLETED -->
+        
+        <!-- ELSE -->
+        <!-- IF S_CAN_POST -->
+				<a href="#" style="display:block; clear:both;" class="button footnoteButton" data-for="{activity.ID}">Add Footnote &raquo;</a>
+				<form action="/roleplay-comment.php" style="display:none;" class="footnoteWrapper" data-for="{activity.ID}">
+					<input type="hidden" name="contentID" value="{activity.ID}" />
+					<input type="text" name="content" style="display: block;" />
+					<!-- IF activity.S_CAN_EDIT  -->
+					<label for="author">use original author</label>
+					<input type="checkbox" name="author" />
+					<!-- ENDIF -->
+					<button type="submit" class="button quick-float-right">Add &raquo;</button>
+          <div class="clearfix"></div>
+				</form>
+        <!-- ENDIF -->
+        <!-- ENDIF -->
+			</div>
+      <div>
+        <!-- IF S_IS_COMPLETED -->
+        <div>
+          <h3>Earnings</h3>
+          <p>
+            <span class="labeled action">
+              <span data-bind="stats.tips" data-link="/snippets/{activity.ID}">{activity.TIPS_TOTAL}</span> <small>INK</small>
+              <!-- IF S_USER_LOGGED_IN --><button class="special button" on-tap="_promptToTip" data-amount="0.25" data-author="{activity.AUTHOR_ID}" data-link="/snippets/{activity.ID}">+ 0.25</button><!-- ENDIF -->
+            </span>
+          </p>
+          <!-- <center style="margin-top: 1em;"><abbr title="Tips are donations to the author." class="tooltipped">tips received</abbr></center> -->
+        </div>
+        <!-- ELSE -->
+        <div>
+          <p>
+            <span class="labeled action">
+              <span data-bind="stats.tips" data-link="/snippets/{activity.ID}">{activity.TIPS_TOTAL}</span> <small>INK</small>
+              <!-- IF S_USER_LOGGED_IN --><button class="special button" on-tap="_promptToTip" data-amount="0.25" data-author="{activity.AUTHOR_ID}" data-link="/snippets/{activity.ID}">+ 0.25</button><!-- ENDIF -->
+            </span>
+          </p>
+          <!-- <center style="margin-top: 1em;"><abbr title="Tips are donations to the author." class="tooltipped">tips received</abbr></center> -->
+        </div>
+        <!-- ENDIF -->
+      </div>
+      <!-- ENDIF -->
+      <!-- ENDIF -->
+		</div>
+		<div class="margin-right-on-desktop" style="padding-right:10px;">
+			<div class="author fill-on-mobile">
+        <!-- IF activity.S_SHOW_CONTROLS -->
+				<div class="controls" style="float:right;">
+					<!-- IF activity.S_CAN_EDIT  -->
+					<a href="/ucp.php?i=roleplays&amp;mode=edit_content&amp;content_id={activity.ID}">Edit</a> &bullet;
+					<!-- ENDIF -->
+					<!-- IF activity.S_CAN_DELETE -->
+					<a href="#" data-action="delete-content" data-content-id="{activity.ID}">Delete</a> &bullet;
+					<!-- ENDIF -->
+          <!-- IF S_IS_REGISTERED -->
+					<a href="#" data-action="flag-content" data-content-id="{activity.ID}">Mark as &hellip;</a>
+					<div id="content-controls-{activity.ID}" class="flyover"></div>
+          <!-- ENDIF -->
+				</div>
+        <!-- ENDIF -->
+        <!-- IF activity.S_COLLAPSE_INFO -->
+        <!-- ELSE -->
+				<a href="{activity.PERMALINK}"><small>#</small><abbr title="{activity.TIME_ISO}"><time class="time timeago" datetime="{activity.TIME_ISO}">{activity.TIME_AGO}</time></abbr></a><!-- IF activity.S_IS_ANONYMOUS --><!-- ELSE -->, as <!-- IF activity.S_IS_COLLABORATION -->a special <strong>collaborative post</strong>.<!-- ELSE -->written by <strong>{activity.AUTHOR}</strong><!-- ENDIF --><!-- ENDIF -->
+        <!-- ENDIF -->
+			</div>
+			<div class="content fill-on-mobile<!-- IF activity.S_IS_DIALOGUE --> dialogue<!-- ENDIF -->" style="padding-top: 5px; margin-top:10px; padding-right: 5px;">
+        <!-- IF activity.S_COLLAPSE_INFO -->
+        <div style="text-align: right; display: inline-block;">
+          <small><a href="{activity.PERMALINK}"><small>#</small><abbr title="{activity.TIME_ISO}"><time class="time timeago" datetime="{activity.TIME_ISO}">{activity.TIME_AGO}</time></abbr></a>:&nbsp;</small>
+        </div>
+        <!-- ELSE -->
+        <!-- ENDIF -->
+				<!-- IF activity.S_IS_DIALOGUE -->
+					<div class="dialogue-character" style="float:left; width:150px; text-align:center;">
+						<em>
+              <a href="/universes/{URL}/characters/{activity.CHARACTER_URL}/"><img src="/universes/{URL}/characters/{activity.CHARACTER_URL}/image" alt="Character Portrait: {activity.CHARACTER_NAME}" style="height:50px; display: block; margin-left: auto; margin-right: auto;" class="crisp-border" /></a>
+							<a href="/universes/{URL}/characters/{activity.CHARACTER_URL}/">{activity.CHARACTER_NAME}</a> says,
+            </em>
+					</div>
+
+					<div class="dialogue-bubble" style="clear:none; margin-left: 160px;">
+						<span class="pointer">&nbsp;</span>&ldquo;
+				<!-- ENDIF -->
+						{activity.CONTENT}
+				<!-- IF activity.S_IS_DIALOGUE -->
+					&rdquo;</div>
+				<!-- ENDIF -->
+
+				<script type="text/javascript">
+					if (typeof(window.lastID) == 'undefined') {
+						window.lastID = 0;
+					}
+
+					if ({activity.ID} > window.lastID) {
+						window.lastID = {activity.ID};
+					}
+				</script>
+			</div>
+      <!-- IF activity.S_COLLAPSE_INFO -->
+      <!-- ELSE -->
+			<hr />
+      <!-- ENDIF -->
+		</div>
+	</div>
+	<!-- ENDIF -->
+<!-- BEGINELSE -->
+	<!-- IF !S_AJAX -->
+	<p class="supersize">There is no activity in this <!-- IF S_SINGLE_PLACE -->location<!-- ELSE -->roleplay<!-- ENDIF -->.</p>
+	<!-- ELSE -->
+
+	<!-- ENDIF -->
+<!-- END activity -->

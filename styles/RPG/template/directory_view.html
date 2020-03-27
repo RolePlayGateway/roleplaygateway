@@ -1,0 +1,70 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<style type="text/css">
+#reviews th
+{
+	font-size: 13px;
+	font-weight: normal;
+	padding: 8px;
+	background: #b9c9fe;
+	border-top: 4px solid #aabcfe;
+	border-bottom: 1px solid #fff;
+}
+#reviews td
+{
+	padding: 8px;
+	background: #e8edff;
+	border-bottom: 1px solid #fff;
+	border-top: 1px solid transparent;
+}
+#reviews tr:hover td
+{
+	background: #d0dafd;
+}
+
+h1 {
+  margin-top: 0;
+}
+</style>
+
+<div class="special panel">
+  <div id="details" class="quick-float-right">
+    <a href="{URL}" class="supersize button fill-on-mobile">Visit {TITLE} &raquo;</a>
+    <div><strong>Submitted by: </strong> {OWNER_USERNAME}</div>
+    <div><strong>Status: </strong> {STATUS}</div>
+  </div>
+  <div>
+    <h3><a href="/directory">Places to Roleplay</a></h3>
+    <h1>↪ {TITLE}</h1>
+    <p><strong>Official Link:</strong> <code>{URL}</code> is recognized as <strong><a href="{URL}">{TITLE}</a></strong>.</p>
+  </div>
+
+  <!-- <img src="http://api.thumbalizr.com/?url={URL}&width=250" style="float:right;" /> -->
+	<p class="supersize">{DESCRIPTION}</p>
+
+	<h2>Reviews</h2>
+	<div id="reviews">
+	<p>What do other people think about {TITLE}?</p>
+	<p><a href="//www.roleplaygateway.com/directory/review.php?id={SITE_ID}" class="button fill-on-mobile">Click here to add your own review...</a></p>
+	<table width="100%">
+		<thead>
+			<tr>
+				<th scope="col">Time</th>
+				<th scope="col">Username</th>
+				<th scope="col">Review</th>
+				<th scope="col">Rating</th>
+			</tr>
+		</thead>
+	<!-- BEGIN reviews -->
+		<tr>
+			<td>{reviews.TIME}</td>
+			<td>{reviews.USERNAME}</td>
+			<td>{reviews.REVIEW}</td>
+			<td>{reviews.RATING}</td>
+		</tr>
+	<!-- END reviews -->
+	</table>
+	</div>
+</div>
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,70 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<style type="text/css">
+  .panel p {
+    min-height: 0;
+  }
+  
+  .labeled.action > div {
+    text-align: center;
+  }
+  
+  .labeled.action > div > span {
+    font-size: 1.4em;
+  }
+</style>
+
+<div class="quick-float-right">
+  <div class="labeled action">
+    <div><span data-bind data-link>1,000</span> <small>INK</small></div>
+    <center><!-- IF S_CAN_AFFORD -->✓ affordable!<!-- ENDIF --></center>
+  </div>
+  <center>Not enough INK?  Try selling something in <a href="/orders">the marketplace</a>.</center>
+</div>
+
+<h1>RPG Stores</h1>
+<p>Offer others resources in exchange for cash.</p>
+
+<div class="special panel">
+  <form action="/stores" method="POST">
+    <fieldset>
+      <label>
+        <h3>Name</h3>
+        <p>The human-friendly name of your store.</p>
+      </label>
+      
+      <input class="supersize" type="text" name="name" max="25" placeholder="e.g., &ldquo;Joe's Crab Shack&rdquo;" />
+    </fieldset>
+
+    <fieldset>
+      <label>
+        <h3>Location</h3>
+        <p>Where will players be able to interact with this store?</p>
+      </label>
+      
+      <select name="placeID">
+        <!-- BEGIN places -->
+        <option value="{places.ID}">{places.NAME}</option>
+        <!-- END places -->
+      </select>
+    </fieldset>
+
+    <fieldset style="text-align: right;">
+      <button type="submit" class="button">Open This Store &raquo;</button>
+    </fieldset>
+  </form>
+</div>
+
+<h2>Open Stores</h2>
+<div class="special panel">
+  <!-- BEGIN stores -->
+  <div>
+    <h3><a href="{stores.LINK}">{stores.NAME}</a>, located in <a href="{stores.LOCATION_LINK}">{stores.LOCATION_NAME}</a></h3>
+    <p>{stores.DESCRIPTION}</p>
+  </div>
+  <!-- END stores -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->

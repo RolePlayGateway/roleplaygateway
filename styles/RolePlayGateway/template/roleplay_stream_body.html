@@ -14,6 +14,7 @@
 <script type="text/javascript">
 	document.taggedCharacters = new Object;
 </script>
+
 <!-- BEGIN activity -->
 	<!-- IF activity.S_IS_DELETED -->
 		<span style="display:none;">Nothing to see here.  Move along, {activity.ID}.</span>
@@ -24,7 +25,7 @@
 			<div>
 				<h3>Setting</h3>
 			 	<div><span class="location"><a href="/roleplay/{URL}/places/{activity.LOCATION_URL}">{activity.LOCATION}</a></span></div>
-				
+
 				<h3>Characters Present</h3>
 				<div class="postCharacterList" data-for="{activity.ID}">
 				<!-- BEGIN characters -->
@@ -76,12 +77,23 @@
 					<input type="submit" />
 				</form>
 			</div>
+      <div>
+        <div>
+          <p>
+            <span class="labeled action">
+              <span data-bind="stats.tips" data-link="/snippets/{activity.ID}">{activity.TIPS_TOTAL}</span> <small>INK</small>
+              <!-- IF S_USER_LOGGED_IN --><button class="special button" on-tap="_promptToTip" data-amount="0.25" data-author="{activity.AUTHOR_ID}" data-link="/snippets/{activity.ID}">+ 0.25</button><!-- ENDIF -->
+            </span>
+          </p>
+          <!-- <center style="margin-top: 1em;"><abbr title="Tips are donations to the author." class="tooltipped">tips received</abbr></center> -->
+        </div>
+      </div>
 		</div>
 		<div style="margin-right: 170px; padding-right:10px;">
 			<div class="author">
 				<div class="controls" style="float:right;">
 					<!-- IF activity.S_CAN_EDIT  -->
-					<a href="/ucp.php?i=roleplays&mode=edit_content&content_id={activity.ID}">Edit</a> &bullet;
+					<a href="/ucp.php?i=roleplays&amp;mode=edit_content&amp;content_id={activity.ID}">Edit</a> &bullet;
 					<!-- ENDIF -->
 					<!-- IF activity.S_CAN_DELETE -->
 					<a href="#" data-action="delete-content" data-content-id="{activity.ID}">Delete</a> &bullet;

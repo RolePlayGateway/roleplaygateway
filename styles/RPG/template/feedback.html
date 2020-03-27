@@ -1,0 +1,30 @@
+<!-- INCLUDE overall_header.html -->
+<h2>RolePlayGateway Feedback & Suggestions</h2>
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+
+		<!-- BEGIN suggestions -->
+		<div style="clear:both; display:block; margin-bottom:5px;">
+			<a href="{suggestions.PERMALINK}"><div style="float:left; text-align:center; width: 50px; padding: 5px;">
+				<span style="font-size: 2em; font-weight: bold; display:block;">{suggestions.SUPPORTERS_COUNT}</span>
+				people
+			</div></a>
+			<div style="float:left; text-align:center; width: 100px; background-color:{suggestions.STATUS_COLOR}; padding: 5px;">
+				<span style="font-size: 2em; font-weight: bold; display:block;"><!-- IF (suggestions.STATUS == "planned") || (suggestions.STATUS == "started") -->&#10003;<!-- ELSE -->~<!-- ENDIF --></span>
+				{suggestions.STATUS}
+			</div>
+			<div style="margin-left:175px;">
+				<h3><a href="{suggestions.PERMALINK}">{suggestions.TITLE}</a> <em>by {suggestions.CREATOR_NAME}</em></h3>
+				<p>{suggestions.TEXT}</p>
+				<a href="{suggestions.PERMALINK}">{suggestions.COMMENTS_COUNT} comments</a> &bull; <a href="{suggestions.PERMALINK}">Read More &raquo;</a>
+			</div>
+			<br style="clear:both;" />
+		</div>
+		<!-- END suggestions -->
+		
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

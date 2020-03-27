@@ -268,6 +268,7 @@ $(document).on('click', '*[on-tap=_fillOrder]', function(e) {
   var self = this;
   var link = $(self).data('link');
   var price = $(self).data('price');
+  var target = $(self).data('target'); // characterID for items
   var agree = confirm('Are you sure you want to buy "' + link + '"?  ' + price + ' INK will be deducted from your account.');
 
   var wallet = $('*[data-link="/members/{S_USER_ID}"][data-bind="stats.balance"]');
@@ -276,12 +277,66 @@ $(document).on('click', '*[on-tap=_fillOrder]', function(e) {
   if (agree) {
     wallet.html((balance - parseFloat(price)).toFixed(2));
     
+    var data = {
+      order: link,
+      amount: price
+    };
+    
+    if (target) {
+      data.target = target;
+    }
+    
     $.ajax({
       url: '/transactions',
       type: 'POST',
-      data: {
-        order: link
+      data: data,
+      success: function(data) {
+        if (!data) return alert('Unexpected response:', data);
+        if (data.status == 'success') {
+          alert(data.message);
+        } else {
+          alert('Error: ' + data.message);
+        }
       },
+      error: function(data) {
+        if (data && data.message && data.status == 'error') {
+          alert(data.message);
+        } else {
+          alert('Unexpected response:', data);
+        }
+      }
+    });
+  }
+  
+  return false;
+});
+
+$(document).on('click', '*[on-tap=_fillOrderToCharacter]', function(e) {
+  var self = this;
+  var link = $(self).data('link');
+  var price = $(self).data('price');
+  // TODO: use selector/dropdown
+  var target = prompt('Enter the character ID you wish to transfer to.');
+  var agree = confirm('Are you sure you want to buy "' + link + '"?  ' + price + ' INK will be deducted from your account.');
+
+  var wallet = $('*[data-link="/members/{S_USER_ID}"][data-bind="stats.balance"]');
+  var balance = parseFloat(wallet.html());
+  
+  if (agree) {
+    wallet.html((balance - parseFloat(price)).toFixed(2));
+    
+    var data = {
+      order: link
+    };
+    
+    if (target) {
+      data.target = target;
+    }
+    
+    $.ajax({
+      url: '/transactions',
+      type: 'POST',
+      data: data,
       success: function(data) {
         if (!data) return alert('Unexpected response:', data);
         if (data.status == 'success') {
@@ -364,6 +419,130 @@ $(document).on('click', '*[on-tap=_promptAndSetPrice]', function(e) {
 $(document).on('click', '*[on-tap=_followCharacter]', function(e) {
   var self = this;
   var link = $(self).data('link');
+  var id = $(self).data('id');
+  
+  $.ajax({
+    url: link,
+    type: 'POST',
+    success: function(data) {
+      if (!data) return alert('Unexpected response:', data);
+      if (data.status == 'success') {
+        alert(data.message);
+        
+        $(self).replaceWith('<span class="button">following!</span>');
+        
+      } else {
+        alert('Error: ' + data.message);
+      }
+    }
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[on-tap=_unfollowCharacter]', function(e) {
+  var self = this;
+  var link = $(self).data('link');
+  var id = $(self).data('id');
+  
+  $.ajax({
+    url: link + '/{USER_ID}',
+    type: 'DELETE',
+    success: function(data) {
+      if (!data) return alert('Unexpected response:', data);
+      if (data.status == 'success') {
+        alert(data.message);
+        
+        $(self).replaceWith('<span class="button">unfollowed!</span>');
+        
+      } else {
+        alert('Error: ' + data.message);
+      }
+    }
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[on-tap=_confirmTip]', function (e) {
+  console.log('tapped!');
+  
+  $(this).addClass('loading');
+  
+  var amount = parseFloat($(this).data('amount'));
+  var wallet = $('*[data-link="/members/{S_USER_ID}"][data-bind="stats.balance"]');
+  var jar = $('*[data-link="/topics/{TOPIC_ID}"][data-bind="stats.tips"]');
+  
+  console.log('found:', jar);
+  console.log('amount:', amount);
+  
+  var balance = parseFloat(wallet.html());
+  wallet.html((balance - amount).toFixed(2));
+  
+  $.ajax({
+    url: '/transactions',
+    type: 'POST',
+    data: {
+      to: '{POSTER_ID}',
+      for: '/topics/{TOPIC_ID}',
+      amount: amount
+    },
+    success: function (data) {
+      var before = parseFloat(jar.html());
+      var after = before + amount;
+      
+      console.log('before:', before);
+      console.log('after:', after);
+      
+      jar.html(after.toFixed(2));
+    }
+  });
+
+});
+
+$(document).on('click', '*[on-tap=_promptToTip]', function (e) {
+  console.log('tapped post!');
+  
+  $(this).addClass('loading');
+  
+  var amount = parseFloat($(this).data('amount'));
+  var link = $(this).data('link');
+  var author = $(this).data('author'); // eventually will be P2SH
+  
+  var wallet = $('*[data-link="/members/{S_USER_ID}"][data-bind="stats.balance"]');
+  var jar = $('*[data-link="' + link + '"][data-bind="stats.tips"]');
+  
+  console.log('found:', jar);
+  console.log('amount:', amount);
+  
+  var balance = parseFloat(wallet.html());
+  wallet.html((balance - amount).toFixed(2));
+  
+  $.ajax({
+    url: '/transactions',
+    type: 'POST',
+    data: {
+      to: author,
+      for: link,
+      amount: amount
+    },
+    success: function (data) {
+      var before = parseFloat(jar.html());
+      var after = before + amount;
+      
+      console.log('before:', before);
+      console.log('after:', after);
+      
+      jar.html(after.toFixed(2));
+    }
+  });
+
+});
+
+$(document).on('click', '*[data-action="toggle-source"]', function (e) {
+  e.preventDefault();
+
+  $('#source').slideToggle();
 
   return false;
 });

@@ -1,55 +1,168 @@
 <!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
 
-<form action="{S_DONATE_ACTION}" method="post" id="donate">
+<h2 class="supersize">RPG depends on your support.</h2>
 
-<div class="panel">
-	<div class="inner"><span class="corners-top"><span></span></span>
+<div class="special panel">
+	<p class="supersize">RPG was founded by a small group of writers who rely on your donations to keep things running.  To help us cover some of our costs, please consider giving us a small, one-time donation.  You'll receive <a href="/medals/contributor">the Contributor medal</a>, available only to those who donate.</p>
+  
+  <h3>Prefer a subscription?</h3>
+  <p>If you'd prefer a subscription, <a href="https://patreon.com/RolePlayGateway">try our official Patreon</a>.  There's an extra bonus.  <a href="https://patreon.com/RolePlayGateway" class="button">Head to Patreon &raquo;</a></p>
 
-	<h2>{DONATE_TO_SITENAME}</h2>
+  <center><img src="/images/hr.png" style="max-height: 75px; margin: 1em 0;" /></center>
 
-	<fieldset class="fields2">
-	<p><!-- {DONATE_TO_SITENAME_EXPLAIN} --></p>
-	<!-- IF .update -->
-	<dl class="faq">
-	<em style="font-size:.8em;"><!-- BEGIN update -->
-		{update.TIME}: {update.DESCRIPTION}<!-- IF not update.S_LAST_ROW --><br /><!-- ENDIF -->
-		<!-- END update --></em></dl>
-	<!-- ENDIF -->
-	<!-- IF .perk -->
-	<h3>{L_SUPPORTER_REWARDS}:</h3>
-	<dl class="faq">
-		<!-- BEGIN perk -->
-		<dt>{perk.PERK_TITLE}:</dt>
-		<dd>{perk.PERK_DESCRIPTION}</dd>
-		<!-- END perk -->
-	</dl>
-	<!-- ENDIF -->
+	<style type="text/css">
+		.donation-button {
+			font-size: 2em;
+			font-weight: bold;
+			width: 100%;
+			padding: 0.2em;
+			text-align: right;
+		}
+	</style>
 
-	<dl>
-    	<dt><label for="amount">{L_DONATE_AMOUNT}:</label><br /><br /><span>{L_DONATE_AMOUNT_EXPLAIN}</span></dt>
-        <dd><input type="text" tabindex="1" name="amount" id="amount" size="25" maxlength="6" value="" class="inputbox autowidth" title="{L_DONATE_AMOUNT}" />
-        <select name="currency_code" id="currency_code" class="autowidth">
-        {S_CURRENCY_OPTIONS}
-        </select></dd>
-    </dl>
+	<table width="100%">
+		<tr>
+			<td width="50%" valign="top" style="padding: 0.2em;">
+				<h2>Donate with Dollars <small>(credit card or PayPal)</small></h2>
+				<p>Use PayPal to send us dollars, even using a credit card.  <strong>If you want Contributor status, use the same email as your RPG account.<br /><br /></p>
 
-    </fieldset>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+					<!-- Identify your business so that you can collect the payments. -->
+					<input type="hidden" name="business" value="admin@roleplaygateway.com">
 
-	<span class="corners-bottom"><span></span></span></div>
+					<!-- Specify a Donate button. -->
+					<input type="hidden" name="cmd" value="_donations">
+
+					<!-- Specify details about the contribution -->
+					<input type="hidden" name="item_name" value="RolePlayGateway Donation">
+					<input type="hidden" name="item_number" value="$1 donation">
+					<input type="hidden" name="amount" value="1.00">
+					<input type="hidden" name="currency_code" value="USD">
+
+					<input type="hidden" name="notify_url" value="http://www.roleplaygateway.com/donationmeter/ipn.php">
+
+					<!-- Display the payment button. -->
+					<input type="submit" class="donation-button" name="submit" value="Donate $1 &nbsp;&nbsp;&raquo;">
+					<img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+				</form>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+					<!-- Identify your business so that you can collect the payments. -->
+					<input type="hidden" name="business" value="admin@roleplaygateway.com">
+
+					<!-- Specify a Donate button. -->
+					<input type="hidden" name="cmd" value="_donations">
+
+					<!-- Specify details about the contribution -->
+					<input type="hidden" name="item_name" value="RolePlayGateway Donation">
+					<input type="hidden" name="item_number" value="$5 donation">
+					<input type="hidden" name="amount" value="5.00">
+					<input type="hidden" name="currency_code" value="USD">
+
+					<input type="hidden" name="notify_url" value="http://www.roleplaygateway.com/donationmeter/ipn.php">
+
+					<!-- Display the payment button. -->
+					<input type="submit" class="donation-button" name="submit" value="Donate $5 &nbsp;&nbsp;&raquo;">
+					<img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+				</form>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+					<!-- Identify your business so that you can collect the payments. -->
+					<input type="hidden" name="business" value="admin@roleplaygateway.com">
+
+					<!-- Specify a Donate button. -->
+					<input type="hidden" name="cmd" value="_donations">
+
+					<!-- Specify details about the contribution -->
+					<input type="hidden" name="item_name" value="RolePlayGateway Donation">
+					<input type="hidden" name="item_number" value="$10 donation">
+					<input type="hidden" name="amount" value="10.00">
+					<input type="hidden" name="currency_code" value="USD">
+
+					<input type="hidden" name="notify_url" value="http://www.roleplaygateway.com/donationmeter/ipn.php">
+
+					<!-- Display the payment button. -->
+					<input type="submit" class="donation-button" name="submit" value="Donate $10 &nbsp;&raquo;">
+					<img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+				</form>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+					<!-- Identify your business so that you can collect the payments. -->
+					<input type="hidden" name="business" value="admin@roleplaygateway.com">
+
+					<!-- Specify a Donate button. -->
+					<input type="hidden" name="cmd" value="_donations">
+
+					<!-- Specify details about the contribution -->
+					<input type="hidden" name="item_name" value="RolePlayGateway Donation">
+					<input type="hidden" name="item_number" value="$25 donation">
+					<input type="hidden" name="amount" value="25.00">
+					<input type="hidden" name="currency_code" value="USD">
+
+					<input type="hidden" name="notify_url" value="http://www.roleplaygateway.com/donationmeter/ipn.php">
+
+					<!-- Display the payment button. -->
+					<input type="submit" class="donation-button" name="submit" value="Donate $25  &raquo;">
+					<img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+				</form>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+					<!-- Identify your business so that you can collect the payments. -->
+					<input type="hidden" name="business" value="admin@roleplaygateway.com">
+
+					<!-- Specify a Donate button. -->
+					<input type="hidden" name="cmd" value="_donations">
+
+					<!-- Specify details about the contribution -->
+					<input type="hidden" name="item_name" value="RolePlayGateway Donation">
+					<input type="hidden" name="item_number" value="$100 donation">
+					<input type="hidden" name="amount" value="100.00">
+					<input type="hidden" name="currency_code" value="USD">
+
+					<input type="hidden" name="notify_url" value="http://www.roleplaygateway.com/donationmeter/ipn.php">
+
+					<!-- Display the payment button. -->
+					<input type="submit" class="donation-button" name="submit" value="Donate $100 &raquo;">
+					<img alt="" border="0" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+				</form>
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+					<!-- Identify your business so that you can collect the payments. -->
+					<input type="hidden" name="business" value="admin@roleplaygateway.com">
+
+					<!-- Specify a Donate button. -->
+					<input type="hidden" name="cmd" value="_donations">
+
+					<!-- Specify details about the contribution -->
+					<input type="hidden" name="item_name" value="User-selected donation">
+					<input type="hidden" name="item_number" value="user-selected-donation">
+					<input type="hidden" name="currency_code" value="USD">
+
+					<input type="hidden" name="notify_url" value="http://www.roleplaygateway.com/donationmeter/ipn.php">
+
+					<!-- Display the payment button. -->
+					<input type="submit" class="donation-button" name="submit" value="Donate Another Amount &raquo;">
+					<img alt="" border="0" width="1" height="1"
+					src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+
+				</form>
+
+			</td>
+			<td width="50%" valign="top">
+				<h2>Donate with Bitcoin <small>(currency of the Internet)</small></h2>
+				<p>Clicking the code below will launch your Bitcoin wallet (if you have one), or you can simply scan it with your mobile wallet.  <a href="https://bitcoin.org">Learn more about Bitcoin at bitcoin.org &raquo;</a></p>
+				<center>
+					<a href="bitcoin:3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66">
+						<img src="/images/3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66.png" /><br />
+						3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66
+					</a>
+				</center>
+			</td>
+		</tr>
+	</table>
+
+  <div style="padding: 1em;">
+    <p><strong>Achievements:</strong> Possession of the Contributor medal grants you early access to new features, and grants you a special voice in certain rooms on <abbr title="???">Fabric</abbr>.  Once you possess the Contributor medal, all future rewards are added to your account automatically!</p>
+  </div>
+
 </div>
-
-<div class="panel">
-	<div class="inner"><span class="corners-top"><span></span></span>
-
-	<fieldset class="submit-buttons">
-		{S_HIDDEN_FIELDS}
-		<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp;
-		<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
-	</fieldset>
-
-	<img alt="" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-	<span class="corners-bottom"><span></span></span></div>
-</div>
-</form>
 
 <!-- INCLUDE overall_footer.html -->

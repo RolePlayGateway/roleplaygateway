@@ -1,0 +1,47 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<div id="roleplay">
+
+  <img src="/roleplay/{URL}/image" alt="{TITLE}" class="crisp-border" style="float:left; margin-right: 10px;" />
+  
+  <h1 style="margin-right:0;">
+    <a href="/roleplay/{URL}" name="roleplay">{TITLE}</a> {STATUS} <!-- IF S_SINGLE_PLACE -->&raquo; <a href="/roleplay/{URL}/places">Places</a> &raquo; <a href="/roleplay/{URL}/places/{PLACE_URL}">{PLACE_NAME}</a><!-- ENDIF --><!-- IF S_CAN_EDIT --> (<a href="/ucp.php?i=roleplays&mode=flag&id={ID}">Flag</a> | <a href="/ucp.php?i=roleplays&mode=remove_tag&id={ID}">Remove Tags</a> |<!-- IF S_SINGLE_PLACE --><a href="/ucp.php?i=roleplays&mode=edit_place&place_id={PLACE_ID}">Edit &raquo;</a><!-- ELSE --><a href="/ucp.php?i=roleplays&mode=edit&id={ID}">Edit &raquo;</a><!-- ENDIF -->)<!-- ENDIF --></h1>
+
+  <div style="font-size:1.2em;">
+    <p style="margin-bottom: 0.25em;">{DESCRIPTION}</p>
+    <div id="announcementList" style="float:right; width: 250px; max-height: 50px; overflow: hidden;margin-top:-5px;">
+    <h3 style="margin-top: 0;"><a href="#ooc" onclick="subPanels('ooc');" style="float:right;">View More &raquo;</a>Important</h3>
+    <ul style="list-style-position:  inside;">
+    <!-- BEGIN topicrow -->
+      <!-- IF topicrow.S_TOPIC_TYPE == 1 -->
+      <li><a href="{topicrow.U_VIEW_TOPIC}">{topicrow.TOPIC_TITLE}</a></li>
+      <!-- ENDIF -->
+    <!-- END topicrow -->
+    </ul>
+    </div>
+    <div>
+      <strong>Owner:</strong> {GAME_MASTER}
+    </div>
+    <div>
+      <strong>Game Masters:</strong> {GAME_MASTERS}
+    </div>
+    <div>
+      <span class="tags"><strong>Tags:</strong> {TAGS} (<a href="//www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_tag&id={ID}">Add Tags &raquo;</a>)</span>
+    </div>
+  </div>
+
+  <div style="clear:both;"></div>
+
+  <div id="content" class="panel bg3">
+    <div class="inner"><span class="corners-top"><span></span></span>
+      <div id="activity">
+        <div id="roleplayStream">
+        <!-- INCLUDE roleplay_stream_body.html -->
+        </div>
+      </div>
+    <span class="corners-bottom"><span></span></span></div>
+    </div>
+  </div>
+
+<!-- INCLUDE overall_footer.html -->

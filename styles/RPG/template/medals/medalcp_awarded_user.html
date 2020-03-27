@@ -1,0 +1,71 @@
+<!-- INCLUDE overall_header.html -->
+<h2>{L_MEDAL_CP}</h2>
+<p></p>
+<form method="post" action="{U_MEDALS_ACTION}" name="post">
+<div class="panel bg3">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<div style="width: 100%;">
+			<div id="cp-menu">
+				<div id="navigation">
+					<ul>
+						<!-- IF S_CAN_NOMINATE_MEDALS -->
+						<li><a href="{U_NOMINATE_PANEL}"><span>{L_NOMINATE}</span></a></li>
+						<!-- ENDIF -->
+						<!-- IF S_CAN_AWARD_MEDALS -->
+						<li><a href="{U_AWARD_PANEL}"><span>{L_AWARD_MEDAL}</span></a></li>
+						<li><a href="{U_VALIDATE_PANEL}"><span>{L_NOMINATE_MEDAL}</span></a></li>
+						<li id="active-subsection"><a><span>{L_AWARDED_MEDAL}</span></a></li>
+						<!-- ENDIF -->
+					</ul>
+				</div>
+			</div>
+			<div id="cp-main" class="ucp-main">
+				<h2>{L_AWARDED_MEDAL_TO} {USERNAME}</h2>
+				<div class="panel">
+					<div class="inner"><span class="corners-top"><span></span></span>
+						<table width="100%">
+						<!-- BEGIN medals -->
+						<!-- IF medals.IS_CAT -->
+						<tr>
+							<td colspan="3">
+								<h3>{medals.MEDAL_NAME}</h3>
+							</td>
+						</tr>
+						<!-- ELSE -->
+						<tr>
+							<td align="center" width="120">{medals.MEDAL_IMAGE}</td>
+							<td align="left"><div class="reason">{medals.MEDAL_REASON}</div></td>
+							<td width="15">
+								<ul class="profile-icons">
+									<li class="delete-icon"><a title="{L_DELETE}" class="delete-icon" href="{medals.U_DELETE}"><span>{L_DELETE}</span></a>
+								</ul>
+							</td>
+						</tr>
+						<!-- ENDIF -->
+						<!-- BEGINELSE -->
+						<tr class="bg1">
+							<td colspan="3"><span><br />{L_NO_USER_MEDALS}<br /><br /></span></td>
+						</tr>
+						<!-- END medals -->
+						</table>
+					<span class="corners-bottom"><span></span></span></div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+</form>
+<script type="text/javascript">
+	{JS}
+	var form_name = 'post';
+	var text_name = 'message';
+	function ipreview(element)
+	{
+		if (medals[element.value] == '' || medals[element.value] == null)
+			document.getElementById('imagepreview').innerHTML = '<br />{L_IMAGE_ERROR}';		
+		else
+			document.getElementById('imagepreview').innerHTML = '<br /><img src="'+medals[element.value]+'" alt="{L_IMAGE_ALT}" style="max-width: 60px; max-height: 60px;" />';
+	}
+</script>
+<!-- INCLUDE overall_footer.html -->

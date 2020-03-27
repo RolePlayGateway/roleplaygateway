@@ -1,0 +1,22 @@
+<!-- $Id: leaders.html,v 1.3 2007/04/11 01:44:51 angelside Exp $ //-->
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+			<h3>{L_THE_TEAM}</h3>
+			<strong>{L_ADMINISTRATORS}</strong><br />
+			<!-- BEGIN admin -->
+			<img src="bb3portal/images/member.gif" /> <strong>{admin.USERNAME_FULL}</strong><br /><br />				
+			<!-- BEGINELSE -->
+			{L_NO_ADMINISTRATORS_P}<br /><br />
+			<!-- END admin -->
+
+			<strong>{L_MODERATORS}</strong><br />
+			<!-- BEGIN mod -->
+			<img src="bb3portal/images/member.gif" /> <strong>{mod.USERNAME_FULL}</strong><br />
+			<!-- BEGINELSE -->
+			{L_NO_MODERATORS_P}
+			<!-- END mod -->
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+<br clear="all" />

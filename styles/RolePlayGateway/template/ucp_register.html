@@ -1,5 +1,24 @@
 <!-- INCLUDE overall_header.html -->
 
+<style type="text/css">
+.hero {
+	display: none;
+}
+button.supersize {
+	font-size: 2em; !important;
+	padding: 0.5em 1em;
+}
+button.supersize:hover {
+	cursor: pointer;
+	border-radius: 2px;
+}
+.panel {
+	width: 70%;
+	margin: 5em auto;
+	margin-bottom: 10em;
+}
+</style>
+
 <script type="text/javascript">
 // <![CDATA[
 	/**
@@ -18,56 +37,84 @@
 // ]]>
 </script>
 
-<form method="post" action="{S_UCP_ACTION}" id="register">
+<form method="post" action="{S_UCP_ACTION}" id="register" require="hashcash" onsubmit="privateEventHandler">
+	<input type="hidden" name="submit" value="true" />
 
-<div class="panel">
-	<div class="inner"><span class="corners-top"><span></span></span>
-
-	<h2>{SITENAME} - {L_REGISTRATION}</h2>
-
-	<fieldset class="fields2">
-	<!-- IF ERROR --><dl><dd class="error">{ERROR}</dd></dl><!-- ENDIF -->
-	<!-- IF L_REG_COND -->
-		<dl><dd><strong>{L_REG_COND}</strong></dd></dl>
+	<input type="hidden" name="trustee" value="{USER_TRUSTEE}" />
+	<input type="hidden" name="secret" value="{USER_SECRET}" />
+	<input type="hidden" name="invitation" value="{USER_INVITATION}" />
+	
+	<!-- IF S_HAS_NEXT -->
+	<div class="panel">
+		<h3>{NEXT_URI}</h3>
+		<p>To do that, you'll need to create an RPG account.  Getting started is easy!</p>
+	</div>
 	<!-- ENDIF -->
-	<dl>
-		<dt><label for="username">{L_USERNAME}:</label><br /><span>{L_USERNAME_EXPLAIN}</span></dt>
-		<dd><input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" class="inputbox autowidth supersize" title="{L_USERNAME}" /></dd>
-	</dl>
-	<dl>
-		<dt><label for="email">{L_EMAIL_ADDRESS}:</label></dt>
-		<dd><input type="text" tabindex="2" name="email" id="email" size="25" maxlength="100" value="{EMAIL}" class="inputbox autowidth supersize" title="{L_EMAIL_ADDRESS}" /></dd>
-	</dl>
-	<dl>
-		<dt><label for="email_confirm">{L_CONFIRM_EMAIL}:</label></dt>
-		<dd><input type="text" tabindex="3" name="email_confirm" id="email_confirm" size="25" maxlength="100" value="{EMAIL_CONFIRM}" class="inputbox autowidth supersize" title="{L_CONFIRM_EMAIL}" /></dd>
-	</dl>
-	<dl>
-		<dt><label for="new_password">{L_PASSWORD}:</label><br /><span>{L_PASSWORD_EXPLAIN}</span></dt>
-		<dd><input type="password" tabindex="4" name="new_password" id="new_password" size="25" value="{PASSWORD}" class="inputbox autowidth supersize" title="{L_NEW_PASSWORD}" /></dd>
-	</dl>
-	<dl>
-		<dt><label for="password_confirm">{L_CONFIRM_PASSWORD}:</label></dt>
-		<dd><input type="password" tabindex="5" name="password_confirm" id="password_confirm" size="25" value="{PASSWORD_CONFIRM}" class="inputbox autowidth supersize" title="{L_CONFIRM_PASSWORD}" /></dd>
-	</dl>
 
-	<!-- IF .profile_fields -->
-	<p>{L_ITEMS_REQUIRED}</p>
+	<div class="panel">
+		<div class="inner"><span class="corners-top"><span></span></span>
 
-	<h2 style="margin-top: 0.5em; margin-bottom: 0.5em;">Want to <a href="#" onclick="$('#extraFields').slideToggle(); return false;">tell us more about yourself</a>?  <a href="#" class="button" style="padding: 0.5em; border-radius: 3px; background: #ccc;" onclick="$('#extraFields').slideToggle(); return false;">Add Biography &raquo;</a></h2>
-	<div id="extraFields" style="display:none;">
+		<h2>Not long now, friend.</h2>
+		<h1 style="color: #226A87; margin-bottom: 1em;">Creating an RPG Account</h1>
+		
+		<ul class="errors"></ul>
 
+		<fieldset class="fields2">
+		<!-- IF ERROR --><dl><dd class="error">{ERROR}</dd></dl><!-- ENDIF -->
+		<!-- IF L_REG_COND -->
+			<dl><dd><strong>{L_REG_COND}</strong></dd></dl>
+		<!-- ENDIF -->
 		<dl>
-			<dt><label for="lang">{L_LANGUAGE}:</label></dt>
-			<dd><select name="lang" id="lang" onchange="change_language(this.value); return false;" tabindex="6" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select></dd>
+			<dt><label for="username">{L_USERNAME}:</label><br /><span>{L_USERNAME_EXPLAIN}</span></dt>
+			<dd><input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" class="inputbox autowidth supersize" title="{L_USERNAME}" /></dd>
 		</dl>
 		<dl>
-			<dt><label for="tz">{L_TIMEZONE}:</label></dt>
-			<dd><select name="tz" id="tz" tabindex="7" class="autowidth">{S_TZ_OPTIONS}</select></dd>
+			<dt><label for="email">{L_EMAIL_ADDRESS}:</label></dt>
+			<dd><input type="text" tabindex="2" name="email" id="email" size="25" maxlength="100" value="{EMAIL}" class="inputbox autowidth supersize" title="{L_EMAIL_ADDRESS}" /></dd>
 		</dl>
+		<dl>
+			<dt><label for="email_confirm">{L_CONFIRM_EMAIL}:</label></dt>
+			<dd><input type="text" tabindex="3" name="email_confirm" id="email_confirm" size="25" maxlength="100" value="<!-- IF S_HAS_EMAIL -->{EMAIL}<!-- ELSE -->{EMAIL_CONFIRM}<!-- ENDIF -->" class="inputbox autowidth supersize" title="{L_CONFIRM_EMAIL}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="new_password">{L_PASSWORD}:</label><br /><span>{L_PASSWORD_EXPLAIN}</span></dt>
+			<dd><input type="password" tabindex="4" name="new_password" id="new_password" size="25" value="{PASSWORD}" class="inputbox autowidth supersize" title="{L_NEW_PASSWORD}" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="password_confirm">{L_CONFIRM_PASSWORD}:</label></dt>
+			<dd><input type="password" tabindex="5" name="password_confirm" id="password_confirm" size="25" value="{PASSWORD_CONFIRM}" class="inputbox autowidth supersize" title="{L_CONFIRM_PASSWORD}" /></dd>
+		</dl>
+
+		<!-- IF .profile_fields -->
+		<p>{L_ITEMS_REQUIRED}</p>
+
+		<h2 style="margin-top: 0.5em; margin-bottom: 0.5em; padding-bottom: 1em;">Want to <a href="#" onclick="$('#extraFields').slideToggle(); return false;">tell us more about yourself</a>?  <a href="#" class="button" style="padding: 0.5em; border-radius: 3px; background: #ccc;" onclick="$('#extraFields').slideToggle(); return false;">Add Biography &raquo;</a></h2>
+		<div id="extraFields" style="display:none;">
+
+			<dl>
+				<dt><label for="lang">{L_LANGUAGE}:</label></dt>
+				<dd><select name="lang" id="lang" onchange="change_language(this.value); return false;" tabindex="6" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select></dd>
+			</dl>
+			<dl>
+				<dt><label for="tz">{L_TIMEZONE}:</label></dt>
+				<dd><select name="tz" id="tz" tabindex="7" class="autowidth">{S_TZ_OPTIONS}</select></dd>
+			</dl>
+
+			<!-- BEGIN profile_fields -->
+				<!-- IF profile_fields.FIELD_ID == 'pf_how_many_words' -->
+				<!-- ELSE -->
+				<dl>
+					<dt><label<!-- IF profile_fields.FIELD_ID --> for="{profile_fields.FIELD_ID}"<!-- ENDIF -->>{profile_fields.LANG_NAME}:<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --></label>
+					<!-- IF profile_fields.LANG_EXPLAIN --><br /><span>{profile_fields.LANG_EXPLAIN}</span><!-- ENDIF -->
+					<!-- IF profile_fields.ERROR --><br /><span class="error">{profile_fields.ERROR}</span><!-- ENDIF --></dt>
+					<dd>{profile_fields.FIELD}</dd>
+				</dl>
+				<!-- ENDIF -->
+			<!-- END profile_fields -->
+		</div>
 
 		<!-- BEGIN profile_fields -->
-			<!-- IF profile_fields.FIELD_ID == 'pf_how_many_words' -->
+			<!-- IF profile_fields.FIELD_ID != 'pf_how_many_words' -->
 			<!-- ELSE -->
 			<dl>
 				<dt><label<!-- IF profile_fields.FIELD_ID --> for="{profile_fields.FIELD_ID}"<!-- ENDIF -->>{profile_fields.LANG_NAME}:<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --></label>
@@ -77,55 +124,43 @@
 			</dl>
 			<!-- ENDIF -->
 		<!-- END profile_fields -->
-	</div>
 
-	<!-- BEGIN profile_fields -->
-		<!-- IF profile_fields.FIELD_ID != 'pf_how_many_words' -->
-		<!-- ELSE -->
-		<dl>
-			<dt><label<!-- IF profile_fields.FIELD_ID --> for="{profile_fields.FIELD_ID}"<!-- ENDIF -->>{profile_fields.LANG_NAME}:<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --></label>
-			<!-- IF profile_fields.LANG_EXPLAIN --><br /><span>{profile_fields.LANG_EXPLAIN}</span><!-- ENDIF -->
-			<!-- IF profile_fields.ERROR --><br /><span class="error">{profile_fields.ERROR}</span><!-- ENDIF --></dt>
-			<dd>{profile_fields.FIELD}</dd>
-		</dl>
 		<!-- ENDIF -->
-	<!-- END profile_fields -->
 
-	<!-- ENDIF -->
+		</fieldset>
 
-	</fieldset>
+		<!-- IF CAPTCHA_TEMPLATE -->
+			<!-- DEFINE $CAPTCHA_TAB_INDEX = 8 -->
+			<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+		<!-- ENDIF -->
 
-	<!-- IF CAPTCHA_TEMPLATE -->
-		<!-- DEFINE $CAPTCHA_TAB_INDEX = 8 -->
-		<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
-	<!-- ENDIF -->
+		<!-- IF S_COPPA -->
 
-	<!-- IF S_COPPA -->
+			<h4>{L_COPPA_COMPLIANCE}</h4>
 
-		<h4>{L_COPPA_COMPLIANCE}</h4>
+			<p>{L_COPPA_EXPLAIN}</p>
 
-		<p>{L_COPPA_EXPLAIN}</p>
+		<!-- ENDIF -->
 
-	<!-- ENDIF -->
+		<p style="padding: 3em;">
+			By registering, you are agreeing to our <a href="#" onclick="$('#terms-of-use').slideToggle(); return false;">Terms of Use</a>.  Make sure to read 'em carefully.
 
-	<p style="padding: 3em;">
-		By registering, you are agreeing to our <a href="#" onclick="$('#terms-of-use').slideToggle(); return false;">Terms of Use</a>.  Make sure to read 'em carefully.
+		</p>
 
-	</p>
+		<div id="terms-of-use" style="display:none;">
+			{L_TERMS_OF_USE}
+		</div>
 
-	<div id="terms-of-use" style="display:none;">
-		{L_TERMS_OF_USE}
+		<fieldset class="submit-buttons">
+			{S_HIDDEN_FIELDS}
+			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp;
+			<button type="submit" tabindex="9" name="submit" id="submit" class="button1 default-submit-action supersize" style="float:right;">Create My Account &raquo;</button>
+			{S_FORM_TOKEN}
+			<br style="clear: both;" />
+		</fieldset>
+
+		<span class="corners-bottom"><span></span></span></div>
 	</div>
-
-	<fieldset class="submit-buttons">
-		{S_HIDDEN_FIELDS}
-		<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp;
-		<input type="submit" tabindex="9" name="submit" id="submit" value="{L_SUBMIT}" class="button1 default-submit-action supersize" />
-		{S_FORM_TOKEN}
-	</fieldset>
-
-	<span class="corners-bottom"><span></span></span></div>
-</div>
 </form>
 
 <!-- INCLUDE overall_footer.html -->

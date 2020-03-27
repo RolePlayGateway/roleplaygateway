@@ -1,0 +1,531 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<style type="text/css">
+
+.content .markdown p {
+  font-size: 13px;
+}
+
+blockquote, blockquote.uncited {
+  padding-top: 25px;
+  display: block;
+  font-size: 0.95em;
+  background: #ebebeb none 6px 8px no-repeat;
+  background-color: #EBEADD;
+  background-image: url("/styles/proseafoam/theme/images/quote.gif");
+  border-color: #DBDBCE;
+  border: 1px solid #dbdbdb;
+  padding: 5px;
+  margin: 0.5em 1px 0 25px;
+}
+
+blockquote div, blockquote.uncited div {
+  display: block;
+}
+
+blockquote:before {
+  content: "";
+}
+blockquote:after {
+  content: "";
+}
+
+</style>
+
+<!-- IF ROLEPLAY_URL -->
+<div id="roleplay">
+  <a href="/roleplay/{ROLEPLAY_URL}/" name="roleplay"><img src="/roleplay/{ROLEPLAY_URL}/image" alt="{ROLEPLAY_TITLE}" class="crisp-border quick-float-left" /></a>
+  <div class="h-entry">
+    <h1><a href="{U_VIEW_TOPIC}" class="p-name">{TOPIC_TITLE}</a></h1>
+    <h3 class="underhint" class="p-definition">a part of &ldquo;<a href="/roleplay/{ROLEPLAY_URL}">{ROLEPLAY_TITLE}</a>&rdquo;, a fictional universe by {GAME_MASTER}.</h3>
+  </div>
+
+	<div style="font-size:1.2em;">
+	  <p style="margin-bottom: 0.2em;">{ROLEPLAY_SYNOPSIS}</p>
+	</div>
+
+  <div>
+    <a href="/roleplay/{ROLEPLAY_URL}/characters" class="button">Characters</a>
+    <a href="/roleplay/{ROLEPLAY_URL}/places" class="button">Settings</a>
+    <a href="/roleplay/{ROLEPLAY_URL}#activity" class="button">Story</a>
+    <!-- IF S_CAN_IMPORT_TO_UNIVERSE -->
+    <form action="/topic_to_content.php">
+      <input type="hidden" name="thread_id" value="{TOPIC_ID}" />
+      <input type="hidden" name="roleplay_id" value="1" />
+      <select name="place_id">
+        <option></option>
+        <!-- BEGIN import_targets -->
+        <option value="{import_targets.LOCATION_ID}">{import_targets.NAME}</option>
+        <!-- END import_targets -->
+      </select>
+      <button type="submit">Import &raquo;</button>
+    </form>
+    <!-- ENDIF -->
+  </div>
+
+  <!-- IF S_TRACKING_IS_WELCOME -->
+  <div>
+    <g:plusone annotation="inline" href="https://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/"></g:plusone>
+    <div class="fb-like" data-href="https://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/" data-send="false" data-layout="button_count" data-width="250" data-show-faces="false"></div>
+  </div>
+  <!-- ENDIF -->
+</div>
+<!-- ELSE -->
+
+<!-- IF S_IS_BETA -->
+<style type="text/css">
+  .labeled.action.loading {
+    pointer-events: none;
+    cursor: default;
+  }
+  
+  .labeled.action.loading .shell {
+    background: rgba(150,150,150,0.8);
+  }
+
+  .coin {
+    position: absolute !important;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: yellow;
+    border: 1px solid #333;
+    /*-webkit-animation:1s animateOpacity;*/
+  }
+
+  @-webkit-keyframes animateOpacity {
+    from { opacity: 0; }
+    5%   { opacity: 0.6; }
+    50%  { opacity: 1; }
+    95%  { opacity: 0.6; }
+    to   { opacity: 0; }
+  }
+</style>
+
+<div class="quick-float-right">
+  <div class="labeled action">
+    <small>INK</small> <span data-bind="stats.tips" data-link="/topics/{TOPIC_ID}">{TIPS_TOTAL}</span>
+    <button class="special button" on-tap="_confirmTip" data-amount="0.25">+ 0.25 <small>INK</small></button>
+  </div>
+  <center style="margin-top: 1em;"><abbr title="Tips are donations to the author." class="tooltipped">tips received</abbr></center>
+</div>
+
+<!-- IF S_CAN_IMPORT_TO_UNIVERSE -->
+<form action="/topic_to_content.php">
+  <input type="hidden" name="thread_id" value="{TOPIC_ID}" />
+  <input type="hidden" name="roleplay_id" value="1" />
+  <select name="place_id">
+    <option></option>
+    <!-- BEGIN import_targets -->
+    <option value="{import_targets.LOCATION_ID}">{import_targets.NAME}</option>
+    <!-- END import_targets -->
+  </select>
+  <button type="submit">Import &raquo;</button>
+</form>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- IF S_FORUM_IMG -->
+<a href="{FORUM_LINK}"><img class="crisp-border" src="{FORUM_IMG}" style="float: left; margin-right: 0.5em; margin-bottom: 0.5em;" /></a>
+<!-- ENDIF -->
+
+<h1><a href="{U_VIEW_TOPIC}" class="p-name">{TOPIC_TITLE}</a></h1>
+<h3 class="underhint">a topic in <a href="{FORUM_LINK}">{FORUM_NAME}</a>, a part of <a href="/forum.html">the RPG forum</a>.</h3>
+
+<!-- IF MODERATORS or U_MCP -->
+	<p>
+		<!-- IF MODERATORS -->
+			<strong><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->:</strong> {MODERATORS}
+		<!-- ENDIF -->
+	</p>
+<!-- ENDIF -->
+
+<div class="clearfix" style="clear: both;"></div>
+
+
+<!-- IF S_FORUM_RULES and S_SHOW_FORUM_RULES -->
+	<div class="rules">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<!-- IF U_FORUM_RULES -->
+			<a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a>
+		<!-- ELSE -->
+			<div style="font-size:1.5em;">
+				<strong>{L_FORUM_RULES}</strong><br />
+				{FORUM_RULES}
+			</div>
+		<!-- ENDIF -->
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- IF S_IS_OOC -->
+	<div class="panel">
+		<div class="inner"><span class="corners-top"><span></span></span>
+  		<div style="font-size:1.5em;">
+  			This conversation is an <a href="/roleplay/{ROLEPLAY_URL}#ooc" title="{ROLEPLAY_TITLE} Forum"><strong>Out Of Character (OOC)</strong></a> part of the roleplay, &ldquo;<a href="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a>&rdquo;.
+  		</div>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF S_IS_LEGACY -->
+<h1>
+  <!-- IF S_IS_ERIC -->
+  <a href="//www.roleplaygateway.com/add-to-roleplayacademy.php?topic_id={TOPIC_ID}" style="float:right;">Post to RPA</a>
+  <!-- ENDIF -->
+  <!-- IF ROLEPLAY -->
+  <a href="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/#ooc">OOC</a> <span style="color:#000;">&raquo;</span>
+  <!-- ENDIF -->
+  <a href="{U_VIEW_TOPIC}">{TOPIC_TITLE}</a>
+</h1>
+<!-- ENDIF -->
+
+<!-- IF S_IS_LEGACY -->
+
+<!-- ENDIF -->
+
+<!-- <span><strong>online roleplay {TOPIC_TAGS} roleplay online</strong></span> -->
+<!--
+<table style="width:100%;"><tr>
+<td width="50%">
+	<strong><h3>HTML, for websites and MySpace:</h3></strong>
+	<textarea onclick="select();" scrolling="no" class="inputbox"><a href="{U_VIEW_TOPIC}">{TOPIC_TITLE}</a></textarea>
+</td>
+<td width="50%">
+	<strong><h3>BBcode, for forum posts and signatures:</h3></strong>
+	<textarea onclick="select();" scrolling="no" class="inputbox">[url={U_VIEW_TOPIC}]{TOPIC_TITLE}[/url]</textarea>
+</td>
+</tr></table>
+-->
+<!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body -->
+<!-- IF FORUM_DESC --><span style="display: none">{FORUM_DESC}<br /></span><!-- ENDIF -->
+
+<div class="topic-actions">
+
+	<div class="buttons">
+	<!-- IF not S_IS_BOT and S_DISPLAY_REPLY_INFO -->
+		<div class="<!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->reply-icon<!-- ENDIF -->"><a href="{U_POST_REPLY_TOPIC}"><span><!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED}<!-- ELSE -->{L_POST_REPLY}<!-- ENDIF --></span></a></div>
+	<!-- ENDIF -->
+	</div>
+
+	<!-- IF S_DISPLAY_SEARCHBOX -->
+		<div class="search-box">
+			<form method="post" id="topic-search" action="{S_SEARCHBOX_ACTION}">
+			<fieldset>
+				<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="{L_SEARCH_TOPIC}" onclick="if(this.value=='{LA_SEARCH_TOPIC}')this.value='';" onblur="if(this.value=='')this.value='{LA_SEARCH_TOPIC}';" />
+				<input class="button2" type="submit" value="{L_SEARCH}" />
+				<input type="hidden" value="{TOPIC_ID}" name="t" />
+				<input type="hidden" value="msgonly" name="sf" />
+			</fieldset>
+			</form>
+		</div>
+	<!-- ENDIF -->
+
+	<!-- IF PAGINATION or TOTAL_POSTS or S_PRS_ENABLED -->
+		<div class="pagination">
+			<!-- IF S_PRS_ENABLED -->
+				{PRS_EXTRA_TOPICS_RATINGS}: {PRS_STARS}
+
+				<!-- IF PAGINATION or TOTAL_POSTS -->
+					&bull;
+				<!-- ENDIF -->
+			<!-- ENDIF -->
+			<!-- IF U_VIEW_UNREAD_POST and not S_IS_BOT --><a href="{U_VIEW_UNREAD_POST}">{L_VIEW_UNREAD_POST}</a> &bull; <!-- ENDIF -->{TOTAL_POSTS}
+			<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+		</div>
+	<!-- ENDIF -->
+
+</div>
+<div class="clear"></div>
+
+<!-- IF S_HAS_POLL -->
+	<form method="post" action="{S_POLL_ACTION}">
+
+	<div class="panel">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="content">
+			<h2>{POLL_QUESTION}</h2>
+			<p class="author">{L_POLL_LENGTH}<!-- IF S_CAN_VOTE and L_POLL_LENGTH --><br /><!-- ENDIF --><!-- IF S_CAN_VOTE -->{L_MAX_VOTES}<!-- ENDIF --></p>
+
+			<fieldset class="polls">
+			<!-- BEGIN poll_option -->
+				<dl class="<!-- IF poll_option.POLL_OPTION_VOTED -->voted<!-- ENDIF -->"<!-- IF poll_option.POLL_OPTION_VOTED --> title="{L_POLL_VOTED_OPTION}"<!-- ENDIF -->>
+					<dt><!-- IF S_CAN_VOTE --><label for="vote_{poll_option.POLL_OPTION_ID}">{poll_option.POLL_OPTION_CAPTION}</label><!-- ELSE -->{poll_option.POLL_OPTION_CAPTION}<!-- ENDIF --></dt>
+					<!-- IF S_CAN_VOTE --><dd style="width: auto;"><!-- IF S_IS_MULTI_CHOICE --><input type="checkbox" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ELSE --><input type="radio" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ENDIF --></dd><!-- ENDIF -->
+					<!-- IF S_DISPLAY_RESULTS --><dd class="resultbar"><div class="<!-- IF poll_option.POLL_OPTION_PCT < 20 -->pollbar1<!-- ELSEIF poll_option.POLL_OPTION_PCT < 40 -->pollbar2<!-- ELSEIF poll_option.POLL_OPTION_PCT < 60 -->pollbar3<!-- ELSEIF poll_option.POLL_OPTION_PCT < 80 -->pollbar4<!-- ELSE -->pollbar5<!-- ENDIF -->" style="width:{poll_option.POLL_OPTION_PERCENT};">{poll_option.POLL_OPTION_RESULT}</div></dd>
+					<dd><!-- IF poll_option.POLL_OPTION_RESULT == 0 -->{L_NO_VOTES}<!-- ELSE -->{poll_option.POLL_OPTION_PERCENT}<!-- ENDIF --></dd><!-- ENDIF -->
+				</dl>
+			<!-- END poll_option -->
+
+			<!-- IF S_DISPLAY_RESULTS -->
+				<dl>
+					<dt>&nbsp;</dt>
+					<dd class="resultbar">{L_TOTAL_VOTES} : {TOTAL_VOTES}</dd>
+				</dl>
+			<!-- ENDIF -->
+
+			<!-- IF S_CAN_VOTE -->
+				<dl style="border-top: none;">
+					<dt>&nbsp;</dt>
+					<dd class="resultbar"><input type="submit" name="update" value="{L_SUBMIT_VOTE}" class="button1" /></dd>
+				</dl>
+			<!-- ENDIF -->
+
+			<!-- IF not S_DISPLAY_RESULTS -->
+				<dl style="border-top: none;">
+					<dt>&nbsp;</dt>
+					<dd class="resultbar"><a href="{U_VIEW_RESULTS}">{L_VIEW_RESULTS}</a></dd>
+				</dl>
+			<!-- ENDIF -->
+			</fieldset>
+		</div>
+
+		<span class="corners-bottom"><span></span></span></div>
+		{S_FORM_TOKEN}
+		{S_HIDDEN_FIELDS}
+	</div>
+
+
+	</form>
+	<hr />
+<!-- ENDIF -->
+
+<!-- BEGIN postrow -->
+  <a id="p{postrow.POST_ID}" name="p{postrow.POST_ID}" class="anchor"></a>
+	<!-- IF postrow.S_FIRST_UNREAD --><a id="unread"></a><!-- ENDIF -->
+	<div id="p{postrow.POST_ID}" class="post <!-- IF postrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF postrow.S_UNREAD_POST --> unreadpost<!-- ENDIF --><!-- IF postrow.S_POST_REPORTED --> reported<!-- ENDIF --><!-- IF postrow.S_ONLINE --> online<!-- ENDIF -->">
+		<div class="inner"><span class="corners-top"><span></span></span>
+
+		<div class="postbody">
+			<!-- IF postrow.S_IGNORE_POST -->
+				<div class="ignore">{postrow.L_IGNORE_POST}</div>
+			<!-- ELSE -->
+				<!-- IF not S_IS_BOT -->
+					<!-- IF postrow.U_QUOTE or postrow.U_INFO or postrow.U_DELETE or postrow.U_EDIT or postrow.S_PRS_ENABLED -->
+						<ul class="profile-icons">
+							<!-- IF postrow.U_EDIT --><li class="edit-icon"><a href="{postrow.U_EDIT}" title="{L_EDIT_POST}"><span>{L_EDIT_POST}</span></a></li><!-- ENDIF -->
+							<!-- IF postrow.U_DELETE --><li class="delete-icon"><a href="{postrow.U_DELETE}" title="{L_DELETE_POST}"><span>{L_DELETE_POST}</span></a></li><!-- ENDIF -->
+							<!-- IF postrow.U_REPORT --><li class="report-icon"><a href="{postrow.U_REPORT}" title="{L_REPORT_POST}"><span>{L_REPORT_POST}</span></a></li><!-- ENDIF -->
+							<!-- IF postrow.U_WARN --><li class="warn-icon"><a href="{postrow.U_WARN}" title="{L_WARN_USER}"><span>{L_WARN_USER}</span></a></li><!-- ENDIF -->
+							<!-- IF postrow.U_INFO --><li class="info-icon"><a href="{postrow.U_INFO}" title="{L_INFORMATION}"><span>{L_INFORMATION}</span></a></li><!-- ENDIF -->
+							<!-- IF postrow.U_QUOTE --><li class="quote-icon"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}"><span>{L_REPLY_WITH_QUOTE}</span></a></li><!-- ENDIF -->
+						</ul>
+						<span id="prs_rating{postrow.POST_ID}" style="clear:right; float:right;"><!-- IF postrow.S_PRS_VOTABLE -->Don't forget to rate this post!<!-- ENDIF --></span>
+						
+					
+					<!-- ENDIF -->
+					
+				<!-- ENDIF -->
+			
+			<div style="clear:none;">
+				<h3 <!-- IF postrow.S_FIRST_ROW -->class="first"<!-- ENDIF -->><!-- IF postrow.POST_ICON_IMG --><img src="{T_ICONS_PATH}{postrow.POST_ICON_IMG}" width="{postrow.POST_ICON_IMG_WIDTH}" height="{postrow.POST_ICON_IMG_HEIGHT}" alt="" /> <!-- ENDIF --><a href="{U_VIEW_TOPIC}#p{postrow.POST_ID}">{postrow.POST_SUBJECT}</a></h3>
+				<p class="author" style="margin-right: 0;">
+          <small class="quick-float-right">
+            <span class="labeled action">
+              <strong>Tips:</strong> <span data-bind="stats.tips" data-link="/posts/{postrow.POST_ID}">{postrow.TIPS_TOTAL}</span> <small>INK</small>
+              <!-- IF S_USER_LOGGED_IN --><button class="special button" on-tap="_promptToTip" data-amount="0.25" data-author="{postrow.POSTER_ID}" data-link="/posts/{postrow.POST_ID}">+ 0.25</button><!-- ENDIF -->
+            </span>
+            <!-- <center style="margin-top: 1em;"><abbr title="Tips are donations to the author." class="tooltipped">tips received</abbr></center> -->
+          </small>
+          <!-- IF S_IS_BOT -->{postrow.MINI_POST_IMG}<!-- ELSE --><a href="{postrow.U_MINI_POST}">{postrow.MINI_POST_IMG}</a><!-- ENDIF -->{L_POST_BY_AUTHOR} <strong>{postrow.POST_AUTHOR_FULL}</strong> {L_POSTED_ON_DATE} {postrow.POST_DATE} <!-- IF not S_IS_BOT and S_USER_LOGGED_IN --><em>
+					<!-- IF S_WATCH_FORUM_LINK --><span <!-- IF S_WATCHING_FORUM -->class="icon-unsubscribe"<!-- ELSE -->class="icon-subscribe"<!-- ENDIF -->><a href="{S_WATCH_FORUM_LINK}" title="{S_WATCH_FORUM_TITLE}">{S_WATCH_FORUM_TITLE}</a></span><!-- ENDIF -->
+					<!-- IF U_WATCH_TOPIC --><span <!-- IF S_WATCHING_TOPIC -->class="icon-unsubscribe"<!-- ELSE -->class="icon-subscribe"<!-- ENDIF -->><a href="{U_WATCH_TOPIC}" title="{L_WATCH_TOPIC}">{L_WATCH_TOPIC}</a></span><!-- ENDIF -->
+					<!-- IF U_BOOKMARK_TOPIC --><span class="icon-bookmark"><a href="{U_BOOKMARK_TOPIC}" title="{L_BOOKMARK_TOPIC}">{L_BOOKMARK_TOPIC}</a></span><!-- ENDIF -->
+					<!-- IF U_BUMP_TOPIC --><span class="icon-bump"><a href="{U_BUMP_TOPIC}" title="{L_BUMP_TOPIC}">{L_BUMP_TOPIC}</a></span><!-- ENDIF -->
+					</em><!-- ENDIF --></p>
+
+				<!-- IF postrow.S_POST_UNAPPROVED or postrow.S_POST_REPORTED -->
+					<p class="rules">
+						<!-- IF postrow.S_POST_UNAPPROVED -->{UNAPPROVED_IMG} <a href="{postrow.U_MCP_APPROVE}"><strong>{L_POST_UNAPPROVED}</strong></a><!-- ENDIF -->
+						<!-- IF postrow.S_POST_REPORTED -->{REPORTED_IMG} <a href="{postrow.U_MCP_REPORT}"><strong>{L_POST_REPORTED}</strong></a><!-- ENDIF -->
+					</p>
+				<!-- ENDIF -->
+				
+			</div>
+
+			<div class="content" style="clear:both;">{postrow.MESSAGE}</div>
+
+				<!-- IF postrow.S_HAS_ATTACHMENTS -->
+					<dl class="attachbox">
+						<dt>{L_ATTACHMENTS}</dt>
+						<!-- BEGIN attachment -->
+							<dd>{postrow.attachment.DISPLAY_ATTACHMENT}</dd>
+						<!-- END attachment -->
+					</dl>
+				<!-- ENDIF -->
+
+				<!-- IF postrow.S_DISPLAY_NOTICE --><div class="rules">{L_DOWNLOAD_NOTICE}</div><!-- ENDIF -->
+				<!-- IF postrow.EDITED_MESSAGE or postrow.EDIT_REASON -->
+					<div class="notice">{postrow.EDITED_MESSAGE}
+						<!-- IF postrow.EDIT_REASON --><br /><strong>{L_REASON}:</strong> <em>{postrow.EDIT_REASON}</em><!-- ENDIF -->
+					</div>
+				<!-- ENDIF -->
+
+				<!-- IF postrow.BUMPED_MESSAGE --><div class="notice">{postrow.BUMPED_MESSAGE}</div><!-- ENDIF -->
+				<!-- IF postrow.SIGNATURE --><div id="sig{postrow.POST_ID}" class="signature" style="overflow-y:none; max-height:200px;">{postrow.SIGNATURE}</div><!-- ENDIF -->
+
+        <div>
+          <p><strong>Tip jar:</strong> the author of this post has received
+          <span class="labeled action">
+            <span data-bind="stats.tips" data-link="/posts/{postrow.POST_ID}">{postrow.TIPS_TOTAL}</span> <small>INK</small>
+            <!-- IF S_USER_LOGGED_IN --><button class="special button" on-tap="_promptToTip" data-amount="0.25" data-author="{postrow.POSTER_ID}" data-link="/posts/{postrow.POST_ID}">+ 0.25</button><!-- ENDIF -->
+          </span> in return for their work.</p>
+          <!-- <center style="margin-top: 1em;"><abbr title="Tips are donations to the author." class="tooltipped">tips received</abbr></center> -->
+        </div>
+      
+			<!-- ENDIF -->
+
+		</div>
+
+		<!-- IF not postrow.S_IGNORE_POST -->
+			<dl class="postprofile" id="profile{postrow.POST_ID}" style="text-align:center;">
+				<dt style="font-size:1.5em;">
+					<!-- IF postrow.POSTER_AVATAR -->
+						<!-- IF postrow.U_POST_AUTHOR --><a href="{postrow.U_POST_AUTHOR}" class="user-avatar">{postrow.POSTER_AVATAR}</a><!-- ELSE -->{postrow.POSTER_AVATAR}<!-- ENDIF --><br />
+					<!-- ENDIF -->
+					<!-- IF not postrow.U_POST_AUTHOR --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ELSE -->{postrow.POST_AUTHOR_FULL}<!-- ENDIF -->
+				</dt>
+
+				<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd><strong>{postrow.RANK_TITLE}</strong><!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><br /><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->
+				
+				<dd>Member for <span style="font-size:1.2em; font-weight: bold;">{postrow.TENURE}</span> years</dd>
+				
+				<!-- IF S_PRS_KARMA_ENABLED -->
+					<dd><a href="//www.roleplaygateway.com/post-rating-and-member-reputation-explanation-t10569.html" title="Reputation: {postrow.PRS_KARMA_SCORE} (Click here to learn more!)">{postrow.PRS_KARMA_STARS}</a></dd>
+				<!-- ENDIF -->
+
+				<!-- IF postrow.POSTER_WARNINGS --><dd><strong>{L_WARNINGS}: </strong><span style="color:red;">{postrow.POSTER_WARNINGS}</span></dd><!-- ENDIF -->
+				<!-- IF postrow.U_NOTES --><dd><a href="{postrow.U_NOTES}" title="{L_VIEW_NOTES}"> {postrow.POSTER_NOTES}</a></dd><!-- ENDIF -->
+
+				<dd>{postrow.GT_LEAGUE_DATA}</dd>
+
+        <dd class="avatar-width medals-list">
+          <!-- BEGIN awards -->
+        	<a href="/medals/{postrow.awards.SLUG}"><img src="{postrow.awards.IMAGE}" border="0" alt="{postrow.awards.NAME}" title="{postrow.awards.NAME}" /></a>
+        	<!-- END awards -->
+          <!-- IF S_IS_BETA --><dd>earned <strong>{postrow.MEDAL_COUNT}</strong>&times; medals</dd><!-- ENDIF -->
+        </dd>
+			
+				<div class="member-details">
+				
+					<!-- <div><strong>{postrow.AVERAGE_WORDS}</strong> words per post</div> -->
+					
+					<!-- IF U_ACP -->
+						<br />
+						<!-- IF S_PRS_PENALTY_ENABLED --><dd><strong>{L_PENALTY}:</strong> <!-- IF postrow.PRS_PENALTY_OVERALL -->{postrow.PRS_PENALTY_OVERALL}<!-- ELSE -->0<!-- ENDIF -->%</dd><!-- ENDIF -->
+						<!-- IF S_PRS_MODPOINTS_ENABLED --><dd><strong>{L_MODPOINTS}:</strong> <!-- IF postrow.PRS_MODPOINTS -->{postrow.PRS_MODPOINTS}<!-- ELSE -->0<!-- ENDIF --></dd><!-- ENDIF -->
+
+						<dd><a href="//www.roleplaygateway.com/spam.php?user_id={postrow.POSTER_ID}">ID as SpamBot</a></dd>
+					
+					<!-- ENDIF -->
+
+					<!-- IF not S_IS_BOT -->
+						<!-- IF postrow.U_PM or postrow.U_EMAIL -->
+							<ul class="profile-icons" style="margin-left:auto; margin-right:auto; text-align:center; width:90px;">
+					<!-- IF postrow.U_PM --><li class="pm-icon"><a href="{postrow.U_PM}" title="{L_PRIVATE_MESSAGE}"><span>{L_PRIVATE_MESSAGE}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_EMAIL --><li class="email-icon"><a href="{postrow.U_EMAIL}" title="{L_EMAIL}"><span>{L_EMAIL}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_WWW --><li class="web-icon"><a href="{postrow.U_WWW}" title="{L_VISIT_WEBSITE}: {postrow.U_WWW}"><span>{L_WEBSITE}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_MSN --><li class="msnm-icon"><a href="{postrow.U_MSN}" onclick="popup(this.href, 550, 320); return false;" title="{L_MSNM}"><span>{L_MSNM}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_ICQ --><li class="icq-icon"><a href="{postrow.U_ICQ}" onclick="popup(this.href, 550, 320); return false;" title="{L_ICQ}"><span>{L_ICQ}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_YIM --><li class="yahoo-icon"><a href="{postrow.U_YIM}" onclick="popup(this.href, 780, 550); return false;" title="{L_YIM}"><span>{L_YIM}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_AIM --><li class="aim-icon"><a href="{postrow.U_AIM}" onclick="popup(this.href, 550, 320); return false;" title="{L_AIM}"><span>{L_AIM}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_JABBER --><li class="jabber-icon"><a href="{postrow.U_JABBER}" onclick="popup(this.href, 550, 320); return false;" title="{L_JABBER}"><span>{L_JABBER}</span></a></li><!-- ENDIF -->
+							</ul>
+						<!-- ENDIF -->
+					<!-- ENDIF -->
+					
+				</div>
+
+			</dl>
+		<!-- ENDIF -->
+
+		<div class="back2top"><a href="{U_VIEW_TOPIC}#wrap" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a></div>
+
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<hr class="divider" />
+
+  <!-- IF S_ADS_GOOD -->
+	<!-- IF postrow.S_FIRST_ROW and AD_CODE1 -->
+		<div class="post bg2">
+			<div class="inner"><span class="corners-top"><span></span></span>
+
+				<div class="postbody" style="width:100%;">
+					<div class="content" style="text-align: center;">
+					
+						{AD_CODE1}
+						
+					</div>
+				</div>
+
+				<div class="back2top"><a href="#wrap" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a></div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+		<hr class="divider" />
+	<!-- ENDIF -->
+	<!-- ENDIF -->
+<!-- END postrow -->
+
+<!-- IF S_NUM_POSTS > 1 or PREVIOUS_PAGE -->
+	<form id="viewtopic" method="post" action="{S_TOPIC_ACTION}">
+
+	<fieldset class="display-options" style="margin-top: 0; ">
+		<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
+		<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
+		<label>{L_DISPLAY_POSTS}: {S_SELECT_SORT_DAYS}</label>
+		<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label> <label>{S_SELECT_SORT_DIR} <input type="submit" name="sort" value="{L_GO}" class="button2" /></label>
+	</fieldset>
+
+	</form>
+	<hr />
+<!-- ENDIF -->
+
+<div class="topic-actions">
+	<div class="buttons">
+	<!-- IF not S_IS_BOT and S_DISPLAY_REPLY_INFO -->
+		<div class="<!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->reply-icon<!-- ENDIF -->"><a href="{U_POST_REPLY_TOPIC}"><span><!-- IF S_IS_LOCKED -->{L_TOPIC_LOCKED}<!-- ELSE -->{L_POST_REPLY}<!-- ENDIF --></span></a></div>
+	<!-- ENDIF -->
+	</div>
+
+	<!-- IF PAGINATION or TOTAL_POSTS or S_PRS_ENABLED -->
+		<div class="pagination">
+			<!-- IF S_PRS_ENABLED -->
+				{PRS_EXTRA_TOPICS_RATINGS}: {PRS_STARS}
+				<!-- IF PAGINATION or TOTAL_POSTS -->
+					&bull;
+				<!-- ENDIF -->
+			<!-- ENDIF -->
+
+			{TOTAL_POSTS}
+			<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+		</div>
+	<!-- ENDIF -->
+</div>
+
+<!-- INCLUDE jumpbox.html -->
+
+<!-- INCLUDE posting_qr_body.html -->
+
+<!-- IF S_TOPIC_MOD -->
+	<form method="post" action="{S_MOD_ACTION}">
+	<fieldset class="quickmod">
+		<label>{L_QUICK_MOD}:</label> {S_TOPIC_MOD} <input type="submit" value="{L_GO}" class="button2" />
+		{S_FORM_TOKEN}
+	</fieldset>
+	</form>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_ONLINE_LIST -->
+	<h3><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3>
+	<p>{LOGGED_IN_USER_LIST}</p>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

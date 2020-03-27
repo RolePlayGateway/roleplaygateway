@@ -1,0 +1,129 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<style type="text/css">
+  .small-crisp-image {
+    border: 1px solid black;
+    max-height: 50px;
+    max-width: 50px;
+  }
+</style>
+
+<img src="/universes/{ROLEPLAY_URL}/image" class="crisp-border" style="float:left; margin-right: 1em;" />
+
+<!-- IF S_IS_BETA -->
+<div class="quick-float-right">
+  <div class="labeled action">
+    <small>INK</small> <span data-bind="stats.tips" data-link="/quests/{QUEST_ID}">{REWARD}</span>
+    <button class="special button" on-tap="_promptAndDepositBounty" data-amount="100.00">+ <small>INK</small></button>
+  </div>
+  <center style="margin-top: 1em;"><abbr title="Tips are donations to the author." class="tooltipped">total bounty</abbr></center>
+</div>
+
+<script type="text/javascript">
+$(document).on('click', '*[on-tap=_promptAndDepositBounty]', function (e) {
+  console.log('tapped!');
+  
+  $(this).addClass('loading');
+  
+  var amount = parseFloat(prompt('How much would you like to deposit?'));
+	if (!amount) return;
+
+  var wallet = $('*[data-link="/members/{S_USER_ID}"][data-bind="stats.balance"]');
+  var jar = $('*[data-link="/quests/{QUEST_ID}"][data-bind="stats.bounty"]');
+  
+  console.log('found:', jar);
+  console.log('amount:', amount);
+
+  var balance = parseFloat(wallet.html());
+  wallet.html((balance - amount).toFixed(2));
+
+  $.ajax({
+    url: '/transactions',
+    type: 'POST',
+    data: {
+      to: '{POSTER_ID}',
+      for: '/quests/{TOPIC_ID}',
+      amount: amount
+    },
+    success: function (data) {
+      var before = parseFloat(jar.html());
+      var after = before + amount;
+      
+      console.log('before:', before);
+      console.log('after:', after);
+      
+      jar.html(after.toFixed(2));
+    }
+  });
+
+});
+</script>
+<!-- ENDIF -->
+
+<h3 style="color:#596E7C;">
+	<a href="/universes/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a> &raquo; <a href="/universes/{ROLEPLAY_URL}/quests">Quests</a> &raquo; <a href="/universes/{ROLEPLAY_URL}/quests/{QUEST_URL}">Quest #{QUEST_ID}</a>
+</h3>
+<!-- IF QUEST_NAME -->
+<h1 style="color:#596E7C;">
+  <a href="/universes/{ROLEPLAY_URL}/quests/{QUEST_URL}">{QUEST_NAME}</a>
+</h1>
+<!-- ENDIF -->
+
+<br class="clear: both;" />
+
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+    <div class="postbody" style="width:100%;"><div class="content">
+      
+      <h2>Synopsis</h2>
+      <p>{QUEST_SYNOPSIS}</p>
+
+      <h2>Description</h2>
+      <div>{QUEST_DESCRIPTION}</div>
+      
+      <!-- <h3><strong>{PLACE_COUNT}</strong> Places Controlled</h3> -->
+      
+      <h2><strong>{CHARACTER_COUNT}</strong> Characters</h2>
+			<!-- BEGIN participating -->
+			<div class="character">
+				<img src="/universes/{ROLEPLAY_URL}/characters/{participating.URL}/image" alt="Character Portrait: {participating.NAME}" />
+				<div>
+				  <h3>{participating.QUEST_STATUS}</h3>
+					<a href="/universes/{ROLEPLAY_URL}/characters/{participating.URL}"><strong>{participating.NAME}</strong></a> <span><em>played by {participating.OWNER_USERNAME}</em></span>
+				</div>
+				<span>{participating.SYNOPSIS}</span>
+			</div>
+			<!-- BEGINELSE -->
+				<p class="supersize">There are no characters in this quest!</p>
+			<!-- END participating -->
+      
+      <!-- IF S_USER_LOGGED_IN -->
+      <h3>Join with</h3>
+      <div>
+        <!-- BEGIN characters -->
+        <span class="labeled action">
+          <span class="special button" on-tap="_joinQuestWithCharacter" data-quest="{QUEST_ID}" data-character="{characters.ID}">
+            <img class="small-crisp-image" src="/universes/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Participate with {characters.NAME}" />
+          </span>
+        </span>
+        <!-- END characters -->
+      </div>
+      <!-- ENDIF -->
+
+			<br class="clear" />
+
+      <h2>Comments</h2>
+			<!-- BEGIN comments -->
+			<div class="character"></div>
+			<!-- BEGINELSE -->
+			<p class="supersize">No comments have been made on this quest!</p>
+			<!-- END comments -->
+
+    </div></div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

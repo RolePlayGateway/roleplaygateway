@@ -36,6 +36,9 @@ if ($roleplay = $db->sql_fetchrow($result)) {
   $sql = 'SELECT id, name, description, slug, creator FROM rpg_arcs WHERE roleplay_id = '.(int) $roleplay['id'].' AND slug = "'.$db->sql_escape($arcURL).'"';
   $arcResult = $db->sql_query($sql);
   while ($arc = $db->sql_fetchrow($arcResult)) {
+    
+    $sql = 'UPDATE rpg_arcs SET views = views + 1 WHERE id = '.(int) $arc['id'];
+    $db->sql_query($sql);
   
 	  $template->assign_vars(array(
 		  'ARC_ID' 					=> $arc['id'],
@@ -66,66 +69,124 @@ if ($roleplay = $db->sql_fetchrow($result)) {
     }
     $db->sql_freeresult($result);
 
-    $sql = 'SELECT DISTINCT c.id, c.*,u.user_id,u.username,p.name as place,p.url FROM rpg_content c
-        LEFT OUTER JOIN gateway_users u
-          ON c.author_id = u.user_id
-        LEFT OUTER JOIN rpg_places p
-          ON c.place_id = p.id
-        WHERE c.id IN  (' . implode(',', $posts) . ') ORDER BY c.written ASC';
+    if (count($posts) > 0) {
+      $sql = 'SELECT DISTINCT c.id, c.*,u.user_id,u.username,p.name as place,p.url FROM rpg_content c
+          LEFT OUTER JOIN gateway_users u
+            ON c.author_id = u.user_id
+          LEFT OUTER JOIN rpg_places p
+            ON c.place_id = p.id
+          WHERE c.id IN  (' . implode(',', $posts) . ') ORDER BY c.written ASC';
 
-    $result = @$db->sql_query($sql);
-    while ($content_row = $db->sql_fetchrow($result)) {
-    
-      if ($character_id = $content_row['character_id']) {
-    
-        $sql = 'SELECT id,name,url FROM rpg_characters WHERE id = '. (int) $character_id ;
-        $character_result = $db->sql_query($sql);
-        $character = $db->sql_fetchrow($character_result);
-        $db->sql_freeresult($character_result);
-      }
-    
-      $content_row['content'] = generate_text_for_display($content_row['text'], $content_row['bbcode_uid'], $content_row['bbcode_bitfield'], 7);
-
-      if ($content_row['type'] == 'Dialogue') {
-        $content_row['tokens'] = explode(' ', $content_row['content']);
-        if ($content_row['tokens'][0] == '/say') {
-          $newContent = array_slice($content_row['tokens'], 1);
-          $content_row['content'] = implode(' ', $newContent);
+      $result = @$db->sql_query($sql);
+      while ($content_row = $db->sql_fetchrow($result)) {
+      
+        if ($character_id = $content_row['character_id']) {
+      
+          $sql = 'SELECT id,name,url FROM rpg_characters WHERE id = '. (int) $character_id ;
+          $character_result = $db->sql_query($sql);
+          $character = $db->sql_fetchrow($character_result);
+          $db->sql_freeresult($character_result);
         }
+      
+        $content_row['content'] = generate_text_for_display($content_row['text'], $content_row['bbcode_uid'], $content_row['bbcode_bitfield'], 7);
+
+        if ($content_row['type'] == 'Dialogue') {
+          $content_row['tokens'] = explode(' ', $content_row['content']);
+          if ($content_row['tokens'][0] == '/say') {
+            $newContent = array_slice($content_row['tokens'], 1);
+            $content_row['content'] = implode(' ', $newContent);
+          }
+        }
+
+        /* $sql = 'SELECT id,name,url FROM rpg_places WHERE id = '. (int) $content_row['place_id'] ;
+        $placeResult = $db->sql_query($sql);
+        $place = $db->sql_fetchrow($placeResult);
+        $db->sql_freeresult($placeResult); */
+
+        $template->assign_block_vars('activity', array(
+          'S_BBCODE_ALLOWED'  => true,
+          'S_SMILIES_ALLOWED' => true,
+          'S_CAN_EDIT'        =>  (($auth->acl_get('m_')) || ($content_row['author_id'] == $user->data['user_id']) || (in_array($user->data['user_id'], $game_masters))) ? true : false,
+          'S_IS_DIALOGUE'     => ($content_row['type'] == 'Dialogue') ? true : false,
+          'S_SHOW_LOCATION'   => ($content_row['place_id'] == $lastPlaceID) ? false : true,
+          'ID'                => $content_row['id'],
+          'AUTHOR'            => get_username_string('full', @$content_row['author_id'], @$content_row['username']),
+          'PLAYER_ID'         => @$content_row['user_id'],
+          'LOCATION'          => @$content_row['place'],
+          'LOCATION_NAME'     => @$content_row['place'],
+          'LOCATION_ID'       => @$content_row['place_id'],
+          'LOCATION_URL'      => @$content_row['url'],
+          'CONTENT'           => $content_row['content'],
+          'TIME_AGO'          => timeAgo(strtotime($content_row['written'])),
+          'CHARACTER_NAME'    => $character['name'],
+          'CHARACTER_URL'     => $character['url'],
+          'TIME_ISO'          => date('c',strtotime($content_row['written'])),
+        ));
+
+        $content[] = $content_row;
+        
+        if ((int) $content_row['anonymous'] !== 1) {
+          $allPlayers[ $content_row['author_id'] ] = get_username_string('full', @$content_row['author_id'], @$content_row['username']);
+        }
+
+        $allPlaces[ $content_row['place_id'] ] = array(
+          'id'    => $content_row['place_id'],
+          'name'  => $content_row['place'],
+          'url'   => $content_row['url'],
+        );
+
+        if ($content_row['place_id'] != $lastPlaceID) {
+          $thisCharacters = array();
+        }
+        $lastPlaceID = $content_row['place_id'];
+
+        $sql = 'SELECT id,name,url,synopsis FROM rpg_content_tags t FORCE INDEX (PRIMARY)
+                  INNER JOIN rpg_characters c FORCE INDEX (PRIMARY) ON c.id = t.character_id
+                  WHERE content_id = '.(int) $content_row['id'] . '';
+        $tags_result = $db->sql_query($sql);
+        while ($tags_row = $db->sql_fetchrow($tags_result)) {
+          $allCharacters[ $tags_row['id'] ]   = $tags_row;
+          $thisCharacters[ $tags_row['id'] ]  = $tags_row;
+          $characterIDs[ $tags_row['id'] ]    = $tags_row['id'];
+        }
+        $db->sql_freeresult($tags_result); 
+
+        foreach (@$thisCharacters as $characterID => $tags_row) {
+          if (!in_array($characterID, $characterIDs)) {
+            $template->assign_block_vars('activity.characters', array(
+              'ID'        => $tags_row['id'],
+              'NAME'      => $tags_row['name'],
+              'URL'       => $tags_row['url'],
+              'SYNOPSIS'  => $tags_row['synopsis'],
+            ));
+          }
+        }
+
+      }
+      $db->sql_freeresult($result);
+      
+      foreach ($allPlaces as $place) {
+        $template->assign_block_vars('places', array(
+          'NAME' => $place['name'],
+          'SLUG' => $place['url'],
+        ));
       }
 
-      $template->assign_block_vars('activity', array(
-        'S_BBCODE_ALLOWED'    => true,
-        'S_SMILIES_ALLOWED'   => true,
-        'S_CAN_EDIT'      =>  (($auth->acl_get('m_')) || ($content_row['author_id'] == $user->data['user_id']) || (in_array($user->data['user_id'], $game_masters))) ? true : false,
-        'S_IS_DIALOGUE'     => ($content_row['type'] == 'Dialogue') ? true : false,
-        'ID'          => $content_row['id'],
-        'AUTHOR'        => get_username_string('full', @$content_row['user_id'], @$content_row['username']),
-        'PLAYER_ID'       => @$content_row['user_id'],
-        'LOCATION'        => @$content_row['place'],
-        'LOCATION_ID'       => @$content_row['place_id'],
-        'LOCATION_URL'      => urlify(@$content_row['place']),
-        'CONTENT'       => $content_row['content'],
-        'TIME_AGO'        => timeAgo(strtotime($content_row['written'])),
-        'CHARACTER_NAME'    => $character['name'],
-        'CHARACTER_URL'     => $character['url'],
-        'TIME_ISO'        => date('c',strtotime($content_row['written'])),
-      ));
-
-      $sql = 'SELECT id,name,url,synopsis FROM rpg_content_tags t FORCE INDEX (PRIMARY) INNER JOIN rpg_characters c FORCE INDEX (PRIMARY) ON c.id = t.character_id WHERE content_id = '.(int) $content_row['id'] . '';
-      $tags_result = $db->sql_query($sql);
-      while ($tags_row = $db->sql_fetchrow($tags_result)) {
-        $template->assign_block_vars('activity.characters', array(
-          'ID'    => $tags_row['id'],
-          'NAME'    => $tags_row['name'],
-          'URL'   => $tags_row['url'],
-          'SYNOPSIS'  => $tags_row['synopsis'],
-        )); 
+      foreach ($allCharacters as $character) {
+        $template->assign_block_vars('characters', array(
+          'NAME' => $character['name'],
+          'URL' => $character['url'],
+        ));
       }
-      $db->sql_freeresult($tags_result); 
-
     }
-    $db->sql_freeresult($result);
+
+    $template->assign_vars(array(
+      'CHARACTER_COUNT'      => count($allCharacters),
+      'PLAYER_COUNT'         => count($allPlayers),
+      'PLACE_COUNT'          => count($allPlaces),
+      'CONTENT_COUNT'        => count($content),
+      'PLAYER_STRING'        => @implode(', ', $allPlayers),
+    ));
 
     page_header($arc['name'] . ' | ' . $roleplay['title'] . ' | ' . $config['sitename']);
 

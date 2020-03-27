@@ -23,8 +23,19 @@ if (!empty($roleplayURL)) {
 
 $result = $db->sql_query($sql);
 if ($roleplay = $db->sql_fetchrow($result)) {
+  
+  $sql = 'SELECT id, name, synopsis, url FROM rpg_characters WHERE roleplay_id = '.(int) $roleplay['id'].' AND owner = '.(int) $user->data['user_id'];
+  $characterResult = $db->sql_query($sql);
+  while ($character = $db->sql_fetchrow($characterResult)) {
+    $template->assign_block_vars('characters', array(
+      'ID'  => $character['id'],
+      'NAME'  => $character['name'],
+      'URL'  => $character['url'],
+    ));
+  }
+  $db->sql_freeresult($characterResult);
 
-  $sql = 'SELECT id, name, synopsis FROM rpg_quests WHERE roleplay_id = '.(int) $roleplay['id'].' AND id = "'.(int) $questID.'"';
+  $sql = 'SELECT id, name, synopsis, bounty FROM rpg_quests WHERE roleplay_id = '.(int) $roleplay['id'].' AND id = "'.(int) $questID.'"';
   $groupResult = $db->sql_query($sql);
   while ($quest = $db->sql_fetchrow($groupResult)) {
   
@@ -32,6 +43,11 @@ if ($roleplay = $db->sql_fetchrow($result)) {
     $memberResult = $db->sql_query($sql);
     $quest['characters'] = $db->sql_fetchfield('characters');
     $db->sql_freeresult($memberResult);
+  
+    $sql = 'SELECT sum(amount) AS reward FROM rpg_ledger WHERE `for` = "'.$db->sql_escape('/quests/'.(int) $quest['id']). '"';
+    $valueResult = $db->sql_query($sql);
+    $quest['reward'] = $db->sql_fetchfield('reward');
+    $db->sql_freeresult($valueResult);
      
     /* $sql = 'SELECT DISTINCT place_id, COUNT(*) AS posts FROM rpg_content
               WHERE id IN
@@ -52,18 +68,20 @@ if ($roleplay = $db->sql_fetchrow($result)) {
         'NAME' => $place['name'],
         'SYNOPSIS' => $place['synopsis'],
         'POST_COUNT' => $place['posts'],
-      ));      
+      ));
 
     }
     $db->sql_freeresult($placeResult); */
 
 	  $template->assign_vars(array(
     	'S_PAGE_ONLY'       => true,
+      'S_HAS_BOUNTY'      => ($quest['bounty'] > 0) ? true : false,
 		  'QUEST_ID' 					=> $quest['id'],
 		  'QUEST_NAME' 				=> $quest['name'],
 		  'QUEST_SYNOPSIS' 		=> $quest['synopsis'],
 		  'QUEST_URL' 		    => $quest['id'],
 		  'QUEST_DESCRIPTION' => $quest['description'],
+		  'REWARD' => number_format($quest['reward'], 2),
 		  'CHARACTER_COUNT'   => $quest['characters'],
 		  'ROLEPLAY_URL'      => $roleplay['url'],
       'ROLEPLAY_TITLE'    => $roleplay['title'],
@@ -84,9 +102,9 @@ if ($roleplay = $db->sql_fetchrow($result)) {
       $sql = 'SELECT username FROM gateway_users WHERE user_id = '.(int) $character['owner'];
       $memberResult = $db->sql_query($sql);
       $character['owner_username'] = $db->sql_fetchfield('username');
-      $db->sql_freeresult($memberResult);      
+      $db->sql_freeresult($memberResult);
 
-      $template->assign_block_vars('characters', array(
+      $template->assign_block_vars('participating', array(
         'ID' => $character['id'],
         'URL' => $character['url'],
         'NAME' => $character['name'],

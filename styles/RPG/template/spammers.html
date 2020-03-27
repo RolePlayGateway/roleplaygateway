@@ -1,0 +1,22 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<h1>Reports & Statistics</h1>
+<p>Overall health of RPG.</p>
+
+<div class="special panel">
+  <table width="100%;">
+    <!-- BEGIN spammers -->
+    <tr>
+      <td>{spammers.USERNAME}</td>
+      <td>{spammers.USER_EMAIL}</td>
+      <td>{spammers.BIO}</td>
+      <td>{spammers.SIGNATURE}</td>
+      <td><a class="button" href="/spam.php?user_id={spammers.USER_ID}" onclick="$(this).parent().parent().slideUp();">NUKE</a></td>
+    </tr>
+    <!-- END spammers -->
+  </table>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

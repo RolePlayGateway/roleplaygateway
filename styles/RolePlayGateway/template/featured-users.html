@@ -1,0 +1,58 @@
+<div>
+  <h3><a href="/community">Featured Writers of the Day</a></h3>
+  <div>
+    <!-- BEGIN featuredusers -->
+    <div class="forabg card">
+      <div class="inner">
+        <span class="corners-top"><span></span></span>
+        <ul class="topiclist fullwidth">
+          <li class="header"><dl><dt><a href="/member/{featuredusers.USERNAME}">{featuredusers.USERNAME}</a> <span>{featuredusers.RANK}</span></dt></dl></li>
+        </ul>
+        <ul class="topiclist forums">
+          <li>
+            <dl>
+              <dd style="padding:10px; width: 286px; height: 130px;" class="scrunched">
+                <img src="{featuredusers.USER_AVATAR_URL}" class="crisp-border" style="float: left; margin-right: 1em; height: 100px; width: 100px;" />
+                <p>member for <strong>{featuredusers.TENURE}</strong> years</p>
+                <p>has written <strong>{featuredusers.TOTAL_WORDS}</strong> words</p>
+                <p><small>(~<strong>{featuredusers.NOVELS}</strong> full-length novels)</small></p>
+                <p style="white-space: nowrap;">
+                  <!-- BEGIN medals -->
+                  <a href="/medals/{featuredusers.medals.SLUG}" title="{featuredusers.medals.NAME}">
+                    <img src="/images/medals/{featuredusers.medals.IMAGE}" />
+                    <!-- <h4>{featuredusers.medals.NAME}</h4> -->
+                  </a>
+                  <!-- END medals -->
+                  &nbsp;({featuredusers.MEDAL_COUNT}&times;)
+                </p>
+                <p>
+                  <!-- BEGIN characters -->
+                  <a href="/roleplay/{featuredusers.characters.ROLEPLAY_URL}/characters/{featuredusers.characters.URL}" title="{featuredusers.characters.NAME}, with {featuredusers.characters.TOTAL} views">
+                    <img src="/roleplay/{featuredusers.characters.ROLEPLAY_URL}/characters/{featuredusers.characters.URL}/image" class="crisp-border tiny" />
+                    <!-- <h4>{featuredusers.characters.NAME}</h4> -->
+                  </a>
+                  <!-- END characters -->
+                </p>
+                <hr />
+                <p style="font-size: 1.2em; height: 62px; white-space: pre; overflow: hidden; text-overflow: ellipsis;">{featuredusers.BIO}</p>
+                
+                <!-- IF S_UNIVERSES_ENABLED -->
+                <p>
+                  <!-- BEGIN universes -->
+                  <a href="/roleplay/{featuredusers.universes.URL}" title="{featuredusers.universes.NAME}, with {featuredusers.universes.TOTAL} views">
+                    <img src="/roleplay/{featuredusers.universes.URL}/image" class="crisp-border tiny" />
+                  </a>
+                  <!-- END universes -->
+                </p>
+                <!-- ENDIF -->
+              </dd>
+            </dl>
+          </li>
+          
+        </ul>
+        <span class="corners-bottom"><span></span></span>
+      </div>
+    </div>
+    <!-- END featuredusers -->
+  </div>
+</div>

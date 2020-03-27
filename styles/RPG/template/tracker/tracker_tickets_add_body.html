@@ -1,0 +1,176 @@
+<!-- INCLUDE overall_header.html -->
+<h2>{L_TITLE}</h2>
+<p>{L_TITLE_EXPLAIN}</p>
+
+<!-- IF S_PREVIEW -->
+<h3>{L_TRACKER_PREVIEW}</h3>
+<div class="panel bg2">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<div class="postbody" style="width: auto; float: none; margin: 0; height: auto;">
+			<div class="content">{TICKET_PREVIEW}</div>
+		</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->
+<h3>{L_TRACKER_SUBMIT_A_TICKET}</h3>
+<form id="add_ticket" method="post" action="{U_ACTION}"{S_FORM_ENCTYPE}>
+	<div class="panel bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<fieldset>
+			<h3>{L_TRACKER_PROJECT_INFO}</h3>
+			<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+			<dl>
+				<dt><strong>{L_TRACKER}:</strong></dt>
+				<dd>{PROJECT_TYPE}</dd>
+			</dl>
+			<dl>
+				<dt><strong>{L_TRACKER_PROJECT_NAME}:</strong></dt>
+				<dd>{PROJECT_NAME}</dd>
+			</dl>
+			<!-- IF S_COMPONENT_OPTIONS and S_TICKET_COMPONENT -->
+			<dl>
+				<dt><label for="component_id">{L_TRACKER_COMPONENT}:</label></dt>
+				<dd>
+					<select id="component_id" name="component_id">
+						{S_COMPONENT_OPTIONS}
+					</select>
+				</dd>
+			</dl>
+			<!-- ENDIF -->
+			<!-- IF S_VERSION_OPTIONS and S_TICKET_VERSION -->
+			<dl>
+				<dt><label for="version_id">{L_TRACKER_VERSION}:</label></dt>
+				<dd>
+					<select id="version_id" name="version_id">
+						{S_VERSION_OPTIONS}
+					</select>
+				</dd>
+			</dl>
+			<!-- ENDIF -->
+		</fieldset>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<!-- IF S_TICKET_ENVIRONMENT and (S_SHOW_PHP or S_SHOW_DBMS) -->
+	<div class="panel bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<fieldset>
+			<h3>{L_TRACKER_ENVIRONMENT}</h3>
+			<p>{L_TRACKER_ENVIRONMENT_EXPLAIN}</p>
+			<!-- IF S_SHOW_PHP -->
+			<dl>
+				<dt><label for="ticket_php">{L_TRACKER_TICKET_PHP}:</label><br /><span>{L_TRACKER_TICKET_PHP_EXPLAIN}</span></dt>
+				<dd><input type="text" id="ticket_php" name="ticket_php" value="{TICKET_PHP}" class="inputbox narrow" /><br /><span class="small">{L_TRACKER_TICKET_PHP_EXPLAIN_BAD}<br />{L_TRACKER_TICKET_PHP_EXPLAIN_GOOD}</span></dd>
+			</dl>
+			<!-- ENDIF -->
+			<!-- IF S_SHOW_DBMS -->
+			<dl>
+				<dt><label for="ticket_dbms">{L_TRACKER_TICKET_DBMS}:</label><br /><span>{L_TRACKER_TICKET_DBMS_EXPLAIN}</span></dt>
+				<dd><input type="text" id="ticket_dbms" name="ticket_dbms" value="{TICKET_DBMS}" class="inputbox narrow" /><br /><span class="small">{L_TRACKER_TICKET_DBMS_EXPLAIN_BAD}<br />{L_TRACKER_TICKET_DBMS_EXPLAIN_GOOD}</span></dd>
+			</dl>
+			<!-- ENDIF -->
+		</fieldset>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<!-- ENDIF -->
+
+	<div class="panel bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<fieldset>
+			<h3>{L_TRACKER_TICKET}</h3>
+			<dl>
+				<dt><label for="ticket_title">{L_TRACKER_TICKET_TITLE}:</label><br /><span>{L_TRACKER_TICKET_TITLE_EXPLAIN}</span></dt>
+				<dd><input type="text" id="ticket_title" name="ticket_title" value="{TICKET_TITLE}" class="inputbox medium" /><br /><span class="small">{L_TRACKER_TICKET_TITLE_EXPLAIN_BAD}<br />{L_TRACKER_TICKET_TITLE_EXPLAIN_GOOD}</span></dd>
+			</dl>
+			<!-- IF S_EDIT_REASON -->
+			<dl>
+				<dt><label for="edit_reason">{L_TRACKER_EDIT_REASON}:</label><br /><span>{L_TRACKER_EDIT_REASON_EXPLAIN}</span></dt>
+				<dd><input type="text" id="edit_reason" name="edit_reason" value="{EDIT_REASON_TEXT}" class="inputbox medium" /></dd>
+			</dl>
+			<!-- ENDIF -->
+			<dl>
+				<dt><label for="ticket_desc">{L_TRACKER_TICKET_DESC}:</label><br /><span>{L_TRACKER_TICKET_DESC_EXPLAIN}</span></dt>
+				<dd><textarea id="ticket_desc" name="ticket_desc" rows="10" cols="20" class="inputbox">{TICKET_DESC}</textarea></dd>
+			</dl>
+		</fieldset>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<!-- IF S_MANAGE_TICKET or S_TICKET_SECURITY -->
+		<div class="panel bg2">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			<h3>{L_OPTIONS}</h3>
+			<fieldset class="fields2">
+				<!-- IF S_TICKET_SECURITY -->
+				<dl>
+					<dt><label for="ticket_security">{L_TRACKER_SECURITY_TICKET}:</label></dt>
+					<dd><input type="checkbox" name="ticket_security" id="ticket_security" value="1"<!-- IF TICKET_SECURITY --> checked="checked"<!-- ENDIF --> /></dd>
+				</dl>
+				<!-- ENDIF -->
+				<!-- IF S_MANAGE_TICKET -->
+				<dl>
+					<dt><label for="ticket_hidden">{L_TRACKER_HIDE_TICKET}:</label></dt>
+					<dd><input type="checkbox" name="ticket_hidden" id="ticket_hidden" value="1"<!-- IF TICKET_HIDDEN --> checked="checked"<!-- ENDIF --> /></dd>
+				</dl>
+				<dl>
+					<dt><label for="ticket_status">{L_TRACKER_LOCK_TICKET}:</label></dt>
+					<dd><input type="checkbox" name="ticket_status" id="ticket_status" value="1"<!-- IF S_IS_LOCKED --> checked="checked"<!-- ENDIF --> /></dd>
+				</dl>
+				<!-- ENDIF -->
+			</fieldset>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+		<!-- ENDIF -->
+
+	<!-- IF S_CAN_ATTACH and not S_HAS_ATTACHMENTS-->
+	<div class="panel bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<fieldset>
+		<h3>{L_TRACKER_ATTACHMENTS}</h3>
+		<dl>
+			<dt><label for="attachment">{L_TRACKER_ATTACHMENTS_UPLOAD}:</label></dt>
+			<dd>
+				<input type="file" name="attachment" id="attachment" class="inputbox medium" />
+			</dd>
+		</dl>
+		<dl>
+			<dt></dt>
+			<dd><input type="submit" name="add_attachment" value="{L_TRACKER_ATTACHMENTS_ADD}" class="button2" /></dd>
+		</dl>
+		</fieldset>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<!-- ENDIF -->
+
+	<!-- IF S_HAS_ATTACHMENTS -->
+		<div class="panel bg2">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			<h3>{L_POSTED_ATTACHMENTS}</h3>
+			<fieldset class="fields2">
+			<dl>
+				<dd><a href="{U_VIEW_ATTACHMENT}" class="{S_CONTENT_FLOW_END}">{FILENAME}</a></dd>
+				<dd style="margin-top: 5px;">
+					<input type="submit" name="delete_attachment" value="{L_DELETE_FILE}" class="button2" />
+				</dd>
+			</dl>
+			{S_HIDDEN}
+			</fieldset>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+	<!-- ENDIF -->
+
+	<div class="panel bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<fieldset>
+			<h3>{L_TRACKER_SUBMIT_TICKET}</h3>
+			<p>{L_TRACKER_SUBMIT_TICKET_EXPLAIN}</p>
+			<input type="submit" name="preview" value="{L_TRACKER_PREVIEW_TICKET}" class="button2" /> <input type="submit" name="submit" value="{L_TRACKER_SUBMIT_TICKET}" class="button1" accesskey="s" />
+			{S_FORM_TOKEN}
+		</fieldset>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+</form>
+
+<!-- INCLUDE tracker/tracker_footer.html -->
+
+<!-- INCLUDE overall_footer.html -->

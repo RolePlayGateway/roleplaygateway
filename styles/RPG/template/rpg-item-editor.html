@@ -1,0 +1,16 @@
+<form action="/roleplay/{ROLEPLAY_URL}/forge" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="asset[roleplay_id]" value="{ROLEPLAY_ID}" />
+  <input type="hidden" name="itemID" value="{ITEM_ID}" />
+
+  <div>
+    <label for="image">Image</label>
+    <input type="file" name="item_image" />
+  </div>
+
+  <div>
+    <label for="deposit">Description</label>
+    <textarea name="asset[description]" max="255" rows="3" placeholder="Add a player-friendly description to this item.">{ITEM_DESCRIPTION}</textarea>
+  </div>
+
+  <button type="submit" class="button">Save Changes &raquo;</button>
+</form>

@@ -1,0 +1,860 @@
+<style type="text/css">
+.chat-detail {
+  display: none;
+}
+</style>
+
+<div id="content-review-modal" title="Confirm Your Action" style="display:none; background: white; padding: 10px;">
+  <div class="postbody" style="width:inherit;">
+    <p><strong>You're about to delete the following post:</strong></p>
+    <blockquote id="content-review-post-content"></blockquote><br />
+
+    <div id="chat-details" class="chat-detail">
+      <p><strong>This post was originally posted via chat:</strong></p>
+      <code id="content-review-chat-content"></code>
+    </div>
+
+    <br>
+    <br>
+
+    <p>Deleting content will cause content on this and all subsequent pages to move closer to the front of the universe, creating a bizarre instance in the space-time continuum where previously-saved hyperlinks that others have used may no longer point at their correct destinations.</p>
+    <p>This is generally undesirable.</p>
+    <p><strong>Are you sure you want permanently delete <span class="chat-detail">both the original chat message and</span> the referenced post?</strong></p>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var taggedCharacters = window.taggedCharacters = [];
+	var footnoteString = "<li><p><span>{{CONTENT}}</span><cite><span class=\"time timeago\">just now</span> by you</cite></p></li>";
+
+  $(window).on('load', function () {
+    // lifting from roleplay_stream_body
+    $.getJSON('/user-arcs.php?roleplayURL={ROLEPLAY_URL}', function(data) {
+      for (var arcID in data.arcs) {
+        var bundle = data.arcs[arcID];
+        $('<div data-bundle-id="'+arcID+'"><input type="button" value="add &raquo;" /><strong>'+bundle.name+'</strong></div>').appendTo('.bundleList');
+      }
+
+      $('.bundleList input[type=button]').click(function() {
+        var self = this;
+        var arcID = $(this).parent().data('bundle-id');
+        var postID = $(this).parent().parent().data('for');
+        console.log(postID + ' in ' + arcID);
+        $.post('/roleplay-content-arc.php?roleplayID={ROLEPLAY_ID}&arcID='+arcID+'&postID='+postID, function(data) {
+          if (data.status != 'success') {
+            $(self).replaceWith('<strong>Error... :(</strong>');
+          } else {
+            $(self).replaceWith('<strong>Done!</strong>');
+          }
+        });
+      });
+    });
+
+    $('#characterSearch').autocomplete({
+      source: function(request, response) {
+        $.ajax({
+          url: '/roleplay/{ROLEPLAY_URL}/characters.json',
+          dataType: 'json',
+          data: {
+            search: request.term
+          },
+          success: function(data) {
+            response( $.map( data, function (character) {
+              return {
+                label: '<div class="prettyCenter"><img class="micro" src="/roleplay/{ROLEPLAY_URL}/characters/'+ character.url + '/image">' + character.name + '</div>',
+                value: character.name,
+                id: character.id
+              }
+            }));
+          }
+        });
+      },
+      // minLength: 1,
+      delay: 250,
+      select: function (event, ui) {
+        $('#taggedCharacters').append('<div class="selectedCharacter">' + ui.item.label + '</div>');
+        $('#characterSearch').val('');
+
+        taggedCharacters.push(ui.item.id);
+        $('#taggedCharacterList').val(taggedCharacters);
+
+        return false;
+      },
+      open: function() {
+        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+      },
+      close: function() {
+        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+      }
+    });
+    
+    $('.characterSearch').autocomplete({
+      source: function(request, response) {
+        $.ajax({
+          url: '/roleplay/{ROLEPLAY_URL}/characters.json',
+          dataType: 'json',
+          data: {
+            search: request.term
+          },
+          success: function(data) {
+            response( $.map( data, function (character) {
+              return {
+                label: '<div class="prettyCenter"><img class="micro" src="/roleplay/{ROLEPLAY_URL}/characters/'+ character.url + '/image">' + character.name + '</div>',
+                value: character.name,
+                id: character.id
+              }
+            }));
+          }
+        });
+      },
+      // minLength: 1,
+      delay: 250,
+      select: function (event, ui) {
+        var forPost = $(this).data('for').toString();
+        console.log('selecting:', forPost);
+        if (!window.taggedCharacters[forPost]) window.taggedCharacters[forPost] = [];
+
+        $('.taggedCharacters[data-for='+forPost+']').append('<div class="postTaggedCharacter">' + ui.item.label + '</div>');
+        $('.characterSearch[data-for='+forPost+']').val('');
+
+        window.taggedCharacters[forPost].push(ui.item.id);
+        $('.taggedCharacterList[data-for='+forPost+']').val(window.taggedCharacters[forPost]);
+
+        return false;
+
+      },
+      open: function() {
+        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+      },
+      close: function() {
+        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+      }
+    });
+  });
+  
+  $(document).on('click', '.bundleButton', function() {
+		var forPost = $(this).data('for');
+		$('.bundleListWrapper[data-for='+forPost+']').slideToggle();
+		return false;
+	});
+
+	$(document).on('click', '.footnoteButton', function() {
+		var forPost = $(this).data('for');
+		$('.footnoteWrapper[data-for='+forPost+']').slideToggle();
+		return false;
+	});
+
+	$(document).on('submit', 'form.footnoteWrapper', function(e) {
+		e.preventDefault();
+		var $self = $(this);
+
+		$.ajax({
+			type: 'POST',
+			url: '/roleplay-comment.php',
+			data: $self.serialize()
+		});
+
+		$self.slideUp();
+
+		var content = $self.find('input[type=text]').val();
+		var contentID = $self.find('[name=contentID]').val();
+		console.log('content:', content);
+		console.log('contentID:', contentID);
+
+		var li = $(footnoteString.replace('{{CONTENT}}', content));
+		console.log('li:', li);
+		$('.footnote-list[data-for=' + contentID +']').append(li);
+
+		$self.find('input[type=text]').val('');
+
+		return false;
+	});
+
+	$(document).on('keypress', '.characterSearch', function(e) {
+		if ( e.which == 13 ) return false;
+	});
+
+	$(document).on('click', '.submitTaggedCharacters', function() {
+		var self = this;
+		var forPost = $(this).data('for');
+		var postsTaggedCharacters = window.taggedCharacters[forPost];
+
+		$('.tagging-status[data-for='+forPost+']').html('Tagging...');
+
+		$.post('/roleplay/{ROLEPLAY_URL}/post/' + forPost + '/tags', { characters: postsTaggedCharacters }, function(data) {
+			console.log(data.characters);
+
+			for (var characterID in data.characters) {
+				var character = data.characters[characterID];
+				$('<a href="/roleplay/{ROLEPLAY_URL}/characters/'+character.url+'/"><img src="/roleplay/{ROLEPLAY_URL}/characters/'+character.url+'/image" style="height:50px;" /></a>').hide().appendTo('.postCharacterList[data-for='+forPost+']').fadeIn();
+			}
+
+      window.taggedCharacters[forPost] = [];
+
+			$('.taggingStatus[data-for='+forPost+']').html('Tagged!');
+			$('.taggedCharacters[data-for='+forPost+']').html('');
+
+			setTimeout(function() {
+				$('.taggingStatus[data-for='+forPost+']').slideUp();
+				$('.taggingStatus[data-for='+forPost+']').html('').show();
+				$('.characterTagging[data-for={activity.ID}]').slideUp();
+			}, 5000);
+
+		});
+	});
+
+  // lifting from roleplay_posting
+  $(document).on('keypress', '#characterSearch', function(e) {
+    if ( e.which == 13 ) return false;
+  });
+
+  $(document).on('click', '#addAllCharactersButton', function() {
+    $('#lastTagged .previouslyTagged').each(function(i, item) {
+      taggedCharacters.push($(item).data('character-id'));
+      $('#taggedCharacterList').val(taggedCharacters);
+      $(item).appendTo('#taggedCharacters');
+    });
+  });
+
+  $(document).on('click', '.previouslyTagged', function() {
+    taggedCharacters.push($(this).data('character-id'));
+    $('#taggedCharacterList').val(taggedCharacters);
+    $(this).appendTo('#taggedCharacters');
+  });
+
+// hello, controls.
+$(document).on('click', '*[data-action=toggle-element]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var elementID = $self.attr('href');
+  $('.hide-on-other').slideUp();
+  $(elementID).slideToggle();
+  return false;
+});
+
+$(document).on('click', '*[data-action=delete-content]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var contentID = $self.data('content-id');
+
+  $.getJSON('/content/'+contentID, function(details) {
+    var $post = $('#content-review-modal #content-review-post-content');
+    var $chat = $('#content-review-modal #content-review-chat-content');
+
+    if (details.content) {
+      $post.html(details.content.text);
+    }
+    if (details.message) {
+      $('.chat-detail').removeClass('chat-detail');
+      $chat.html(details.message.text);
+    }
+
+    $('#content-review-modal').dialog({
+      modal: true,
+      width: 500,
+      buttons: {
+        "Cancel": function() {
+          $(this).dialog('close');
+        },
+        "Yes, delete this post": function() {
+          $(this).dialog('close');
+          $.ajax({
+            type: 'DELETE',
+            url: '/content/'+contentID,
+            success: function(msg) {
+              alert(msg);
+            }
+          });
+        }
+      }
+    });
+
+  });
+
+  return false;
+
+});
+
+$(document).on('click', '*[data-action=flag-content]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  console.log('hey!', $self.data('content-id'));
+
+  $('*[id^=content-controls-').slideUp();
+
+  if ($controls.data('state') == 'shown') {
+    return $controls.slideUp().data('state', 'hidden');
+  }
+
+  var emptyButton = $('<a href="#" class="button block" data-action="queue-content-deletion" data-content-id="'+$self.data('content-id')+'">This post is empty.</a>');
+  var duplicateButton = $('<a href="#" class="button block" data-action="queue-content-merge" data-content-id="'+$self.data('content-id')+'">This post is a duplicate.</a>');
+  var tagButton = $('<a href="#" class="button block" data-action="queue-character-tag" data-content-id="'+$self.data('content-id')+'">Characters are missing from the tags.</a>');
+  var moveButton = $('<a href="#" class="button block" data-action="queue-location-move" data-content-id="'+$self.data('content-id')+'">This post belongs in another location.</a>');
+  var oocButton = $('<a href="#" class="button block" data-action="queue-content-edit" data-content-id="'+$self.data('content-id')+'">This post contains OOC content.</a>');
+  var reviewButton = $('<a href="#" class="button block" data-action="queue-review" data-content-id="'+$self.data('content-id')+'">This post violates one or more of this roleplay\'s rules.</a>');
+
+  $controls.hide();
+  $controls.data('state', 'hidden');
+  $controls.html('');
+
+  $controls.append(emptyButton);
+  $controls.append(duplicateButton);
+  $controls.append(tagButton);
+  $controls.append(moveButton);
+  $controls.append(oocButton);
+  $controls.append(reviewButton);
+
+  $controls.slideDown();
+  $controls.data('state', 'shown');
+
+  return false;
+});
+
+$(document).on('click', '*[data-action=queue-content-deletion]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  $.ajax({
+    type: 'POST',
+    url: '/roleplay-comment.php',
+    headers: {
+      'Accept': 'application/json'
+    },
+    data: {
+      'content': 'post is empty, should likely be deleted',
+      'contentID': $self.data('content-id'),
+      'attachment[type]': 'content',
+    }
+  });
+
+  $controls.slideUp(function() {
+    $(this).html('');
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[data-action=queue-content-merge]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  $.ajax({
+    type: 'POST',
+    url: '/roleplay-comment.php',
+    headers: {
+      'Accept': 'application/json'
+    },
+    data: {
+      'content': 'possible duplicate content',
+      'contentID': $self.data('content-id'),
+      'attachment[type]': 'content',
+    }
+  });
+
+  $controls.slideUp(function() {
+    $(this).html('');
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[data-action=queue-character-tag]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  if (confirm('If you know which characters belong in this post, you can use the "tag characters" button on the right hand side to add them.  Do you want to do that now?\n\nClicking "cancel" will submit this report.')) {
+    $('.characterTagging[data-for='+$self.data('content-id')+']').slideToggle();
+    $('*[name=characterSearch][data-for='+$self.data('content-id')+']').focus();
+  } else {
+    $.ajax({
+      type: 'POST',
+      url: '/roleplay-comment.php',
+      headers: {
+        'Accept': 'application/json'
+      },
+      data: {
+        'content': 'missing character tags',
+        'contentID': $self.data('content-id'),
+        'attachment[type]': 'content',
+      }
+    });
+  }
+
+  $controls.slideUp(function() {
+    $(this).html('');
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[data-action=queue-location-move]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  $.ajax({
+    type: 'POST',
+    url: '/roleplay-comment.php',
+    headers: {
+      'Accept': 'application/json'
+    },
+    data: {
+      'content': 'possible wrong location',
+      'contentID': $self.data('content-id'),
+      'attachment[type]': 'content',
+    }
+  });
+
+  $controls.slideUp(function() {
+    $(this).html('');
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[data-action=queue-content-edit]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  $.ajax({
+    type: 'POST',
+    url: '/roleplay-comment.php',
+    headers: {
+      'Accept': 'application/json'
+    },
+    data: {
+      'content': 'contains OOC content, needs edit',
+      'contentID': $self.data('content-id'),
+      'attachment[type]': 'content',
+    }
+  });
+
+  $controls.slideUp(function() {
+    $(this).html('');
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[data-action=queue-review]', function(e) {
+  e.preventDefault();
+  var $self = $(this);
+  var $controls = $('#content-controls-'+$self.data('content-id'));
+
+  $.ajax({
+    type: 'POST',
+    url: '/roleplay-comment.php',
+    headers: {
+      'Accept': 'application/json'
+    },
+    data: {
+      'content': 'contains rule violation, needs review',
+      'contentID': $self.data('content-id'),
+      'attachment[type]': 'content',
+    }
+  });
+
+  $controls.slideUp(function() {
+    $(this).html('');
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[on-tap=_fillOrder]', function(e) {
+  var self = this;
+  var link = $(self).data('link');
+  var price = $(self).data('price');
+  var target = $(self).data('target'); // characterID for items
+  var agree = confirm('Are you sure you want to buy "' + link + '"?  ' + price + ' INK will be deducted from your account.');
+
+  var wallet = $('*[data-link="/members/{S_USER_ID}"][data-bind="stats.balance"]');
+  var balance = parseFloat(wallet.html().replace(',', ''));
+  
+  if (agree) {
+    wallet.html((balance - parseFloat(price)).toFixed(2));
+
+    var data = {
+      order: link,
+      amount: price
+    };
+
+    if (target) {
+      data.target = target;
+    }
+
+    $.ajax({
+      url: '/transactions',
+      type: 'POST',
+      data: data,
+      success: function(data) {
+        if (!data) return alert('Unexpected response:', data);
+        if (data.status == 'success') {
+          alert(data.message);
+        } else {
+          alert('Error: ' + data.message);
+        }
+      },
+      error: function(data) {
+        if (data && data.message && data.status == 'error') {
+          alert(data.message);
+        } else {
+          alert('Unexpected response:', data);
+        }
+      }
+    });
+  }
+
+  return false;
+});
+
+$(document).on('click', '*[on-tap=_confirmShopBuy]', function(e) {
+  var self = this;
+  var link = $(self).data('link');
+  var name = $(self).data('name');
+  var price = $(self).data('price');
+  var target = $(self).data('target'); // characterID for items
+  var agree = confirm('Are you sure you want to buy "' + name + '"?  ' + price + ' INK will be deducted from your account.');
+
+  var wallet = $('*[data-link="/members/{S_USER_ID}"][data-bind="stats.balance"]');
+  var balance = parseFloat(wallet.html().replace(',', ''));
+  
+  if (agree) {
+    wallet.html((balance - parseFloat(price)).toFixed(2));
+
+    var data = {
+      amount: price
+    };
+
+    if (target) {
+      data.for = target;
+    }
+
+    $.ajax({
+      url: '/transactions',
+      type: 'POST',
+      data: data,
+      success: function(data) {
+        if (!data) return alert('Unexpected response:', data);
+        if (data.status == 'success') {
+          alert(data.message);
+        } else {
+          alert('Error: ' + data.message);
+        }
+      },
+      error: function(data) {
+        if (data && data.message && data.status == 'error') {
+          alert(data.message);
+        } else {
+          alert('Unexpected response:', data);
+        }
+      }
+    });
+  }
+
+  return false;
+});
+
+$(document).on('click', '*[on-tap=_fillOrderToCharacter]', function(e) {
+  var self = this;
+  var link = $(self).data('link');
+  var price = $(self).data('price');
+  // TODO: use selector/dropdown
+  var target = prompt('Enter the character ID you wish to transfer to.');
+  var agree = confirm('Are you sure you want to buy "' + link + '"?  ' + price + ' INK will be deducted from your account.');
+
+  var wallet = $('*[data-link="/members/{S_USER_ID}"][data-bind="stats.balance"]');
+  var balance = parseFloat(wallet.html().replace(',', ''));
+  
+  if (agree) {
+    wallet.html((balance - parseFloat(price)).toFixed(2));
+    
+    var data = {
+      order: link
+    };
+    
+    if (target) {
+      data.target = target;
+    }
+    
+    $.ajax({
+      url: '/transactions',
+      type: 'POST',
+      data: data,
+      success: function(data) {
+        if (!data) return alert('Unexpected response:', data);
+        if (data.status == 'success') {
+          alert(data.message);
+        } else {
+          alert('Error: ' + data.message);
+        }
+      },
+      error: function(data) {
+        if (data && data.message && data.status == 'error') {
+          alert(data.message);
+        } else {
+          alert('Unexpected response:', data);
+        }
+      }
+    });
+  }
+  
+  return false;
+});
+
+$(document).on('click', '*[on-tap=_promptToEarn]', function(e) {
+  var self = this;
+  var link = $(self).data('link');
+  
+  alert('Earn Achievements to acquire more INK.');
+  
+  return false;
+});
+
+$(document).on('click', '*[on-tap=_cancelOrder]', function(e) {
+  var self = this;
+  var agree = confirm('Are you sure you want to cancel this order?');
+  if (agree) {
+    var link = $(self).data('link');
+
+    $.ajax({
+      url: link,
+      type: 'PATCH',
+      data: {
+        status: 'closed'
+      },
+      success: function(data) {
+        alert('Order closed!');
+      }
+    });
+  }
+  
+  return false;
+});
+  
+$(document).on('click', '*[on-tap=_promptAndSetPrice]', function(e) {
+  var self = this;
+  var price = prompt('What would you like to set the price to?');
+  if (price) {
+    var link = $(self).data('link');
+
+    $.ajax({
+      url: '/orders',
+      type: 'POST',
+      data: {
+        asset: link,
+        price: price
+      },
+      success: function(data) {
+        if (!data) return alert('Unexpected response:', data);
+        if (data.status == 'success') {
+          alert(data.message);
+        } else {
+          alert('Error: ' + data.message);
+        }
+      }
+    });
+  }
+  
+  return false;
+});
+
+
+$(document).on('click', '*[on-tap=_followCharacter]', function(e) {
+  var self = this;
+  var link = $(self).data('link');
+  var id = $(self).data('id');
+  var current = parseInt($('*[data-link="/characters/261332"][data-bind="/stats/followers"]').html());
+
+  $.ajax({
+    url: link,
+    type: 'POST',
+    success: function(data) {
+      if (!data) return alert('Unexpected response:', data);
+      if (data.status == 'success') {
+        alert(data.message);
+        $('*[data-link="' + link + '"][data-bind="/stats/followers"]').html('' + current + 1);
+        $(self).replaceWith('<span class="button">following!</span>');
+      } else {
+        alert('Error: ' + data.message);
+      }
+    }
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[on-tap=_unfollowCharacter]', function(e) {
+  var self = this;
+  var link = $(self).data('link');
+  var id = $(self).data('id');
+  
+  $.ajax({
+    url: link + '/{USER_ID}',
+    type: 'DELETE',
+    success: function(data) {
+      if (!data) return alert('Unexpected response:', data);
+      if (data.status == 'success') {
+        alert(data.message);
+        
+        $(self).replaceWith('<span class="button">unfollowed!</span>');
+        
+      } else {
+        alert('Error: ' + data.message);
+      }
+    }
+  });
+
+  return false;
+});
+
+$(document).on('click', '*[on-tap=_confirmTip]', function (e) {
+  console.log('tapped!');
+  
+  $(this).addClass('loading');
+  
+  var amount = parseFloat($(this).data('amount'));
+  var wallet = $('*[data-link="/members/{S_USER_ID}"][data-bind="stats.balance"]');
+  var jar = $('*[data-link="/topics/{TOPIC_ID}"][data-bind="stats.tips"]');
+  
+  console.log('found:', jar);
+  console.log('amount:', amount);
+  
+  var balance = parseFloat(wallet.html().replace(',', ''));
+  wallet.html((balance - amount).toFixed(2));
+  
+  $.ajax({
+    url: '/transactions',
+    type: 'POST',
+    data: {
+      to: '{POSTER_ID}',
+      for: '/topics/{TOPIC_ID}',
+      amount: amount
+    },
+    success: function (data) {
+      var before = parseFloat(jar.html());
+      var after = before + amount;
+      
+      console.log('before:', before);
+      console.log('after:', after);
+      
+      jar.html(after.toFixed(2));
+    }
+  });
+
+});
+
+$(document).on('click', '*[on-tap=_promptToTip]', function (e) {
+  console.log('tapped post!');
+  
+  $(this).addClass('loading');
+  
+  var amount = parseFloat($(this).data('amount'));
+  var link = $(this).data('link');
+  var author = $(this).data('author'); // eventually will be P2SH
+  
+  var wallet = $('*[data-link="/members/{S_USER_ID}"][data-bind="stats.balance"]');
+  var jar = $('*[data-link="' + link + '"][data-bind="stats.tips"]');
+
+  console.log('found:', jar);
+  console.log('amount:', amount);
+
+  var balance = parseFloat(wallet.html().replace(',', ''));
+  wallet.html((balance - amount).toFixed(2));
+  
+  $.ajax({
+    url: '/transactions',
+    type: 'POST',
+    data: {
+      to: author,
+      for: link,
+      amount: amount
+    },
+    success: function (data) {
+      var before = parseFloat(jar.html());
+      var after = before + amount;
+      
+      console.log('before:', before);
+      console.log('after:', after);
+      
+      jar.html(after.toFixed(2));
+    }
+  });
+
+});
+
+$(document).on('click', '*[on-tap=_promptToPayUniverse]', function (e) {
+  console.log('tapped universe donate!');
+  
+  $(this).addClass('loading');
+  
+  var amount = parseFloat($(this).data('amount'));
+  var link = $(this).data('link');
+  var universe = $(this).data('universe'); // eventually will be P2SH
+  
+  var wallet = $('*[data-link="/members/{S_USER_ID}"][data-bind="stats.balance"]');
+  var jar = $('*[data-link="' + link + '"][data-bind="stats.tips"]');
+
+  console.log('found:', jar);
+  console.log('amount:', amount);
+
+  var balance = parseFloat(wallet.html().replace(',', ''));
+  wallet.html((balance - amount).toFixed(2));
+  
+  $.ajax({
+    url: '/transactions',
+    type: 'POST',
+    data: {
+      to: universe,
+      for: link,
+      amount: amount
+    },
+    success: function (data) {
+      var before = parseFloat(jar.html());
+      var after = before + amount;
+      
+      console.log('before:', before);
+      console.log('after:', after);
+      
+      jar.html(after.toFixed(2));
+    }
+  });
+});
+
+$(document).on('click', '*[on-tap=_joinQuestWithCharacter]', function (e) {
+  var $this = $(this);
+  $this.addClass('loading');
+
+  var quest = $this.data('quest');
+  var character = $this.data('character');
+
+  console.log('quest and character:', quest, character);
+
+  $.ajax({
+    url: '/quests/' + quest + '/characters',
+    type: 'POST',
+    data: {
+      character: character
+    },
+    success: function (data) {
+      $this.removeClass('loading');
+      $this.replaceWith(`<span>Joined!</span>`);
+    }
+  });
+});
+
+$(document).on('click', '*[data-action="toggle-source"]', function (e) {
+  e.preventDefault();
+
+  $('#source').slideToggle();
+
+  return false;
+});
+
+</script>

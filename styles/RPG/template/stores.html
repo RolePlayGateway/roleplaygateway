@@ -1,0 +1,104 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<style type="text/css">
+  .panel p {
+    min-height: 0;
+  }
+  
+  .labeled.action > div {
+    text-align: center;
+  }
+  
+  .labeled.action > div > span {
+    font-size: 1.4em;
+  }
+</style>
+
+<!-- IF S_IS_SINGLE -->
+<a href="{PLACE_LINK}"><img src="{PLACE_IMAGE_LINK}" class="crisp-border quick-float-left" /></a>
+<div>
+  <h1>{STORE_NAME}</h1>
+  <h3>a shop in <a href="{PLACE_LINK}">{PLACE_NAME}</a>, a fictional setting in <a href="{UNIVERSE_LINK}">{UNIVERSE_NAME}</a></h3>
+  <p class="supersize">{STORE_DESCRIPTION}</p>
+</div>
+
+<div class="clearfix special panel" style="margin-top: 1em;">
+  <div>
+    <!-- BEGIN wares -->
+    <div>
+      <h3>
+        <span class="quick-float-right">
+          <a class="button" href="#" on-tap="_confirmShopBuy" data-name="{wares.NAME}" data-price="{wares.PRICE}" data-target="/stores/{STORE_ID}/items/{wares.ID}">Buy <small>w/</small> INK<br /><small><abbr title="{wares.PRICE} INK (1,000,000 bits per INK)">{wares.PRICE_IN_BITS} bits &raquo;</small></a>
+        </span>
+        {wares.NAME}
+        <small><strong>{wares.INVENTORY}</strong> remaining</small>
+        <small><abbr title="{wares.PRICE} INK (1,000,000 bits per INK)">{wares.PRICE_IN_BITS}</abbr> bits</small>
+      </h3>
+      <p>{wares.DESCRIPTION}</p>
+    </div>
+    <!-- BEGINELSE -->
+    <p>No items are available for sale in this store!  Ask the owner to use the <code>/sell</code> command to list their wares.</p>
+    <!-- END wares -->
+  </div>
+</div>
+
+<!-- ELSE -->
+
+<h1>RPG Stores</h1>
+<p>Offer others resources in exchange for cash.</p>
+
+<!-- IF S_IS_ITEM_CREATOR -->
+<div class="special panel">
+  <div class="quick-float-right">
+    <div class="labeled action">
+      <div><s><span data-bind data-link>1,000</span> <small>INK</small></s> <abbr title="Free for a limited time!">free</abbr>!</div>
+      <center><!-- IF S_CAN_AFFORD -->✓ affordable!<!-- ENDIF --></center>
+    </div>
+    <center>Not enough INK?  Try selling something in <a href="/orders">the marketplace</a>.</center>
+  </div>
+
+  <form action="/stores" method="POST">
+    <fieldset>
+      <label>
+        <h3>Name</h3>
+        <p>The human-friendly name of your store.</p>
+      </label>
+      
+      <input class="supersize" type="text" name="name" max="25" placeholder="e.g., &ldquo;Joe's Crab Shack&rdquo;" />
+    </fieldset>
+
+    <fieldset>
+      <label>
+        <h3>Location</h3>
+        <p>Where will players be able to interact with this store?</p>
+      </label>
+      
+      <select name="placeID">
+        <!-- BEGIN places -->
+        <option value="{places.ID}">{places.NAME}</option>
+        <!-- END places -->
+      </select>
+    </fieldset>
+
+    <fieldset style="text-align: right;">
+      <button type="submit" class="button">Open This Store &raquo;</button>
+    </fieldset>
+  </form>
+</div>
+<!-- ENDIF -->
+
+<h2>Open Stores</h2>
+<div class="special panel">
+  <!-- BEGIN stores -->
+  <div>
+    <h3><a href="{stores.LINK}">{stores.NAME}</a>, located in <a href="{stores.LOCATION_LINK}">{stores.LOCATION_NAME}</a></h3>
+    <p>{stores.DESCRIPTION}</p>
+  </div>
+  <!-- END stores -->
+</div>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

@@ -23,20 +23,32 @@
 
 <div id="controls" class="quick-float-right">
   <!-- IF S_CAN_EDIT -->
-  <a href="/ucp.php?i=characters&amp;mode=edit&amp;character_id={CHARACTER_ID}" class="button">Edit</a>
-  <!-- ENDIF -->
   <!-- IF S_IS_BETA -->
-    <div class="special button group">
-      <div class="metric">
-        <div data-link="/characters/{CHARACTER_ID}" data-bind="/stats/followers">{FOLLOWER_COUNT}</div>
-        <small>followers</small>
-      </div>
-      <!-- IF S_IS_FOLLOWING -->
-        <span class="action" on-tap="_unfollowCharacter" data-id="{CHARACTER_ID}" data-link="/characters/{CHARACTER_ID}/followers/{USER_ID}"><abbr title="You are receiving notifications when this character is tagged.  Press to stop.">unfollow</abbr></span>
-      <!-- ELSE -->
-        <span class="action" on-tap="_followCharacter" data-id="{CHARACTER_ID}" data-link="/characters/{CHARACTER_ID}/followers"><abbr title="You'll receive a notification when this character is tagged in a post.">follow</abbr></span>
-      <!-- ENDIF -->
+    <a class="button" href="/explorer?characterID={CHARACTER_ID}&amp;roleplayID={ROLEPLAY_ID}">Explore &raquo;</a>
+    <a class="button" href="/roleplay/{ROLEPLAY_URL}/characters/{CHARACTER_URL}/inventory">Inventory &raquo;</a>
+  <!-- ENDIF -->
+  
+  <a class="button" href="/ucp.php?i=characters&amp;mode=edit&amp;character_id={CHARACTER_ID}">Edit</a>
+  <!-- ENDIF -->
+
+  <div class="special button group">
+    <div class="metric">
+      <div data-link="/characters/{CHARACTER_ID}" data-bind="/stats/followers">{FOLLOWER_COUNT}</div>
+      <small>followers</small>
     </div>
+    <!-- IF S_IS_FOLLOWING -->
+      <span class="action" on-tap="_unfollowCharacter" data-id="{CHARACTER_ID}" data-link="/characters/{CHARACTER_ID}/followers/{USER_ID}"><abbr title="You are receiving notifications when this character is tagged.  Press to stop.">unfollow</abbr></span>
+    <!-- ELSE -->
+      <span class="action" on-tap="_followCharacter" data-id="{CHARACTER_ID}" data-link="/characters/{CHARACTER_ID}/followers"><abbr title="You'll receive a notification when this character is tagged in a post.">follow</abbr></span>
+    <!-- ENDIF -->
+  </div>
+  <!-- IF S_IS_BETA -->
+  <div>
+    <button data-action="toggle-source" class="button">view source &raquo;</button>
+    <div id="source" style="display: none; clear: both;">
+      <textarea class="inputbox" style="width: 100%; height: 350px;">{CHARACTER_RAW_DESCRIPTION}</textarea>
+    </div>
+  </div>
   <!-- ENDIF -->
 </div>
 
@@ -73,6 +85,22 @@
         </div>
         <div style="clear:both;"></div>
         <!-- ENDIF -->
+        
+      	<!-- IF HAS_ITEMS -->
+        <h3><a href="/roleplay/{ROLEPLAY_URL}#forge">Inventory</a></h3>
+        <div>
+          <!-- BEGIN items -->
+          <div class="group" style="width: 300px; display: inline-block; vertical-align: top;">
+            <!-- <img src="/roleplay/{ROLEPLAY_URL}/items/{items.SLUG}/logo" style="float:left; height: 30px; width: 30px; margin-right:1em;" class="crisp-border" /> -->
+            <div>
+              <a href="/items/{items.ID}"><strong>{items.NAME}</strong></a>
+            </div>
+            <span>{items.DESCRIPTION}</span>
+          </div>
+          <!-- END items -->
+        </div>
+        <div style="clear:both;"></div>
+        <!-- ENDIF -->
 
         <!-- IF CHARACTER_DESCRIPTION -->
         <h3>Description</h3>
@@ -90,7 +118,7 @@
         <h3>History</h3>
         <p style="text-align:justify;">{CHARACTER_HISTORY}</p>
         <!-- ENDIF -->
-        <!-- IF S_IS_BETA -->
+        <!-- IF S_IS_ALPHA -->
         <button onclick="myFunction(stats)">Display Stats</button>
         <script type="text/javascript">function myFunction(stats) {
             var x = document.getElementById('stats');

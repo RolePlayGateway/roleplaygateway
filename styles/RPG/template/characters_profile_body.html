@@ -1,0 +1,272 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<style type="text/css">
+.special.button.group {
+  text-align: center;
+  display: inline-block;
+}
+.button.group .metric {
+  display: block;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 0.5em;
+}
+.special.button.group .action {
+  font-size: 1.2em;
+  border-top 1px solid gray;
+}
+</style>
+
+<div id="controls" class="quick-float-right">
+  <div>
+    <div class="special button group">
+      <div class="metric">
+        <div data-link="/characters/{CHARACTER_ID}" data-bind="/stats/followers">{FOLLOWER_COUNT}</div>
+        <small>followers</small>
+      </div>
+      <!-- IF S_IS_OWNER -->
+      <!-- ELSE -->
+      <!-- IF S_IS_FOLLOWING -->
+        <span class="action" on-tap="_unfollowCharacter" data-id="{CHARACTER_ID}" data-link="/characters/{CHARACTER_ID}/followers/{USER_ID}"><abbr title="You are receiving notifications when this character is tagged.  Press to stop.">unfollow</abbr></span>
+      <!-- ELSE -->
+        <span class="action" on-tap="_followCharacter" data-id="{CHARACTER_ID}" data-link="/characters/{CHARACTER_ID}/followers"><abbr title="You'll receive a notification when this character is tagged in a post.">follow</abbr></span>
+      <!-- ENDIF -->
+      <!-- ENDIF -->
+    </div>
+    <!-- IF S_IS_OWNER --><a class="supersize button" href="/explorer?characterID={CHARACTER_ID}&amp;roleplayID={ROLEPLAY_ID}">Play &raquo;</a><!-- ENDIF -->
+  </div>
+  <!-- IF S_IS_BETA -->
+  <!-- IF S_SOURCE_ENABLED -->
+  <div>
+    <button data-action="toggle-source" class="button">view source &raquo;</button>
+    <div id="source" style="display: none; clear: both;">
+      <textarea class="inputbox" style="width: 100%; height: 350px;">{CHARACTER_RAW_DESCRIPTION}</textarea>
+    </div>
+  </div>
+  <!-- ENDIF -->
+  <!-- ENDIF -->
+</div>
+
+<img src="/universes/{ROLEPLAY_URL}/characters/{CHARACTER_URL}/image" style="float:left; height:100px; width:100px; margin-right:10px;" class="crisp-border" />
+
+<div>
+  <h2 style="margin-top: 0; margin-bottom: 0; display: inline-block;">{CHARACTER_NAME}</h2>
+  <!-- IF S_CAN_EDIT -->
+  <a class="button" href="/ucp.php?i=characters&amp;mode=edit&amp;character_id={CHARACTER_ID}">📝 Edit</a>
+  <!-- IF S_IS_OWNER -->
+  <a class="button" on-tap="_promptAndSetPrice" data-link="/characters/{characters.ID}">💰 sell</a>
+  <!-- ENDIF -->
+  <!-- IF S_IS_BETA -->
+  <a class="button" href="/universes/{ROLEPLAY_URL}/characters/{CHARACTER_URL}/inventory"><small>#beta</small> Inventory &raquo;</a>
+  <!-- ENDIF -->
+  <!-- ENDIF -->
+</div>
+<p class="content" style="padding:5px; min-height:0; margin-bottom: 5px;">{CHARACTER_SYNOPSIS}</p>
+
+<div class="clearfix" style="margin-top: 1em;">
+  <h3 class="header" style="display: inline-block; float: right;">{SOV_LEVEL} &middot; {CHARACTER_VIEW_COUNT} views &middot; located in <a href="/universes/{ROLEPLAY_URL}/places/{PLACE_URL}" style="margin-left: 3px;"><img src="/universes/{ROLEPLAY_URL}/places/{PLACE_URL}/image" class="tiny crisp-border" style="margin-right: 0.5em;" />{PLACE_NAME}</a></h3>
+  <h3 class="header" style="margin-top: 1em; vertical-align: top;">a character in &ldquo;<a href="/universes/{ROLEPLAY_URL}/">{ROLEPLAY_NAME}</a>&rdquo;<!-- IF S_CHARACTER_ANONYMOUS --><!-- ELSE -->, <!-- IF S_IS_NEW_OWNER -->originally authored by {CREATOR_USERNAME}, <!-- ENDIF -->as played by {OWNER_USERNAME}<!-- ENDIF --></h3>
+</div>
+
+<!-- IF S_TRACKING_IS_WELCOME -->
+<div>
+  <g:plusone annotation="inline" href="/universes/{ROLEPLAY_URL}/characters/{CHARACTER_URL}"></g:plusone>
+</div>
+<!-- ENDIF -->
+
+<div class="panel">
+  <div class="inner"><span class="corners-top"><span></span></span>
+    <div class="postbody" style="width:100%;">
+      <div class="">
+        <!-- IF .equipment_slots -->
+        <h4>Equipment</h4>
+        <!-- BEGIN equipment_slots -->
+        <h5>{equipment_slots.SLOT_NAME}: <a href="/items/{equipment_slots.ITEM_ID}">{equipment_slots.ITEM_NAME}</a></h5>
+        <!-- END equipment_slots -->
+        <!-- ENDIF -->
+
+
+      	<!-- IF HAS_GROUPS -->
+        <h3><a href="/universes/{ROLEPLAY_URL}/groups">Groups</a></h3>
+        <div>
+          <!-- BEGIN groups -->
+          <div class="group" style="width: 300px; display: inline-block; vertical-align: top;">
+            <img src="/universes/{ROLEPLAY_URL}/groups/{groups.SLUG}/logo" style="float:left; height: 30px; width: 30px; margin-right:1em;" class="crisp-border" />
+            <div>
+              <a href="/universes/{ROLEPLAY_URL}/groups/{groups.SLUG}"><strong>{groups.NAME}</strong></a>
+            </div>
+            <span>{groups.SYNOPSIS}</span>
+          </div>
+          <!-- END groups -->
+        </div>
+        <div style="clear:both;"></div>
+        <!-- ENDIF -->
+
+      	<!-- IF HAS_ITEMS -->
+        <h3><a href="/universes/{ROLEPLAY_URL}#forge">Inventory</a></h3>
+        <div>
+          <!-- BEGIN items -->
+          <div class="group" style="width: 300px; display: inline-block; vertical-align: top;">
+            <img src="/universes/{ROLEPLAY_URL}/items/{items.ID}/image" style="float:left; height: 30px; width: 30px; margin-right:1em;" class="crisp-border" />
+            <div>
+              <a href="/items/{items.ID}"><strong>{items.NAME}</strong></a>
+            </div>
+            <span>{items.DESCRIPTION}</span>
+          </div>
+          <!-- END items -->
+        </div>
+        <div style="clear:both;"></div>
+        <!-- ENDIF -->
+
+        <!-- IF CHARACTER_DESCRIPTION -->
+        <h3>Description</h3>
+        <div style="text-align:justify;" class="content">{CHARACTER_DESCRIPTION}</div>
+        <!-- ENDIF -->
+        <!-- IF CHARACTER_PERSONALITY -->
+        <h3>Personality</h3>
+        <p style="text-align:justify;">{CHARACTER_PERSONALITY}</p>
+        <!-- ENDIF -->
+        <!-- IF CHARACTER_EQUIPMENT -->
+        <h3>Equipment</h3>
+        <p style="text-align:justify;">{CHARACTER_EQUIPMENT}</p>
+        <!-- ENDIF -->
+        <!-- IF CHARACTER_HISTORY -->
+        <h3>History</h3>
+        <p style="text-align:justify;">{CHARACTER_HISTORY}</p>
+        <!-- ENDIF -->
+        <!-- IF S_IS_ALPHA -->
+        <button onclick="myFunction(stats)">Display Stats</button>
+        <script type="text/javascript">function myFunction(stats) {
+            var x = document.getElementById('stats');
+            if (x.style.display === 'none') {
+                x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+            }
+        }</script>
+        <div id="stats">
+        <h3>Statistics</h3>
+        <b><u>Body</u></b><br>
+        <b>Power</b><br>
+        F: <input type="radio" name="POW" value="-8"> | D: <input type="radio" name="POW" value="-4"> | C: <input type="radio" name="POW" value="0"> | B: <input type="radio" name="POW" value="4"> | A: <input type="radio" name="POW" value="8"> | S: <input type="radio" name="POW" value="12">
+        <br>
+        <b>Agility</b><br>
+        F: <input type="radio" name="AGI" value="-8"> | D: <input type="radio" name="AGI" value="-4"> | C: <input type="radio" name="AGI" value="0"> | B: <input type="radio" name="AGI" value="4"> | A: <input type="radio" name="AGI" value="8"> | S: <input type="radio" name="AGI" value="12">
+        <br>
+        <b>Endurance</b><br>
+        F: <input type="radio" name="END" value="-8"> | D: <input type="radio" name="END" value="-4"> | C: <input type="radio" name="END" value="0"> | B: <input type="radio" name="END" value="4"> | A: <input type="radio" name="END" value="8"> | S: <input type="radio" name="END" value="12">
+        <br><br><b><u>Mind</u></b><br>
+        <b>Logic</b><br>
+        F: <input type="radio" name="LOG" value="-8"> | D: <input type="radio" name="LOG" value="-4"> | C: <input type="radio" name="LOG" value="0"> | B: <input type="radio" name="LOG" value="4"> | A: <input type="radio" name="LOG" value="8"> | S: <input type="radio" name="LOG" value="12">
+        <br>
+        <b>Intuition</b><br>
+        F: <input type="radio" name="INT" value="-8"> | D: <input type="radio" name="INT" value="-4"> | C: <input type="radio" name="INT" value="0"> | B: <input type="radio" name="INT" value="4"> | A: <input type="radio" name="INT" value="8"> | S: <input type="radio" name="INT" value="12">
+        <br>
+        <b>Charm</b><br>
+        F: <input type="radio" name="CHA" value="-8"> | D: <input type="radio" name="CHA" value="-4"> | C: <input type="radio" name="CHA" value="0"> | B: <input type="radio" name="CHA" value="4"> | A: <input type="radio" name="CHA" value="8"> | S: <input type="radio" name="CHA" value="12">
+        <br><br><b><u>Magic</u></b><br>
+        <b>Invocation</b><br>
+        F: <input type="radio" name="INV" value="-8"> | D: <input type="radio" name="INV" value="-4"> | C: <input type="radio" name="INV" value="0"> | B: <input type="radio" name="INV" value="4"> | A: <input type="radio" name="INV" value="8"> | S: <input type="radio" name="INV" value="12">
+        <br>
+        <b>Shielding</b><br>
+        F: <input type="radio" name="SHI" value="-8"> | D: <input type="radio" name="SHI" value="-4"> | C: <input type="radio" name="SHI" value="0"> | B: <input type="radio" name="SHI" value="4"> | A: <input type="radio" name="SHI" value="8"> | S: <input type="radio" name="SHI" value="12">
+        <br>
+        <b>Influence</b><br>
+        F: <input type="radio" name="INF" value="-8"> | D: <input type="radio" name="INF" value="-4"> | C: <input type="radio" name="INF" value="0"> | B: <input type="radio" name="INF" value="4"> | A: <input type="radio" name="INF" value="8"> | S: <input type="radio" name="INF" value="12">
+          <br>
+          <br>
+          <h3>Defenses</h3>
+            <i>HP:</i> <input type="number" value="30" min="0" max="50"><br>
+            <i>Fortitude Defense:</i> <input type="number" value="10" min="0" max="22"><br>
+            <i>Reflex Defense:</i> <input type="number" value="10" min="0" max="22"><br>
+            <i>Will Defense:</i> <input type="number" value="10" min="0" max="22"><br>
+          <br>
+          <br>
+          <h3>Skills</h3>
+          <b>Skills Equipped:</b> <input type="number" name="Skill Amount" value="0" min="0" max="5">
+          <br>
+          <br>
+          <b>Skill Name:</b> <input type="text" name="Skill Name 1" value="N/A">
+          <b>Description:</b> <input type="text" name="Skill Desc. 1" value="N/A">
+          <br>
+          <br>
+          <b>Skill Name:</b> <input type="text" name="Skill Name 2" value="N/A">
+          <b>Description:</b> <input type="text" name="Skill Desc. 2" value="N/A">
+          <br>
+          <br>
+          <b>Skill Name:</b> <input type="text" name="Skill Name 3" value="N/A">
+          <b>Description:</b> <input type="text" name="Skill Desc. 3" value="N/A">
+          <br>
+          <br>
+          <b>Skill Name:</b> <input type="text" name="Skill Name 4" value="N/A">
+          <b>Description:</b> <input type="text" name="Skill Desc. 4" value="N/A">
+          <br>
+          <br>
+          <b>Skill Name:</b> <input type="text" name="Skill Name 5" value="N/A">
+          <b>Description:</b> <input type="text" name="Skill Desc. 5" value="N/A">
+          <br>
+          <br>
+          <h3>Items</h3>
+          <b>Weapon Name:</b> <input type="text" name="weapon" value="Weapon name here"><br>
+            <i>Accuracy:</i>
+              <select name="wep-accuracy">
+                <option title="F RANK" value="-5">F (-5 to Hit)</option>
+                <option title="D RANK" value="-2">D (-2 to Hit)</option>
+                <option selected ="selected" title="C RANK" value="+0">C (+0 to Hit)</option>
+                <option title="B RANK" value="+2">B (+2 to Hit)</option>
+                <option title="A RANK" value="+5">A (+5 to Hit)</option>
+                <option title="S RANK" value="+8">S (+8 to Hit)</option>
+              </select>
+              <br>
+            <i>Damage:</i><br>
+              <select name="wep-damage">
+                <option title="F RANK" value="0">F (0 Damage)</option>
+                <option title="D RANK" value="1">D (1 Damage)</option>
+                <option selected ="selected" title="C RANK" value="3">C (3 Damage)</option>
+                <option title="B RANK" value="5">B (5 Damage)</option>
+                <option title="A RANK" value="6">A (6 Damage)</option>
+                <option title="S RANK"value="8">S (8 Damage)</option>
+              </select>
+              <br>
+            <i>Block:</i>
+              <select name="wep-block">
+                <option title="F RANK" value="0">F (0 AP)</option>
+                <option title="D RANK" value="1">D (1 AP)</option>
+                <option selected ="selected" title="C RANK" value="2">C (2 AP)</option>
+                <option title="B RANK" value="3">B (3 AP)</option>
+                <option title="A RANK" value="4">A (4 AP)</option>
+                <option title="S RANK" value="5">S (5 AP)</option>
+              </select>
+            <br><br>
+           <b>Armor:</b> <input type="text" name="armor" value="Armor name here">
+             <br><i>Kinetic Reflection:</i> <input type="number" min="0" value="0" name="KR">
+             <br><i>Energy Reflection:</i> <input type="number" min="0" value="0" name="ER">
+             <br><i>Agility to Reflex Defense</i> <input type="number" min="0" value="0" name="AGItoRefDef">
+          </div>
+        <!-- ENDIF -->
+
+        <div id="activity">
+          <h3 style="padding-top:2em;">So begins...</h3>
+          <h1><a href="/universes/{ROLEPLAY_URL}/characters/{CHARACTER_URL}#story" name="story">{CHARACTER_NAME}'s Story</a></h1>
+          <div>
+            <ul class="linklist">
+              <li class="rightside pagination">Seen <strong>{TOTAL_SIGHTINGS}</strong> Times &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+            </ul>
+
+            <div id="roleplayStream">
+            <!-- INCLUDE roleplay_stream_body.html -->
+            </div>
+
+            <ul class="linklist">
+              <li class="rightside pagination">Seen <strong>{TOTAL_SIGHTINGS}</strong> Times &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- INCLUDE overall_footer.html -->

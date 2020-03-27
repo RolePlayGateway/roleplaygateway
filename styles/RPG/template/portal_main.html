@@ -1,0 +1,182 @@
+<!-- DEFINE $S_IN_INDEX = 1 -->
+<!-- INCLUDE overall_header.html -->
+
+<!-- <br /> -->
+
+<!-- $Id: portal_main.html,v 1.6 2007/04/14 02:05:17 angelside Exp $ //-->
+<style type="text/css">
+<!--
+.topiclist dd.posts_portal {
+	float:left;
+	text-align:left;
+	font-size: 1.1em;
+	padding:6px 5px 6px 5px;
+}
+
+ul.topiclist dt {
+	float:left;
+	width: 90%;
+	font-size: 1em;
+}
+
+.gensmall {
+	margin: 1px 1px;
+	font-size: 10px;
+}
+
+small, .small {
+	font-size:10px; 
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+
+/* Menu  listing */
+ul.menu {
+	/*border-top: 1px solid #FFFFFF;*/
+	list-style: none;
+}
+ul.menu li {
+	padding: 5px 0 4px 0;
+	border-bottom: 1px solid #CCCCCC;
+	margin: 0;
+}
+ul.menu li.last {
+	border-bottom: none;
+}
+	
+/* News listing */
+ul.news {
+	border-top: 1px solid #FFFFFF;
+	list-style: none;
+	margin-left: 0;
+}
+ul.news li {
+	padding: 5px 0 4px 0;
+	border-bottom: 1px solid #CCCCCC;
+}
+ul.news li.last {
+	border-bottom: none;
+}
+ul.news {
+	border-top: none;
+}
+ul.news li {
+	padding: 0 0 4px 0;
+	margin-bottom: 5px;
+	margin-left: 0;
+	border-bottom-color: #E0E0E0;
+}
+.postbody_portal {
+	width: 100%;
+}
+//-->
+</style>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" align="center">
+<tr>
+<!-- [+] left block area -->
+	<td width="190" valign="top" style="padding-right:6px;">
+	
+<!--// [+] social networking //-->
+	<!-- INCLUDE bb3portal/block/socialnetworking.html -->
+<!--// [-] social networking //-->
+
+<!--// [+] make a donation //-->
+		<!-- IF S_DISPLAY_PAY_S -->
+		<!-- INCLUDE bb3portal/block/donation/donation_small.html -->
+		<!-- ENDIF -->
+<!--// [-] make a donation //-->
+
+<!--// [+] latest members //-->
+		<!-- INCLUDE bb3portal/block/latest_members.html -->
+<!--// [-] latest members //-->
+
+<!--// [+] most poster //-->
+		<!-- INCLUDE bb3portal/block/most_poster.html -->
+<!--// [-] most poster //-->
+
+<!--// [+] random member //-->
+		<!-- INCLUDE bb3portal/block/random_member.html -->
+<!--// [-] random member //-->
+
+<!--// [+] link us //-->
+		<!-- INCLUDE bb3portal/block/link_us.html -->
+<!--// [-] link us //-->
+
+<!--// [+] birthday list //-->
+		<!-- IF S_DISPLAY_BIRTHDAY_LIST and BIRTHDAY_LIST -->
+		<!-- INCLUDE bb3portal/block/birthday_list.html -->
+		<!-- ENDIF -->
+<!--// [-] birthday list //-->
+
+	</td>
+<!-- [-] left block area -->
+
+<!-- [+] center block area -->
+	<td valign="top">
+
+<!--// [+] recent topic //-->
+	<!-- INCLUDE bb3portal/block/recent.html -->
+<!--// [-] recent topic //-->
+
+<!--// [+] welcome //-->
+	<!-- INCLUDE bb3portal/block/welcome.html -->
+<!--// [-] welcome //-->
+
+<!--// [+] make a donation //-->
+		<!-- IF S_DISPLAY_PAY_C -->
+		<!-- INCLUDE bb3portal/block/donation/donation.html -->
+		<!-- ENDIF -->
+<!--// [-] make a donation //-->
+
+<!--// [+] jumpbox //-->
+	<!-- INCLUDE bb3portal/block/jumpbox.html -->
+<!--// [-] jumpbox //-->
+
+	</td>
+<!-- [-] center block area -->
+
+<!-- [+] right block area -->
+	<td width="190" valign="top" style="padding-left:6px;">
+
+<!--// [+] login_box //-->
+		<!-- IF not S_USER_LOGGED_IN -->
+		<!-- INCLUDE bb3portal/block/login_box.html -->
+		<!-- ENDIF -->
+<!--// [-] login_box //-->
+		
+<!--// [+] user menu //-->
+		<!-- IF S_USER_LOGGED_IN -->
+		<!-- INCLUDE bb3portal/block/user_menu.html -->
+		<!-- ENDIF -->
+<!--// [-] user menu //-->
+
+<!--// [+] online_friends //-->
+	<!-- IF S_USER_LOGGED_IN -->
+		<!-- IF S_ZEBRA_ENABLED -->
+		<!-- INCLUDE bb3portal/block/online_friends.html -->
+		<!-- ENDIF -->
+	<!-- ENDIF -->
+<!--// [-] online_friends //-->
+
+<!--// [+] advanced stat //-->
+		<!-- INCLUDE bb3portal/block/stat_adv.html -->
+<!--// [-] advanced stat //-->
+
+<!--// [+] stat //-->
+		<!--INCLUDE bb3portal/block/stat.html-->
+<!--// [-] stat //-->
+
+<!--// [+] who is online //-->
+		<!-- IF S_DISPLAY_ONLINE_LIST -->
+		<!-- INCLUDE bb3portal/block/whos_online.html -->
+		<!-- ENDIF -->
+<!--// [-] who is online //-->
+
+	</td>
+<!-- [-] right block area -->
+</tr>
+</table>
+<!--// phpBB3 portal by Sevdin Filiz, phpbb3portal.com //-->
+<!-- INCLUDE overall_footer.html -->

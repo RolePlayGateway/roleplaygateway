@@ -1,0 +1,30 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<header>
+  <h1>Quests</h1>
+  <div>
+    <h3>Missions, Challenges, Jobs, and Journeys</h3>
+    <p>This is a list of quests that can be found across <a href="/universes">all of the Universes on RPG</a>.</p>
+  </div>
+</header>
+
+<div class="special panel">
+  <h3>{TOTAL_AVAILABLE_QUESTS} Open Quests</h3>
+
+  <div>
+    <!-- BEGIN open_quests -->
+    <div class="quest">
+      <h4>
+        <span style="float: right;">located in <a href="/roleplay/{open_quests.ROLEPLAY_URL}">{open_quests.ROLEPLAY_TITLE}</a></span>
+        <a href="/quests/{open_quests.QUEST_ID}">Quest #{open_quests.QUEST_ID} {open_quests.QUEST_NAME}</a>
+      </h4>
+      <p>{open_quests.QUEST_SYNOPSIS}</p>
+    </div>
+    <!-- END open_quests -->
+  </div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

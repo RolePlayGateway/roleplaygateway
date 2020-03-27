@@ -1,0 +1,153 @@
+<div id="activity">
+  <!-- <a href="#activity" onclick="updateStream();" name="activity">Activity (click me to refresh)</a></h2> -->
+  <!-- IF S_SINGLE_PLACE -->
+    <div class="content" style="clear:both;">
+      <div class="place-navigation">
+        <!-- IF S_IS_VEHICLE -->
+        <!-- ELSE -->
+        <!-- IF PARENT_ID -->
+        <h4>{PLACE_NAME} is a part of <a href="/universes/{URL}/places/{PARENT_SLUG}"><img src="/universes/{URL}/places/{PARENT_SLUG}/image" style="height: 1.2em; margin-right: 0.25em; vertical-align: middle;" class="crisp-border" />{PARENT_NAME}</a>.</h4>
+        <!-- ELSE -->
+        <h4>{PLACE_NAME} is a part of <a href="/universes/{URL}"><img src="/universes/{URL}/image" style="height: 1.2em; margin-right: 0.25em; vertical-align: middle;" class="crisp-border" />{TITLE}</a>.</h4>
+        <!-- ENDIF -->
+        <!-- ENDIF -->
+
+        <!-- IF .children -->
+        <style type="text/css">
+          .droppable-placeholder {
+            border: 1px dotted black;
+            width: 100px;
+            display: inline-block;
+          }
+        </style>
+
+        <h4>Places in {PLACE_NAME}:</h4>
+        <div class="children droppable sortable" style="margin-top: 0.25em;">
+          <!-- BEGIN children -->
+          <div class="place-icon draggable droppable" style="text-align:center; display: inline-block; max-width: 100px;">
+            <a href="/universes/{URL}/places/{children.SLUG}">
+              <img src="/universes/{URL}/places/{children.SLUG}/image" title="{children.SYNOPSIS}" class="crisp-border" style="height: 50px; width: 50px; display: block;" />
+              <h5>{children.NAME}</h5>
+            </a>
+            <div class="grandchildren droppable"></div>
+          </div>
+          <!-- END children -->
+          <!-- IF S_CAN_EDIT -->
+          <div class="quick-float-right">
+            <a href="/ucp.php?i=roleplays&amp;mode=add_place&amp;parent_id={PLACE_ID}&amp;roleplay_id={ID}">Add Place Here &raquo;</a>
+            <script type="text/javascript" src="/js/html.sortable.min.js"></script>
+            <script type="text/javascript">
+              sortable('.sortable', {
+                items: '.place-icon',
+                forcePlaceholderSize: true,
+                placeholderClass: 'droppable-placeholder'
+              });
+            </script>
+            <div class="clearfix"></div>
+          </div>
+          <!-- ENDIF -->
+        </div>
+        <!-- ELSE -->
+        <h4>
+          There are no Places in {PLACE_NAME}.
+          <!-- IF S_CAN_EDIT --><a href="/ucp.php?i=roleplays&amp;mode=add_place&amp;parent_id={PLACE_ID}&roleplay_id={ID}" style="float:right;">Add Place Here &raquo;</a><!-- ENDIF -->
+        </h4>
+        <!-- ENDIF -->
+      </div>
+
+      <!-- IF S_HAS_STORES -->
+      <div class="stores">
+        <h4>
+          Stores in {PLACE_NAME}
+          <!-- IF S_CAN_EDIT --><a href="/stores" style="float:right;">Create Store Here &raquo;</a><!-- ENDIF -->
+        </h4>
+        <ul>
+          <!-- BEGIN stores -->
+          <li><a href="/stores/{stores.ID}">{stores.NAME}</a></li>
+          <!-- END stores -->
+        </ul>
+      </div>
+      <!-- ENDIF -->
+
+      <h4>Some of the {TOTAL_PRESENT} Characters Present</h4>
+      <div class="characters">
+        <!-- BEGIN characters_present -->
+        <a href="/universes/{URL}/characters/{characters_present.SLUG}">
+          <img src="/universes/{URL}/characters/{characters_present.SLUG}/image" class="crisp-border" title="{characters_present.NAME}" style="height: 50px; width: 50px;" />
+        </a>
+        <!-- END characters_present -->
+      </div>
+
+      <h4>
+        <a name="description" class="anchor"></a>
+        <!-- IF S_CAN_POST -->
+        <a href="#posting" name="posting" class="button" style="float:right; clear: both;">Add Post Here &raquo;</a>
+        Description
+        <!-- ELSE -->
+        <a href="/universes/{URL}/characters/new" class="button quick-float-right"><small><small>identity required</small></small><br />Create Character &raquo;</a>
+        <!-- ENDIF -->
+      </h4>
+
+      <div style="clear: both;">
+        {PLACE_DESCRIPTION}
+      </div>
+    </div>
+  <!-- ELSE -->
+    <!-- posting button was here -->
+  <!-- ENDIF -->
+
+  <style type="text/css">
+    div.dialogue > div {
+      clear:both;
+      margin-bottom:20px;
+      margin-top:20px;
+    }
+
+    div.dialogue .speech, div.dialogue .action {
+      font-size: 1.1em;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .action {
+      font-weight: bold;
+    }
+
+    div.dialogue .speech div {
+      margin-left: 115px;
+    }
+
+    div.dialogue .speech img {
+      float:left;
+      height: 100px;
+      width:	100px;
+      margin-right: 15px;
+      border: 1px solid black;
+    }
+  </style>
+
+  <!-- IF S_IS_COMPLETED -->
+
+  <!-- ELSE -->
+    <div id="roleplayStream">
+    <!-- INCLUDE roleplay_stream_body.html -->
+    </div>
+    <ul class="linklist" style="clear:both;">
+      <li class="rightside pagination" style="font-size: 1.4em;">{TOTAL_ACTIVITY} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+    </ul>
+    <a name="posting" class="anchor"></a>
+    <div id="posting">
+      <!-- IF S_CAN_POST -->
+        <!-- IF S_IS_LOCKED -->
+          <h3>This location is currently 🔒 LOCKED.</h3>
+        <!-- ELSE -->
+          <!-- INCLUDE roleplay_posting.html -->
+        <!-- ENDIF -->
+      <!-- ELSE -->
+        <div>
+          <h2><a href="/universes/{URL}/characters/new">Create a Character to Post Here &raquo;</a></h2>
+        </div>
+      <!-- ENDIF -->
+    </div>
+  <!-- ENDIF -->
+</div>

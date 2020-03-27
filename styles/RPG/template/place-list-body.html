@@ -1,0 +1,42 @@
+<div class="forabg">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<ul class="topiclist">
+		<li class="header">
+			<dl class="icon">
+				<dt>Recently Active Settings (excluding <a href="/roleplay/the-multiverse">the Multiverse</a>)</dt>
+			</dl>
+		</li>
+	</ul>
+	<ul class="topiclist forums">
+		<!-- BEGIN places -->
+		<li class="row bg1 icon roleplay" style="clear:left; padding-bottom: 0.5em;">
+			<a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}"><img src="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}/image" alt="{places.NAME}" class="crisp-border roleplay-image" /></a>
+			<div>
+				<h3 class="simple">
+					<span style="float:right;">
+						{places.POSTS} posts &middot;
+						<a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}#characters">{places.CHARACTER_COUNT} characters present</a> &middot;
+						<span style="width: 25%;">
+							Last Activity <a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}/#roleplay{places.LAST_POST_ID}">{places.LAST_POST_DATE} &raquo;</a>
+						</span>
+					</span>
+					<!-- IF places.PARENT_ID gt 0 -->
+					<small style="display:block;">
+						<a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.PARENT_SLUG}/">{places.PARENT_NAME}</a>
+					</small>
+					&#8618;
+					<!-- ENDIF -->
+					<!-- <small># {places.ID}</small> -->
+					<a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}/">{places.NAME}</a>
+					<small><strong>Warden: {places.OWNER_USERNAME}</strong></small>
+					<small><strong>Universe: <a href="/roleplay/{places.ROLEPLAY_URL}">{places.ROLEPLAY_NAME}</a></strong></small>
+				</h3>
+			</div>
+			
+			<a class="right floated button" href="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}/#roleplay{places.LAST_POST_ID}">Read the Latest &raquo;</a>
+			<p>{places.SYNOPSIS}</p>
+		</li>
+		<!-- END places -->
+	</ul>
+	<span class="corners-bottom"><span></span></span></div>
+</div>

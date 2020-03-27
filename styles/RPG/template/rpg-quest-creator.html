@@ -1,0 +1,20 @@
+<form action="/universes/{ROLEPLAY_URL}/quests" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="quest[roleplay_id]" value="{ROLEPLAY_ID}" />
+
+  <div>
+    <label for="name">Name of Quest</label>
+    <input name="quest[name]" placeholder="i.e., &ldquo;Journey to Valaria&rdquo;" />
+  </div>
+
+  <div>
+    <label for="reward">Deposit</label>
+    <input type="number" name="quest[reward]" value="1" step="0.01" />
+  </div>
+
+  <div>
+    <label for="description">Description</label>
+    <textarea name="quest[description]" max="255" rows="3" placeholder="Add a player-friendly description for this quest."></textarea>
+  </div>
+
+  <button type="submit" class="button">Create &raquo;</button>
+</form>

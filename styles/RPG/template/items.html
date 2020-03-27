@@ -1,0 +1,184 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<style type="text/css">
+img.roleplay-image {
+  max-height: 75px;
+  float: left;
+  margin: 0.5em;
+  margin-left: 44px;
+}
+</style>
+
+<h1>RPG Marketplace</h1>
+<p>Buy, sell, and trade things from RPG universes.  <!-- IF S_USER_LOGGED_IN -->Looking for something to sell?  <a href="/member/{S_USERNAME}/places" class="button">View Settings You Own &raquo;</a><!-- ENDIF --></p>
+
+<div class="forabg">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<ul class="topiclist">
+		<li class="header">
+			<dl class="icon">
+				<dt>Currently Open Orders</dt>
+				<dd class="topics"></dd>
+				<dd class="posts"></dd>
+				<dd class="lastpost"></dd>
+			</dl>
+		</li>
+	</ul>
+	<ul class="topiclist forums">
+    <!-- BEGIN orders -->
+    <li class="row bg1 icon roleplay" style="clear:left; padding-bottom: 0.5em;">
+      <div class="quick-float-right" style="width: 160px;">
+        <div class="button group" style="margin: 0.5em;">
+          <!-- IF orders.S_CAN_EDIT -->
+          <a class="marginalized pricing" on-tap="_promptAndSetPrice" data-link="{orders.ASSET}">
+            <span data-bind="sale-price" data-price="{orders.PRICE}">{orders.PRICE}</span>
+            <small>INK</small>
+          </a>
+          <!-- ELSE -->
+          <!-- IF orders.S_CAN_AFFORD -->
+          <a class="marginalized pricing" on-tap="_fillOrder" data-link="/orders/{orders.ID}" data-price="{orders.PRICE}">
+            <span data-bind="sale-price">{orders.PRICE}</span>
+            <small>INK</small>
+          </a>
+          <!-- ELSE -->
+          <a class="marginalized pricing" on-tap="_promptToEarn" data-link="/orders/{orders.ID}" data-price="{orders.PRICE}">
+            <span data-bind="sale-price">{orders.PRICE}</span>
+              <small>INK</small>
+          </a>
+          <!-- ENDIF -->
+          <!-- ENDIF -->
+          
+          <!-- IF orders.S_CAN_EDIT -->
+          <div class="header">
+            <a on-tap="_promptAndSetPrice" data-link="{orders.ASSET}"><small>change</small></a>
+            <span class="separator subtext"> / </span>
+            <a on-tap="_cancelOrder" data-link="/orders/{orders.ID}" title="cancel this order"><small>close</small></a>
+          </div>
+          <!-- ELSE -->
+          <!-- IF orders.S_CAN_AFFORD -->
+          <div class="marginalized">
+            <a class="header clean" on-tap="_fillOrder" data-link="/orders/{orders.ID}" data-price="{orders.PRICE}">Buy Now</a>
+          </div>
+          <!-- ELSE -->
+          <div class="marginalized">
+            <a class="header clean" href="/medals" on-tap="_promptToEarn" data-price="{orders.PRICE}">Earn to Buy</a>
+          </div>
+          <!-- ENDIF -->
+          <!-- ENDIF -->
+        </div>
+      </div>
+      <a href="{orders.ASSET_LINK}"><img src="{orders.ASSET_IMG_LINK}" class="crisp-border roleplay-image quick-float-left" /></a>
+      <div>
+        <h3 class="simple"><a href="{orders.ASSET_LINK}">{orders.ASSET_NAME}</a>, a <span>{orders.ASSET_TYPE}</span> in <a href="{orders.ASSET_CONTEXT_LINK}">{orders.ASSET_CONTEXT}</a>.</small></h3>
+        <p>{orders.ASSET_DESCRIPTION}</p>
+      </div>
+    </li>
+    <!-- END orders -->
+  </ul>
+  <span class="corners-bottom"><span></span></span></div>
+</div>
+
+
+<div class="forabg">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<ul class="topiclist">
+		<li class="header">
+			<dl class="icon">
+				<dt>Recently Filled Orders</dt>
+				<dd class="topics"></dd>
+				<dd class="posts"></dd>
+				<dd class="lastpost"></dd>
+			</dl>
+		</li>
+	</ul>
+	<ul class="topiclist forums">
+    <!-- BEGIN filled -->
+    <li class="row bg1 icon roleplay" style="clear:left; padding-bottom: 0.5em;">
+      <div class="quick-float-right" style="width: 160px;">
+        <div class="button group" style="margin: 0.5em;">
+          <div class="header">sold for</div>
+          <a class="pricing">
+            <span data-bind="sale-price">{filled.PRICE}</span>
+            <small>INK</small>
+          </a>
+        </div>
+      </div>
+      <a href="{filled.ASSET_LINK}"><img src="{filled.ASSET_IMG_LINK}" class="crisp-border roleplay-image quick-float-left" /></a>
+      <div>
+        <h3 class="simple"><a href="{filled.ASSET_LINK}">{filled.ASSET_NAME}</a><small>, a <span>{filled.ASSET_TYPE}</span> in <a href="{filled.ASSET_CONTEXT_LINK}">{filled.ASSET_CONTEXT}</a>.</small></h3>
+        <p>{filled.ASSET_DESCRIPTION}</p>
+      </div>
+    </li>
+    <!-- END filled -->
+  </ul>
+  <span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- IF S_IS_OLD -->
+<div class="panel">
+  <table style="width: 100%;">
+    <thead>
+      <tr style="font-weight: bold;">
+        <td></td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- BEGIN orders -->
+      <tr>
+        <td>
+          <img src="{orders.ASSET_IMG_LINK}" class="crip-border quick-float-left" />
+          <div>
+            <h3><a href="{orders.ASSET_LINK}">{orders.ASSET_NAME}</a></h3>
+            <p>{orders.ASSET_DESCRIPTION}</p>
+          </div>
+        </td>
+        <td style="width: 160px;">
+          <div class="button group">
+            <!-- IF orders.S_CAN_EDIT -->
+            <a class="pricing">
+              <small>INK</small>
+              <span data-bind="sale-price">{orders.PRICE}</span>
+            </a>
+            <!-- ELSE -->
+            
+            <!-- IF orders.S_CAN_AFFORD -->
+            <a class="pricing" on-tap="_fillOrder" data-link="/orders/{orders.ID}">
+              <small>INK</small>
+              <span data-bind="sale-price">{orders.PRICE}</span>
+            </a>
+            <!-- ELSE -->
+            <a class="pricing" on-tap="_promptToEarn" data-link="/orders/{orders.ID}">
+              <small>INK</small>
+              <span data-bind="sale-price">{orders.PRICE}</span>
+            </a>
+            <!-- ENDIF -->
+            
+            <!-- ENDIF -->
+            
+            <!-- IF orders.S_CAN_EDIT -->
+            <div>
+              <a class="header" on-tap="_promptAndSetPrice" data-link="{orders.ASSET}"><small>change</small></a>
+              <a class="header" on-tap="_cancelOrder" data-link="/orders/{orders.ID}" title="cancel this order"><small>close</small></a>
+            </div>
+            <!-- ENDIF -->
+            <!-- IF orders.S_CAN_AFFORD -->
+            <div>
+              <a class="header" on-tap="_fillOrder" data-link="/orders/{orders.ID}" data-price="{orders.PRICE}">Buy Now</a>
+            </div>
+            <!-- ELSE -->
+            <div class="header">
+              <a href="/medals" on-tap="_promptToEarn" data-price="{orders.PRICE}">Earn to Buy</a>
+            </div>
+            <!-- ENDIF -->
+          </div>
+        </td>
+      </tr>
+      <!-- END orders -->
+    </tbody>
+  </table>
+</div>
+<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

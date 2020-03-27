@@ -18,15 +18,15 @@
 	#addCharacterControls input { font-weight: bold; font-size: 1.2em; padding: 0.5em; margin: 0.5em; border-radius: 3px;}
 </style>
 <!-- ENDIF -->
-<img src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/groups/{GROUP_URL}/logo" class="crisp-border" style="float:left; height: 100px; width: 100px; margin-right: 10px;" />
-<h1 style="color:#596E7C; margin-right: 0;"><a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a> &raquo; <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/groups">Groups</a> &raquo; <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/groups/{GROUP_URL}">{GROUP_NAME}</a><!-- IF S_CAN_EDIT --> [<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit_group&group_id={GROUP_ID}&roleplay_id={ROLEPLAY_ID}">Edit</a>]<!-- ENDIF --></h1>
+<img src="/roleplay/{ROLEPLAY_URL}/groups/{GROUP_URL}/logo" class="crisp-border" style="float:left; height: 100px; width: 100px; margin-right: 10px;" />
+<h1 style="color:#596E7C; margin-right: 0;"><a href="/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/groups">Groups</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/groups/{GROUP_URL}">{GROUP_NAME}</a><!-- IF S_CAN_EDIT --> [<a href="/ucp.php?i=roleplays&mode=edit_group&group_id={GROUP_ID}&roleplay_id={ROLEPLAY_ID}">Edit</a>]<!-- ENDIF --></h1>
 <p style="font-size: 1.5em; margin-bottom: 0.5em;">{GROUP_SYNOPSIS}</p>
 <div style="margin: 1em;">
  	<div style="display:inline;">
  		<g:plusone annotation="inline" href="/roleplay/{ROLEPLAY_URL}/groups/{GROUP_URL}"></g:plusone>
 	</div>
 	<div style="display:inline;">
-		<div class="fb-like" data-send="false" data-layout="standard" data-width="350" data-show-faces="false" data-colorscheme="light" data-action="like" data-href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/groups/{GROUP_URL}"></div>
+		<div class="fb-like" data-send="false" data-layout="standard" data-width="350" data-show-faces="false" data-colorscheme="light" data-action="like" data-href="/roleplay/{ROLEPLAY_URL}/groups/{GROUP_URL}"></div>
 	</div>
 </div>
 <div class="panel">
@@ -43,9 +43,9 @@
 			<!-- IF S_CAN_EDIT --><div id="addCharacterControls"><h3>Adding to Group:</h3> <div id="taggedCharacters"></div><input type="button" value="Add &raquo;" style="float: right;" /><hr /></div><!-- ENDIF -->
 			<!-- BEGIN characters -->
 			<div class="character">
-				<img src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
+				<img src="/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
 				<div>
-					<a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}"><strong>{characters.NAME}</strong></a> <span><em>played by {characters.OWNER_USERNAME}</em></span>
+					<a href="/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}"><strong>{characters.NAME}</strong></a><!-- IF characters.S_CHARACTER_ANONYMOUS --><!-- ELSE --> <span><em>played by {characters.OWNER_USERNAME}</em></span><!-- ENDIF -->
 				</div>
 				<span>{characters.SYNOPSIS}</span>
 			</div>
@@ -55,15 +55,16 @@
 			
 			<br class="clear" />
 			
-			<h2><strong>{PLACE_COUNT}</strong> Places roleplayed</h2>
+      <a name="places" class="anchor"></a>
+			<h2><a href="#places"><strong>{POST_COUNT}</strong> posts in <strong>{PLACE_COUNT}</strong> places</a></h2>
 			<!-- BEGIN places -->
-			<div class="place">
-				<img src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/places/{places.URL}/image" alt="{places.NAME}" />
-				<div>
-					<a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/places/{places.URL}"><strong>{places.NAME}</strong></a> <span><strong>{places.POST_COUNT}</strong> posts</span>
-				</div>
-				<span>{places.SYNOPSIS}</span>
-			</div>
+      <div class="place-icon" style="text-align:center; display: inline-block; max-width: 100px;">
+        <a href="/roleplay/{ROLEPLAY_URL}/places/{places.URL}">
+          <img src="/roleplay/{ROLEPLAY_URL}/places/{places.URL}/image" title="{places.SYNOPSIS}" class="crisp-border" style="height: 50px; width: 50px; display: block;" />
+          <h5 style="">{places.NAME}</h5>
+          <h6><strong>{places.POST_COUNT}</strong> posts</h6>
+        </a>
+      </div>
 			<!-- BEGINELSE -->
 				<p class="supersize">This group hasn't been very active!</p>
 			<!-- END places -->

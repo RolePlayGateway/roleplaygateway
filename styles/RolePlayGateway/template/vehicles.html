@@ -1,0 +1,70 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<style type="text/css">
+  .panel p {
+    min-height: 0;
+  }
+  
+  .labeled.action > div {
+    text-align: center;
+  }
+  
+  .labeled.action > div > span {
+    font-size: 1.4em;
+  }
+</style>
+
+<div class="quick-float-right">
+  <div class="labeled action">
+    <div><span data-bind data-link>100</span> <small>INK</small></div>
+    <center><!-- IF S_CAN_AFFORD -->✓ affordable!<!-- ENDIF --></center>
+  </div>
+  <center>Not enough INK?  Try selling something in <a href="/orders">the marketplace</a>.</center>
+</div>
+
+<h1>RPG Vehicles</h1>
+<p>Travel in style and protection with Vehicles.</p>
+
+<div class="special panel">
+  <form action="/vehicles" method="POST">
+    <fieldset>
+      <label>
+        <h3>Name</h3>
+        <p>The human-friendly name of your vehicle.</p>
+      </label>
+      
+      <input class="supersize" type="text" name="name" max="25" placeholder="e.g., &ldquo;Joe's Crab Shack&rdquo;" />
+    </fieldset>
+
+    <fieldset>
+      <label>
+        <h3>Location to Spawn</h3>
+        <p>In which location should this vehicle be spawned?</p>
+      </label>
+      
+      <select name="placeID">
+        <!-- BEGIN places -->
+        <option value="{places.ID}">{places.NAME}</option>
+        <!-- END places -->
+      </select>
+    </fieldset>
+
+    <fieldset style="text-align: right;">
+      <button type="submit" class="button">Convert to Vehicle &raquo;</button>
+    </fieldset>
+  </form>
+</div>
+
+<h2>Known Vehicles</h2>
+<div class="special panel">
+  <!-- BEGIN vehicles -->
+  <div>
+    <h3><a href="{vehicles.LINK}">{vehicles.NAME}</a>, located in <a href="{vehicles.LOCATION_LINK}">{vehicles.LOCATION_NAME}</a></h3>
+    <p>{vehicles.DESCRIPTION}</p>
+  </div>
+  <!-- END vehicles -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->

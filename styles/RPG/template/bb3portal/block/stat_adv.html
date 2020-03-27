@@ -1,0 +1,23 @@
+<!-- $Id: stat_adv.html,v 1.3 2007/04/11 01:44:52 angelside Exp $ //-->
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+			<h3>{L_STATISTICS}</h3>
+			<!-- IF S_USER_LOGGED_IN -->
+			<strong>{L_ST_NEW}</strong><br />
+			{L_ST_NEW_POSTS} <strong>{S_NEW_POSTS}</strong><br />
+			{L_ST_NEW_TOPICS} <strong>{S_NEW_TOPIC}</strong><br />
+			{L_ST_NEW_ANNS} <strong>{S_NEW_ANN}</strong><br />
+			{L_ST_NEW_STICKYS} <strong>{S_NEW_SCT}</strong><br /><br />
+			<!-- ENDIF -->
+			<strong>{L_ST_TOP}</strong><br />
+			{TOTAL_POSTS}<br />
+			{TOTAL_TOPICS}<br />
+			{L_ST_TOP_ANNS} <strong>{S_ANN}</strong><br />
+			{L_ST_TOP_STICKYS} <strong>{S_SCT}</strong><br />
+			{TOTAL_USERS}<hr />
+			{NEWEST_USER}
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+<br clear="all" />

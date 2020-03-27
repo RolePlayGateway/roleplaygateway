@@ -1,0 +1,41 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<style type="text/css">
+#preview, #input {
+  min-height: 5em;
+  width: 100%;
+}
+</style>
+
+<h1><a href="/writer">BBCode Preview</a></h1>
+<p>Use this tool to preview your BBCode using RPG's roleplaying system.</p>
+
+<div>
+  <h3>Output (HTML)</h3>
+  <div id="preview"></div>
+  
+  <h3>Input (BBCode)</h3>
+  <textarea id="input" rows="7"></textarea>
+</div>
+
+<script type="text/javascript">
+
+$('#input').on('keyup', function(e) {
+  var text = $(this).val();
+  
+  $.ajax({
+    type: 'POST',
+    url: '/preview.php',
+    data: {
+      text: text
+    },
+    success: function(msg) {
+      $('#preview').html(msg);
+    }
+  })
+});
+
+</script>
+
+<!-- INCLUDE overall_footer.html -->

@@ -7,23 +7,26 @@
   }
 </style>
 
-<h1 style="color:#596E7C;"><a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_NAME}</a> &raquo; <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters">Characters</a></h1>
+<img src="/roleplay/{ROLEPLAY_URL}/image" alt="{ROLEPLAY_NAME}" class="crisp-border" style="float:left; margin-right: 10px; margin-bottom: 0.5em;" />
+
+<h1 style="color:#596E7C; margin-right: 0;"><a href="/roleplay/{ROLEPLAY_URL}/characters/new" style="float: right;">Create New &raquo;</a><a href="/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_NAME}</a> &raquo; <a href="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters">Characters</a></h1>
+<p style="margin-bottom: 0;">{ROLEPLAY_DESCRIPTION}</p>
 
 <ul class="linklist">
     <li class="rightside pagination">{TOTAL_CHARACTERS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
 </ul>
 
-<div class="panel">
+<div class="panel" style="clear: both; margin-top: 0.5em;">
 	<div class="inner">
 		<span class="corners-top"><span></span></span>
     <div class="postbody" style="width:inherit;"><div class="">
 
       <!-- BEGIN characters -->
       <div class="character">
-	      <img src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
+	      <img src="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
 	      <div>
-          <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}#story" style="float:right;">{characters.SIGHTINGS} sightings &raquo;</a>
-		      <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/"><strong>{characters.NAME}</strong></a> <span><em>played by {characters.OWNER_USERNAME}</em></span>
+          <a href="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}#story" style="float:right;">{characters.SIGHTINGS} sightings &raquo;</a>
+		      <a href="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/"><strong>{characters.NAME}</strong></a><!-- IF characters.S_IS_ANONYMOUS --><!-- ELSE --> <span><em>played by {characters.OWNER_USERNAME}</em></span><!-- ENDIF -->
 	      </div>
 	      <span>{characters.SYNOPSIS}</span>
       </div>

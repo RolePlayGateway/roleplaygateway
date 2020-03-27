@@ -1,0 +1,281 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<style type="text/css">
+  .supersize {
+    font-size: 1.5em;
+  }
+
+  .panel.moment {
+    padding: 1em;
+    padding-bottom: 2em;
+    color: white;
+    text-align: center;
+    background: url('/images/starburst.jpg') top center !important;
+    background-size: cover !important;
+  }
+
+  .panel.moment h2 {
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    border: 0 !important;
+  }
+
+  .panel blockquote {
+    min-width: 33%;
+    max-width: 66%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2em;
+    padding-top: 2em;
+    color: #596E7C;
+  }
+
+  .subtle.leading span {
+    font-size: 0.75em !important;
+  }
+
+  h1.leading ,
+  h2.leading ,
+  h3.leading {
+    margin: 0 !important;
+    border: 0;
+  }
+
+  h1.leading a,
+  h2.leading a,
+  h3.leading a {
+    margin: 0 !important;
+    border: 0;
+    display: inline-block;
+  }
+
+  h2.leading a {
+    padding: 0 0.5em 0.5em 0;
+  }
+
+  h2 a.leading {
+    padding: 0;
+  }
+</style>
+
+<!-- IF MEDAL_NAME -->
+
+<!-- ELSE -->
+<h2>Medals</h2>
+<div class="special panel">
+  <h3>Medals, Achievements, and Rewards: Oh My!</h3>
+  <p><strong><abbr title="bitcoin:{BITCOIN_ADDRESS}">Medals</abbr></strong> are earned for material contributions to RPG.  You can <strong><abbr title="grind!">Quest</abbr></strong> to earn more by exploring <a href="/universes">the many <strong>Universes</strong> on RPG</a>.</p>
+  <p>Your activity on RPG will earn you various rewards that grant you new powers as you navigate the many worlds <a href="/community">our community</a> has created.  If you're ready for your journey, read <a href="/introducing-rpg-achievements-t104679.html">about Achievements</a> to get started.</p>
+</div>
+<!-- ENDIF -->
+
+<!-- IF S_IS_BETA -->
+<div>
+  <!-- IF FABRIC -->
+  <h2><a href="/tags/fabric"><small class="subtle">#</small>fabric</a></h2>
+  <code>${fabric} #{FABRIC}</code>
+  <!-- ENDIF -->
+  <p><a href="/queries?keywords={CURRENT_SEARCH_QUERY}#{ID}"><small class="subtle">#</small><code data-integrity="{ID}">{FABRIC}</code></a></p>
+</div>
+<!-- ENDIF -->
+
+<!-- IF S_MEDAL_VIEW -->
+<div class="forumbg forumbg-table">
+  <div class="inner"><span class="corners-top"><span></span></span>
+    <table class="table1 tablesorted" cellspacing="1" id="medals">
+      <thead>
+        <tr>
+          <th align="center" width="150">{L_MEDALS_VIEW}</th>
+          <th align="center">{L_MEDAL_DESC}</th>
+          <th align="center">Value (<small>INK</small>)</th>
+          <th align="center" width="30%">{L_MEDAL_AWARDED}</th>
+          <th align="center" width="30%">Last Awarded</th>
+          <!-- IF S_CAN_AWARD_MEDALS --><th align="center" width="100">{L_MEDAL_MOD}</th><!-- ENDIF -->
+        </tr>
+      </thead>
+      <tbody>
+        <!-- BEGIN medalrow -->
+        <!-- IF medalrow.IS_CAT -->
+        <tr class="bg3">
+          <td><h4>{medalrow.MEDAL_CAT}</h4></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <!-- IF S_CAN_AWARD_MEDALS --><td></td><!-- ENDIF -->
+        </tr>
+        <!-- ELSE -->
+        <tr class="<!-- IF medalrow.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
+          <td align="center"><a href="/medals/{medalrow.MEDAL_SLUG}">{medalrow.MEDAL_NAME}</a><br />{medalrow.MEDAL_IMG}</td>
+          <td>{medalrow.MEDAL_DESC}</td>
+          <td>{medalrow.MEDAL_VALUE}</td>
+          <td align="center">
+            <a href="/medals/{medalrow.MEDAL_SLUG}">{medalrow.MEDAL_AWARDED}</a><br />
+            {medalrow.AWARDED_PERCENT}% of all users
+          </td>
+          <td data-value="{medalrow.MOST_RECENT_RAW}">{medalrow.MOST_RECENT}</td>
+          <!-- IF S_CAN_AWARD_MEDALS --><td  class="bg3" align="center"><a href="{medalrow.U_MEDAL_AWARD_PANEL}"><strong>{L_MEDAL_AWARD_PANEL}</strong></a><!-- IF medalrow.NOMINATIONS --><hr /><a href="{medalrow.U_MEDAL_NCP}"><strong>{L_NOMINATE_MEDAL}</strong></a><!-- ENDIF --></td><!-- ENDIF -->
+        </tr>
+        <!-- ENDIF -->
+        <!-- END medalrow -->
+        <!-- IF NO_MEDAL -->
+        <tr class="bg2">
+          <td colspan="<!-- IF S_CAN_AWARD_MEDALS -->4<!-- ELSE -->3<!-- ENDIF -->">{L_NO_MEDALS}</td>
+        </tr>
+        <!-- ENDIF -->
+      </tbody>
+    </table>
+    <span class="corners-bottom"><span></span></span>
+  </div>
+</div>
+<!-- ENDIF -->
+<!-- IF (S_MEDAL_NOM or S_MEDAL_AWARD) -->
+<div class="forumbg forumbg-table">
+  <div class="inner"><span class="corners-top"><span></span></span>
+    
+    <div class="bg2" style="padding: 2em;">
+      <div class="crisp-border" style="position: relative; float:left; height: 100px; width: 100px; text-align: center; margin-right: 2em;">
+        <img src="{MEDAL_IMG_URL}" border="0" alt="{MEDAL_NAME}" title="{MEDAL_NAME}" style="position: absolute; top: 45px;" />
+      </div>
+      <div class="large list" style="font-size: 1.5em;">
+        <div class="quick-float-right"><span class="button"><center>{MEDAL_VALUE} <small>INK</small><div><a href="/assets/ink">value</a></div></center></span></div>
+        <h4 style="text-transform: uppercase;"><a href="/medals/{MEDAL_SLUG}">{MEDAL_NAME}</a></h4>
+        <p>{MEDAL_DESCRIPTION}</p>
+        <p>Awarded to <strong>{MEDAL_AWARDED}</strong>, about <strong>{AWARDED_PERCENT}%</strong> of <a href="/community">our community</a>.</p>
+      </div>
+    </div>
+
+    <span class="corners-bottom"><span></span></span>
+  </div>
+</div>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_MOMENT -->
+<div class="panel moment">
+  <h2>You hold this medal!</h2>
+  <p>You earned this medal <abbr title="{MOMENT_TIMESTAMP}">{MOMENT_TIMEAGO}</abbr>.</p>
+  <blockquote>{MOMENT_REASON}</blockquote>
+</div>
+<!-- ENDIF -->
+
+<!-- IF S_MEDAL_AWARD and S_CAN_AWARD_MEDALS -->
+<div class="forumbg forumbg-table">
+  <div class="inner"><span class="corners-top"><span></span></span>
+    <form method="post" action="{U_MEDALS_ACTION}" name="post">
+    <table class="table1" cellspacing="1" id="medal_add">
+      <thead>
+        <tr>
+          <th align="center" colspan=2>{L_AWARD_MEDAL}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bg2">
+          <td width="50%">{L_USERNAME}:{L_MEDAL_AWARD_USER_EXPLAIN}</td>
+          <td>
+            <fieldset id="users-box">
+              <textarea name="add" id="add" rows="3" cols="30" wrap="physical" tabindex="1" class="inputbox">{USERNAMES}</textarea>
+              <br />
+              <strong><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a></strong>
+            </fieldset>
+          </td>
+        </tr>
+        <tr class="bg2">
+          <td width="50%">{L_MEDAL_AWARD_REASON}:{L_MEDAL_AWARD_REASON_EXPLAIN}</td>
+          <td>
+            <fieldset id="message-box">
+              <textarea id="message" name="message" rows="5" cols="30" wrap="physical" tabindex="1" title="reason" class="inputbox"></textarea>
+            </fieldset>
+          </td>
+        </tr>
+        <tr class="bg2">
+          <td align="center" colspan=2>
+            <fieldset class="submit-buttons">
+              <input type="submit" accesskey="s" tabindex="1" name="submit" value="{L_SUBMIT}" class="button2" />&nbsp;
+            </fieldset>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </form>
+    <span class="corners-bottom"><span></span></span>
+  </div>
+</div>
+<!-- ENDIF -->
+<!-- IF S_MEDAL_NOM and S_CAN_AWARD_MEDALS -->
+<div class="forumbg forumbg-table">
+  <div class="inner"><span class="corners-top"><span></span></span>
+    <table class="table1" cellspacing="1" id="medal_add">
+      <thead>
+        <tr>
+          <th align="center" colspan=3>{L_NOMINATED_TITLE}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bg2">
+          <td colspan="3">{NOMINATED_USERS}</td>
+        </tr>
+        <!-- BEGIN nominatedrow -->
+        <tr class="bg2">
+          <td width="220">{nominatedrow.NOMINATED} {nominatedrow.COUNT}</td>
+          <td>{nominatedrow.REASON}</td>
+          <td width="80">
+            <ul class="profile-icons">
+              <li class="approve-icon"><a title="{L_APPROVE}" href="{nominatedrow.U_MCP}"><span>{L_APPROVE}</span></a></li>
+              <li>&nbsp; &nbsp;</li>
+              <li class="delete-icon"><a title="{L_DELETE}" href="{nominatedrow.U_USER_DELETE}"><span>{L_DELETE}</span></a></li>
+            </ul>
+          </td>
+        </tr>
+        <!-- END nominatedrow -->
+        <!-- IF S_DELETE_ALL -->
+        <tr class="bg2">
+          <td align="right" colspan=3>
+            <form method="post" action="{U_MEDALS_ACTION}" name="post">
+            <fieldset class="submit-buttons">
+              <input type="submit" accesskey="s" tabindex="1" name="submit" value="{L_DELETE_ALL}" class="button2" />
+            </fieldset>
+            </form>
+          </td>
+        </tr>
+        <!-- ENDIF -->
+      </tbody>
+    </table>
+    <span class="corners-bottom"><span></span></span>
+  </div>
+</div>
+<!-- ENDIF -->
+
+<!-- IF MEDAL_NAME -->
+<div class="forumbg forumbg-table">
+  <div class="inner"><span class="corners-top"><span></span></span>
+    <table class="table1" cellspacing="1" id="medal_add">
+      <thead>
+        <tr>
+          <th align="center" colspan=4>The 50 Most Recent Recipients of <a href="/medals/{MEDAL_SLUG}">the &ldquo;{MEDAL_NAME}&rdquo; medal</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- BEGIN awards -->
+        <tr class="bg2">
+          <td width="220">{awards.USERLINK}</td>
+          <td width="220">{awards.TIMESTAMP}</td>
+          <td>{awards.REASON}</td>
+          <td width="80"></td>
+        </tr>
+        <!-- END awards -->
+      </tbody>
+    </table>
+    <span class="corners-bottom"><span></span></span>
+  </div>
+</div>
+<!-- ENDIF -->
+
+<!-- IF S_MEDAL_VIEW -->
+
+<!-- ENDIF -->
+
+<!-- INCLUDE jumpbox.html -->
+
+<!-- INCLUDE overall_footer.html -->

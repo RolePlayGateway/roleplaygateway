@@ -1,0 +1,61 @@
+<!-- INCLUDE overall_header.html -->
+
+<style type="text/css">
+  #page-body .arrowchat_notification_icon {
+    /* height: 50px; */
+    border: 1px solid black;
+    margin-right: 1em;
+  }
+  #page-body .arrowchat_notification_box {
+    font-size: 1.2em;
+  }
+  
+  .ui.button {
+    display: inline-block;
+    margin: 0;
+    padding: 10px;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+    min-width: 7.5em;
+  }
+  
+  .list .item {
+    display: block;
+    padding: 5px;
+  }
+  
+  .list .unread {
+    background: #F6F4D0;
+  }
+  
+  .list a.item {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .pull-right {
+    float: right;
+  }
+
+  .rpg-page-header {
+    margin-top: 1em;
+  }
+  
+</style>
+
+
+<div class="list">
+  <!-- BEGIN types -->
+  <div>
+    <form method="post">
+      <input type="hidden" name="id" value="{types.ID}" />
+      <textarea rows="4" name="markup">{types.MARKUP}</textarea>
+      <input type="submit" />
+    </form>
+  </div>
+  <!-- END types -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->

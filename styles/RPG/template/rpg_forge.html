@@ -1,0 +1,28 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<h1>RPG Asset Forge</h1>
+<p>Use your <small>INK</small> to craft new artifacts in <a href="/roleplay/{ROLEPLAY_URL}">{ROLEPLAY_NAME}</a>.
+
+<div class="panel">
+  <h2>Create Item</h2>
+  <!-- INCLUDE rpg-item-creator.html -->
+</div>
+
+<div class="panel">
+  <!-- BEGIN items -->
+  <div>
+    <h3>
+      <!-- IF items.S_CAN_EDIT -->
+      <a href="/universes/the-multiverse/forge?mode=edit&itemID={items.ID}" class="button quick-float-right">edit &raquo;</a>
+      <!-- ENDIF -->
+      {items.NAME}
+    </h3>
+    <h4><strong>{items.QUANTITY}</strong> in existence, base price <strong>{items.VALUE} <small>INK</small></strong>.</h4>
+    <p>{items.DESCRIPTION}</p>
+  </div>
+  <!-- END items -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->

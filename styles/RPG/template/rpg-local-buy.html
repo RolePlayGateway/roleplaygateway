@@ -1,0 +1,25 @@
+<div>
+  <h3>Shops Here</h3>
+  <div>
+    <!-- BEGIN local_shops -->
+    <div>
+      <h4><a href="/stores/{local_shops.ID}">{local_shops.NAME}</a></h4>
+    </div>
+    <!-- END local_shops -->
+  </div>
+  <!-- IF .local_wares -->
+  <h3>Available Wares</h3>
+  <table>
+    <!-- BEGIN local_wares -->
+    <tr class="clearfix">
+      <td>
+        <h4><a href="/items/{local_wares.ID}"><abbr title="{local_wares.DESCRIPTION}">{local_wares.NAME}</abbr></a></h4>
+      </td>
+      <td><strong>{local_wares.INVENTORY}</strong> remaining</td>
+      <td><abbr title="{local_wares.PRICE} INK (1,000,000 bits per 1.00 INK)"><strong>{local_wares.PRICE_IN_BITS}</strong> <small>bits</small></abbr></td>
+      <td><a class="button" href="#" on-tap="_confirmShopBuy" data-name="{local_wares.NAME}" data-price="{local_wares.PRICE}" data-target="/stores/{STORE_ID}/items/{local_wares.ID}">Buy for <abbr title="{local_wares.PRICE} INK (1,000,000 bits per INK)"><strong>{local_wares.PRICE_IN_BITS}</strong> bits</abbr> &raquo;</a></td>
+    </tr>
+    <!-- END local_wares -->
+  </table>
+  <!-- ENDIF -->
+</div>

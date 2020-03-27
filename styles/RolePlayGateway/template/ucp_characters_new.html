@@ -1,12 +1,46 @@
-<!-- INCLUDE ucp_header.html -->
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
 
-<h2>Add New Character</h2>
 
-<form id="ucp" enctype="multipart/form-data" method="post" action="http://www.roleplaygateway.com/ucp.php?i=characters&mode=new&action=submit">
+	<img src="/roleplay/{ROLEPLAY_URL}/image" alt="{ROLEPLAY_TITLE}" class="crisp-border" style="float:left; margin-right: 10px;" />
+
+	<h1 style="margin-right:0;">
+		<a href="/roleplay/{ROLEPLAY_URL}" name="roleplay">{ROLEPLAY_TITLE}</a>
+	</h1>
+	<p style="margin-bottom: 0;">{ROLEPLAY_DESCRIPTION}</p>
+
+	<h2 style="margin-top: 0;">Character Selection</h2>
+
+<form id="ucp" enctype="multipart/form-data" method="post" action="/ucp.php?i=characters&amp;mode=new&amp;action=submit">
+
+<input type="hidden" name="roleplay_id" value="{ROLEPLAY_ID}" />
 
 <div class="panel">
 	<div class="inner"><span class="corners-top"><span></span></span>
-	
+    
+    <!-- IF S_IS_BETA -->
+		<div>
+			<h3><a href="/roleplay/{ROLEPLAY_URL}/orphanage" style="float: right;">View All &raquo;</a>Available Characters</h3>
+			<div style="clear: both;">
+				<!-- BEGIN characters -->
+				<div class="character">
+		      <img src="/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
+		      <div>
+	          <a href="/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}#story" style="float:right;">{characters.SIGHTINGS} sightings &raquo;</a>
+			      <a href="/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}/"><strong>{characters.NAME}</strong></a>
+			      <p><em> as created by {characters.CREATOR_USERNAME}</em></p>
+		      </div>
+		      <p>{characters.SYNOPSIS}</p>
+		      <a href="//www.roleplaygateway.com/ucp.php?i=characters&amp;mode=adopt&amp;character_id={characters.ID}" class="button">Adopt &raquo;</a>
+	      </div>
+				<!-- END characters -->
+			</div>
+		</div>
+		<!-- ENDIF -->
+    
+		<h2>Create New Character</h2>
+		
 		<h3>Basic Information</h3>
 		<fieldset>
 			<dl>
@@ -16,39 +50,56 @@
 				</dt>
 				<dd><input type="text" name="character_name" id="character_name" maxlength="45" class="inputbox" /></dd>
 			</dl>
+      <!-- IF S_HAS_BIRTHPLACE -->
+      <dl>
+        <dt>
+          <label for="character_birthplace">Starting Location:</label><br />
+          <span>This is the location where your story will begin.</span>
+        </dt>
+        <dd>
+          <select name="birthplace">
+            <option value="{BIRTHPLACE}">{BIRTHPLACE_NAME}</option>
+          </select>
+        </dd>
+      </dl>
+      <!-- ENDIF -->
 			<dl>
 				<dt>
 					<label for="character_synopsis">Synopsis:</label><br />
-					<span>Give a brief overview of your character.  This is used as your introduction in our <a href="http://www.roleplaygateway.com/chat/">roleplay chat</a> when you type the following command to go <strong>In Character</strong> (IC):<br /><code>/ic Character Name</code></span>
+					<span>Give a brief overview of your character.</span>
 				</dt>
 				<dd><input type="text" value="{SYNOPSIS}" maxlength="255" size="255" name="character_synopsis" id="character_synopsis" class="inputbox" /></dd>
 			</dl>
 			<dl>
 				<dt>
 					<label for="character_image">Character Avatar:</label><br />
-					<span>Upload a small 100x100 avatar for your character. This will be displayed in various places around your roleplay, such as dialogue.</span>
+					<span>Upload a small <strong>100x100</strong> avatar for your character. This will be displayed in various places around your roleplay, such as dialogue.</span>
 				</dt>
 				<dd>
 					<input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
 					<input name="userfile" type="file" />
+					<p style="border-radius: 5px; background: #FCC475; padding: 1em; margin-top: 0.5em;">If your image is not 100x100, <strong>your upload will be rejected</strong>.  You can use <a href="http://www.picresize.com/">an online image-resizer</a> if you're not familiar with image editing. <br/><small><strong>edit, 2017-05-17:</strong> ^ link fixed!</small></p>
 				</dd>
 			</dl>
 		</fieldset>
 		
-		<h3>Important Details</h3>
-		<p>Filling one or more of these fields out will allow it to display on your character's profile, but leaving it empty will prevent it from being displayed. If you so choose, you can use the "Description" field to add any detailed information that does not fit into other fields. BBcode <strong>is</strong> enabled in these fields.</p>
+		<h3>Character Sheet</h3>
+		<p>You can add any information here that you'd like, including BBCode.  Some good ideas of what to include:
+			<ul style="list-style-position: inside; padding-left: 1em; font-size: 1.2em;">
+				<li><strong>Physical description:</strong>  what does your character look like?</li>
+				<li><strong>Personality:</strong>  what kind of person is this, what's their general demeanor?</li>
+				<li><strong>Equipment & Abilities:</strong>  in your character's adventures, what do they rely on to get them through trouble?</li>
+				<li><strong>Historical Background:</strong>  how was your character's childhood, how did they get where they are today?</li>
+			</ul>
+		</p>
+		<p>You can also simply not include anything at all, and encourage other players to explore this character's personality through roleplaying with them.</p>
+		<p>Be mindful of <a href="/roleplay/{ROLEPLAY_URL}#rules">this roleplay's rules</a>.</p>
 		<fieldset>
-			<dl>
-				<dt>
-					<label for="character_description">Description:</label><br />
-					<span>Describe the physical appearance of your character. Words are better than pictures.</span>
-				</dt>
-			</dl>
 			<ul class="topiclist cplist">
 				<script type="text/javascript">edToolbar('character_description');</script>
-				<textarea name="character_description" id="character_description" rows="15" class="inputbox" style="width:100%;"></textarea>
+				<textarea name="character_description" id="character_description" rows="25" class="inputbox previewable" style="width:100%;"></textarea>
 			</ul>
-			<dl>
+			<!-- <dl>
 				<dt>
 					<label for="character_personality">Personality:</label><br />
 					<span>Describe your character's personality and general demeanor.</span>
@@ -77,17 +128,22 @@
 			<ul class="topiclist cplist">
 				<script type="text/javascript">edToolbar('character_history');</script>
 				<textarea name="character_history" id="character_history" rows="15" class="inputbox" style="width:100%;"></textarea>
-			</ul>
+			</ul> -->
 		</fieldset>
 		
 		<fieldset class="submit-buttons">
-			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
 			<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
 		</fieldset>
 		
+		<div class="postbody" style="width: auto;">
+	    <div class="content">
+	      <div id="innerPreview"></div>
+	    </div>
+	  </div>
+
 	<span class="corners-bottom"><span></span></span></div>
 </div>
 
 </form>
 
-<!-- INCLUDE ucp_footer.html -->
+<!-- INCLUDE overall_footer.html -->

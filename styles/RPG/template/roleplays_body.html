@@ -1,0 +1,259 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<style type="text/css">
+dl.roleplay .tags {
+	font-style:italic;
+}
+
+dl.roleplay {
+	min-height: 110px;
+}
+
+dl.roleplay dt {
+	padding-left: 120px;
+}
+
+dl.roleplay .author {
+
+}
+.pagination {
+	font-size: 1.2em;
+}
+.featured {
+	background-color:#ffffe0;
+}
+
+dd.mark {
+	line-height: 100%;
+}
+dd.mark small {
+	margin-top: 0.5em;
+}
+.subtext {
+	margin-top: 3px;
+}
+.heading {
+	margin-top: 0;
+	text-transform: none;
+	font-size: 1.2em !important;
+	font-family: "Trebuchet MS", Helvetica, Arial, Sans-serif;
+	color: #516672;
+}
+ul.topiclist li.row dl {
+	padding: 5px;
+}
+</style>
+<div class="clear"></div>
+
+<a href="/universes/new" style="float:right;" class="button">Create a Universe &raquo;</a>
+<h1 style="font-size: 2.5em; font-weight: bold; color: #333;">Universes</h1>
+<p><strong>Universes</strong> are managed by <a href="/medals/promethean">Prometheans</a>, creators of worlds.  You can <a href="/universes/new">create a Universe of your own</a> to ascend into this role.</p>
+
+<!-- INCLUDE featured-tags.html -->
+
+<!-- IF S_FILTERS_WORKING -->
+  <div class="special panel">
+	<!-- IF S_REGISTERED_USER -->
+	<h2><a href="javascript:toggleDiv('roleplayfilters')">Not showing <strong>{IGNORED_COUNT}</strong> roleplays. &nbsp; Manage your filters or select a sort method&raquo;</a></h2>
+	<div id="roleplayfilters" style="display:none;" class="content">
+		<div>
+			<h3>Ignore roleplays tagged with...</h3>
+			<span style="padding-top: 5px;" id="ignored-tags-list">{IGNORED_TAGS}</span>
+			<input type="text" id="ignore-tag" />
+			<input type="button" value="Ignore" onclick="ignoreTag(document.getElementById('ignore-tag').value); return false;" />
+			<span><strong>Commonly Ignored <em>(click to insert)</em>: </strong> <span class="tag"><a href="#" onclick="ignoreTag('highschool');">highschool</a></span>, <span class="tag"><a href="#" onclick="ignoreTag('emo');">emo</a></span></span>
+		</div>
+		<div>
+			<h3><span class="favorite">Highlight</span> roleplays tagged with...</h3>
+			<span style="padding-top: 5px;" id="favorite-tags-list">{FAVORITE_TAGS}</span>
+			<input type="text" id="favorite-tag" />
+			<input type="button" value="Favorite" onclick="favoriteTag(document.getElementById('favorite-tag').value); return false;" />
+			<span><strong>Common Favorites<em>(click to insert)</em>: </strong> <span class="tag"><a href="#" onclick="favoriteTag('original');">original</a></span>, <span class="tag"><a href="#" onclick="favoriteTag('advanced');">advanced</a></span></span>
+		</div>
+		<div>
+			<h3>Sort roleplays by</h3>
+			<dd><a href="/roleplay/?sort=activity">Activity</a></dd>
+			<dd><a href="/roleplay/?sort=author">Author</a></dd>
+			<dd><a href="/roleplay/?sort=newest">Newest</a></dd>
+			<dd><a href="/roleplay/?sort=posts">Posts</a></dd>
+			<dd><a href="/roleplay/?sort=words">Words</a></dd>
+			<dd><a href="/roleplay/?sort=average-words">Words per post</a></dd>
+		
+		</div>
+		<script type="text/javascript">
+			function ignoreTag(tag) {
+				$.ajax({
+					type: "GET",
+					url: "/tag/",
+					data: "mode=filter&action=ignore&tag=" + tag,
+					success: function(msg){
+
+						$('ignored-tags-list').append(', <a href="/tag/'+ $('ignore-tag').value +'">'+ $('ignore-tag').value +'</a>');
+						$('ignore-tag').value = '';
+						alert( "Tag successfully ignored.");
+						window.location.reload();
+
+					}
+				});
+			}
+			function favoriteTag(tag) {
+				$.ajax({
+					type: "GET",
+					url: "/tag/",
+					data: "mode=filter&action=favorite&tag=" + tag,
+					success: function(msg){
+
+						$('favorited-tags-list').append(', <a href="/tag/'+ $('favorited-tag').value +'">'+ $('favorited-tag').value +'</a>');
+						$('favorited-tag').value = '';
+						alert( "Tag successfully favorited.");
+						window.location.reload();
+
+					}
+				});
+			}
+			
+			function deleteFilter(tag) {
+				$.ajax({
+					type: "GET",
+					url: "/tag/",
+					data: "mode=filter&action=delete&tag=" + tag,
+					success: function(msg){
+						alert( "Tag filter successfully removed.");
+						window.location.reload();
+					}
+				});
+			}
+		</script>
+	</div>
+	<!-- ELSE -->
+		<h2>Did you know?</h2>
+		<div class="content">
+			<div style="float: right;">
+				<h3>Example Roleplay Filters:</h3>
+				<img src="/images/roleplay_filters.png" alt="Example Roleplay Filters" title="Example Roleplay Filters" />
+			</div>
+			<p>If you were a registered user, you could filter out (and highlight!) roleplays using tags?  You could use this feature to browse <a href="/tag/advanced">#advanced</a> or <a href="/tag/original">#original</a> roleplays, for example.</p>
+			<p><a href="/ucp.php?mode=register">Register now</a> to use this awesome weapon to completely customize your roleplay experience!</p>
+		</div>
+	<!-- ENDIF -->
+</div>
+<!-- ENDIF -->
+
+<ul class="linklist" style="clear:both;">
+  <p>Looking for <a href="/tags">other tags</a>, or <a class="button" href="/universes/completed"><small class="dark subtle">#</small>completed</a>?</p>
+  <li class="rightside pagination" style="font-size: 1.4em;">{TOTAL_ROLEPLAYS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<div class="forumbg">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>Featured Universes</dt>
+					<dd class="mark"><a href="/roleplay/?sort=words">Words</a></dd>
+					<dd class="mark"><a href="/roleplay/?sort=average-words">Words per post</a></dd>
+					<dd class="mark"><a href="/roleplay/?sort=posts">Posts</a></dd>
+					<dd class="mark">Characters</dd>
+				</dl>
+			</li>
+		</ul>
+
+		<ul class="topiclist topics">
+		<!-- BEGIN featured_roleplays -->
+			<li class="row bg1 featured">
+        <dl class="icon roleplay">
+          <a href="/roleplay/{featured_roleplays.URL}"><img src="/roleplay/{featured_roleplays.URL}/image" class="crisp-border" style="float: left; margin: 0.5em;" /></a>
+					<dt style="padding-left: 5px;">
+						<!-- IF featured_roleplays.S_CAN_EDIT -->
+						<div id="controls" style="float:right;">
+							<a href="/ucp.php?i=roleplays&amp;mode=edit&amp;id={featured_roleplays.ID}">Edit</a>
+						</div>
+						<!-- ENDIF -->
+						<h3 class="heading"><a href="/roleplay/{featured_roleplays.URL}" class="topictitle">{featured_roleplays.TITLE}</a> <span class="author">by {featured_roleplays.OWNER_USERNAME}</span></h3>
+						<!-- <a href="/roleplay/{featured_roleplays.URL}/#join" class="button" style="float:right;">Join this Roleplay &raquo;</a> -->
+						<span class="tags">{featured_roleplays.TAGS}</span>
+						<p style="margin-top: 0.5em; margin-bottom: 0;">{featured_roleplays.DESCRIPTION}</p>
+					</dt>
+          <div class="desktop-only">
+  					<dd class="mark">
+  						<div>{featured_roleplays.WORDS}</div>
+  						<!-- IF featured_roleplays.ID == 1 -->
+  						<small>That's <strong>935.68</strong> average-length novels!</small>
+  						<!-- ENDIF -->
+  					</dd>
+  					<dd class="mark">
+  						<div>{featured_roleplays.WORDS_PER_POST}</div>
+  					</dd>
+  					<dd class="mark">
+  						<div>{featured_roleplays.POSTS}</div>
+  					</dd>
+  					<dd class="mark">
+  						<div>{featured_roleplays.CHARACTERS}</div>
+  					</dd>
+          </div>
+				</dl>
+			</li>
+		<!-- END featured_roleplays -->
+		</ul>
+		
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>Universe</dt>
+				</dl>
+			</li>
+		</ul>
+
+		<ul class="topiclist topics">
+		<!-- BEGIN roleplays -->
+			<li class="row bg1 {roleplays.CLASS}" style="clear: both;">
+        <dl class="icon roleplay">
+					<a href="/universes/{roleplays.URL}"><img src="/universes/{roleplays.URL}/image" class="crisp-border" style="float: left; margin: 0.5em;" /></a>
+					<dt style="padding-bottom:5px; padding-left: 5px; margin-top: 5px; width: 65%;" class="fill-on-mobile">
+						<!-- IF roleplays.S_CAN_EDIT -->
+						<div id="controls" style="float:right;">
+							<a href="/ucp.php?i=roleplays&amp;mode=edit&amp;id={roleplays.ID}">Edit</a> &middot;
+							<a href="/ucp.php?i=roleplays&amp;mode=remove_tag&amp;id={roleplays.ID}">Moderate</a> &middot;
+							<a href="/ucp.php?i=roleplays&amp;mode=flag&amp;id={roleplays.ID}">Mark...</a>
+						</div>
+						<!-- ENDIF -->
+						<h3 class="heading"><a href="/universes/{roleplays.URL}">{roleplays.TITLE}</a>, <small>by <span class="author">{roleplays.OWNER_USERNAME}</span></small></h3>
+						<span class="tags">{roleplays.TAGS}</span>
+						<p style="margin-top: 0.5em; margin-bottom: 0;">{roleplays.DESCRIPTION}</p>
+					</dt>
+          <div style="font-size: 1.2em; margin-left: 78%;" class="desktop-only">
+            <div><strong>{roleplays.WORDS}</strong> words in total</div>
+            <div><strong>{roleplays.READING_TIME}</strong> to read</div>
+            <div><strong>{roleplays.POSTS}</strong> total posts</div>
+            <div><strong>{roleplays.WORDS_PER_POST}</strong> words per post (average)</div>
+            <div><a href="/universes/{roleplays.URL}/characters"><strong>{roleplays.CHARACTERS}</strong> player characters</a></div>
+            <!-- IF roleplays.S_HAS_CHARACTERS -->
+            <div class="horizontal-scroller" style="margin-top: 0.5em;">
+              <!-- BEGIN characters -->
+              <a class="quick-float-left" href="/explorer?roleplayID={characters.ROLEPLAY_ID}&characterID={characters.ID}" title="Select {characters.NAME} &raquo;" style="margin-right: 3px;"><img src="/universes/{characters.ROLEPLAY_SLUG}/characters/{characters.SLUG}/image" alt="Portrait of {characters.NAME}" class="small crisp-border" /></a>
+              <!-- END characters -->
+              <a class="button quick-float-left" href="/universes/{roleplays.URL}/characters/new" title="Create New Character &raquo;">Add &raquo;</a>
+            </div>
+            <!-- ELSE -->
+            <div style="padding: 0.5em 0;"><a href="/universes/{roleplays.URL}/characters/new" class="button">Submit a Character &raquo;</a></div>
+            <!-- ENDIF -->
+          </div>
+          <div class="mobile-only" style="clear: both;">
+            <a href="/universes/{roleplays.URL}/characters/new" class="button" style="display: block;">Submit a Character &raquo;</a>
+          </div>
+				</dl>
+			</li>
+		<!-- END roleplays -->
+		</ul>
+
+		<!-- IF S_IS_ERIC -->
+		<textarea onclick="select();">{ROLEPLAY_OWNERS}</textarea>
+		<!-- ENDIF -->
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<ul class="linklist" style="clear:both;">
+    <li class="rightside pagination" style="font-size: 1.4em;">{TOTAL_ROLEPLAYS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+<!-- INCLUDE overall_footer.html -->

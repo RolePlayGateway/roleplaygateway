@@ -1,16 +1,24 @@
 <!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+
+<!-- IF not S_ADMIN_AUTH and S_REGISTER_ENABLED -->
+	<div class="special panel">
+    <h2>Come join us!</h2>
+    <p class="supersize">RPG is home to an incredible community of writers, storytellers, and artists of all sorts.  Create an RPG account to begin your very own hero's journey!</p>
+    
+    <p class="supersize" style="text-align: right;"><a href="/ucp.php?mode=register#form" class="button">Start Your Journey &raquo;</a></p>
+	</div>
+<!-- ENDIF -->
 
 <form action="{S_LOGIN_ACTION}" method="post" id="login">
 <div class="panel">
 	<div class="inner"><span class="corners-top"><span></span></span>
 	
-	<div class="content">
+	<div class="narrow content">
 		<h2><!-- IF LOGIN_EXPLAIN -->{LOGIN_EXPLAIN}<!-- ELSE -->{L_LOGIN}<!-- ENDIF --></h2>
-		
-		<div style="float:right; width:40%;">
-			<!-- INCLUDE snippet_why_register.html -->
-		</div>
-		
+
 		<fieldset <!-- IF not S_CONFIRM_CODE -->class="fields1"<!-- ELSE -->class="fields2"<!-- ENDIF -->>
 		<!-- IF LOGIN_ERROR --><div class="error">{LOGIN_ERROR}</div><!-- ENDIF -->
 		<dl>
@@ -43,26 +51,14 @@
 		</dl>
 	
 		</fieldset>
+    
+    <h3>Don't have an account?</h3>
+    <p>Getting started is easy.  <a href="/about/">Our friendly staff</a> will show you the way!</p>
+    <p style="text-align: right;"><a href="/ucp.php?mode=register#form" class="button">Create an Account &raquo;</a></p>
+    
 	</div>
 	<span class="corners-bottom"><span></span></span></div>
 </div>
-
-<!-- IF not S_ADMIN_AUTH and S_REGISTER_ENABLED -->
-	<div class="panel">
-		<div class="inner"><span class="corners-top"><span></span></span>
-
-		<div class="content">
-			<h3>{L_REGISTER}</h3>
-			<p>{L_LOGIN_INFO}</p>
-			<p><strong><a href="{U_TERMS_USE}">{L_TERMS_USE}</a> | <a href="{U_PRIVACY}">{L_PRIVACY}</a></strong></p>
-			<hr class="dashed" />
-			<p><a href="{U_REGISTER}" class="button2">{L_REGISTER}</a></p>
-		</div>
-
-		<span class="corners-bottom"><span></span></span></div>
-	</div>
-<!-- ENDIF -->
-
 </form>
 
 <!-- INCLUDE overall_footer.html -->

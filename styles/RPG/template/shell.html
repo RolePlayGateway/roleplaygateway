@@ -1,0 +1,63 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<style type="text/css">
+img.small.crisp-border {
+  max-width: 83px;
+  position: relative;
+}
+
+span.control {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: none;
+}
+
+.editable-icon:hover > span {
+  display: inline-block;
+}
+</style>
+
+<h2>RPG Explorer</h2>
+<p>Click a character to explore their universe.  Special commands are prefixed with a forward slash (that's <code>/</code> by the way!).  <a href="https://www.roleplaygateway.com/simple-beginner-guide-roleplaygateway-chat-system-t32024.html" class="button">Learn more about explorer commands &raquo;</a></p>
+
+<p>For in-game help, try <code>/help</code> for a list of available commands.  Once a character has been selected, press <button id="fullscreener" class="button" style="margin: 0.5em;">immerse &raquo;</button> and enjoy.</p>
+
+<a target="viewer" href="/shoutbox/">
+  <img src="/images/out-of-character.png" style="height: 83px; width: 83px; border: 1px solid black; background: black;" class="small crisp-border" />
+</a>
+
+<!-- BEGIN characters -->
+  <a class="editable-icon" target="viewer" href="/explorer/?roleplayID={characters.ROLEPLAY_ID}&amp;characterID={characters.ID}">
+    <img src="{characters.LINK}/image" class="small crisp-border" />
+    <!--<span class="control"><button class="button" href="/ucp.php?i=characters&amp;mode=edit&amp;character_id={characters.ID}">edit</button></span>-->
+  </a>
+<!-- END characters -->
+
+<div>
+  <iframe id="viewer" name="viewer" src="/shoutbox/" width="100%" height="700px;" frameborder="0"></iframe>
+</div>
+
+
+<script type="text/javascript">
+var element = document.getElementById('viewer');
+
+document.getElementById('fullscreener').addEventListener('click', function() {
+  if (BigScreen.enabled) {
+    BigScreen.request(element, function onEnter () {
+      
+    }, function onExit () {
+      
+    }, function onError () {
+      
+    });
+    // You could also use .toggle(element, onEnter, onExit, onError)
+  } else {
+      // fallback for browsers that don't support full screen
+    }
+  }, false);
+</script>
+
+<!-- INCLUDE overall_footer.html -->

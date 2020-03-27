@@ -1,42 +1,70 @@
 <!-- INCLUDE overall_header.html -->
 <!-- INCLUDE stylesheet_roleplay.html -->
 
+<div style="float: right;">
+  <input id="place-search" placeholder="Search..." class="supersize" />
+</div>
+
 <img src="/roleplay/{ROLEPLAY_URL}/image" class="crisp-border" style="float:left; margin-right: 1em;" />
 <h1 style="color:#596E7C; margin-top: 0;"><a href="/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_NAME}</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/places">Places</a></h1>
 <p style="margin-bottom: 0;">{ROLEPLAY_SYNOPSIS}</p>
 
 <div>
   <h3 style="font-size: 1.2em; margin-top: 0.5em;">Places in {ROLEPLAY_NAME}</h3>
-  <p style="font-size: 1.4em;">This is a list of locations that can be found in <strong>{ROLEPLAY_NAME}</strong>.</p>
+  <p style="font-size: 1.4em;">
+    This is a list of locations that can be found in <strong>{ROLEPLAY_NAME}</strong>.<br/>
+    <!-- IF S_CAN_EDIT --><a href="/ucp.php?i=roleplays&amp;mode=add_place&amp;roleplay_id={ROLEPLAY_ID}" class="button">Add New &raquo;</a><!-- ENDIF -->
+  </p>
 </div>
 <br style="clear: both;" />
 
+<!-- IF S_PAGINATION -->
 <ul class="linklist">
     <li class="rightside pagination">{TOTAL_PLACES} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
 </ul>
+<!-- ENDIF -->
 
 <div class="panel">
 	<div class="inner">
 		<span class="corners-top"><span></span></span>
-    <div class="postbody"  style="width:inherit;"><div class="">
+    <div class="postbody" style="width: 100%;"><div>
 
-      <!-- BEGIN places -->
-      <div class="place" style="height: auto;">
-	      <a href="/roleplay/{ROLEPLAY_URL}/places/{places.URL}/"><img src="/roleplay/{ROLEPLAY_URL}/places/{places.URL}/image" alt="{places.NAME}" class="crisp-border" /></a>
-	      <div>
-		      <h3>
-            <small style="float:right;">{places.POSTS} posts</small>
-            <small># {places.ID}</small> 
-            <a href="/roleplay/{ROLEPLAY_URL}/places/{places.URL}/">{places.NAME}</a> 
-            <small><strong>Owner: {places.OWNER_USERNAME}</strong></small>
-            <small>Last Activity: <a href="/roleplay/{ROLEPLAY_URL}/places/{places.URL}/#roleplay{places.LAST_POST_ID}">{places.LAST_POST_DATE} &raquo;</a></small>
-          </h3>
-	      </div>
-	      <p>{places.SYNOPSIS}</p>
+      <div id="placelist">
+        <!-- BEGIN places -->
+        <div class="place" style="height: auto;" data-name="{places.NAME}" data-synopsis="{places.SYNOPSIS}">
+  	      <a href="/roleplay/{ROLEPLAY_URL}/places/{places.URL}/"><img src="/roleplay/{ROLEPLAY_URL}/places/{places.URL}/image" alt="{places.NAME}" class="crisp-border" /></a>
+          <div style="float: right; width: 400px; margin-left: 1em;">
+            <h3 style="text-align: right;">
+              <small><a href="/roleplay/{ROLEPLAY_URL}/places/{places.URL}#activity">{places.POSTS} posts</a></small>
+               &middot; 
+              <small><a href="/roleplay/{ROLEPLAY_URL}/places/{places.URL}#characters">{places.CHARACTER_COUNT} characters present</a></small>
+               &middot; 
+              <small>last post <a href="/roleplay/{ROLEPLAY_URL}/places/{places.URL}/#roleplay{places.LAST_POST_ID}">{places.LAST_POST_DATE} &raquo;</a></small>
+            </h3>
+            <div style="max-height: 72px;  overflow: hidden; text-overflow: ellipsis;">{places.LAST_POST_CONTENT}</div>
+            <div style="text-align: right;">
+              <a href="/roleplay/{ROLEPLAY_URL}/places/{places.URL}#roleplay{places.LAST_POST}">[&hellip;]</a>
+            </div>
+          </div>
+  	      <div>
+  		      <h3>
+              <!-- IF places.PARENT_ID gt 0 -->
+              <small style="display:block;">
+                <a href="/roleplay/{ROLEPLAY_URL}/places/{places.PARENT_SLUG}/">{places.PARENT_NAME}</a>
+              </small>
+              &#8618;
+              <!-- ENDIF -->
+              <!-- <small># {places.ID}</small> -->
+              <a href="/roleplay/{ROLEPLAY_URL}/places/{places.URL}/">{places.NAME}</a>
+              <small><strong>Owner: {places.OWNER_USERNAME}</strong></small>
+            </h3>
+  	      </div>
+  	      <p>{places.SYNOPSIS}</p>
+        </div>
+        <!-- BEGINELSE -->
+  	      <p class="supersize">There are no places in this roleplay!</p>
+        <!-- END places -->
       </div>
-      <!-- BEGINELSE -->
-	      <p class="supersize">There are no places in this roleplay!</p>
-      <!-- END places -->
 
     </div></div>
 		<span class="corners-bottom"><span></span></span>
@@ -46,5 +74,18 @@
 <ul class="linklist">
     <li class="rightside pagination">{TOTAL_PLACES} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
 </ul>
+
+<script type="text/javascript">
+  $('#place-search').keyup(function() {
+    var filter = $(this).val();
+    if (filter.length > 0) {
+      $('#placelist .place').hide();
+      $('#placelist .place[data-name*="'+filter+'"]').show();
+      $('#placelist .place[data-synopsis*="'+filter+'"]').show();
+    } else {
+      $('#placelist .place').show();
+    }
+  });
+</script>
 
 <!-- INCLUDE overall_footer.html -->

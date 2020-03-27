@@ -96,18 +96,15 @@
 		<strong>{L_SUBJECT}:</strong> <input type="text" name="subject" id="subject" size="64" maxlength="<!-- IF S_NEW_MESSAGE -->60<!-- ELSE -->64<!-- ENDIF -->" tabindex="2" value="{SUBJECT}{DRAFT_SUBJECT}" class="inputbox autowidth" />
 	</dl>
 	<!-- IF not S_PRIVMSGS and S_NEW_MESSAGE -->
-	<dl style="clear:both;">
-		
-		<div style="float:right;">
-			<span style="font-size:1.2em;">Want to promote your topic?  Get it featured for only $5 per 30 days. <strong><a href="http://www.roleplaygateway.com/promote">Find Out More...</a></strong></span>
-		</div>
 
-	</dl>
+  <!-- IF S_TAGS_NOT_DISTRACTING -->
 	<dl style="clear: left;">
 		<!-- phpBBFolk MOD -->
 		<!-- IF S_PHPBBFOLK_ON --><!-- INCLUDE phpBBFolk_posting_tag_input.html --><!-- ENDIF -->
 		<!-- end phpBBFolk mod -->
 	</dl>
+  <!-- ENDIF -->
+
 	<!-- ENDIF -->
 		<!-- IF S_CONFIRM_CODE -->
 		<dl>
@@ -157,13 +154,13 @@
 			
 			if (wordcount < 75) {
 				document.getElementById("postingtip").style.color = "#f00";
-				document.getElementById("postingtip").innerHTML = "<img src=\"http://www.roleplaygateway.com/images/x.png\" style=\"float:left; margin:10px;\" /><strong>Use the forum for longer posts, chat for quick talk.</strong><p>You might want to use <a href=\"http://www.roleplaygateway.com/chat/\" title=\"Roleplay Chat\">our chat</a> for shorter replies like this.  It'll go much faster than making someone refresh the page to see something this short!</p>";
+				document.getElementById("postingtip").innerHTML = "<img src=\"//www.roleplaygateway.com/images/x.png\" style=\"float:left; margin:10px;\" /><strong>Use the forum for longer posts, chat for quick talk.</strong><p>You might want to use <a href=\"//www.roleplaygateway.com/chat/\" title=\"Roleplay Chat\">our chat</a> for shorter replies like this.  It'll go much faster than making someone refresh the page to see something this short!</p>";
 			} else if (wordcount > 9000) {
 				document.getElementById("postingtip").style.color = "#000";
-				document.getElementById("postingtip").innerHTML = "<img src=\"http://www.roleplaygateway.com/images/over_9000.gif\" style=\"float:left; margin:10px;\" /><p>Vegeta! What does the scouter say about his power level?!</p><p><strong>It's over NINE THOUSAAAAANNNNDDDDD!!!111oneone1eleven!";
+				document.getElementById("postingtip").innerHTML = "<img src=\"//www.roleplaygateway.com/images/over_9000.gif\" style=\"float:left; margin:10px;\" /><p>Vegeta! What does the scouter say about his power level?!</p><p><strong>It's over NINE THOUSAAAAANNNNDDDDD!!!111oneone1eleven!";
 			} else {
 				document.getElementById("postingtip").style.color = "#090";
-				document.getElementById("postingtip").innerHTML = "<img src=\"http://www.roleplaygateway.com/images/j.png\" style=\"float:left; margin:10px;\" /><strong>Good work!</strong><p>Now just make sure that you've checked spelling and grammar, and proofread at least once - then hit the submit button below.</p>";
+				document.getElementById("postingtip").innerHTML = "<img src=\"//www.roleplaygateway.com/images/j.png\" style=\"float:left; margin:10px;\" /><strong>Good work!</strong><p>Now just make sure that you've checked spelling and grammar, and proofread at least once - then hit the submit button below.</p>";
 			}
 			  
 			/* if (len > mc) {
@@ -254,7 +251,7 @@
 			<ul>
 				<li id="options-panel-tab" class="activetab"><a href="#tabs" onclick="subPanels('options-panel'); return false;"><span>{L_OPTIONS}</span></a></li>
 				<!-- IF S_SHOW_ATTACH_BOX --><li id="attach-panel-tab"><a href="#tabs" onclick="subPanels('attach-panel'); return false;"><span>{L_ADD_ATTACHMENT}</span></a></li><!-- ENDIF -->
-				<!-- IF S_SHOW_POLL_BOX || S_POLL_DELETE --><li id="poll-panel-tab"><a href="#tabs" onclick="subPanels('poll-panel'); return false;"><span>{L_ADD_POLL}</span></a></li><!-- ENDIF -->				
+				<!-- IF S_SHOW_POLL_BOX || S_POLL_DELETE --><li id="poll-panel-tab"><a href="#tabs" onclick="subPanels('poll-panel'); return false;"><span>{L_ADD_POLL}</span></a></li><!-- ENDIF -->
 			</ul>
 		</div>
 	<!-- ENDIF -->

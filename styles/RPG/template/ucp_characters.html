@@ -1,0 +1,107 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<style type="text/css">
+td {
+  vertical-align: top;
+}
+
+.panel .spaced.button {
+  margin: 0 0.5em 0 0;
+}
+</style>
+
+<h2>Character Management</h2>
+<p>Use this page to manage your characters.</p>
+
+<form id="ucp" method="post" action="/ucp.php?i=characters&amp;mode=edit">
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	   <h3>Your Characters</h3>
+
+		<input class="inputbox supersize" style="width: 350px; font-size: 1.2em; margin:0.5em; padding: 0.25em;" type="text" id="characterFilter" placeholder="Type here to filter by name or roleplay." />
+    <strong>We hate scrolling, too.</strong>
+
+		<ul class="topiclist cplist" id="characterList">
+      <table class="special table" width="100%">
+    		<!-- BEGIN characters -->
+    		<tr style="clear:both;" data-name="{characters.NAME}", data-roleplay-name="{characters.ROLEPLAY}">
+          <td>
+            <div class="quick-float-right">
+              <a class="spaced button" href="/ucp.php?i=characters&amp;mode=abandon&amp;character_id={characters.ID}" style="float: right;">abandon</a>
+              <a class="spaced button" href="/ucp.php?i=characters&amp;mode=edit&amp;character_id={characters.ID}" style="float: right;">📝 edit</a>
+
+              <!-- other buttons -->
+              <!-- IF S_IS_BETA -->
+              <!-- IF S_INVENTORY_ENABLED -->
+              <a class="button" href="/universes/{characters.ROLEPLAY_URL}/characters/{characters.URL}/inventory"><small>[<span class="subtle">#</span>beta]</small> Inventory &raquo;</a>
+              <!-- ENDIF -->
+              <!-- ENDIF -->
+              <!-- IF characters.S_IS_FOR_SALE -->
+              <div class="button group">
+                <a class="pricing" on-tap="_promptAndSetPrice" data-link="/characters/{characters.ID}">
+                  <small>INK</small>
+                  <span data-bind="sale-price">{characters.SALE_PRICE}</span>
+                </a>
+
+                <!-- IF characters.S_CAN_EDIT -->
+                <div>
+                  <a class="header" on-tap="_promptAndSetPrice" data-link="/characters/{characters.ID}"><small>change</small></a>
+                  <a class="header" on-tap="_cancelOrder" data-link="/orders/{orders.ORDER_ID}" title="cancel this order"><small>close</small></a>
+                </div>
+                <!-- ELSE -->
+                <!-- IF characters.S_CAN_AFFORD -->
+                <a class="header" on-tap="_fillOrder" data-link="/orders/{characters.ORDER_ID}" data-price="{characters.SALE_PRICE}">Buy Now</a>
+                <!-- ELSE -->
+                <div class="header">
+                  <small>not enough INK</small><br />
+                  <a href="/medals" data-price="{characters.SALE_PRICE}">Earn to Buy</a>
+                </div>
+                <!-- ENDIF -->
+                <!-- ENDIF -->
+              </div>
+              <!-- ELSE -->
+              <!-- IF characters.S_CAN_EDIT -->
+              <a class="spaced button" on-tap="_promptAndSetPrice" data-link="/characters/{characters.ID}">💰 sell</a>
+              <!-- ENDIF -->
+              <!-- ENDIF -->
+              <!-- IF S_ABANDON_ENABLED --><a class="button" href="/ucp.php?i=characters&amp;mode=abandon&amp;character_id={characters.ID}">Abandon</a><!-- ENDIF -->
+            </div>
+            <img class="crisp-border" style="float:left; height: 50px; margin-right: 1em;" src="/universes/{characters.ROLEPLAY_URL}/characters/{characters.URL}/image" />
+    				<a href="/universes/{characters.ROLEPLAY_URL}/characters/{characters.URL}" class="forumtitle">{characters.NAME}</a>
+    				<br />{characters.SYNOPSIS}<br /><i>{characters.MODES}</i>
+    			</td>
+          <td>
+            <a href="/universes/{characters.ROLEPLAY_URL}/places/{characters.PLACE_URL}"><img src="/universes/{characters.ROLEPLAY_URL}/places/{characters.PLACE_URL}/image" class="crisp-border" style="height: 35px; width: 35px; float: left; margin-right: 5px; margin-top: 5px;" /></a>
+            <h3 style="border: 0;">located in <a href="/universes/{characters.ROLEPLAY_URL}/places/{characters.PLACE_URL}">{characters.PLACE_NAME}</a></h3>
+            <h3 style="border: 0;"><small>a part of <a href="/universes/{characters.ROLEPLAY_URL}/">{characters.ROLEPLAY}</a></small></h3>
+          </td>
+          <td><a href="/universes/{characters.ROLEPLAY_URL}/characters/{characters.URL}" class="supersize button"><small>🔗</small></a></td>
+          <td><div><a href="/explorer?characterID={characters.ID}&amp;roleplayID={characters.ROLEPLAY_ID}" class="supersize button"><small>Play!</small></a></div></td>
+    		</tr>
+  		<!-- END characters -->
+      </table>
+  	</ul>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+</form>
+<script type="text/javascript">
+  $('#ucp').submit(function() {
+    return false;
+  });
+  $('#characterFilter').keyup(function() {
+    var filter = $(this).val();
+    if (filter.length > 0) {
+      $('#characterList tr').hide();
+      $('#characterList tr[data-name*="'+filter+'"]').show();
+      $('#characterList tr[data-roleplay-name*="'+filter+'"]').show();
+    } else {
+      $('#characterList tr').show();
+    }
+  });
+</script>
+<!-- INCLUDE overall_footer.html -->

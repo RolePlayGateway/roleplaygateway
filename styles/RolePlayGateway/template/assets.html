@@ -1,0 +1,92 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<style type="text/css">
+  .panel p {
+    min-height: 0;
+  }
+  
+  .labeled.action > div {
+    text-align: center;
+  }
+  
+  .labeled.action > div > span {
+    font-size: 1.4em;
+  }
+</style>
+
+<div class="quick-float-right">
+  <div class="labeled action">
+    <div><span data-bind data-link>10,000</span> <small>INK</small></div>
+    <center><!-- IF S_CAN_AFFORD -->✓ affordable!<!-- ENDIF --></center>
+  </div>
+  <center>Not enough INK?  Try selling something in <a href="/orders">the marketplace</a>.</center>
+</div>
+
+<h1>Asset Issuance</h1>
+<p>Creating Assets on RPG allows you to manage resources in the universes you are a part of.  Shopkeepers may set prices in any currency of their choice, including currencies from other universes.</p>
+
+<div class="special panel">
+  <form action="/assets" method="POST">
+    <fieldset>
+      <label>
+        <h3>Name</h3>
+        <p>The human-friendly name of your asset.</p>
+      </label>
+      
+      <input class="supersize" type="text" name="name" max="25" placeholder="e.g., &ldquo;Gruffles&rdquo;" />
+    </fieldset>
+    
+    <fieldset>
+      <label>
+        <h3>Symbol</h3>
+        <p>A three-letter symbol to represent your asset in the market.</p>
+      </label>
+      
+      <input class="supersize"  type="text" name="symbol" maxlength="3" placeholder="e.g., GRF" />
+    </fieldset>
+
+    <fieldset>
+      <label>
+        <h3>Initial Issuance</h3>
+        <p>How many of these will exist?  Defaults to <span>10 million</span>, which is enough for 1,000 players to hold an average balance of 10,000 units each.</p>
+      </label>
+      <!-- TODO: visual slider in log scale -->
+      <input class="supersize" type="number" name="issuance" min="1" max="1000000000000000" value="10000000" />
+    </fieldset>
+
+    <fieldset>
+      <label>
+        <h3>Bonding Deposit</h3>
+        <p>This defines the <strong>natural exchange rate</strong>, which is used as the price for which players can buy this asset.  The minimum is <strong>100</strong> <small>INK</small>, but larger amounts increase the value of asset directly.  <strong>This is deducted from your <small>INK</small> balance.</strong></p>
+      </label>
+      <!-- TODO: visual slider in log scale -->
+      <input class="supersize" type="number" name="deposit" min="100" max="10000000" value="100" />
+    </fieldset>
+
+    <fieldset>
+      <label>
+        <h3>Depreciation</h3>
+        <p>What is the rate of decay for this asset?  This is applied to balances once per <select name="period"><option value="block">Block</option><option value="transaction">Transaction</option></select> and must be greater than 0.</p>
+      </label>
+      <input class="supersize" type="number" name="demurrage" min="0.0001" value="0.0001" step="0.0001" />
+    </fieldset>
+
+    <fieldset style="text-align: right;">
+      <button type="submit" class="button">Create this Asset &raquo;</button>
+    </fieldset>
+  </form>
+</div>
+
+<h2>Assets in Existence</h2>
+<div class="special panel">
+  <!-- BEGIN assets -->
+  <div>
+    <h3><small>{assets.SYMBOL}</small> {assets.NAME}</h3>
+    <p><strong>{assets.ISSUANCE}</strong> issued, worth <strong>{assets.RATE}</strong> <small>INK</small> each, and decaying at a rate of <strong>{assets.DEMURRAGE}</strong>% per block.</p>
+  </div>
+  <!-- END assets -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,47 @@
+<!-- IF S_SHOW_TOTAL_PMS == 'Y' -->
+{L_DIGEST_TOTAL_PMS} {DIGEST_TOTAL_PMS} 
+<!-- ENDIF -->
+{L_DIGEST_TOTAL_POSTS} {DIGEST_TOTAL_POSTS} 
+
+____________________________________________________________
+<!-- IF S_SHOW_PMS == 'Y' -->
+
+{L_YOU_HAVE_PRIVATE_MESSAGES}
+
+<!-- BEGIN pm -->
+{pm.NEW_UNREAD}{L_PRIVATE_MESSAGE}
+{L_MESSAGE_SUBJECT}: {pm.PRIVATE_MESSAGE_SUBJECT}
+{L_FROM}: {pm.FROM} {L_DIGEST_ON} {pm.DATE}
+{pm.CONTENT}
+
+<!-- BEGINELSE -->
+
+{L_NO_PMS}
+
+<!-- END pm -->
+____________________________________________________________
+<!-- ENDIF -->
+
+<!-- BEGIN forum -->
+
+{L_FORUM}: {forum.FORUM}
+<!-- BEGIN topic -->
+
+{L_TOPIC}: {forum.topic.TOPIC}
+
+<!-- BEGIN post -->
+<!-- IF forum.topic.post.S_FIRST_POST == 'N' -->
+{L_MESSAGE_SUBJECT}: {forum.topic.post.SUBJECT}
+<!-- ENDIF -->
+{L_DIGEST_BY} {forum.topic.post.FROM} {L_DIGEST_ON} {forum.topic.post.DATE}
+{forum.topic.post.CONTENT}
+
+<!-- END post -->
+
+<!-- END topic -->
+
+
+<!-- BEGINELSE -->
+{L_NO_POSTS}
+
+<!-- END forum -->

@@ -1,0 +1,70 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<h2>RPG Wagers</h2>
+<p>Can you keep a secret?</p>
+
+<div>
+  <!-- BEGIN wagers -->
+  <div class="special panel">
+    <h3>wager: {wagers.ID}</h3>
+    <p class="supersize content">
+      <strong>Challenge:</strong> solve for <code>x</code>, where <code>H(x)</code> is equivalent to <code>sha256(x)</code>:
+      <dl class="supersize codebox">
+        <code>H(x) = {wagers.CHALLENGE}</code>
+      </dl>
+    </p>
+    <p>
+      <code style="text-transform: uppercase;">
+        <strong>Anchor:</strong> {wagers.ANCHOR}
+        <strong>Amount:</strong> {wagers.AMOUNT}
+        <strong>Locktime:</strong> {wagers.LOCKTIME}
+        <strong>Signature:</strong> {wagers.SIGNATURE}
+      </code>
+    </p>
+    <p>
+      <code style="text-transform: uppercase;">
+        <strong>SCRIPT:</strong> {wagers.SCRIPT}
+      </code>
+    </p>
+  </div>
+  <!-- BEGINELSE -->
+  <p>No wagers found.</p>
+  <!-- END wagers -->
+</div>
+
+<div class="special panel">
+  <h3>Wager a Secret?</h3>
+  <p>To create a wager, share a secret with us <em>but no one else</em>.</p>
+  <form action="" method="POST">
+    <div>
+      <label>
+        <h4>Asset:</h4>
+        <p>Which asset shall we wager?</p>
+      </label>
+      <select name="asset">
+        <option value="INK">INK</option>
+      </select>
+    </div>
+    <div>
+      <label>
+        <h4><abbr title="Smallest whole unit of the asset.  Satoshi for BTC.">Amount</abbr>:</h4>
+        <p>How much of the asset?</p>
+      </label>
+      <input name="amount" type="number" min="0" max="2147483647" value="1">
+    </div>
+    <div>
+      <label>
+        <h4>Secret:</h4>
+        <p>If this be known to the world, so the world may spend.</p>
+      </label>
+      <input name="secret" type="password" placeholder="Enter a secret...">
+    </div>
+    <div>
+      <button class="button">Create Wager &raquo;</button>
+    </div>
+  </form>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

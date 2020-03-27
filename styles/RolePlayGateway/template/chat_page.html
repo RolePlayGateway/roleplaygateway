@@ -1,9 +1,28 @@
 <!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
 
 <h2>RPG Chat</h2>
+<div class="special panel">
+  <h3>Public Roleplay Chat</h3>
+  <p>Welcome to the global RPG chat, shared across all participants on the site.  Here, you can meet new people, find <a href="/universes">new universes</a>, and explore public conversation.</p>
+  <p>Try the <code>Pop-out</code> button in the top right-hand corner for a larger view.  Some prefer <a href="/shoutbox/">the direct link</a>, which can be useful for bookmarking.  If you're looking for the OOC chat for a particular roleplay, try browsing <a href="https://www.roleplaygateway.com/ucp.php?i=276">My Universes</a> and navigating to the Chat tab in your destination roleplay.</p>
+  <p>You can try <code>/help</code> to learn what's available, or just say hello to the room.</p>
+</div>
 
 <!-- HTTP -->
-<iframe id="chat-embed" src="http://www.roleplaygateway.com/embed/" width="100%" height="650" scrolling="no" frameborder="0" marginwidth="0"></iframe>
+<!-- IF S_REGISTERED_USER -->
+<iframe id="chat-embed" src="https://www.roleplaygateway.com/shoutbox/" width="100%" height="650" scrolling="no" frameborder="0" marginwidth="0"></iframe>
+<!-- ELSE -->
+<!-- IF S_USE_VERSE -->
+<iframe id="chat-embed" src="https://chat.verse.im/#/login" width="100%" height="750" scrolling="no" frameborder="0" marginwidth="0"></iframe>
+<!-- ELSE -->
+<iframe id="chat-embed" src="https://www.roleplaygateway.com/shoutbox/" width="100%" height="650" scrolling="no" frameborder="0" marginwidth="0"></iframe>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+
+<!-- <iframe id="chat-embed" src="https://www.roleplaygateway.com/shoutbox/" width="100%" height="650" scrolling="no" frameborder="0" marginwidth="0"></iframe> -->
 <!--<iframe src="http://embed.mibbit.com/?server=webirc.gamesurge.net:6007&channel=%23roleplayerguild&noServerNotices=true&noServerMotd=true" width="100%" height="650" scrolling="no" frameborder="0" marginwidth="0"></iframe>-->
 
 <!-- INCLUDE overall_footer.html -->

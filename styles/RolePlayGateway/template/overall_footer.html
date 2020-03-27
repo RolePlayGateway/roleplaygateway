@@ -10,11 +10,14 @@
 
 	<div id="page-footer" style="margin-bottom:15px;">
 
+		<!-- IF S_ADS_GOOD -->
 		<!-- IF AD_CODE6 -->
 			<h3>Our Sponsors</h3>
 			<div align="center">{AD_CODE6}</div><br />
 		<!-- ENDIF -->
+		<!-- ENDIF -->
 
+		<!-- IF S_ADS_GOOD -->
 			<center>
 				<script type="text/javascript"><!--
 				google_ad_client = "ca-pub-4532443596754933";
@@ -27,6 +30,7 @@
 				<script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js">
 				</script>
 			</center>
+		<!-- ENDIF -->
 		
 		<div id="feet">
 			<!-- <table>
@@ -70,29 +74,80 @@
 			<!-- IF DEBUG_OUTPUT --><br />{DEBUG_OUTPUT}<!-- ENDIF -->
 			<!-- IF U_ACP --><p><strong><a href="{U_ACP}">{L_ACP}</a></strong></p><!-- ENDIF -->
 			
-			<p><a href="/about">About</a> &middot; <a href="https://quill.is/docs/terms-of-use">Terms</a> &middot; <a href="https://quill.is/docs/privacy-policy">Privacy</a> &middot; <a href="https://github.com/RolePlayGateway">Source Code</a></p>
-	
+			<p><a href="/about">About</a> &middot; <a href="/rules">Code of Conduct</a> &middot; <a href="https://github.com/RolePlayGateway/roleplaygateway">Source Code</a></p>
 			<br /><br />
-			<p>&copy; RolePlayGateway, LLC </p>
+			<p>&copy; <a href="https://quill.is">Quill, Inc.</a> </p>
 		</div>
 
 	</div>
 </div>
 
-		<script type="text/javascript">
-			$('.timeago').timeago();
+  <!-- IF S_IS_BETA -->
+  <script src="/app.js"></script>
+  <!-- ENDIF -->
 
-			var previewTimeout;
-      $('.previewable').keyup(function(e) {
-        var self = this;
-        clearTimeout(previewTimeout);
-        previewTimeout = setTimeout(function() {
-          $.get('/preview.php', { text: $(self).val() }, function(data) {
-            $('#innerPreview').html(data);
-            $('#previewControls').fadeIn();
+    <script type="text/javascript">
+      $(window).load(function() {
+        $('.timeago').timeago();
+        <!-- IF S_USER_LOGGED_IN and not S_IS_BOT -->
+        var $alerts = $('*[href="/notifications"][data-bind="notifications"]');
+        var $indicator = $('*[data-bind="notifications"]');
+
+        var notified = false;
+        var lastCount = parseInt($alerts.html());
+
+        function checkNotifications () {
+          $.ajax({
+            method: 'GET',
+            url: '/notifications?format=json',
+            dataType: 'json'
+          }).done(function(data) {
+            console.log('notifications:', data.meta);
+            // canonical:
+            //var $alerts = $('*[src="/notifications"][data-bind="meta.unread"]');
+            // sloppy:
+
+            var count = data.meta.unread;
+            $alerts.html('' + count);
+
+            if (count) {
+              if (count > lastCount) {
+                notified = false;
+              }
+              
+              lastCount = count;
+              
+              if (notified == false) {
+                var sound = new Audio('/sounds/new-message.mp3');
+                sound.play();
+                notified = true;
+              }
+              
+              $indicator.addClass('unread');
+            } else {
+              $indicator.removeClass('unread');
+            }
+            
           });
-        }, 200);
+        }
+        setInterval(checkNotifications, 5000);
+        <!-- ENDIF -->
+        
+        
+
+        var previewTimeout;
+        $('.previewable').keyup(function(e) {
+          var self = this;
+          clearTimeout(previewTimeout);
+          previewTimeout = setTimeout(function() {
+            $.get('/preview.php', { text: $(self).val() }, function(data) {
+              $('#innerPreview').html(data);
+              $('#previewControls').fadeIn();
+            });
+          }, 200);
+        });
       });
+
 
 			/* var client = new Faye.Client('http://s.roleplaygateway.com:99/', {
 						timeout: 120
@@ -130,7 +185,6 @@
 							break;
 						}
 
-
 						$.gritter.add({
 							title: composed.title,
 							text: composed.content,
@@ -146,6 +200,11 @@
 
 		<script type="text/javascript" src="/im/external.php?type=djs" charset="utf-8"></script>
 		<script type="text/javascript" src="/im/external.php?type=js" charset="utf-8"></script>
+    <script src="/js/tablesort.min.js"></script>
+    <script src="/js/tablesort.number.min.js"></script>
+    <script type="text/javascript">
+      new Tablesort(document.querySelector('.tablesorted'));
+    </script>
 
 		<!-- IF S_IS_ERIC_TESTING_STUFF -->
 		<div id="activitybar">

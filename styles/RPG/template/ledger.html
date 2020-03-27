@@ -1,0 +1,173 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE scripts_d3.old.html -->
+
+<!-- IF S_IS_BETA -->
+<style>
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.bar {
+  fill: orange;
+}
+.bar:hover {
+  fill: orangered ;
+}
+.x.axis path {
+  display: none;
+}
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 1em;
+}
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+</style>
+
+<h3>Currency Distribution (visible to Beta Testers only)</h3>
+<div id="balance-chart" style="margin-top: 2.5em;"></div>
+<div id="balance-table"></div>
+<script type="text/javascript">
+var url = "/balances";
+
+var totalWidth = 900;
+var totalHeight = 360;
+var margin = {top: 10, right: 10, bottom: 30, left: 150};
+
+var width = totalWidth - margin.left - margin.right;
+var height = totalHeight - margin.top - margin.bottom;
+
+var numBins = 10
+var binWidth = 50
+
+d3.json(url, function(err,data) {
+  var balanceChart = dc.barChart("#balance-chart");
+  // var balanceTable = dc.dataTable("#balance-table");
+  var balances = Object.values(data);
+
+  // The first entry is the "Bank"
+  var marketCap = -balances.shift()
+
+  // Remove all the zeros after we count them
+  var emptyCount = balances.filter(function(d) { return 0 == d; }).length
+  balances = balances.filter(function(d) { return 0 != d; })
+
+  console.log("Using " + numBins + " bins (" + binWidth + " wide) to graph " + balances.length + " balances")
+
+  var binning = function(d) {
+    return Math.floor(d / binWidth);
+  }
+
+  var ndx = crossfilter(balances);
+  var balanceDim  = ndx.dimension(function(d) { return d; });
+  var balanceHist = balanceDim.group(binning).reduceCount();
+  var histMaxKey = d3.max(balanceHist.all().map(function(d) { return d.key;}))
+  var histMaxValue = d3.max(balanceHist.all().map(function(d) { return d.value;}))
+
+  var x = d3.scale.linear()
+    .domain([0, histMaxKey])
+    //.domain([0, 50])
+
+  var y = d3.scale.linear()
+    .domain([0, histMaxValue + 5000])
+
+  balanceChart
+    .xAxis()
+    .tickFormat(function(d) { return d * binWidth; })
+
+  balanceChart
+    .width(totalWidth)
+    .height(totalHeight)
+    .dimension(balanceDim)
+    .group(balanceHist)
+    .x(x)
+    .y(y)
+    .xAxisLabel("Account Balance (INK)")
+    .yAxisLabel("Number of users")
+    .brushOn(false)
+    .title(function (d) { return d.value + " accounts"; });
+
+  dc.renderAll();
+
+  var tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([0, 0])
+    .html(function (d) { return "<span>" + (d.x * binWidth) + " to " + ((d.x + 1) * binWidth - 1) + " INK<br/><strong>" + d.y + " users</strong></span>"; });
+
+  d3.selectAll('.bar').call(tip);
+  d3.selectAll('.bar')
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
+
+});
+</script>
+<!-- ENDIF -->
+
+<!-- IF FINAL_BALANCE -->
+<h2 style="float: right;">Balance: <span>{FINAL_BALANCE}</span> <small>INK</small></h2>
+<!-- ENDIF -->
+
+<h2>RPG Ledger</h2>
+<p>A list of all transaction data.</p>
+
+<div>
+  <table style="width: 100%;">
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>From</td>
+        <td>To</td>
+        <td>Amount</td>
+        <td>For</td>
+        <td>Timestamp</td>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- BEGIN transactions -->
+      <tr>
+        <td>{transactions.ID}</td>
+        <td>{transactions.FROM_NAME}</td>
+        <td>{transactions.TO_NAME}</td>
+        <td>{transactions.AMOUNT}</td>
+        <td>
+          <!-- IF transactions.FOR_LINK -->
+          <a href="{transactions.FOR_LINK}">{transactions.FOR_NAME}</a>
+          <!-- ELSE -->
+          {transactions.FOR}
+          <!-- ENDIF -->
+        </td>
+        <td>{transactions.TIMESTAMP}</td>
+      </tr>
+      <!-- END transactions -->
+    </tbody>
+  </table>
+</div>
+
+<!-- IF FINAL_BALANCE -->
+<h2>Final Balance: <span>{FINAL_BALANCE}</span> <small>INK</small></h2>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,211 @@
+		  <style type="text/css">
+		    .characterTagging { font-size: 1.4em; vertical-align: middle; }
+		    .taggedCharacters { display: block; padding-top: 0.5em; }
+		    .hovered { border: 1px dotted red; }
+		    .micro { height: 30px; width: 30px; margin-right: 5px; vertical-align: middle; }
+		    .prettyCenter { font-weight: bold; }
+		    .postTaggedCharacter { display: block; border-radius: 3px; background: #ccc; margin-left: 5px; margin-right: 5px; padding-right: 5px; border: 1px solid black; }
+		    .submitTaggedCharacters { font-weight: bold; margin-top: 0.5em; }
+				.bundleList > div { clear: both; padding: 0.2em; }
+				.bundleList > div > input[type=button] { float: right; }
+		  </style>
+		  <script type="text/javascript">
+		  	document.taggedCharacters = new Object;
+		  </script>
+			<!-- BEGIN activity -->
+				<div class="activity" id="a{activity.ID}">
+					<div style="float:right; width: 170px; border-left: 1px solid #ccc; padding-left: 10px;">
+						<div>
+							<h3>Characters in this Post</h3>
+							<div class="postCharacterList" data-for="{activity.ID}">
+							<!-- BEGIN characters -->
+								<a href="/roleplay/{URL}/characters/{activity.characters.URL}/" title="{activity.characters.NAME}"><img src="/roleplay/{URL}/characters/{activity.characters.URL}/image" alt="Character Portrait: {activity.characters.NAME}" style="height:50px;" class="crisp-border" /></a>
+							<!-- BEGINELSE -->
+							<p>No characters tagged in this post!</p>
+							<!-- END characters -->
+							</div>
+							<a href="#" onclick="$('.characterTagging[data-for={activity.ID}]').slideToggle(); return false;" style="display:block; clear:both;" class="button">Tag Characters &raquo;</a>
+
+					    <div class="characterTagging" data-for="{activity.ID}" style="display: none;">
+			          <input class="characterSearch" data-for="{activity.ID}" name="characterSearch" style="padding: 0.2em;" placeholder="Tag a character" />
+			          <input type="hidden" class="taggedCharacterList" data-for="{activity.ID}" name="taggedCharacterList" />
+			          <div class="taggedCharacters" data-for="{activity.ID}"></div>
+			          <div class="taggingStatus" data-for="{activity.ID}"></div>
+			          <input type="button" style="float:right;" class="submitTaggedCharacters" value="Tag Them! &raquo;" data-for="{activity.ID}" />
+					    </div>
+
+						  <script type="text/javascript">
+						    document.taggedCharacters[{activity.ID}] = [];
+						  </script>
+
+							<a href="#" style="display:block; clear:both;" class="button bundleButton" data-for="{activity.ID}">Add to Bundle &raquo;</a>
+							<div class="bundleListWrapper" style="display:none;" data-for="{activity.ID}">
+								<div class="bundleList" data-for="{activity.ID}"></div>
+								<a href="/ucp.php?i=roleplays&mode=add_arc&roleplay_id={ID}&with_post={activity.ID}" class="button" style="float: right; clear: both; font-size: 1.2em;">new bundle &raquo;</a>
+							</div>
+						</div>
+						<div style="clear: both;">
+						  <h3>OOC Notes</h3>
+						  <!-- BEGIN footnotes -->
+						  <p>post</p>
+						  <!--BEGINELSE -->
+						  <p>This post has no OOC notes.</p>
+						  <!-- END footnotes -->
+						</div>
+					</div>
+					<div style="margin-right: 170px; padding-right:10px;">
+						<div class="author">
+							<!-- IF activity.S_CAN_EDIT  -->
+							<div class="controls" style="float:right;">
+								<a href="/ucp.php?i=roleplays&mode=edit_content&content_id={activity.ID}">Edit</a> |
+								<a href="/ucp.php?i=roleplays&mode=flag_content&content_id={activity.ID}">Flag</a>
+							</div>
+							<!-- ENDIF -->
+							<a class="anchor" name="roleplay{activity.ID}"></a>
+							<strong>Setting:</strong> <span class="location"><a href="/roleplay/{URL}/places/{activity.LOCATION_URL}/">{activity.LOCATION}</a></span> &bull; <a href="/roleplay/{URL}/post/{activity.ID}/#roleplay{activity.ID}"><span class="time timeago" title="{activity.TIME_ISO}">{activity.TIME_AGO}</span></a>, as <!-- IF activity.S_IS_COLLABORATION -->a special <strong>collaborative post</strong>.<!-- ELSE -->written by <strong>{activity.AUTHOR}</strong><!-- ENDIF -->
+						</div>
+						<div class="content<!-- IF activity.S_IS_DIALOGUE --> dialogue<!-- ENDIF -->">
+							<!-- IF activity.S_IS_DIALOGUE -->
+								<div class="dialogue-character" style="float:left; width:150px; text-align:center;">
+									<em><a href="/roleplay/{URL}/characters/{activity.CHARACTER_URL}/">
+										<img src="/roleplay/{URL}/characters/{activity.characters.URL}/image" alt="Character Portrait: {activity.characters.NAME}" style="height:50px; display: block; margin-left: auto; margin-right: auto;" />
+										{activity.CHARACTER_NAME}
+									</a> says,</em>
+								</div>
+
+								<div class="dialogue-bubble" style="clear:none; margin-left: 160px;">
+									<span class="pointer">&nbsp;</span>&ldquo;
+							<!-- ENDIF -->
+									{activity.CONTENT}
+							<!-- IF activity.S_IS_DIALOGUE -->
+								&rdquo;</div>
+							<!-- ENDIF -->
+							
+							<script type="text/javascript">
+								if (typeof(window.lastID) == 'undefined') {
+									window.lastID = 0;
+								}
+							
+								if ({activity.ID} > window.lastID) {
+									window.lastID = {activity.ID};
+								}
+							</script>
+							
+							
+						</div>
+						<hr />
+					</div>
+				</div>
+			<!-- BEGINELSE -->
+				<!-- IF !S_AJAX -->
+				<p class="supersize">There is no activity in this <!-- IF S_SINGLE_PLACE -->location<!-- ELSE -->roleplay<!-- ENDIF -->.</p>
+				<!-- ELSE -->
+				
+				<!-- ENDIF -->
+			<!-- END activity -->	
+			  <script type="text/javascript">
+
+			  	$.getJSON('/user-arcs.php?roleplayURL={URL}', function(data) {
+			  		console.log(data);
+			  		for (var arcID in data.arcs) {
+			  			var bundle = data.arcs[arcID];
+			  			$('<div data-bundle-id="'+arcID+'"><input type="button" value="add &raquo;" /><strong>'+bundle.name+'</strong></div>').appendTo('.bundleList');
+			  		}
+
+			  		$('.bundleList input[type=button]').click(function() {
+			  			var self = this;
+			  			var arcID = $(this).parent().data('bundle-id');
+			  			var postID = $(this).parent().parent().data('for');
+			  			console.log(postID + ' in ' + arcID);
+			  			$.post('/roleplay-content-arc.php?roleplayID={ID}&arcID='+arcID+'&postID='+postID, function(data) {
+			  				if (data.status != 'success') {
+									$(self).replaceWith('<strong>Error... :(</strong>');
+			  				} else {
+			  					$(self).replaceWith('<strong>Done!</strong>');
+			  				}
+			  			});
+			  		});
+			  	});
+
+			  	$('.bundleButton').click(function() {
+			  		var forPost = $(this).data('for');
+			  		$('.bundleListWrapper[data-for='+forPost+']').slideToggle();
+			  		return false;
+			  	});
+
+			    
+			    $('.characterSearch').keypress(function(e) {
+			      if ( e.which == 13 ) return false;
+			    });
+			
+	        $('.characterSearch').autocomplete({
+	          source: function(request, response) {
+	            $.ajax({
+	              url: '/roleplay/{URL}/characters.json',
+	              dataType: 'json',
+	              data: {
+	                search: request.term
+	              },
+	              success: function(data) {
+	                response( $.map( data, function (character) {
+	                  return {
+	                    label: '<div class="prettyCenter"><img class="micro" src="/roleplay/{URL}/characters/'+ character.url + '/image">' + character.name + '</div>',
+	                    value: character.name,
+	                    id: character.id
+	                  }
+	                }));
+	              }
+	            });
+	          },
+	          // minLength: 1,
+	          delay: 250,
+	          select: function (event, ui) {
+	          	var forPost = $(this).data('for').toString();
+
+						  $('.taggedCharacters[data-for='+forPost+']').append('<div class="postTaggedCharacter">' + ui.item.label + '</div>');
+						  $('.characterSearch[data-for='+forPost+']').val('');
+						
+							console.log(document.taggedCharacters);
+
+						  document.taggedCharacters[forPost].push(ui.item.id);
+						  $('.taggedCharacterList[data-for='+forPost+']').val(document.taggedCharacters[forPost]);
+						
+						  return false;
+
+	          },
+	          open: function() {
+	            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+	          },
+	          close: function() {
+	            $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+	          }
+	        });
+
+		  		$('input.submitTaggedCharacters').click(function() {
+
+		  			var self = this;
+		  			var forPost = $(this).data('for');
+		  			var postsTaggedCharacters = document.taggedCharacters[forPost];
+
+
+		  			$('.tagging-status[data-for='+forPost+']').html('Tagging...');
+
+		  			$.post('/roleplay/{URL}/post/' + forPost + '/tags', { characters: postsTaggedCharacters }, function(data) {
+		  				console.log(data.characters);
+
+		  				for (var characterID in data.characters) {
+		  					var character = data.characters[characterID];
+		  					$('<a href="/roleplay/{URL}/characters/'+character.url+'/"><img src="/roleplay/{URL}/characters/'+character.url+'/image" style="height:50px;" /></a>').hide().appendTo('.postCharacterList[data-for='+forPost+']').fadeIn();
+		  				}
+
+			  			$('.taggingStatus[data-for='+forPost+']').html('Tagged!');
+			  			$('.taggedCharacters[data-for='+forPost+']').html('');
+			  			setTimeout(function() {
+				  			$('.taggingStatus[data-for='+forPost+']').slideUp();
+				  			$('.taggingStatus[data-for='+forPost+']').html('').show();
+				  			$('.characterTagging[data-for={activity.ID}]').slideUp();
+			  			}, 5000);
+
+		  			});
+		  		});
+			  </script>

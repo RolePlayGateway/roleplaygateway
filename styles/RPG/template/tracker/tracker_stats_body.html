@@ -1,0 +1,251 @@
+<!-- IF S_IN_CHANGELOG -->
+<!-- INCLUDE simple_header.html -->
+	<!-- IF S_HAS_CHANGELOG -->
+		<script type="text/javascript" src="{T_TEMPLATE_PATH}/forum_fn.js"></script>
+
+		<h2>{PAGE_TITLE}</h2>
+		<h3>{L_TRACKER_CHANGELOG_EXAMPLE}</h3>
+		<div class="post bg1">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<div class="postbody" style="width: auto; float: none; margin: 0; height: auto;">
+					<div class="content">{OUTPUT}</div>
+				</div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+		<h3>{L_TRACKER_CHANGELOG_HTML}</h3>
+		<div class="post bg1">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<div class="postbody" style="width: auto; float: none; margin: 0; height: auto;">
+					<div class="content">{HTML_CHANGELOG}</div>
+				</div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+
+		<h3>{L_TRACKER_CHANGELOG_BBCODE}</h3>
+		<div class="post bg1">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<div class="postbody" style="width: auto; float: none; margin: 0; height: auto;">
+					<div class="content">{BBCODE_CHANGELOG}</div>
+				</div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+	<!-- ELSE -->
+		<h3>{PAGE_TITLE}</h3>
+		<div class="post bg1">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<div class="postbody" style="width: auto; float: none; margin: 0; height: auto; ">
+					<div class="content" style="text-align: center;">{L_TRACKER_NO_CHANGELOG}</div>
+				</div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+	<!-- ENDIF -->
+<br /><br /><div class="genmed" style="text-align: center;"><a href="#" onclick="window.close(); return false;">{L_CLOSE_WINDOW}</a></div><br /><br />
+<!-- INCLUDE tracker/tracker_footer.html -->
+<!-- INCLUDE simple_footer.html -->
+<!-- ELSE -->
+	<!-- INCLUDE overall_header.html -->
+	<!-- IF S_IN_PROJECT_STATS -->
+	<h2>{L_TITLE}</h2>
+
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<table class="table1" cellspacing="0">
+			<thead>
+				<tr>
+					<th style="text-align: left; width: 34%;">{L_TRACKER_TOTAL_TICKETS}</th>
+					<th style="text-align: left; width: 33%;">{L_TRACKER_TOTAL_OPEN_TICKETS}</th>
+					<th style="text-align: left; width: 33%;">{L_TRACKER_TOTAL_CLOSED_TICKETS}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="bg1">
+					<td><strong>{TOTAL_TICKETS}</strong></td>
+					<td style="color: red;"><strong>{TOTAL_OPENED}</strong></td>
+					<td><strong>{TOTAL_CLOSED}</strong></td>
+				</tr>
+			</tbody>
+		</table>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<h3>{L_TRACKER_TICKET_STATUS_OVERVIEW}</h3>
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<table class="table1" cellspacing="0">
+			<thead>
+				<tr>
+					<th style="text-align: left; width: 34%;">{L_TRACKER_STATUS_NAME}</th>
+					<th style="text-align: left; width: 33%;">{L_TRACKER_TOTAL_TICKETS}</th>
+					<th style="text-align: left; width: 33%;">{L_TRACKER_IS_CLOSED_STATUS}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- BEGIN status -->
+				<!-- IF status.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+						<td>{status.STATUS_NAME}</td>
+						<td><strong>{status.STATUS_TOTAL}</strong></td>
+						<td>{status.STATUS_CLOSED}</td>
+					</tr>
+				<!-- BEGINELSE -->
+				<tr style="height: 50px">
+					<td class="bg1" colspan="3" align="center">
+						<strong>{L_TRACKER_NO_STATUS_EXIST}</strong>
+					</td>
+				</tr>
+				<!-- END status -->
+			</tbody>
+		</table>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	<!-- IF .assigne -->
+	<h3>{L_TRACKER_ASSIGNEES}</h3>
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<table class="table1" cellspacing="0">
+			<thead>
+				<tr>
+					<th style="text-align: left; width: 50%;">{L_TRACKER_USERNAME}</th>
+					<th style="text-align: left; width: 50%;">{L_TRACKER_TOTAL_TICKETS}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- BEGIN assigne -->
+				<!-- IF assigne.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+						<td>{assigne.USERNAME}</td>
+						<td><strong>{assigne.TOTAL}</strong></td>
+					</tr>
+				<!-- END assigne -->
+			</tbody>
+		</table>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<!-- ENDIF -->
+
+	<!-- IF .top -->
+	<h3>{TRACKER_TOP_REPORTERS}</h3>
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<table class="table1" cellspacing="0">
+			<thead>
+				<tr>
+					<th style="text-align: left; width: 50%;">{L_TRACKER_USERNAME}</th>
+					<th style="text-align: left; width: 50%;">{L_TRACKER_TOTAL_TICKETS}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- BEGIN top -->
+				<!-- IF top.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+						<td>{top.USERNAME}</td>
+						<td><strong>{top.TOTAL}</strong></td>
+					</tr>
+				<!-- END top -->
+			</tbody>
+		</table>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<!-- ENDIF -->
+
+	<!-- IF .component -->
+	<h3>{L_TRACKER_COMPONENT_STATS}</h3>
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<table class="table1" cellspacing="0">
+			<thead>
+				<tr>
+					<th style="text-align: left; width: 50%;">{L_TRACKER_COMPONENT_NAME}</th>
+					<th style="text-align: left; width: 50%;">{L_TRACKER_TOTAL_TICKETS}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- BEGIN component -->
+				<!-- IF component.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+						<td>{component.COMPONENT_NAME}</td>
+						<td>{component.TOTAL}</td>
+					</tr>
+				<!-- END component -->
+			</tbody>
+		</table>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<!-- ENDIF -->
+
+	<!-- IF .version -->
+	<h3>{L_TRACKER_VERSION_STATS}</h3>
+	<div class="forabg">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<table class="table1" cellspacing="0">
+			<thead>
+				<tr>
+					<th style="text-align: left; width: 50%;">{L_TRACKER_VERSION_NAME}</th>
+					<th style="text-align: left; width: 50%;">{L_TRACKER_TOTAL_TICKETS}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- BEGIN version -->
+				<!-- IF version.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+						<td><!-- IF version.TOTAL --><a href="#" onclick="popup('{version.U_VIEW_CHANGELOG}', 700, 500, '');return false;" title="{L_TRACKER_VERSION_VIEW_CHANGELOG}"><!-- ENDIF -->{version.VERSION_NAME}<!-- IF version.TOTAL --></a><!-- ENDIF --></td>
+						<td>{version.TOTAL}</td>
+					</tr>
+				<!-- END version -->
+			</tbody>
+		</table>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<!-- ENDIF -->
+
+	<!-- ELSE -->
+	<h2>{L_TRACKER}</h2>
+	<p>{L_TRACKER_STATISTICS}</p>
+		<!-- BEGIN cat -->
+		<div class="forabg">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<table class="table1" cellspacing="0">
+				<thead>
+					<tr>
+						<th style="text-align: left; width: 30%;"><a href="{cat.U_PROJECT}">{cat.PROJECT_NAME}</a></th>
+						<th style="text-align: left; width: 60%;">{L_TRACKER_DESCRIPTION}</th>
+						<th style="text-align: center; width: 10%;">{L_TRACKER_TOTAL_TICKETS}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- BEGIN project -->
+					<!-- IF cat.project.S_ROW_COUNT is even --><tr class="bg1"><!-- ELSE --><tr class="bg2"><!-- ENDIF -->
+							<td style="width: 30%;"><a href="{cat.project.U_PROJECT}"><strong>{cat.project.PROJECT_TYPE}</strong></a></td>
+							<td style="width: 60%;"><!-- IF cat.project.PROJECT_DESC -->{cat.project.PROJECT_DESC}<!-- ELSE -->&nbsp;<!-- ENDIF --></td>
+							<td style="width: 10%; text-align: center;"><strong>{project.TOTAL_TICKETS}</strong></td>
+						</tr>
+					<!-- END project -->
+				</tbody>
+				</table>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+		<!-- IF not cat.S_LAST_ROW --><br /><!-- ENDIF -->
+		<!-- BEGINELSE -->
+			<div class="forabg">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<table class="table1" cellspacing="0">
+				<thead>
+					<tr>
+						<th style="text-align: left; width: 30%;"><a href="{cat.U_PROJECT}">{cat.PROJECT_NAME}</a></th>
+						<th style="text-align: left; width: 60%;">{L_TRACKER_DESCRIPTION}</th>
+						<th style="text-align: left; width: 10%;">{L_TRACKER_TOTAL_TICKETS}</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr style="height: 50px">
+						<td class="bg1" colspan="3" style="text-align: center;">
+							<strong>{L_TRACKER_NO_PROJECT_EXIST}</strong>
+						</td>
+					</tr>
+				</tbody>
+				</table>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+		<!-- END cat -->
+	<!-- ENDIF -->
+	<br />
+	<!-- INCLUDE tracker/tracker_footer.html -->
+	<!-- INCLUDE overall_footer.html -->
+<!-- ENDIF -->

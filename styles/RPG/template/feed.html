@@ -1,0 +1,64 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<style type="text/css">
+  h3 {
+    border: 0;
+  }
+</style>
+
+<div class="special panel">
+  <h1>Your Feed</h1>
+  <p>Includes posts from <a href="/member/{L_USERNAME}/places">places you own</a>, <a href="/ucp.php?i=276">universes you manage</a>, and tags of <a href="/ucp.php?i=characters&mode=personal">your characters</a>.
+
+  <div class="feed">
+    <!-- BEGIN places -->
+    <div class="place" style="height: auto;" data-name="{places.NAME}" data-synopsis="{places.SYNOPSIS}">
+      <div style="float: right; margin-left: 1em;">
+        <h3 style="text-align: right;">
+          <small><a href="/universes/{places.ROLEPLAY_SLUG}/places/{places.URL}#activity">{places.POSTS} posts</a></small>
+           &middot;
+          <small><a href="/universes/{places.ROLEPLAY_SLUG}/places/{places.URL}#characters">{places.CHARACTER_COUNT} characters present</a></small>
+           &middot;
+          <small>last post <a href="/universes/{places.ROLEPLAY_SLUG}/places/{places.URL}/#roleplay{places.LAST_POST_ID}">{places.LAST_POST_DATE} &raquo;</a></small>
+        </h3>
+      </div>
+      <a href="/universes/{places.ROLEPLAY_SLUG}/places/{places.URL}/"><img src="/universes/{places.ROLEPLAY_SLUG}/places/{places.URL}/image" alt="{places.NAME}" class="crisp-border" /></a>
+      <div>
+        <h3>
+          <div style="display: inline-block;">
+            <!-- IF places.PARENT_ID gt 0 -->
+            <small style="display:block;">
+              <a href="/universes/{places.ROLEPLAY_SLUG}/places/{places.PARENT_SLUG}/">{places.PARENT_NAME}</a>
+            </small>
+            &#8618;
+            <!-- ENDIF -->
+            <!-- <small># {places.ID}</small> -->
+            <a href="/universes/{places.ROLEPLAY_SLUG}/places/{places.URL}/">{places.NAME}</a>
+            <small><strong>Owner: {places.OWNER_USERNAME}</strong></small>
+          </div>
+        </h3>
+      </div>
+      <div class="quick-float-right">
+        <!-- IF .places.user_characters -->
+        <!-- BEGIN user_characters -->
+        <a href="/explorer?roleplayID={user_characters.ROLEPLAY_ID}&characterID={user_characters.ID}" title="Select {user_characters.NAME} &raquo;"><img src="/universes/{user_characters.ROLEPLAY_SLUG}/characters/{user_characters.SLUG}/image" alt="Portrait of {user_characters.NAME}" class="small crisp-border" /></a>
+        <!-- END user_characters -->
+        <!-- ELSE -->
+        <!-- ENDIF -->
+        <a href="/ucp.php?i=characters&mode=new&roleplay_url={places.ROLEPLAY_SLUG}&birthplace={places.ID}" class="button">Add New Character &raquo;</a>
+      </div>
+      <div class="content">
+        <div class="postbody">{places.LAST_POST_CONTENT}</div>
+      </div>
+    </div>
+    <hr style="margin-top: 3em;" />
+    <!-- BEGINELSE -->
+      <p class="supersize">There are no places in this roleplay!</p>
+    <!-- END places -->
+    <br class="clearfix" />
+  </div>
+<div>
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,25 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<h1>Inventory</h1>
+<p>Move items between characters and universes.</p>
+
+<div class="special panel">
+  <h2>Inventory</h2>
+  <!-- BEGIN instances -->
+  <div class="clearfix">
+    <img src="/universes/{instances.ROLEPLAY_URL}/items/{instances.ITEM_ID}/image" style="float:left; height: 30px; width: 30px; margin-right:1em;" class="crisp-border" />
+    <div>
+      <h3>
+        <a href="{instances.LINK}">{instances.NAME}</a>
+        <a class="button" on-tap="_promptAndSetPrice" data-link="/instances/{instances.ID}">💰 sell</a>
+      </h3>
+      <p>{instances.DESCRIPTION}&nbsp;</p>
+    </div>
+  </div>
+  <!-- END instances -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->

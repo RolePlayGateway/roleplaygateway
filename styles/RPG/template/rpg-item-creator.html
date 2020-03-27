@@ -1,0 +1,39 @@
+<form action="/roleplay/{ROLEPLAY_URL}/forge" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="asset[roleplay_id]" value="{ROLEPLAY_ID}" />
+
+  <div>
+    <label for="name">Name of Thing</label>
+    <input name="asset[name]" placeholder="i.e., &ldquo;Greaves of Valeria&rdquo;" />
+  </div>
+
+  <div>
+    <label for="class">Class</label>
+    <select name="asset[class]">
+      <!-- BEGIN item_classes -->
+      <option value={item_classes.ID}>{item_classes.NAME}</option>
+      <!-- END item_classes -->
+    </select>
+  </div>
+
+  <div>
+    <label for="quantity">Quantity</label>
+    <input type="number" name="asset[quantity]" value="1" />
+  </div>
+
+  <div>
+    <label for="deposit">Deposit</label>
+    <input type="number" name="asset[deposit]" value="1" step="0.01" />
+  </div>
+
+  <div>
+    <label for="image">Image</label>
+    <input type="file" name="item_image" />
+  </div>
+
+  <div>
+    <label for="deposit">Description</label>
+    <textarea name="asset[description]" max="255" rows="3" placeholder="Add a player-friendly description to this item."></textarea>
+  </div>
+
+  <button type="submit" class="button">Create &raquo;</button>
+</form>

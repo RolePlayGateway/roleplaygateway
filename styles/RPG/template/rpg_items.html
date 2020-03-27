@@ -1,0 +1,85 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<h1>RPG Items</h1>
+<h3>What exists in the worlds?</h3>
+<p><a href="/characters">Characters in RPG universes</a> can find various <strong>Items</strong> which might help them on their journey.</p>
+
+<!-- IF S_IS_SINGLE -->
+<!-- ELSE -->
+
+<!-- IF .instances -->
+<!-- IF not S_IS_BOT -->
+<!-- IF S_IS_BETA -->
+<div class="special panel">
+  <h2>Your Inventory</h2>
+  <p>Includes items on your RPG Account, regardless of Universe.</p>
+
+  <p>Assigning Items to Characters can be accomplished using the <code>/spawn Item Name</code> command, where <q>Item Name</q> is the case-sensitive name of item.</p>
+  <!-- BEGIN instances -->
+  <div class="clearfix">
+    <img src="/universes/{instances.ROLEPLAY_URL}/items/{instances.ITEM_ID}/image" style="float:left; height: 30px; width: 30px; margin-right:1em;" class="crisp-border" />
+    <div>
+      <h3>
+        <!-- IF instances.STACK_COUNT gt 1 --><small>({instances.STACK_COUNT}&times;)</small> <!-- ENDIF -->
+        <a href="{instances.LINK}">{instances.NAME}</a>
+        <a class="button" on-tap="_promptAndSetPrice" data-link="/instances/{instances.ID}">💰 sell</a>
+      </h3>
+      <p>{instances.DESCRIPTION}&nbsp;</p>
+    </div>
+  </div>
+  <!-- END instances -->
+</div>
+<!-- ENDIF -->
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<div class="special panel<!-- IF S_IS_SINGLE --> large featured<!-- ENDIF -->">
+  <h2>All Items</h2>
+  <!-- BEGIN items -->
+  <div class="item">
+    <!-- IF items.S_HAS_IMAGE -->
+    <a href="/items/{items.ID}" class="quick-float-left">
+      <img src="/universes/{items.ROLEPLAY_URL}/items/{items.ID}/image" style="height: 32px; width: 32px;" />
+    </a>
+    <!-- ENDIF -->
+    <h2>
+      <!-- IF items.S_CAN_EDIT -->
+      <a href="/universes/the-multiverse/forge?mode=edit&itemID={items.ID}" class="button quick-float-right">edit &raquo;</a>
+      <!-- ENDIF -->
+      <a href="/items/{items.ID}">{items.NAME}</a>
+    </h2>
+    <h4><strong>{items.QUANTITY}</strong> in existence, base price <strong><abbr title="{items.VALUE_IN_INK} INK (1,000,000 bits per 1 INK)">{items.VALUE_IN_BITS} <small>bits</small></abbr></strong>.</h4>
+    <h4><strong>{items.ISSUED}</strong> have spawned, and <strong>{items.HOLDERS}</strong> characters have one (or more).</h4>
+    <h3>found in <a href="/universes/{items.ROLEPLAY_URL}">{items.ROLEPLAY_NAME}</a></h3>
+    <p>{items.DESCRIPTION}</p>
+    <!-- IF S_IS_SINGLE and S_HAS_STORES -->
+    <div>
+      <h4>available in</h4>
+      <ul>
+        <!-- BEGIN stores -->
+        <li><a href="/stores/{stores.ID}">{stores.NAME}</a>, a shop in <a href="{stores.PLACE_LINK}">{stores.PLACE_NAME}</a></li>
+        <!-- END stores -->
+      </ul>
+    </div>
+    <!-- ENDIF -->
+    <div class="clearfix"></div>
+  </div>
+  <!-- END items -->
+</div>
+
+<!-- IF S_THIEF_MODE -->
+<div class="special panel">
+  <h2>Characters With Items</h2>
+  <!-- BEGIN characters -->
+  <div>
+    <h3><a href="{characters.LINK}">{characters.NAME}</a></h3>
+  </div>
+  <!-- END characters -->
+</div>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

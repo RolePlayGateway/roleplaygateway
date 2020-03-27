@@ -1,0 +1,384 @@
+	<!-- IF S_IS_ERIC_AND_HE_IS_WORKING_HARD -->
+		<div id="shoutbox-thing">
+			<h1>thar be shoutin</h1>
+      <div>{SHOUTBOX}</div>
+		</div>
+	<!-- ENDIF -->
+  </div>
+	<div id="page-footer" style="margin-bottom:15px;">
+		<!-- IF S_ADS_GOOD -->
+		<!-- IF AD_CODE6 -->
+			<h3>Our Sponsors</h3>
+			<div align="center">{AD_CODE6}</div><br />
+		<!-- ENDIF -->
+		<!-- ENDIF -->
+		<!-- IF S_ADS_GOOD -->
+			<center>
+				<script type="text/javascript"><!--
+				google_ad_client = "ca-pub-4532443596754933";
+				/* Footer */
+				google_ad_slot = "6364440428";
+				google_ad_width = 728;
+				google_ad_height = 90;
+				//-->
+				</script>
+				<script type="text/javascript" src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+				</script>
+			</center>
+		<!-- ENDIF -->
+		<div id="feet">
+			<!-- IF S_RSS_ENABLED -->
+      <table>
+				<tr>
+					<td class="row1" valign="top" width="33%">
+						<h3>Popular Threads</h3>
+						<p>
+						<!-- BEGIN latest_hot_topics -->
+							<a href="{latest_hot_topics.U_VIEW_TOPIC}" title="{latest_hot_topics.FULL_TITLE}">{latest_hot_topics.TITLE}</a><br />
+						<!-- END latest_hot_topics -->
+						</p>
+					</td>
+					<td valign="top" width="33%">
+						<h3>Most Popular Topics</h3>
+						<p>
+						<!-- BEGIN most_popular_topics -->
+							{most_popular_topics.POST_LINK}<br />
+						<!-- END most_popular_topics -->
+						</p>
+					</td>
+					<td valign="top" width="33%">
+						<h3>Role Play Academy</h3>
+						<p><script src="http://feedproxy.google.com/TheRolePlayAcademy?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feedproxy.google.com/TheRolePlayAcademy"></a></p> </noscript></p>
+					</td>
+				</tr>
+			</table>
+      <!-- ENDIF -->
+		</div>
+		<div class="copyright">
+			<!-- IF TRANSLATION_INFO --><br />{TRANSLATION_INFO}<!-- ENDIF -->
+			<!-- IF DEBUG_OUTPUT --><br />{DEBUG_OUTPUT}<!-- ENDIF -->
+			<!-- IF U_ACP --><p><strong><a href="{U_ACP}">{L_ACP}</a></strong></p><!-- ENDIF -->
+			<p><a href="/about">About</a> &middot; <a href="/rules">Code of Conduct</a> &middot; <a href="https://github.com/RolePlayGateway/roleplaygateway">Source Code</a></p>
+			<br /><br />
+      <div>
+        <code><!-- IF DEBUG_OUTPUT --><br />{DEBUG_OUTPUT}<!-- ENDIF --></code>
+  			<br /><br />
+        <p>&copy; <a href="https://quill.is">Quill, Inc.</a> </p>
+  		</div>
+  	</div>
+  </div>
+  <!-- IF S_IS_BETA -->
+  <script src="/app.js"></script>
+  <!-- ENDIF -->
+
+  <script type="text/javascript">
+    $(window).load(function() {
+      $('.timeago').timeago();
+
+      <!-- IF S_USER_LOGGED_IN and not S_IS_BOT -->
+      <!-- IF S_POLL_NOTIFICATIONS -->
+      var $alerts = $('*[href="/notifications"][data-bind="notifications"]');
+      var $indicator = $('*[data-bind="notifications"]');
+
+      var notified = false;
+      var lastCount = parseInt($alerts.html());
+
+      function checkNotifications () {
+        $.ajax({
+          method: 'GET',
+          url: '/notifications?format=json',
+          dataType: 'json'
+        }).done(function(data) {
+          console.log('notifications:', data.meta);
+          // canonical:
+          //var $alerts = $('*[src="/notifications"][data-bind="meta.unread"]');
+          // sloppy:
+
+          var count = data.meta.unread;
+          $alerts.html('' + count);
+
+          if (count) {
+            if (count > lastCount) {
+              notified = false;
+            }
+            
+            lastCount = count;
+            
+            if (notified == false) {
+              var sound = new Audio('/sounds/new-message.mp3');
+              sound.play();
+              notified = true;
+            }
+            
+            $indicator.addClass('unread');
+          } else {
+            $indicator.removeClass('unread');
+          }
+          
+        });
+      }
+      setInterval(checkNotifications, 5000);
+      <!-- ENDIF -->
+      <!-- ENDIF -->
+
+      var previewTimeout;
+      $('.previewable').keyup(function(e) {
+        var self = this;
+        clearTimeout(previewTimeout);
+        previewTimeout = setTimeout(function() {
+          $.get('/preview.php', { text: $(self).val() }, function(data) {
+            $('#innerPreview').html(data);
+            $('#previewControls').fadeIn();
+          });
+        }, 200);
+      });
+    });
+
+		/* var client = new Faye.Client('http://s.roleplaygateway.com:99/', {
+					timeout: 120
+				,	retry: 5
+			}
+		);
+
+		setTimeout(function() {
+			[{ROLEPLAY_IDS}].forEach(function(roleplayID) {
+				client.subscribe('/roleplay/'+roleplayID+'', function(message) {
+					console.log(message);
+					var message = JSON.parse(message);
+
+					switch (message.type) {
+						case 'content':
+							var composed = {
+									title: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="' + message.data.roleplay.link + '">'+message.data.roleplay.name+'</a>:'
+									//title: '&nbsp;'
+								, content: '<a href="/member/'+message.data.author.name+'/">' + message.data.author.name + '</a> added <a href="'+ message.data.link +'">'+message.data.stats.words+' words</a> to &ldquo;<a href="'+message.data.place.link+'">'+message.data.place.name+'</a>&rdquo;, a part of the &ldquo;<a href="' + message.data.roleplay.link + '">'+message.data.roleplay.name+'</a>&rdquo; universe.'
+							};
+						break;
+						case 'character':
+							var composed = {
+									title: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="' + message.data.roleplay.link + '">'+message.data.roleplay.title+'</a>:'
+									//title: '&nbsp;'
+								, content: '<a href="/member/'+message.data.creator.name+'/">' + message.data.creator.name + '</a> added <a href="'+ message.data.link +'">a new character</a> to the &ldquo;<a href="' + message.data.roleplay.link + '">'+message.data.roleplay.title+'</a>&rdquo; universe.'
+							};
+						break;
+						case 'tag-character':
+							var composed = {
+									title: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="' + message.data.roleplay.link + '">'+message.data.roleplay.title+'</a>:'
+									//title: '&nbsp;'
+								, content: '<a href="/member/'+message.data.user.username+'/">' + message.data.user.username + '</a> tagged <a href="'+message.data.character.link+'"></a> in <a href="'+ message.data.content.link +'">a post</a> in the &ldquo;<a href="' + message.data.roleplay.link + '">'+message.data.roleplay.title+'</a>&rdquo; universe.'
+							};
+						break;
+					}
+
+					$.gritter.add({
+						title: composed.title,
+						text: composed.content,
+						sticky: true,
+						time: 10000
+					});
+
+				});
+			});
+		}, 5000); */
+
+	</script>
+
+  <!-- IF S_CHAT_ENABLED -->
+  <!-- keep here for easy disabling in the future -->
+  <!-- ENDIF -->
+	<script type="text/javascript" src="/im/external.php?type=djs" charset="utf-8"></script>
+	<script type="text/javascript" src="/im/external.php?type=js" charset="utf-8"></script>
+
+  <script src="/js/tablesort.min.js"></script>
+  <script src="/js/tablesort.number.min.js"></script>
+  <script type="text/javascript">
+    new Tablesort(document.querySelector('.tablesorted'));
+  </script>
+
+	<!-- IF S_IS_ERIC_TESTING_STUFF -->
+	<div id="activitybar">
+		<div class="rpg-chat" style="float: right;">
+			<div id="online-users">
+				<div id="online-users-handle">Online Roleplayers</div>
+				<div id="online-users-list"></div>
+			</div>
+
+			<div id="chat-messages"></div>
+
+			<script type="text/css">
+				setTimeout('updateChat', 5000);
+
+				function updateChat() {
+					
+				}
+			</script>
+		</div>
+		<a href="#" onclick="$('#activitybar').css('height', 350);">Handle</a>
+		Hello, Eric.
+		{ACTIVITY_COUNT} actions.
+	</div>
+	<!-- ENDIF -->
+
+<div>
+	<a id="bottom" name="bottom" accesskey="z"></a>
+	<!-- real ip: {REAL_IP} -->
+	<!-- ban result: {BAN_RESULT} -->
+	<!-- cookies: {COOKIE} -->
+	<!-- IF S_IS_ULTRABANNED -->
+	<script type="text/javascript">
+		Cookies('ubr', true);
+	</script>
+	<!-- ENDIF -->
+	<!-- IF not S_IS_BOT -->{RUN_CRON_TASK}<!-- ENDIF -->
+</div>
+
+<!-- <script src="http://tweetboard.com/tb.js?v=1.0&user=RolePlayGateway" type="text/javascript"></script>
+<script type="text/javascript" src="http://twitter.com/javascripts/blogger.js"></script>
+<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/RolePlayGateway.json?callback=twitterCallback2&amp;count=1"></script> -->
+
+<!-- IF S_USERVOICE_ENABLED -->
+<script>
+// Include the UserVoice JavaScript SDK (only needed once on a page)
+UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/af4PYcyzDMD0gx594kduUQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+
+//
+// UserVoice Javascript SDK developer documentation:
+// https://www.uservoice.com/o/javascript-sdk
+//
+
+// Set colors
+UserVoice.push(['set', {
+  accent_color: '#448dd6',
+  trigger_color: 'white',
+  trigger_background_color: '#e23a39'
+}]);
+</script>
+
+<!-- IF S_USER_LOGGED_IN -->
+<script>
+// Identify the user and pass traits
+// To enable, replace sample data with actual user traits and uncomment the line
+UserVoice.push(['identify', {
+	name: "{U_USERNAME}", // Full name
+	email: "{U_EMAIL}", // Email address
+	created_at: 1312182000 // Signup date as a Unix timestamp
+  //email:      'john.doe@example.com', // User’s email address
+  //name:       'John Doe', // User’s real name
+  //created_at: 1364406966, // Unix timestamp for the date the user signed up
+  //id:         123, // Optional: Unique id of the user (if set, this should not change)
+  //type:       'Owner', // Optional: segment your users by type
+  //account: { // Account traits are only available on some plans
+  //  id:           123, // Optional: associate multiple users with a single account
+  //  name:         'Acme, Co.', // Account name
+  //  created_at:   1364406966, // Unix timestamp for the date the account was created
+  //  monthly_rate: 9.99, // Decimal; monthly rate of the account
+  //  ltv:          1495.00, // Decimal; lifetime value of the account
+  //  plan:         'Enhanced' // Plan name for the account
+  //}
+}]);
+</script>
+<!-- ENDIF -->
+
+<script>
+// Add default trigger to the bottom-right corner of the window:
+UserVoice.push(['addTrigger', {mode: 'feedback', trigger_position: 'bottom-right' }]);
+
+// Or, use your own custom trigger:
+//UserVoice.push(['addTrigger', '#id', { mode: 'feedback' }]);
+
+// Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
+UserVoice.push(['autoprompt', {}]);
+</script>
+
+<!-- UserVoice JavaScript SDK (only needed once on a page) -->
+<!-- <script>(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/af4PYcyzDMD0gx594kduUQ.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()</script> -->
+<!-- A tab to launch the Classic Widget -->
+<!--
+<script>
+UserVoice = window.UserVoice || [];
+UserVoice.push(['showTab', 'classic_widget', {
+  mode: 'full',
+  primary_color: '#cc6d00',
+  link_color: '#007dbf',
+  default_mode: 'feedback',
+  forum_id: 22249,
+  tab_label: 'Feedback & Support',
+  tab_color: '#cc6d00',
+  tab_position: 'middle-left',
+  tab_inverted: false
+}]);
+</script>
+-->
+<!-- ENDIF -->
+
+<!-- IF S_INTERCOM -->
+<!-- IF S_USER_LOGGED_IN -->
+<script>
+  window.intercomSettings = {
+    app_id: "nu5vyruh",
+    name: "{U_USERNAME}", // Full name
+    email: "{U_EMAIL}", // Email address
+    created_at: 1312182000 // Signup date as a Unix timestamp
+  };
+</script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/nu5vyruh';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+<!-- ELSE -->
+<script>
+  window.intercomSettings = {
+    app_id: "nu5vyruh"
+  };
+</script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/nu5vyruh';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- disabled by Eric on 11/17 s blab is gone! -->
+<!-- TODO: find a replacement. -->
+<!-- <script>
+(function () {
+	window._BlabNS = {};
+	window._BlabNS.user_id = 'c049620211034d5a8aa3e61644824197';
+	window._BlabNS.enableMobile = true;
+	var s = document.createElement('script');
+	s.type = 'text/javascript';
+	s.async = true;
+	s.src = 'https://cdn.blab.im/tinyplayer/js/sdk.js';
+	var x = document.getElementsByTagName('script')[0];
+	x.parentNode.insertBefore(s, x);
+})();
+</script> -->
+
+<!-- IF TIMESTAMP is even -->
+<div></div>
+<!-- ELSE -->
+<div></div>
+<!-- ENDIF -->
+
+<!-- disabled 2016-11-17 -->
+<!--
+<iframe src="https://write.roleplaygateway.com/auth_session?sessionID={SESSION_ID}" height="0" width="0" border="0"></iframe>
+-->
+
+<!--<iframe src="http://digsouthinteractivefestival2015.sched.org/speaker/eric234" height="0" border="0"></iframe>
+<iframe src="http://digsouthinteractivefestival2015.sched.org/event/8b2b8c1fe7d297e5f1af7dbee845b8f8" height="0" border="0"></iframe>
+-->
+<!--[if IE 6]>
+<script type="text/javascript">
+	/*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js\"></"+"script>"); var __noconflict = true; }
+	var IE6UPDATE_OPTIONS = {
+		icons_path: "http://static.ie6update.com/hosted/ie6update/images/"
+	}
+</script>
+<script type="text/javascript" src="http://static.ie6update.com/hosted/ie6update/ie6update.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+  if (location.hash) {
+    console.log('[RPG:WEB]', 'Hash detected:', location.hash);
+  }
+</script>
+<!-- IF S_IS_BETA -->
+<script src="/includes/fabric.min.js" type="text/javascript" async></script>
+<!-- ENDIF -->
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!-- INCLUDE overall_header.html -->
+
+<form id="confirm" action="{S_CONFIRM_ACTION}" method="post">
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<div class="content">
+		<h2>{L_TRACKER_MOVE_TICKET}</h2>
+
+		<fieldset>
+		<dl class="fields2">
+			<dt><label>{L_TRACKER_MOVE_TICKET_SELECT}:</label></dt>
+			<dd><select name="to_project_id">{S_PROJECT_SELECT}</select></dd>
+		</dl>
+		<dl class="fields2">
+			<dt>&nbsp;</dt>
+			<dd><strong>{L_TRACKER_MOVE_TICKET_CONFIRM}</strong></dd>
+		</dl>
+		</fieldset>
+
+		<fieldset class="submit-buttons">
+			{S_HIDDEN_FIELDS}<input type="submit" name="confirm" value="{YES_VALUE}" class="button1" />&nbsp;
+			<input type="submit" name="cancel" value="{L_NO}" class="button2" />
+			{S_FORM_TOKEN}
+		</fieldset>
+
+	</div>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->
