@@ -1,0 +1,91 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<h1 style="color: black;">
+  <a href="/tags/{S_SEARCH_STRING}"><small class="subtle">#</small>{S_SEARCH_STRING}</a>
+  <span class="subtle">roleplay</span>
+</h1>
+<p>Roleplay on RPG is organized into <a href="/universes">Universes</a>, which can be <a href="/tags">explored by topic</a>.  <a href="/tags" class="button">Browse Tags &raquo;</a></p>
+
+<!-- INCLUDE featured-tags.html -->
+
+<!-- IF S_DISPLAY_POST_INFO or PAGINATION or TOTAL_POSTS or TOTAL_TOPICS -->
+	<!-- IF PAGINATION or TOTAL_POSTS or TOTAL_TOPICS -->
+		<div class="pagination">
+			<!-- IF not S_IS_BOT and U_MARK_TOPICS --><a href="{U_MARK_TOPICS}" accesskey="m">{L_MARK_TOPICS_READ}</a> &bull; <!-- ENDIF --><!-- IF TOTAL_TOPICS -->{TOTAL_TOPICS}<!-- ENDIF -->
+			<!-- IF PAGE_NUMBER -->
+				<!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF -->
+			<!-- ENDIF -->
+		</div>
+	<!-- ENDIF -->
+<!-- ENDIF -->
+<br />
+
+<div class="forabg">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<ul class="topiclist">
+		<li class="header">
+			<dl class="icon">
+				<dl class="icon">
+					<dt>{ROLEPLAY_COUNT} Matching Universes</dt>
+					<dd class="mark"><a href="/roleplay/?sort=words">Last Post</a></dd>
+					<dd class="mark"><a href="/roleplay/?sort=average-words">Words</a></dd>
+					<dd class="mark"><a href="/roleplay/?sort=posts">Posts</a></dd>
+					<dd class="mark">Characters</dd>
+				</dl>
+			</dl>
+		</li>
+	</ul>
+	<ul class="topiclist forums">
+		<!-- BEGIN roleplays -->
+			<li class="row bg1 {roleplays.CLASS}">
+        <dl class="icon roleplay">
+          <a href="/roleplay/{roleplays.URL}"><img src="/roleplay/{roleplays.URL}/image" class="crisp-border" style="float: left; margin: 0.5em;" /></a>
+					<dt style="padding-bottom:5px; padding-left: 5px;">
+						<!-- IF roleplays.S_CAN_EDIT -->
+						<div id="controls" style="float:right;">
+							<a href="/ucp.php?i=roleplays&amp;mode=edit&amp;id={roleplays.ID}">Edit</a>
+							<a href="/ucp.php?i=roleplays&amp;mode=flag&amp;id={roleplays.ID}">Flag</a>
+							<a href="/ucp.php?i=roleplays&amp;mode=remove_tag&amp;id={roleplays.ID}">Del Tags</a>
+						</div>
+						<!-- ENDIF -->
+						{roleplays.STATUS} <a href="/roleplay/{roleplays.URL}" class="topictitle">{roleplays.TITLE}</a> <span class="author">by {roleplays.OWNER_USERNAME}</span>
+						<p>{roleplays.DESCRIPTION}</p>
+						<span class="tags">{roleplays.TAGS}</span>
+					</dt>
+					<dd class="mark">
+						<small>{roleplays.LAST_POST_TIME_AGO}</small>
+					</dd>
+					<dd class="mark">
+						<div>
+							{roleplays.WORDS} <br />
+							<small>({roleplays.WORDS_PER_POST} per post)</small>
+						</div>
+					</dd>
+					<dd class="mark">
+						<div>{roleplays.POSTS}</div>
+					</dd>
+					<dd class="mark">
+						<div>{roleplays.CHARACTERS}</div>
+					</dd>
+				</dl>
+			</li>
+	
+		<!-- END roleplays -->
+	</ul>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+	
+<!-- INCLUDE jumpbox.html -->
+
+<!-- IF S_DISPLAY_ONLINE_LIST -->
+	<h3><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h3>
+	<p>{LOGGED_IN_USER_LIST}</p>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_POST_INFO -->
+	<h3>{L_FORUM_PERMISSIONS}</h3>
+	<p><!-- BEGIN rules -->{rules.RULE}<br /><!-- END rules --></p>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

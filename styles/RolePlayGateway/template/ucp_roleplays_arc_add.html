@@ -1,19 +1,33 @@
 <!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
 <style type="text/css">
   textarea {
     font-size: 1.2em;
+  }
+  
+  .clearfix {
+    clear: both;
+  }
+  
+  .tiny.card img {
+    max-height: 50px;
+    max-width: 50px;
   }
 </style>
 <div class="panel" id="message">
 	<div class="inner"><span class="corners-top"><span></span></span>
 
 	<div id="posting">
-		<h2><a href="#posting" name="posting">Creating a New Bundle</a></h2>
+		<h2><a href="#posting" name="posting">Creating a New Storyline Arc in...</a></h2>
+    
+    <p class="supersize">Storyline Arcs (sometimes called "Bundles") are groups of posts from any location in a universe, by any number of authors.  Arcs allow multiple authors to collect posts over time, making them available to readers along the way.  Tell your story!</p>
 
-		<h3>...starting with the following post:</h3>
-		<p>{POST_CONTENT}</p>
-					
-		<form id="write" method="post" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_arc&roleplay_id={ROLEPLAY_ID}&action=submit">
+    <img src="/roleplay/{ROLEPLAY_URL}/image" alt="{ROLEPLAY_TITLE}" class="crisp-border" style="float:left; margin-right: 1em; margin-bottom: 1em;" />
+    <h2>{ROLEPLAY_TITLE}</h2>
+    <p>{ROLEPLAY_SYNOPSIS}</p>
+
+		<form id="write" method="post" action="/ucp.php?i=roleplays&amp;mode=add_arc&amp;roleplay_id={ROLEPLAY_ID}&amp;action=submit">
 
 			<input type="hidden" name="arc_id" value="{ARC_ID}" />
 			<input type="hidden" name="with_post" value="{POST_ID}" />
@@ -27,6 +41,27 @@
 			<input type="submit" name="submit" value="Create &raquo;" class="button1 supersize" style="float: right; font-size:1.75em; padding: 0.5em;" />
 
 		</form>
+
+    <!-- IF S_POST_HAS_CHARACTERS -->
+    <h3>Involving the following characters</h3>
+    <div class="characters">
+      <!-- BEGIN characters -->
+      <a class="tiny tooltipped icon card" href="/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}" title="{characters.NAME}, with {characters.TOTAL} views">
+        <img src="/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/image" class="crisp-border" />
+      </a>
+      <!-- END characters -->
+    </div>
+    <!-- ENDIF -->
+
+    <!-- IF S_HAS_POST -->
+    <h3 class="clearfix" style="padding-top: 1em;">Beginning with the following post<!-- IF S_POST_IS_ANONYMOUS --><!-- ELSE --> by {POST_AUTHOR}<!-- ENDIF --></h3>
+    <blockquote style="padding-top: 2em; margin-bottom: 1em; margin-left: 0;">
+    	<p>{POST_CONTENT}</p>
+    </blockquote>
+    <!-- ENDIF -->
+
+    <p class="supersize" style="margin-top: 1em;">You'll be able to add other posts from this universe using the "Add to Bundle" option attached to each post once you've created the bundle.  Characters, Settings, and Authors will automatically be updated whenever a new post is added.</p>
+
 	</div>
 
 	<span class="corners-bottom"><span></span></span></div>

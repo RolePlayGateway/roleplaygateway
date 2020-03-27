@@ -1,0 +1,72 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<style type="text/css">
+  #page-body .arrowchat_notification_icon {
+    /* height: 50px; */
+    border: 1px solid black;
+    margin-right: 1em;
+  }
+  #page-body .arrowchat_notification_box {
+    font-size: 1.2em;
+  }
+  
+  .ui.button {
+    display: inline-block;
+    margin: 0;
+    padding: 10px;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+    min-width: 7.5em;
+  }
+  
+  .list .item {
+    display: block;
+    padding: 5px;
+  }
+  
+  .list .unread {
+    background: #F6F4D0;
+  }
+  
+  .list a.item {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .pull-right {
+    float: right;
+  }
+
+  .rpg-page-header {
+    margin-top: 1em;
+  }
+  
+</style>
+
+<div class="rpg-page-header">
+  <div class="pull-right">
+    <div class="ui buttons">
+      <a class="ui button" href="/notifications?mode=unread">Unread</a>
+      <a class="ui button" href="/notifications?mode=all"><abbr title="To avoid crashing your browser, this is limited to the 1,000 most recent notifications.">All</a></a>
+    </div>
+  </div>
+  <h1 style="color: black;"><a href="/notifications">Notifications</a></h1>
+</div>
+
+<div class="list">
+  <!-- BEGIN notifications -->
+  <div class="item {notifications.STATUS}">{notifications.MARKUP}</div>
+  <!-- END notifications -->
+  
+  <!-- IF mode eq "unread" -->
+  <a class="item" href="/notifications?mode=unread&amp;start={NEXT}">Next Page &raquo;</a>
+  <!-- ELSE -->
+  <a class="item" href="/notifications?start={NEXT}">Next Page &raquo;</a>
+  <!-- ENDIF -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->

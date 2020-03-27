@@ -22,7 +22,7 @@ $roleplay = $db->sql_fetchrow($result);
 $db->sql_freeresult($result);
 
 $sql = 'SELECT id, name, synopsis, url FROM rpg_characters WHERE roleplay_id = '.(int) $roleplay['id'].' AND name LIKE "'.$db->sql_escape($characterName).'%"
-          ORDER BY id ASC
+          ORDER BY name ASC
           LIMIT 10';
 $result = $db->sql_query($sql);
 while ($character = $db->sql_fetchrow($result)) {
@@ -34,4 +34,3 @@ header('Content-Type: application/json');
 echo json_encode($characters);
 
 ?>
-

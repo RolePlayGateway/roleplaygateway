@@ -24,8 +24,14 @@
       <!-- BEGIN quests -->
       <div class="place" style="height:auto;">
 	      <h2>
-          <div style="float:right; clear:right;"><strong>{quests.CHARACTERS}</strong> characters</div>
-		      <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/quests/{quests.ID}"><strong>Quest #{quests.ID}</strong></a>
+          <div style="float:right; clear:right;">
+            <strong>{quests.CHARACTERS}</strong> characters
+            <!-- IF quests.S_HAS_BOUNTY -->
+            &middot;
+            bounty <strong>{quests.BOUNTY_AMOUNT}</strong> <small>INK</small>
+            <!-- ENDIF -->
+          </div>
+		      <a href="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/quests/{quests.ID}"><strong>Quest #{quests.ID}</strong></a>
 	      </h2>
 	      <p>{quests.SYNOPSIS}</p>
       </div>
@@ -43,3 +49,4 @@
 </ul>
 
 <!-- INCLUDE overall_footer.html -->
+

@@ -1,0 +1,90 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<h2>Edit Roleplay</h2>
+
+<form id="ucp" method="post" enctype="multipart/form-data" action="//www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit&action=submit">
+
+<input type="hidden" name="id" value="{ROLEPLAY_ID}" />
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	
+		<h3>Roleplay Details: {TITLE} <!-- IF S_CAN_SUPEREDIT -->(superedit mode)<!-- ENDIF --></h3>
+
+		<fieldset>
+			<!-- IF S_CAN_SUPEREDIT -->
+			<dl>
+				<dt>
+					<label for="roleplay_title">Title:</label><br />
+					<span>What do you want your roleplay to be called? <strong>You can only change this for up to 24 hours.</strong> Pick wisely!</span>
+					</span>
+				</dt>
+				<dd><input type="text" class="inputbox" id="roleplay_title" name="roleplay_title" maxlength="45" value="{TITLE}"></dd>
+			</dl>		
+			<!-- ENDIF -->
+			<dl>
+				<dt>
+					<label for="roleplay_description">Description:</label><br />
+					<span>Give a brief overview of the roleplay.</span>
+				</dt>
+				<dd><textarea name="roleplay_description" id="roleplay_description" rows="5" class="inputbox">{DESCRIPTION}</textarea></dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="roleplay_image">Roleplay Thumbnail</label><br />
+					<span>Upload a small 100x100 image that will represent your roleplay.</span>
+				</dt>
+				<dd>
+					<input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
+					<input name="userfile" type="file" />
+				</dd>
+			</dl>			
+			<dl>
+				<dt>
+					<label for="roleplay_approval">Character Approval</label><br />
+					<span>What characters are allowed to join this roleplay?</span>
+				</dt>
+				<dd>
+					<input type="radio" name="roleplay_approval" value="0"{ALLOW_ALL_CHECKED}> <strong>Allow All Characters</strong>
+					<input type="radio" name="roleplay_approval" value="1"{REQUIRE_APPROVAL_CHECKED}> <strong>Require Character Approval</strong>
+				</dd>
+			</dl>
+			<ul class="topiclist cplist">
+				<h3>Rules</h3>
+				<p>These are your custom rules that govern this roleplay.</p>
+				<script type="text/javascript">edToolbar('roleplay_rules');</script>
+				<textarea name="roleplay_rules" id="roleplay_rules" rows="10" class="inputbox" style="width:100%;">{RULES}</textarea>
+			</ul>
+			<ul class="topiclist cplist">
+				<h3>Introduction</h3>
+				<p>This is the overview of your roleplay's general storyline.</p>
+				<script type="text/javascript">edToolbar('roleplay_introduction');</script>
+				<textarea name="roleplay_introduction" id="roleplay_introduction" rows="50" class="inputbox previewable" style="width:100%;">{INTRODUCTION}</textarea>
+			</ul>
+			<dl>
+				<dt>
+					<label for="posting_pay_percent">Post Rewards</label><br />
+					<span>When players post, a small amount can automatically be paid out from <a href="">the Universal Bank</a>, rewarding them for their activity.</span>
+				</dt>
+				<dd>
+					<input type="number" name="posting_pay_percent" value="{POSTING_PAY_PERCENT}" step="0.001" max="1.0"> <strong>%</strong>
+				</dd>
+			</dl>
+		</fieldset>
+		
+		<fieldset class="submit-buttons">
+			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
+			<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+		</fieldset>
+
+    <div class="content">
+      <div id="innerPreview"></div>
+    </div>
+		
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+</form>
+
+<!-- INCLUDE overall_footer.html -->

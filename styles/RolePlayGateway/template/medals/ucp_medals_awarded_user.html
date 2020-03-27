@@ -1,0 +1,67 @@
+<!-- INCLUDE ucp_header.html -->
+<h2>{L_MEDAL_CP}</h2>
+<p></p>
+<div class="panel bg3">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<div style="width: 100%;">
+			<div id="cp-main" class="ucp-main">
+				<h2>{L_AWARDED_MEDAL_TO} {USERNAME}</h2>
+				<div class="panel">
+					<div class="inner">
+						<table width="100%">
+						<!-- BEGIN medals -->
+						<!-- IF medals.IS_CAT -->
+						<tr>
+							<td colspan="3">
+								<h3>{medals.MEDAL_NAME}</h3>
+							</td>
+						</tr>
+						<!-- ELSE -->
+						<tr class="bg1">
+							<td align="center" width="120">{medals.MEDAL_IMAGE}</td>
+							<td align="left"><div class="reason">{medals.MEDAL_REASON}</div></td>
+							<td width="15">
+								<ul class="profile-icons">
+									<li class="delete-icon"><a title="{L_DELETE}" class="delete-icon" href="{medals.U_DELETE}"><span>{L_DELETE}</span></a>
+								</ul>
+							</td>
+						</tr>
+						<!-- ENDIF -->
+						<!-- BEGINELSE -->
+						<tr class="bg1">
+							<td colspan="3"><span><br />{L_NO_USER_MEDALS}<br /><br /></span></td>
+						</tr>
+						<!-- END medals -->
+						<!-- IF U_DELETE_ALL -->
+						<tr class="bg1">
+							<td colspan="2">
+								<h3>{L_DELETE_ALL}</h3>
+							</td>
+							<td width="15">
+								<ul class="profile-icons">
+									<li class="delete-icon"><a title="{L_DELETE_ALL}" class="delete-icon" href="{U_DELETE_ALL}"><span>{L_DELETE_ALL}</span></a>
+								</ul>
+							</td>
+						</tr>
+						<!-- ENDIF -->
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<script type="text/javascript">
+	{JS}
+	var form_name = 'post';
+	var text_name = 'message';
+	function ipreview(element)
+	{
+		if (medals[element.value] == '' || medals[element.value] == null)
+			document.getElementById('imagepreview').innerHTML = '<br />{L_IMAGE_ERROR}';		
+		else
+			document.getElementById('imagepreview').innerHTML = '<br /><img src="'+medals[element.value]+'" alt="{L_IMAGE_ALT}" style="max-width: 60px; max-height: 60px;" />';
+	}
+</script>
+<!-- INCLUDE ucp_footer.html -->

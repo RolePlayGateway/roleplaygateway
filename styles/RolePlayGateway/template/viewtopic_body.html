@@ -1,6 +1,13 @@
 <!-- INCLUDE overall_header.html -->
 <!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
 <style type="text/css">
+
+.content .markdown p {
+  font-size: 13px;
+}
 
 blockquote, blockquote.uncited {
   padding-top: 25px;
@@ -25,41 +32,92 @@ blockquote:before {
 blockquote:after {
   content: "";
 }
+
 </style>
-<!-- IF S_PAGE_ONLY -->
+
+<!-- IF ROLEPLAY_URL -->
 <div id="roleplay">
-
-	<a href="/roleplay/{ROLEPLAY_URL}/" name="roleplay"><img src="/roleplay/{ROLEPLAY_URL}/image" alt="{ROLEPLAY_TITLE}" style="float:left; margin-right: 10px;" class="crisp-border" /></a>
-
-	<h1>
-	  <a href="/roleplay/{ROLEPLAY_URL}/" name="roleplay">{ROLEPLAY_TITLE}</a>
-	  {STATUS}
-	  <!-- IF S_CAN_EDIT -->
-	   (<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=flag&id={ID}">Flag</a> | <a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=remove_tag&id={ID}">Remove Tags</a> <a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit&id={ID}">Edit &raquo;</a>)
-	  <!-- ENDIF -->
-  </h1>
+  <a href="/roleplay/{ROLEPLAY_URL}/" name="roleplay"><img src="/roleplay/{ROLEPLAY_URL}/image" alt="{ROLEPLAY_TITLE}" class="crisp-border quick-float-left" /></a>
+  <div class="h-entry">
+    <h1><a href="{U_VIEW_TOPIC}" class="p-name">{TOPIC_TITLE}</a></h1>
+    <h3 class="underhint" class="p-definition">a part of &ldquo;<a href="/roleplay/{ROLEPLAY_URL}">{ROLEPLAY_TITLE}</a>&rdquo;, a fictional universe by {GAME_MASTER}.</h3>
+  </div>
 
 	<div style="font-size:1.2em;">
-
-	  <p>{ROLEPLAY_SYNOPSIS}<br/>
-	    <g:plusone annotation="inline" href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/"></g:plusone>
-	    <!-- <div class="fb-like" data-href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/" data-send="false" data-layout="button_count" data-width="250" data-show-faces="false"></div> -->
-	  </p>
-	  <div>
-		  <strong>Owner:</strong> {GAME_MASTER}
-	  </div>
-	  <div>
-		  <strong>Game Masters:</strong> {GAME_MASTERS}
-	  </div>
-	  <div>
-		  <span class="tags"><strong>Tags:</strong> {TAGS} (<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_tag&id={ID}">Add Tags &raquo;</a>)</span>
-	  </div>
+	  <p style="margin-bottom: 0.2em;">{ROLEPLAY_SYNOPSIS}</p>
 	</div>
-
+  
+  <div>
+    <a href="/roleplay/{ROLEPLAY_URL}/characters" class="button">Characters</a>
+    <a href="/roleplay/{ROLEPLAY_URL}/places" class="button">Settings</a>
+    <a href="/roleplay/{ROLEPLAY_URL}#activity" class="button">Story</a>
+  </div>
+  
+  <div>
+    <!-- <g:plusone annotation="inline" href="https://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/"></g:plusone> -->
+    <!-- <div class="fb-like" data-href="https://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/" data-send="false" data-layout="button_count" data-width="250" data-show-faces="false"></div> -->
+  </div>
 </div>
-
 <!-- ELSE -->
-<!-- IF S_FORUM_RULES -->
+
+<!-- IF S_IS_BETA -->
+<style type="text/css">
+  .labeled.action.loading {
+    pointer-events: none;
+    cursor: default;
+  }
+  
+  .labeled.action.loading .shell {
+    background: rgba(150,150,150,0.8);
+  }
+
+  .coin {
+    position: absolute !important;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: yellow;
+    border: 1px solid #333;
+    /*-webkit-animation:1s animateOpacity;*/
+  }
+
+  @-webkit-keyframes animateOpacity {
+    from { opacity: 0; }
+    5%   { opacity: 0.6; }
+    50%  { opacity: 1; }
+    95%  { opacity: 0.6; }
+    to   { opacity: 0; }
+  }
+</style>
+
+<div class="quick-float-right">
+  <div class="labeled action">
+    <small>INK</small> <span data-bind="stats.tips" data-link="/topics/{TOPIC_ID}">{TIPS_TOTAL}</span>
+    <button class="special button" on-tap="_confirmTip" data-amount="0.25">+ 0.25 <small>INK</small></button>
+  </div>
+  <center style="margin-top: 1em;"><abbr title="Tips are donations to the author." class="tooltipped">tips received</abbr></center>
+</div>
+<!-- ENDIF -->
+
+<!-- IF S_FORUM_IMG -->
+<a href="{FORUM_LINK}"><img class="crisp-border" src="{FORUM_IMG}" style="float: left; margin-right: 0.5em; margin-bottom: 0.5em;" /></a>
+<!-- ENDIF -->
+
+<h1><a href="{U_VIEW_TOPIC}" class="p-name">{TOPIC_TITLE}</a></h1>
+<h3 class="underhint">a topic in <a href="{FORUM_LINK}">{FORUM_NAME}</a>, a part of <a href="/forum.html">the RPG forum</a>.</h3>
+
+<!-- IF MODERATORS or U_MCP -->
+	<p>
+		<!-- IF MODERATORS -->
+			<strong><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->:</strong> {MODERATORS}
+		<!-- ENDIF -->
+	</p>
+<!-- ENDIF -->
+
+<div class="clearfix" style="clear: both;"></div>
+
+
+<!-- IF S_FORUM_RULES and S_SHOW_FORUM_RULES -->
 	<div class="rules">
 		<div class="inner"><span class="corners-top"><span></span></span>
 
@@ -77,41 +135,31 @@ blockquote:after {
 <!-- ENDIF -->
 <!-- ENDIF -->
 
-<!-- IF ROLEPLAY -->
-	<div class="rules">
+<!-- IF S_IS_OOC -->
+	<div class="panel">
 		<div class="inner"><span class="corners-top"><span></span></span>
-
-			<div style="font-size:1.5em;">
-				This topic is an <strong>{ROLEPLAY_TYPE}</strong> part of the roleplay, &ldquo;<a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a>&rdquo;. Anything posted here will also show up there.
-			</div>
-			
+  		<div style="font-size:1.5em;">
+  			This conversation is an <a href="/roleplay/{ROLEPLAY_URL}#ooc" title="{ROLEPLAY_TITLE} Forum"><strong>Out Of Character (OOC)</strong></a> part of the roleplay, &ldquo;<a href="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a>&rdquo;.
+  		</div>
 		<span class="corners-bottom"><span></span></span></div>
 	</div>
 <!-- ENDIF -->
 
-<div style="float:right;">
-</div>
+<!-- IF S_IS_LEGACY -->
 <h1>
   <!-- IF S_IS_ERIC -->
-  <a href="http://www.roleplaygateway.com/add-to-roleplayacademy.php?topic_id={TOPIC_ID}" style="float:right;">Post to RPA</a>
+  <a href="//www.roleplaygateway.com/add-to-roleplayacademy.php?topic_id={TOPIC_ID}" style="float:right;">Post to RPA</a>
   <!-- ENDIF -->
   <!-- IF ROLEPLAY -->
-  <a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/#ooc">OOC</a> <span style="color:#000;">&raquo;</span> 
+  <a href="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/#ooc">OOC</a> <span style="color:#000;">&raquo;</span>
   <!-- ENDIF -->
   <a href="{U_VIEW_TOPIC}">{TOPIC_TITLE}</a>
 </h1>
+<!-- ENDIF -->
 
-<!-- phpBBFolk mod -->
-	<p>
-		<strong>{L_PBF_TOPIC_TAGS}:</strong>{TOPIC_TAG_LIST}<!-- IF not S_IS_BOT and S_USER_LOGGED_IN and S_PHPBBFOLK_ON --> (<a href="javascript:;" onmousedown="toggleDiv('tagthistopic');">Add more tags...</a>)<!-- ENDIF -->
+<!-- IF S_IS_LEGACY -->
 
-		<!-- IF not S_IS_BOT and S_USER_LOGGED_IN and S_PHPBBFOLK_ON -->
-			<div id="tagthistopic" style="display:none;">
-				<!-- INCLUDE phpBBFolk_input.html -->
-			</div>
-		<!-- ENDIF -->
-	</p>
-<!-- end phpBBFolk mod -->
+<!-- ENDIF -->
 
 <!-- <span><strong>online roleplay {TOPIC_TAGS} roleplay online</strong></span> -->
 <!--
@@ -128,15 +176,6 @@ blockquote:after {
 -->
 <!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body -->
 <!-- IF FORUM_DESC --><span style="display: none">{FORUM_DESC}<br /></span><!-- ENDIF -->
-
-<!-- IF MODERATORS or U_MCP -->
-	<p>
-		<!-- IF MODERATORS -->
-			<strong><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->:</strong> {MODERATORS}
-		<!-- ENDIF -->
-
-	</p>
-<!-- ENDIF -->
 
 <div class="topic-actions">
 
@@ -253,13 +292,21 @@ blockquote:after {
 					
 					<!-- ENDIF -->
 					
-				<!-- ENDIF -->	
+				<!-- ENDIF -->
 			
 			<div style="clear:none;">
 
 				<h3 <!-- IF postrow.S_FIRST_ROW -->class="first"<!-- ENDIF -->><!-- IF postrow.POST_ICON_IMG --><img src="{T_ICONS_PATH}{postrow.POST_ICON_IMG}" width="{postrow.POST_ICON_IMG_WIDTH}" height="{postrow.POST_ICON_IMG_HEIGHT}" alt="" /> <!-- ENDIF --><a href="{U_VIEW_TOPIC}#p{postrow.POST_ID}" id="p{postrow.POST_ID}" name="p{postrow.POST_ID}">{postrow.POST_SUBJECT}</a>
 				</h3>
-				<p class="author"><!-- IF S_IS_BOT -->{postrow.MINI_POST_IMG}<!-- ELSE --><a href="{postrow.U_MINI_POST}">{postrow.MINI_POST_IMG}</a><!-- ENDIF -->{L_POST_BY_AUTHOR} <strong>{postrow.POST_AUTHOR_FULL}</strong> {L_POSTED_ON_DATE} {postrow.POST_DATE} <!-- IF not S_IS_BOT and S_USER_LOGGED_IN --><em>
+				<p class="author" style="margin-right: 0;">
+          <small class="quick-float-right">
+            <span class="labeled action">
+              <strong>Tips:</strong> <span data-bind="stats.tips" data-link="/posts/{postrow.POST_ID}">{postrow.TIPS_TOTAL}</span> <small>INK</small>
+              <!-- IF S_USER_LOGGED_IN --><button class="special button" on-tap="_promptToTip" data-amount="0.25" data-author="{postrow.POSTER_ID}" data-link="/posts/{postrow.POST_ID}">+ 0.25</button><!-- ENDIF -->
+            </span>
+            <!-- <center style="margin-top: 1em;"><abbr title="Tips are donations to the author." class="tooltipped">tips received</abbr></center> -->
+          </small>
+          <!-- IF S_IS_BOT -->{postrow.MINI_POST_IMG}<!-- ELSE --><a href="{postrow.U_MINI_POST}">{postrow.MINI_POST_IMG}</a><!-- ENDIF -->{L_POST_BY_AUTHOR} <strong>{postrow.POST_AUTHOR_FULL}</strong> {L_POSTED_ON_DATE} {postrow.POST_DATE} <!-- IF not S_IS_BOT and S_USER_LOGGED_IN --><em>
 					<!-- IF S_WATCH_FORUM_LINK --><span <!-- IF S_WATCHING_FORUM -->class="icon-unsubscribe"<!-- ELSE -->class="icon-subscribe"<!-- ENDIF -->><a href="{S_WATCH_FORUM_LINK}" title="{S_WATCH_FORUM_TITLE}">{S_WATCH_FORUM_TITLE}</a></span><!-- ENDIF -->
 					<!-- IF U_WATCH_TOPIC --><span <!-- IF S_WATCHING_TOPIC -->class="icon-unsubscribe"<!-- ELSE -->class="icon-subscribe"<!-- ENDIF -->><a href="{U_WATCH_TOPIC}" title="{L_WATCH_TOPIC}">{L_WATCH_TOPIC}</a></span><!-- ENDIF -->
 					<!-- IF U_BOOKMARK_TOPIC --><span class="icon-bookmark"><a href="{U_BOOKMARK_TOPIC}" title="{L_BOOKMARK_TOPIC}">{L_BOOKMARK_TOPIC}</a></span><!-- ENDIF -->
@@ -273,7 +320,7 @@ blockquote:after {
 					</p>
 				<!-- ENDIF -->
 				
-			</div>			
+			</div>
 
 			<div class="content" style="clear:both;">{postrow.MESSAGE}</div>
 
@@ -295,7 +342,16 @@ blockquote:after {
 
 				<!-- IF postrow.BUMPED_MESSAGE --><div class="notice">{postrow.BUMPED_MESSAGE}</div><!-- ENDIF -->
 				<!-- IF postrow.SIGNATURE --><div id="sig{postrow.POST_ID}" class="signature" style="overflow-y:none; max-height:200px;">{postrow.SIGNATURE}</div><!-- ENDIF -->
-			
+
+        <div>
+          <p><strong>Tip jar:</strong> the author of this post has received
+          <span class="labeled action">
+            <span data-bind="stats.tips" data-link="/posts/{postrow.POST_ID}">{postrow.TIPS_TOTAL}</span> <small>INK</small>
+            <!-- IF S_USER_LOGGED_IN --><button class="special button" on-tap="_promptToTip" data-amount="0.25" data-author="{postrow.POSTER_ID}" data-link="/posts/{postrow.POST_ID}">+ 0.25</button><!-- ENDIF -->
+          </span> in return for their work.</p>
+          <!-- <center style="margin-top: 1em;"><abbr title="Tips are donations to the author." class="tooltipped">tips received</abbr></center> -->
+        </div>
+      
 			<!-- ENDIF -->
 
 		</div>
@@ -309,18 +365,25 @@ blockquote:after {
 					<!-- IF not postrow.U_POST_AUTHOR --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ELSE -->{postrow.POST_AUTHOR_FULL}<!-- ENDIF -->
 				</dt>
 
-				<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd>{postrow.RANK_TITLE}<!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><br /><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->
+				<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd><strong>{postrow.RANK_TITLE}</strong><!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><br /><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->
 				
 				<dd>Member for <span style="font-size:1.2em; font-weight: bold;">{postrow.TENURE}</span> years</dd>
 				
 				<!-- IF S_PRS_KARMA_ENABLED -->
-					<dd><a href="http://www.roleplaygateway.com/post-rating-and-member-reputation-explanation-t10569.html" title="Reputation: {postrow.PRS_KARMA_SCORE} (Click here to learn more!)">{postrow.PRS_KARMA_STARS}</a></dd>
+					<dd><a href="//www.roleplaygateway.com/post-rating-and-member-reputation-explanation-t10569.html" title="Reputation: {postrow.PRS_KARMA_SCORE} (Click here to learn more!)">{postrow.PRS_KARMA_STARS}</a></dd>
 				<!-- ENDIF -->
-				
-				<br />
+
 				<!-- IF postrow.POSTER_WARNINGS --><dd><strong>{L_WARNINGS}: </strong><span style="color:red;">{postrow.POSTER_WARNINGS}</span></dd><!-- ENDIF -->
 				<!-- IF postrow.U_NOTES --><dd><a href="{postrow.U_NOTES}" title="{L_VIEW_NOTES}"> {postrow.POSTER_NOTES}</a></dd><!-- ENDIF -->
+
 				<dd>{postrow.GT_LEAGUE_DATA}</dd>
+
+        <dd class="avatar-width medals-list">
+          <!-- BEGIN awards -->
+        	<a href="/medals/{postrow.awards.SLUG}"><img src="{postrow.awards.IMAGE}" border="0" alt="{postrow.awards.NAME}" title="{postrow.awards.NAME}" /></a>
+        	<!-- END awards -->
+          <!-- IF S_IS_BETA --><dd>earned <strong>{postrow.MEDAL_COUNT}</strong>&times; medals</dd><!-- ENDIF -->
+        </dd>
 			
 				<div class="member-details">
 				
@@ -331,7 +394,7 @@ blockquote:after {
 						<!-- IF S_PRS_PENALTY_ENABLED --><dd><strong>{L_PENALTY}:</strong> <!-- IF postrow.PRS_PENALTY_OVERALL -->{postrow.PRS_PENALTY_OVERALL}<!-- ELSE -->0<!-- ENDIF -->%</dd><!-- ENDIF -->
 						<!-- IF S_PRS_MODPOINTS_ENABLED --><dd><strong>{L_MODPOINTS}:</strong> <!-- IF postrow.PRS_MODPOINTS -->{postrow.PRS_MODPOINTS}<!-- ELSE -->0<!-- ENDIF --></dd><!-- ENDIF -->
 
-						<dd><a href="http://www.roleplaygateway.com/spam.php?user_id={postrow.POSTER_ID}">ID as SpamBot</a></dd>
+						<dd><a href="//www.roleplaygateway.com/spam.php?user_id={postrow.POSTER_ID}">ID as SpamBot</a></dd>
 					
 					<!-- ENDIF -->
 
@@ -362,6 +425,7 @@ blockquote:after {
 
 	<hr class="divider" />
 
+  <!-- IF S_ADS_GOOD -->
 	<!-- IF postrow.S_FIRST_ROW and AD_CODE1 -->
 		<div class="post bg2">
 			<div class="inner"><span class="corners-top"><span></span></span>
@@ -378,6 +442,7 @@ blockquote:after {
 			<span class="corners-bottom"><span></span></span></div>
 		</div>
 		<hr class="divider" />
+	<!-- ENDIF -->
 	<!-- ENDIF -->
 <!-- END postrow -->
 

@@ -7,9 +7,7 @@
 
 <title>{PAGE_TITLE}<!-- IF S_IN_MCP -->&bull; {L_MCP} <!-- ELSEIF S_IN_UCP --> &bull; {L_UCP}<!-- ENDIF --></title>
 
-<!-- IF S_IS_BETA -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<!-- ENDIF -->
 
 <meta http-equiv="content-style-type" content="text/css" />
 <meta http-equiv="content-language" content="{S_USER_LANG}" />
@@ -117,7 +115,7 @@
 			eval(onunload_functions[i]);
 		}
 	}
-	
+
 	function openChatWindow(url) {
 	   window.open(
 	      url,
@@ -147,6 +145,7 @@
 	  font-size: 1.5em;
 	}
 </style>
+
 <!--[if lt IE 7.]>
 	<script type="text/javascript" src="{T_TEMPLATE_PATH}/pngfix.js" defer="defer"></script>
 <![endif]-->
@@ -163,6 +162,7 @@
 <script src="/embed/js/jquery-ui.min.js" type="text/javascript" charset="UTF-8"></script>
 <script src="/includes/jquery.timeago.js" type="text/javascript" charset="UTF-8"></script>
 <script src="/includes/jquery.smooth-scroll.min.js" type="text/javascript" charset="UTF-8"></script>
+<script src="/includes/bigscreen.min.js" type="text/javascript" charset="UTF-8"></script>
 <!-- <script src="/semantic/dist/semantic.min.js" type="text/javascript" charset="UTF-8"></script> -->
 <script src="/hashcasher.js" type="text/javascript" charset="UTF-8"></script>
 
@@ -177,7 +177,7 @@
 <!-- <script src="/includes/snowstorm-min.js"></script> -->
 
 <!-- <script src="/includes/jquery-cookie/jquery.cookie.js" type="text/javascript" charset="UTF-8"></script> -->
-<link rel="stylesheet" href="//jquery-ui.googlecode.com/svn/tags/latest/themes/base/jquery-ui.css" />
+<link rel="stylesheet" href="/css/jquery-ui.css" />
 
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/forum_fn.js"></script>
 
@@ -240,7 +240,7 @@
 <script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js" async></script> -->
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-573903-1']);
@@ -252,8 +252,18 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
+</script>  -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-573903-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-573903-1');
 </script>
 
+<!-- IF S_ADS_GOOD -->
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
@@ -261,10 +271,11 @@
     enable_page_level_ads: true
   });
 </script>
+<!-- ENDIF -->
 
 </head>
 
-<body id="phpbb" class="section-{SCRIPT_NAME} {S_CONTENT_DIRECTION}<!-- IF S_IS_ERIC --> sn-im-page<!-- ENDIF -->" style="padding-top:0px; background:url('/images/wallpaper.png');">
+<body id="phpbb" class="section-{SCRIPT_NAME} {S_CONTENT_DIRECTION}<!-- IF S_IS_ERIC --> sn-im-page<!-- ENDIF -->" style="padding-top:0px; background:url('/images/wallpaper.png'); background-attachment: fixed;">
 <!-- <body id="phpbb" class="section-{SCRIPT_NAME} {S_CONTENT_DIRECTION}" style="padding-top:0px; background:url('http://www.roleplaygateway.com/images/background-winter-2011.jpg');"> -->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -281,7 +292,7 @@
 <div id="wrap" style="">
 <!-- ENDIF -->
 	<a id="top" name="top" accesskey="t"></a>
-	
+
   <!-- IF S_SPECIAL_ALERT -->
 	<style type="text/css">
 	  .alert-important {
@@ -294,152 +305,69 @@
 	</div> -->
 	<!-- ENDIF -->
 
-	<style type="text/css">
-	  .header-bar {
-	    position:fixed;
-      top: 0px; left: 0px; right: 0px;
-      padding: 0;
-      background: #333;
-      font-size: 1.2em;
-      font-weight: bold;
-	    z-index: 1000;
-	  }
-	  .header-bar a:hover {
-	    text-decoration: none;
-	  }
-	  .header-bar a {
-	    display: inline-block;
-      padding: 7px;
-	    padding-left: 10px;
-	    padding-right: 10px;
-      color: #2C8FAA;
-      font-size:1.1em;
-	  }
-		
-		.header-bar a img.avatar {
-			max-height: 30px;
-			margin: -7px 0 -9px -10px;
-		}
-		
-    .header-bar ul {
-      list-style-type: none;
-      display: inline-block;
-      position: relative;
-      height: auto;
-    }
-    .header-bar ul li {
-      background: #333;
-    }
-    .header-bar ul li:hover {
-      background: #444;
-      color: #34AACB;
-    }
-    .header-bar ul.nav > li {
-      display: inline-block;
-    }
-    .header-bar ul ul {
-      display: none;
-    }
-    .header-bar ul ul li {
-      border-top: 1px solid black;
-    }
-    .header-bar ul li:hover > ul {
-      margin: 0;
-      display: block;
-      position: absolute; /* overrides other settings */
-      /* top: 28px; */
-      height: 28px;
-      min-width: 200px;
-    }
-    .header-bar ul ul li:hover ul {
-      top: 0; /* match position of parent, which should be position: relative; */
-      position: absolute;
-      margin-left: 199px; /* 150px min-width -1 px border */
-      border-left: 1px solid black;
-    }
-    .header-bar ul li a {
-      display: block;
-    }
-    .header-bar ul li ul li {
-      position: relative;
-    }
-    .header-bar ul ul li:hover ul ul {
-      position: absolute;
-      top: -48px; /* 28 + 1 for border */
-      margin-left: 199px; /* 150px min-width -1 px border */
-      border-left: 1px solid black;
-    }
-    .header-bar ul ul li:hover ul ul {
-      top: 0px;
-    }
-    #settings {
-      float:right; display:inline-block;
-    }
-		
-		.notification-count.unread {
-			background-color: maroon;
-			color: white;
-		}
-
-    /* IE7 hacks */
-    .header-bar ul.nav > li {
-      display: inline-block;
-      *float:left;
-    }
-    #settings {
-      *display:none;
-    }
-
-    .special { position: relative; }
-	</style>
 	<div  class="header-bar" onclick="$(window).scrollTop(0);">
+		<div style="max-width: 960px; margin-left: auto; margin-right: auto;">
       <ul class="nav">
         <li>
-          <a href="https://www.roleplaygateway.com/"><img src="/images/roleplaygateway.png" height="14" style="margin-bottom:-3px;" alt="RolePlayGateway Logo" /> RPG</a>
+          <a href="https://www.roleplaygateway.com/">
+						<img src="/images/roleplaygateway.png" height="14" style="margin-bottom:-3px;" alt="RolePlayGateway Logo" />
+						<span> RPG<!--  <span style="color:red;">!</span> --></span>
+						<!-- <span style="color:red;">!</span> -->
+					</a>
           <ul>
             <li><a href="/medals">Achievements</a></li>
-						<!-- IF S_IS_BETA -->
-            <li><a href="/orders">Marketplace <small class="button">beta</small></a></li>
-            <li><a href="/invitations">Invitations <small class="button">beta</small></a></li>
-						<!-- ENDIF -->
+            <li><a href="/community">Authors</a></li>
+            <li><a href="/characters">Characters</a></li>
+            <li><a href="/orders"><small class="button"><code>#next</code></small> Marketplace<!-- <span style="color:red;">!</span> --></a></li>
+            <!-- IF S_IS_BETA -->
+            <li><a href="/invitations"><small class="button">beta</small> Invitations</a></li>
+            <li><a href="/fountains"><small class="button">beta</small> Fountains</a></li>
+            <li><a href="/stores"><small class="button">beta</small> Stores</a></li>
+            <li><a href="/items"><small class="button">beta</small> Items</a></li>
+            <li><a href="/assets"><small class="button">beta</small> Assets</a></li>
+            <!-- <li><a href="/events"><small class="button">beta</small> Events</a></li> -->
+            <!-- <li><a href="/quests"><small class="button">beta</small> Quests</a></li> -->
+            <!-- <li><a href="/places"><small class="button">beta</small> Settings</a></li> -->
+            <!-- ENDIF -->
             <li><a href="https://write.roleplaygateway.com">Etherpad</a></li>
-            <li><a href="/changelog">Changelog</a></li>
-            <li><a href="/about/">About</a></li>
-						<li>
-							<a href="/introducing-rpg-achievements-t104679.html">News <span style="color:red;">!</span></a>
-							<ul>
-								<li><a href="/introducing-rpg-achievements-t104679.html">Introducing RPG Achievements <span style="color:red;">!</span></a></li>
-								<li><a href="/rpg-new-design-team-t100940.html">RPG's New Design Team</a></li>
-								<li><a href="/now-open-rpg-staff-applications-t98816.html">Now Open: RPG Staff Applications</a></li>
-								<li><a href="https://blog.roleplaygateway.com/posts/our-greatest-quest-yet">Our Greatest Quest Yet</a></li>
-								<li><a href="/the-multiverse-renewal-t98478.html">The Multiverse: A Renewal</a></li>
-								<li><a href="/years-roleplaygateway-share-your-story-t98298.html">10 Years of RolePlayGateway: Share Your Story</a></li>
-							</ul>
-						</li>
+            <!-- <li><a href="/discord">Discord</a></li> -->
+            <li><a href="https://chat.verse.im">New Chat<!-- <span style="color:red;">!</span> --></a></li>
+            <li>
+              <a href="/introducing-rpg-achievements-t104679.html">News</a>
+              <ul>
+                <li><a href="/introducing-rpg-achievements-t104679.html">Introducing RPG Achievements</a></li>
+                <li><a href="/rpg-new-design-team-t100940.html">RPG's New Design Team</a></li>
+                <li><a href="/now-open-rpg-staff-applications-t98816.html">Now Open: RPG Staff Applications</a></li>
+                <li><a href="https://blog.roleplaygateway.com/posts/our-greatest-quest-yet">Our Greatest Quest Yet</a></li>
+                <li><a href="/the-multiverse-renewal-t98478.html">The Multiverse: A Renewal</a></li>
+                <li><a href="/years-roleplaygateway-share-your-story-t98298.html">10 Years of RolePlayGateway: Share Your Story</a></li>
+              </ul>
+            </li>
+            <!-- <li><a href="/changelog">Changelog</a></li> -->
+            <!-- <li><a href="https://github.com/roleplaygateway/roleplaygateway">Source Code &raquo;</a></li> -->
+            <li><a href="/about/">About RPG &raquo;</a></li>
           </ul>
         </li>
         <li>
-          <a href="/roleplay/">Roleplay</a>
+          <a href="/universes">Universes</a>
           <ul>
-            <li><a href="/roleplay/">Browse All &raquo;</a></li>
+            <li><a href="/universes/new">Create New Universe &raquo;</a></li>
+            <!-- BEGIN user_roleplays -->
             <li>
-              <a href="/ucp.php?i=roleplays">My Roleplays</a>
+              <a href="{user_roleplays.URL}">{user_roleplays.TITLE}</a>
               <ul>
-                <!-- BEGIN user_roleplays -->
-                <li>
-                  <a href="{user_roleplays.URL}">{user_roleplays.TITLE}</a>
-                  <ul>
-                    <li><a href="{user_roleplays.URL}characters">Characters</a></li>
-                    <li><a href="{user_roleplays.URL}places">Places</a></li>
-                    <li><a href="{user_roleplays.URL}groups">Groups</a></li>
-                  </ul>
-                </li>
-                <!-- END user_roleplays -->
+                <li><a href="{user_roleplays.URL}characters">Characters</a></li>
+                <li><a href="{user_roleplays.URL}groups">Factions</a></li>
+                <li><a href="{user_roleplays.URL}places">Settings</a></li>
+                <li><a href="{user_roleplays.URL}quests">Quests</a></li>
+                <!-- IF S_IS_BETA -->
+                <li><a href="{user_roleplays.URL}events"><small class="button">beta</small> Events</a></li>
+                <li><a href="{user_roleplays.URL}forge"><small class="button">beta</small> Items</a></li>
+                <!-- ENDIF -->
               </ul>
             </li>
-            <li><a href="/ucp.php?i=characters&amp;mode=personal">My Characters</a></li>
-            <li><a href="/member/{S_USERNAME}/places">My Places</a></li>
-            <li><a href="/ucp.php?i=roleplays&amp;mode=new">Create New Roleplay &raquo;</a></li>
+            <!-- END user_roleplays -->
+            <li><a href="/universes">Browse All &raquo;</a></li>
           </ul>
         </li>
         <li>
@@ -453,10 +381,14 @@
           </ul>
         </li>
         <li><a href="/chat/">Chat</a></li>
+        <!-- <li><a href="https://www.toprpsites.com/">Vote for RPG &raquo;</a></li> -->
+        <!-- IF S_IS_ERIC --><!-- ENDIF -->
 				<li class="desktop-only">
 					<a href="/donate">Donate!</a>
 					<ul>
-						<li><a href="/donate">RPG is expensive to run, so every little donation helps!</a></li>
+						<li><a href="https://patreon.com/RolePlayGateway">Official Patreon &raquo;</a></li>
+						<li><a href="/donate">We're working on some exciting tools for building entirely new worlds.  Every donation helps!</a></li>
+
 						<li style="padding: 10px;">
 							<strong>Donate Now with Internet Money</strong>
 							<p style="font-weight: normal;">Clicking the code below will launch your Bitcoin wallet, or you can simply scan it with your mobile wallet.  Don't have one?  <a style="display: inline-block; font-size: inherit;" href="https://copay.io">Install Copay &raquo;</a></p>
@@ -469,6 +401,9 @@
 						</li>
 					</ul>
 				</li>
+        <!-- IF S_IS_BETA -->
+        <li><a href="/shell">Explore</a></li>
+        <!-- ENDIF -->
         <!-- <li>
           <a href="/tools/">Resources</a>
           <ul>
@@ -484,7 +419,7 @@
             <li><a href="/rules">Our Rules</a></li>
           </ul>
         </li> -->
-        <li class="desktop-only">
+        <!-- <li class="desktop-only">
           <form action="/site_search.php" id="search">
           <fieldset>
             <input type="hidden" name="cx" value="partner-pub-4532443596754933:ugg366-4578" />
@@ -494,25 +429,30 @@
             {S_SEARCH_HIDDEN_FIELDS}
           </fieldset>
           </form>
-        </li>
+        </li> -->
       </ul>
-	  <div id="settings">
+
+		  <div id="settings">
 		    <!-- <a href="#" style="padding: 3px; border-radius: 3px; background: #ccc;">{NOTIFICATION_COUNT}</a> -->
 		    <!-- IF U_MCP -->
 		    <a href="/mcp.php">MCP</a>
 		    <!-- ENDIF -->
         <!-- IF S_USER_LOGGED_IN -->
-				<!-- IF S_IS_BETA -->
 				<ul>
-					<li><a href="/ledger?account={S_USER_ID}#balance" title="{CREDITS_BALANCE}"><small>INK</small> <span data-link="/members/{S_USER_ID}" data-bind="stats.balance">{CREDITS_BALANCE}</span></a></li>
+					<li>
+            <a href="/ledger?account={S_USER_ID}#balance" title="{CREDITS_BALANCE}"><small><span class="label">beta</span> INK</small> <span data-link="/members/{S_USER_ID}" data-bind="stats.balance">{CREDITS_BALANCE}</span></a>
+            <ul>
+              <li><a href="/topic-t105820.html">What is this? &raquo;</a></li>
+            </ul>
+          </li>
 				</ul>
-				<!-- ENDIF -->
         <ul>
 					<li><a href="/notifications" title="{NOTIFICATION_COUNT} notifications" data-bind="notifications" class="notification-count {NOTIFICATION_STATUS}">{NOTIFICATION_COUNT}</a></li>
 					<ul>
-						<li><a href="/notifications">You have {NOTIFICATION_COUNT} unread notifications.</a></li>
+						<li><a href="/notifications">You have <span src="/notifications" data-bind="meta.unread">{NOTIFICATION_COUNT}</span> unread notifications.</a></li>
 					</ul>
 				</ul>
+        <!-- IF S_USER_LOGGED_IN and not S_IS_BOT -->
 				<ul>
           <li>
             <a href="/member/{USERSLUG}">
@@ -521,10 +461,12 @@
 							{S_USERNAME}
 						</a>
             <ul>
+              <li><a href="/ucp.php?i=276">My Universes</a></li>
+              <li><a href="/ucp.php?i=characters&amp;mode=personal">My Characters</a></li>
+              <li><a href="/member/{S_USERNAME}/places">My Settings</a></li>
               <li><a href="/ucp.php?i=164">Edit Profile</a></li>
               <li><a href="/ucp.php?i=profile&amp;mode=signature">Edit Signature</a></li>
               <li><a href="/ucp.php?i=profile&amp;mode=avatar">Edit Avatar</a></li>
-              <li><a href="/ucp.php?i=characters&amp;mode=personal">View Your Characters</a></li>
               <li><a href="/ucp.php?i=main&amp;mode=subscribed">View Your Forum Subscriptions</a></li>
               <li><a href="/search.php?search_id=egosearch">View Your Posts</a></li>
               <li><a href="/ucp.php?i=pm&amp;folder=inbox"><!-- IF PRIVATE_MESSAGE_INFO -->{PRIVATE_MESSAGE_INFO} <!-- ENDIF -->Private Messages</a></li>
@@ -532,18 +474,19 @@
             </ul>
 					</li>
         </ul>
+        <!-- ENDIF -->
         <!-- ELSE -->
         <a href="/ucp.php?mode=register#form">Register</a>
         <a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="l">Login</a>
         <!-- ENDIF -->
 		  </div>
+		</div>
 	</div>
 	<a name="start_here"></a>
 	<div id="page-body" style="margin-top: 30px;">
-
 		<style type="text/css">
 			@import url('https://fonts.googleapis.com/css?family=Lato');
-		
+
 			.hero {
 				/* background: url('/images/sea-of-stars.jpg'); */
 				background: url('/images/sea-of-stars.jpg');
@@ -571,7 +514,7 @@
 				text-decoration: none;
 				color: #D31141;
 			}
-			
+
 			.headerbar {
 				background: lightseagreen;
 				background: -webkit-linear-gradient(mediumturquoise, darkcyan); /* For Safari 5.1 to 6.0 */
@@ -583,7 +526,7 @@
 			}
 		</style>
 
-		<!-- IF not S_USER_LOGGED_IN -->
+		<!-- IF not S_USER_LOGGED_IN and S_SHOW_SPLASH -->
 			<div class="hero panel">
 				<h1 style="margin-top: 1.5em; color: white;">Our universe is vast.</h1>
 				<p style="font-size: 1.1em;">Amidst an endless sea of stars, what will you discover?</p>
@@ -599,6 +542,7 @@
 			</div>
 		<!-- ENDIF -->
 
+		<!-- IF S_ADS_GOOD -->
     <!-- IF S_PAGE_ONLY and not S_HIDE_AD -->
 		<div>
 			<center>
@@ -615,163 +559,166 @@
 			</center>
 		</div>
     <!-- ENDIF -->
-	
-	
-		<!-- IF S_IS_BETA -->
-			<!-- INCLUDE stylesheet_quill.html -->
-			
-			<script type="text/javascript">
-				$(document).on('click', '*[on-tap=_dismissForever]', function(e) {
-				  e.preventDefault();
-					var self = this;
-					var link = $(self).data('link');
-					Cookies.set('dismissed['+link+']', true);
-					$('*[data-link='+link+'][data-type=alert]').fadeOut().remove();
-				});
+    <!-- ENDIF -->
 
-				$(document).on('ready', function() {
-					$('*[data-type=alert]').each(function(el, i) {
-						var self = this;
-						var link = $(self).data('link');
-						if (!Cookies.get('dismissed['+link+']')) {
-							$('*[data-link='+link+'][data-type=alert]').show();
-						}
-					});
-				});
-			</script>
-			
-			<style type="text/css">
-				*[data-type=alert] {
-					display: none;
-				}
-			</style>
+		<!-- INCLUDE stylesheet_quill.html -->
 
-			<!-- IF S_IS_CONTRIBUTOR -->
-			<div class="special panel" data-type="alert" data-link="/alerts/contributor-thanks">
-				<a href="#" class="quick-float-right" on-tap="_dismissForever" data-link="/alerts/contributor-thanks">&times;</a>
-				<h1>Thank you for your contributions!</h1>
-				<p>We wouldn't be here without all of your help.  Thanks making RolePlayGateway everything it is today! <a href="/medals/contributor">See your Contributor medal &raquo;</a></p>
-			</div>
-			<!-- ELSE -->
-			<div class="special panel" data-type="alert" data-link="/alerts/donation-drive">
-				<a href="#" class="quick-float-right" on-tap="_dismissForever" data-link="/alerts/donation-drive">&times;</a>
-				
-				<h1>RPG Donation Drive <small>(experimental, visible only to beta medal holders)</small></h1>
-				<p>We've got some exciting things planned for you.  Lend us a hand and we'll show you the way.</p>
+    <!-- IF S_USER_LOGGED_IN -->
+    <script type="text/javascript">
+      $(document).on('click', '*[on-tap=_dismissForever]', function(e) {
+        e.preventDefault();
+        var self = this;
+        var link = $(self).data('link');
+        Cookies.set('dismissed['+link+']', true);
+        $('*[data-link="'+link+'"][data-type=alert]').fadeOut().remove();
+      });
 
-				<table>
-					<tr>
-						<td width="50%" valign="top">
-							<h2>Donate Now and receive <a href="/medals/contributor">the "Contributor" Medal</a>!</h2>
-							<p>Medals are one small token of appreciation you can earn.  Medals come with a small amount of <small>INK</small>, a form of virtual currency used around the site.</p>
-							
-							<center style="margin-top: 10em;">If someone records a video explaining achievements and <small>INK</small>, I'll put it here.</center>
-							
-							<center style="margin-top: 5em;">We could also put a meter here.</center>
-							
-							<center style="margin-top: 5em;">Donations could earn <small>INK</small>, too?</center>
-							<center><small>Special rewards unlocked at various amounts?</small></center>
-						</td>
-						<td width="50%" valign="top">
-							<h2>Donate with Bitcoin <small>(currency of the Internet)</small></h2>
-							<p>Clicking the code below will launch your Bitcoin wallet (if you have one), or you can simply scan it with your mobile wallet.  Don't have one?  <a href="https://copay.io">Install Copay &raquo;</a></p>
-							<center>
-								<a href="bitcoin:3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66">
-									<img src="/images/3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66.png" />
-								<a/>
-								<br />
-								<a href="bitcoin:3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66">
-									3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66
-								</a>
-							</center>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<!-- ENDIF -->
+      $(document).on('ready', function() {
+        $('*[data-type=alert]').each(function(el, i) {
+          var self = this;
+          var link = $(self).data('link');
+          if (!Cookies.get('dismissed['+link+']')) {
+            $('*[data-link="'+link+'"][data-type=alert]').show();
+          }
+        });
+      });
+    </script>
+
+    <style type="text/css">
+      *[data-type=alert] {
+        display: none;
+      }
+    </style>
+
+    <div class="special panel" data-type="alert" data-link="/alerts/donation-drive">
+      <a href="#" class="quick-float-right" on-tap="_dismissForever" data-link="/alerts/donation-drive">&times;</a>
+
+      <h1><img src="/donationmeter/images/display.php" style="float: right;" />RPG Needs Your Help!</h1>
+      <p>We've got some exciting things planned for you.  Lend us a hand and we'll show you the way.</p>
+
+      <table>
+        <tr>
+          <td width="50%" valign="top">
+            <h2>Donate Now and receive <a href="/medals/contributor">the "Contributor" Medal</a>!</h2>
+            <p>Medals are one small token of appreciation you can earn.  Medals come with a small amount of <small>INK</small>, a form of virtual currency used around the site.</p>
+            <center style="margin-top: 10em;">If someone records a video explaining achievements and <small>INK</small>, I'll put it here.</center>
+            <center style="margin-top: 5em;">We could also put a meter here.</center>
+            <center style="margin-top: 5em;">Donations could earn <small>INK</small>, too?</center>
+            <center><small>Special rewards unlocked at various amounts?</small></center>
+          </td>
+          <td width="50%" valign="top">
+            <h2>Donate with Bitcoin <small>(currency of the Internet)</small></h2>
+            <p>Clicking the code below will launch your Bitcoin wallet (if you have one), or you can simply scan it with your mobile wallet.  Don't have one?  <a href="https://copay.io">Install Copay &raquo;</a></p>
+            <center>
+              <a href="bitcoin:3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66">
+                <img src="/images/3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66.png" />
+              <a/>
+              <br />
+              <a href="bitcoin:3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66">
+                3QA6eg4xLbFoUcChFtboQbzCPwyCCuxg66
+              </a>
+            </center>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- IF S_IS_BETA -->
+    <div class="special panel">
+      <h3>Hello, Beta Tester!</h3>
+			<p><strong>It's time.</strong>  We're preparing to launch <a href="https://verse.im"><strong>Verse</strong>, a game engine designed specifically for RPG</a>.  Strap yourself in.  <a href="https://chat.verse.im/#/group/+rpg:verse.im" class="button">Join the Verse &raquo;</a></p>
+      <!-- <p>Thanks for participating in our <strong>private beta</strong>.  Anything you see as a result of your status as a Beta Tester medalholder is considered private, and is only to be shared among other Beta Medal holders.  Please take a moment and make sure you're in the #beta channel on <a href="/discord">the official RPG Discord</a>. <a href="/discord" class="button">Join the RPG Discord &raquo;</a></p> -->
+    </div>
+    <!-- ENDIF -->
+
+    <!-- IF not S_HAS_STEP_ONE -->
+    <div class="special panel" data-type="alert" data-link="/alerts/first-time-welcome">
+      <a href="#" class="quick-float-right" on-tap="_dismissForever" data-link="/alerts/first-time-welcome">&times;</a>
+      <h3 style="font-size: 1.2em;">Welcome to RPG!</h3>
+      <p>You're a part of <a href="/community">our community</a> now, so the next step is to introduce yourself!  You'll earn one of <a href="/medals">the award medals</a> and we'll get a chance to come by and say hello.</p>
+      <p><strong>Fun Fact:</strong> You can earn Medals by completing Quests, collaborating with others, and exploring RPG universes and how they're made.  Medals unlock new features and provide you with <small>INK</small>, which can be used to purchase resources for your worlds.  <a href="/assets/ink">Learn More About <small>INK</small> &raquo;</a></p>
+
+      <h3>Next Step: Introduce Yourself</h3>
+      <p>To earn <a href="/medals/friendly-beginnings">the "Friendly Beginnings" achievement</a>, write up an introduction in the Welcome Forum. <a href="/posting.php?mode=post&amp;f=95" class="button"><span style="border-right: 1px solid gray; padding-right: 0.5em; margin-right: 0.25em;">+25 <small>INK</small></span> Introduce Yourself &raquo;</a></p>
+    </div>
+    <!-- ELSEIF not S_HAS_STEP_TWO -->
+    <div class="special panel" data-type="alert" data-link="/alerts/add-avatar">
+      <a href="#" class="quick-float-right" on-tap="_dismissForever" data-link="/alerts/add-avatar">&times;</a>
+      <h3>Next Step: Add An Avatar!</h3>
+      <p>Help others recognize you by <a href="/ucp.php?i=profile&amp;mode=avatar">adding an avatar</a> and earning the <a href="/medals/visual-appeal">the "Visual Appeal" achievement</a>. <a href="/ucp.php?i=profile&amp;mode=avatar" class="button"><span style="border-right: 1px solid gray; padding-right: 0.5em; margin-right: 0.25em;">+25 <small>INK</small></span>Add an Avatar &raquo;</a></p>
+    </div>
+    <!-- ELSEIF not S_HAS_STEP_THREE -->
+    <div class="special panel" data-type="alert" data-link="/alerts/invite-a-friend">
+      <a href="#" class="quick-float-right" on-tap="_dismissForever" data-link="/alerts/invite-a-friend">&times;</a>
+      <h3>Next Step: Invite a Friend</h3>
+      <p>RPG is better with friends — after all, collaborative writing is what we're all about!  To earn <a href="/medals/recruiter">the "Recruiter" achievement</a>, invite a friend and show them the ropes. <a href="/invitations" class="button"><span style="border-right: 1px solid gray; padding-right: 0.5em; margin-right: 0.25em;">+100 <small>INK</small></span> Invite a Friend &raquo;</a></p>
+    </div>
+    <!-- ELSEIF not S_HAS_STEP_FOUR -->
+    <div class="special panel" data-type="alert" data-link="/alerts/welcome-another">
+      <a href="#" class="quick-float-right" on-tap="_dismissForever" data-link="/alerts/welcome-another">&times;</a>
+      <h3>Next Step: Welcome Another</h3>
+      <p>Of <a href="/medals">all the achievements</a>, one of the easiest to earn is <a href="/medals/greeter">the "Greeter" medal</a>.  By responding to <a href="/welcome-desk-introductions-arrivals-and-departures-f95.html">introductions in the Welcome Forum</a>, you can help introduce RPG to new members and earn some <small>INK</small> in the process.<a href="/welcome-desk-introductions-arrivals-and-departures-f95.html" class="button"><span style="border-right: 1px solid gray; padding-right: 0.5em; margin-right: 0.25em;">+100 <small>INK</small></span> Browse Introductions &raquo;</a></p>
+    </div>
+    <!-- ELSE -->
+		<div class="special panel" data-type="alert" data-link="/alerts/all-for-now">
+      <a href="#" class="quick-float-right" on-tap="_dismissForever" data-link="/alerts/all-for-now">&times;</a>
+      <h3>That's all for now!</h3>
+      <p>You're finished with the introduction.  Browse <a href="/medals">the list of Medals</a> to see what else you can do to earn some <small>INK</small>!</p>
+			<p><strong>Protip:</strong> click the X in the top right hand corner of this message to dismiss it!</p>
+    </div>
+    <!-- ENDIF -->
+
+    <!--
+    <div class="special panel" data-type="alert" data-link="/alerts/pinterest-extension">
+      <a href="#" class="quick-float-right" on-tap="_dismissForever" data-link="/alerts/pinterest-extension">&times;</a>
+      <h3>Build an image library!</h3>
+      <p>Install <a href="https://about.pinterest.com/en/browser-button">the Pinterest extension</a> to save images you find to your own personal library.  Share in the forums and we'll come say hello. <a href="https://about.pinterest.com/en/browser-button" class="button">Try it out &raquo;</a></p>
+    </div>
+    -->
 
 		<!-- ENDIF -->
-	
+
+		<!-- IF S_IS_BETA -->
+		<!-- IF S_IS_CONTRIBUTOR -->
+		<div class="special panel" data-type="alert" data-link="/alerts/contributor-thanks">
+			<a href="#" class="quick-float-right" on-tap="_dismissForever" data-link="/alerts/contributor-thanks">&times;</a>
+			<h1>Thank you for your contributions!</h1>
+			<p>We wouldn't be here without all of your help.  Thanks making RPG everything it is today! <a href="/medals/contributor">See your Contributor medal &raquo;</a></p>
+		</div>
+		<!-- ELSE -->
+	<!-- ENDIF -->
+	<!-- ENDIF -->
+
+  <h3 style="max-width: 100%; max-height: 1em; overflow: hidden;">
+    Announcements:
+    <!-- BEGIN announcements -->
+    <a href="/topic-t{announcements.ID}.html" style="margin-left: 1em;">{announcements.TITLE} &raquo;</a>
+    <!-- END announcements -->
+  </h3>
+
   <!-- IF S_PAGE_ONLY eq false -->
 	<div id="page-header" style="margin-bottom:-20px;">
 
+	<!-- IF S_ADS_GOOD -->
 	<!-- IF AD_CODE5 -->
 		<div align="center">{AD_CODE5}</div>
 	<!-- ENDIF -->
+	<!-- ENDIF -->
 
-		<div class="headerbar">
-			<div id="site-description">
-
-				<a href="{U_INDEX}" title="{SITE_DESCRIPTION}">
-				  <img src="/images/roleplaygateway.png" width="50" height="55" alt="RolePlayGateway Logo" title="RolePlayGateway" id="logo" />
-				  <!-- <img src="/images/roleplaygateway-winter-2011.png" height="70" alt="RolePlayGateway Logo" title="RolePlayGateway" id="logo" /> -->
-				  <h1 class="inverted">{SITENAME}</h1>
-				</a>
-				<p style="margin-bottom:0.2em;">{SITE_DESCRIPTION}</p>
-				<!--  <a href="http://quotes.roleplaygateway.com/">RPG Quotes</a> | <a href="http://jobs.roleplaygateway.com/">RPG Jobs</a> |  -->
-        <p><a href="https://write.roleplaygateway.com/">RPG Write</a> | <a href="https://www.cafepress.com/roleplaygateway">RPG Store</a> | <a href="/changelog#01-30-2013"><strong>Recent Changes</strong></a></p>
-				<p style="display: none;"><a href="#start_here">{L_SKIP}</a></p>
-			</div>
-				<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
-					<div id="search-box" style="margin-top:0px; width: 250px; padding: 5px 0;">
-						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-							<input type="hidden" name="cmd" value="_xclick"><!-- Do Not Modify Or Will Not Work Propperly-->
-							<input type="hidden" name="business" value="admin@roleplaygateway.com"><!-- Your payPal Email Address-->
-							<input type="hidden" name="item_name" value="RolePlayGateway"><!-- Your donation name-->
-							<input type="hidden" name="item_number" value="D1"><!-- Donation item number-->
-							<input type="hidden" name="no_shipping" value="1"><!-- st to 1 to not collect shipping address, set to 0 to collect it-->
-							<input type="hidden" name="no_note" value="1">
-							<input type="hidden" name="cn" value="Comments"><!-- Do Not Modify Or Will Not Work Propperly-->
-							<!--<input name="amount" type="hidden" value="">-->
-							<input type="hidden" name="currency_code" value="USD"><!-- modify to your paypal currency-->
-							<input type="hidden" name="lc" value="US">
-							<input type="hidden" name="notify_url" value="https://www.roleplaygateway.com/donationmeter/ipn.php"> <!-- Location to the ipn.php file included with this script, change to your site or script will not function-->
-							<input type="hidden" name="return" value="https://www.roleplaygateway.com"><!-- Location to your thank you page change this to where the user is redirected after successful donation-->
-							<input type="hidden" name="cancel_return" value="https://www.roleplaygateway.com"><!-- Location to your cancelled page change this to where the user is redirected after cancelled donation-->
-							<input type="hidden" name="tax" value="0"><!-- Do Not Modify Or Will Not Work Propperly-->
-							<input type="hidden" name="pal" value="5NK4VSJNG9D22"><!-- Do Not Modify Or Will Not Work Propperly-->
-							<input type="hidden" name="mbr" value="5NK4VSJNG9D22"><!-- Do Not Modify Or Will Not Work Propperly-->
-							<input type="hidden" name="bn" value="PP-BuyNowBF"><!-- Do Not Modify Or Will Not Work Propperly-->
-							<input type="hidden" name="on0" value="Donation Reason">
-							<input type="hidden" name="os0" value="1">
-							<input type="hidden" name="on1" value="Display Name">
-							<input type="hidden" name="os1" value="Generous Donor">
-							<input type="image" src="https://www.roleplaygateway.com/donationmeter/images/display.php" border="0" style="padding-bottom:5px; margin-top: 5px; border:none;" name="submit" alt="Make donations with PayPal - it's fast, free and secure!"><!-- modify the yourbutton.gif to the location of your submit button-->
-							<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-						</form>
-
-						<script>
-						  (function() {
-						    var cx = 'partner-pub-4532443596754933:ugg366-4578';
-						    var gcse = document.createElement('script');
-						    gcse.type = 'text/javascript';
-						    gcse.async = true;
-						    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-						        '//cse.google.com/cse.js?cx=' + cx;
-						    var s = document.getElementsByTagName('script')[0];
-						    s.parentNode.insertBefore(gcse, s);
-						  })();
-						</script>
-						<gcse:searchbox></gcse:searchbox>
-						<a href="{U_SEARCH}" title="{L_SEARCH_ADV_EXPLAIN}">{L_SEARCH_ADV}</a> {S_SEARCH_HIDDEN_FIELDS}
-					</div>
-				<!-- ENDIF -->
-				<br style="clear: both;" />
-		</div>
 		<div id="tabs" style="font-size:1.4em; margin-top:10px;">
-		
 			<style type="text/css">
 				#nav li ul {
 				  /*put the subnavs below and hide them all*/
 				  display: none;
 				  position: absolute;
-				  top: 175px;
+				  top: 70px;
+				  /* top: 175px; */
 				  /* top: 210px; */
 				}
-				
+
 				#nav li {
 				}
-				
+
 				#nav li ul a {
 				  float: left;
 				  /*ie doesn't inherit the float*/
@@ -795,8 +742,8 @@
 				  z-index: 6000;
 				}
 			</style>
-		
-            <ul id="nav">
+
+      <ul id="nav">
 				<li>
 					<a href="/"><span>Home</span></a>
 				</li>
@@ -815,28 +762,28 @@
 				</li>
 				<!-- ENDIF -->
 				<li>
-					<a href="/roleplay/" title="Play by Post Roleplay"><span>Roleplay</span></a>
+					<a href="/roleplay/" title="Roleplay in Universes"><span>Universes</span></a>
 					<!-- IF S_USER_LOGGED_IN -->
 					<ul>
-						<li><a href="/ucp.php?i=roleplays">My Roleplays</a></li>
+						<li><a href="/ucp.php?i=roleplays">My Universes</a></li>
 						<li><a href="/ucp.php?i=characters&amp;mode=personal">My Characters</a></li>
-						<li><a href="/ucp.php?i=roleplays&amp;mode=new">Add New Roleplay</a></li>
+						<li><a href="/universes/new">Add New Universe</a></li>
 					</ul>
 					<!-- ENDIF -->
 				</li>
 				<!--
 				<li>
-					<a href="/roleplays/" title="Hosted Roleplays"><span>Roleplays</span></a>
+					<a href="/roleplays/" title="Hosted Universes"><span>Universes</span></a>
 				</li>
 				-->
-				<li>
+				<!-- <li>
 					<a href="/forum.html" title="Online Roleplay Forum"><span>RPG Forum</span></a>
-				</li>
-				<li>
+				</li> -->
+				<!-- <li>
 					<a href="/chat/" title="Role Playing {CHAT_LABEL}: {CHAT_TITLE}"><span>RPG Chat</span></a>
-				</li>
+				</li> -->
 				<li>
-					<a href="/directory/" title="Places to roleplay"><span>RPG Directory</span></a>
+					<a href="/directory/" title="Places to roleplay"><span>Directory</span></a>
 				</li>
 				<li>
 					<a href="/about/" title="About RolePlayGateway"><span>About Us</span></a>
@@ -845,11 +792,58 @@
 					<a href="/the-official-roleplaygateway-rules-t1369.html" title="Rules of RolePlayGateway"><span>Our Rules</span></a>
 				</li>
 			</ul>
-			
-        </div>
-		
+		</div>
+
     <!-- IF S_IS_FRONT_PAGE -->
     <!-- ELSE -->
+
+		<!-- IF S_SEARCH_UNDERSTOOD -->
+		<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
+			<div id="search-box" style="margin-top:0px; width: 250px; padding: 5px 0;">
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+					<input type="hidden" name="cmd" value="_xclick"><!-- Do Not Modify Or Will Not Work Propperly-->
+					<input type="hidden" name="business" value="admin@roleplaygateway.com"><!-- Your payPal Email Address-->
+					<input type="hidden" name="item_name" value="RolePlayGateway"><!-- Your donation name-->
+					<input type="hidden" name="item_number" value="D1"><!-- Donation item number-->
+					<input type="hidden" name="no_shipping" value="1"><!-- st to 1 to not collect shipping address, set to 0 to collect it-->
+					<input type="hidden" name="no_note" value="1">
+					<input type="hidden" name="cn" value="Comments"><!-- Do Not Modify Or Will Not Work Propperly-->
+					<!--<input name="amount" type="hidden" value="">-->
+					<input type="hidden" name="currency_code" value="USD"><!-- modify to your paypal currency-->
+					<input type="hidden" name="lc" value="US">
+					<input type="hidden" name="notify_url" value="https://www.roleplaygateway.com/donationmeter/ipn.php"> <!-- Location to the ipn.php file included with this script, change to your site or script will not function-->
+					<input type="hidden" name="return" value="https://www.roleplaygateway.com"><!-- Location to your thank you page change this to where the user is redirected after successful donation-->
+					<input type="hidden" name="cancel_return" value="https://www.roleplaygateway.com"><!-- Location to your cancelled page change this to where the user is redirected after cancelled donation-->
+					<input type="hidden" name="tax" value="0"><!-- Do Not Modify Or Will Not Work Propperly-->
+					<input type="hidden" name="pal" value="5NK4VSJNG9D22"><!-- Do Not Modify Or Will Not Work Propperly-->
+					<input type="hidden" name="mbr" value="5NK4VSJNG9D22"><!-- Do Not Modify Or Will Not Work Propperly-->
+					<input type="hidden" name="bn" value="PP-BuyNowBF"><!-- Do Not Modify Or Will Not Work Propperly-->
+					<input type="hidden" name="on0" value="Donation Reason">
+					<input type="hidden" name="os0" value="1">
+					<input type="hidden" name="on1" value="Display Name">
+					<input type="hidden" name="os1" value="Generous Donor">
+					<input type="image" src="https://www.roleplaygateway.com/donationmeter/images/display.php" border="0" style="padding-bottom:5px; margin-top: 5px; border:none;" name="submit" alt="Make donations with PayPal - it's fast, free and secure!"><!-- modify the yourbutton.gif to the location of your submit button-->
+					<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+				</form>
+
+				<script>
+					(function() {
+						var cx = 'partner-pub-4532443596754933:ugg366-4578';
+						var gcse = document.createElement('script');
+						gcse.type = 'text/javascript';
+						gcse.async = true;
+						gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+								'//cse.google.com/cse.js?cx=' + cx;
+						var s = document.getElementsByTagName('script')[0];
+						s.parentNode.insertBefore(gcse, s);
+					})();
+				</script>
+				<gcse:searchbox></gcse:searchbox>
+				<a href="{U_SEARCH}" title="{L_SEARCH_ADV_EXPLAIN}">{L_SEARCH_ADV}</a> {S_SEARCH_HIDDEN_FIELDS}
+			</div>
+		<!-- ENDIF -->
+		<!-- ENDIF -->
+
 		<div class="navbar">
 			<div class="inner"><span class="corners-top"><span></span></span>
 
@@ -863,7 +857,7 @@
 				<!-- IF U_PRINT_TOPIC --><li class="rightside"><a href="{U_PRINT_TOPIC}" title="{L_PRINT_TOPIC}" accesskey="p" class="print">{L_PRINT_TOPIC}</a></li><!-- ENDIF -->
 				<!-- IF U_PRINT_PM --><li class="rightside"><a href="{U_PRINT_PM}" title="{L_PRINT_PM}" accesskey="p" class="print">{L_PRINT_PM}</a></li><!-- ENDIF -->
 			</ul>
-			
+
 			<ul class="linklist rightside" style="float:right;">
 				<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>
 				<!-- IF not S_IS_BOT -->
@@ -872,7 +866,7 @@
 					<li class="icon-logout"><a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="l">{L_LOGIN_LOGOUT}</a></li>
 				<!-- ENDIF -->
 			</ul>
-			
+
 			<ul class="linklist leftside">
 				<li>
 					<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT and not AUTO_REFRESH -->
@@ -885,7 +879,7 @@
 						</fieldset>
 					</form>
 					<!-- ENDIF -->
-				
+
 					<!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
 						<a href="http://www.roleplaygateway.com/ucp.php" title="{L_PROFILE}" accesskey="u">User Control Panel</a> &bull;
 						<a href="http://www.roleplaygateway.com/ucp.php?i=profile&mode=profile_info" title="{L_PROFILE}" accesskey="u">Edit Profile</a> &bull;
@@ -897,14 +891,15 @@
 						<a href="{U_RESTORE_PERMISSIONS}">{L_RESTORE_PERMISSIONS}</a>
 						<!-- ENDIF -->
 					<!-- ENDIF -->
-					
+
 				</li>
 			</ul>
 			<span class="corners-bottom"><span></span></span></div>
 		</div>
 	</div>
 	<!-- ENDIF -->
-	
+
+
 	<!-- IF U_MCP -->
 	<div id="mod-panel">
 		<div class="inner"><span class="corners-top"><span></span></span>
@@ -939,9 +934,9 @@
 	<a name="start_here"></a>
 	<div id="page-body">
   <!-- ENDIF -->
-	
+
 		<!-- INCLUDE ajax_userinfo.html -->
-		
+
 		<!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
 		<div id="message" class="rules">
 			<div class="inner"><span class="corners-top"><span></span></span>
@@ -949,6 +944,5 @@
 			<span class="corners-bottom"><span></span></span></div>
 		</div>
 		<!-- ENDIF -->
-
 
 	<gcse:searchresults></gcse:searchresults>

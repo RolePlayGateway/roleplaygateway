@@ -1,0 +1,177 @@
+<div id="posting-container">
+
+	<script type="text/javascript">
+		// fieldname, warningname, remainingname, maxchars
+		function CheckFieldLength(fn,wn,rn,mc) {
+			var len = fn.value.length;
+			var wordcount = (fn.value.split(" ").length) - 1;
+			var wc = "wordcount";
+			
+			if (wordcount > 9000) {
+				document.getElementById("postingtip").style.color = "#000";
+				document.getElementById("postingtip").innerHTML = "<img src=\"//www.roleplaygateway.com/images/over_9000.gif\" style=\"float:left; margin:10px;\" /><p>Vegeta! What does the scouter say about his power level?!</p><p><strong>It's over NINE THOUSAAAAANNNNDDDDD!!!111oneone1eleven!";
+			}
+			
+			/* if (len > mc) {
+			fn.value = fn.value.substring(0,mc);
+			len = mc;
+			} */
+			
+			document.getElementById(wn).innerHTML = len;
+			document.getElementById(wc).innerHTML = wordcount;
+		}
+	</script>
+	
+	<style type="text/css">
+		.overlay {
+			background: black;
+			color: white;
+			display: none;
+			position: relative;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+	</style>
+
+	<form class="covered" id="write" method="post" action="/ucp.php?i=roleplays&amp;mode=write&amp;action=submit">
+		<!-- IF S_IS_BETA -->
+			<!-- IF S_HAS_PRICE -->
+				<!-- IF S_PAYMENT_AGREEMENT -->
+					<input type="hidden" name="negotiated_fee" value="{POSTING_FEE}" />
+
+					<style type="text/css">
+						.message {
+							text-align: center;
+							padding: 2em;
+						}
+						
+						.message h3 {
+							font-size: 1.2em;
+							width: 50%;
+							text-align: left;
+							margin-left: auto;
+							margin-right: auto;
+						}
+						
+						.message .button {
+							font-size: 2em;
+							padding: 1em 2em;
+							margin: 2em;
+						}
+					</style>
+				
+					<div class="message">
+						<h2>{OWNER_USERNAME} has set a content fee to post here.</h2>
+
+						<a href="#" class="huge button" on-tap="_unlockPosting" data-link="/places/{PLACE_ID}" data-fee="{POSTING_FEE}">Unlock for {POSTING_FEE} <small>INK</small></a>
+						
+						<h4>Other terms</h4>
+
+						<h3><u>5<small>%</small> ({UNIVERSE_FEE_SLICE})</u> will go to {UNIVERSE_OWNER_NAMETAG} for being the creator of this universe.</h3>
+						<h3><u>5<small>%</small> ({INSTANCE_FEE_SLICE})</u> will go to {INSTANCE_OWNER_NAMETAG} for hosting this instance of <a href="https://verse.im">Verse</a>.</h3>
+						
+						<h5><span class="label">Alpha</span> Testing</h5>
+						<h3><u>0.1<small>&times;</small></u> heritage bonus</h3>
+						
+						<ol>
+							<!-- BEGIN heritage -->
+								<li><u>{heritage.FEE_VALUE}&times; {heritage.FEE_BASE} (<span>{heritage.FEE_AMOUNT}</span> <small>INK</small>)</u> to {heritage.NAME}</li>
+							<!-- END heritage -->
+						</ol>
+
+						<p>Creators of RPG resources can earn <small>INK</small> for crafting great experiences for their players.  Learn more about <a href="/community-f129.html">designing RPGs</a> in our <a href="/rpg-design-f178.html">Game Design forum</a> or seek advice in <a href="/chat">our chat room</a>.</p>
+
+					</div>
+
+				<!-- ENDIF -->
+			<!-- ENDIF -->
+		<!-- ENDIF -->
+
+		<input type="hidden" name="roleplay_id" value="{ID}" />
+
+		<div id="reply_options">
+		  <!-- <input type="button" onclick="return false;" value="Invite other players to edit this post &raquo;" /> -->
+		  <!-- IF S_SINGLE_PLACE -->
+			<input type="hidden" name="place" value="{PLACE_ID}" />
+			<label for="where">You will be posting this in &ldquo;{PLACE_NAME}&rdquo; <!-- IF S_HAS_POSTING_FEE --> for <strong>{POSTING_FEE}</strong> INK<!-- ENDIF -->.</label>
+			<!-- ELSE -->
+			<label for="where">Where?</label>
+			<select name="place">
+				<!-- BEGIN posting_places -->
+				<option value="{posting_places.ID}"{posting_places.SELECTED}>{posting_places.NAME}</option>
+				<!-- END posting_places -->
+			</select>
+			<!-- ENDIF -->
+		</div>
+
+		<script type="text/javascript">edToolbar('reply_content');</script>
+		<textarea name="reply_content" id="reply_content" class="ed inputbox previewable" style="width: 100%; height: 400px;" onkeyup="CheckFieldLength(reply_content, 'charcount', 'remaining', 20);"></textarea>
+
+    <div style="vertical-align: middle; padding-top: 0.5em; padding-bottom: 1em;">
+		  <div style="font-size:120%; font-weight:bold; float:left;">
+			  <span id="charcount">0</span> characters in this post.<br />
+			  <span id="wordcount">0</span> words in this post.
+		  </div>
+		
+		  <div id="characterTagging">
+        <input id="characterSearch" name="characterSearch" style="padding: 0.2em;" placeholder="Tag a character" />
+        <input type="hidden" id="taggedCharacterList" name="taggedCharacterList" />
+		  </div>
+
+      <div style="float:right;">
+        <!-- IF S_CAN_POST_ANONYMOUSLY -->
+        <input type="checkbox" name="anonymous" value="1" /> <label for="anonymous" style="font-weight: bold; font-size:1.2em;">Anonymously?</label>
+        <p>Anonymous posts cost <code>10</code> INK for concealing the author to the public.</p>
+        <!-- ENDIF -->
+      </div>
+
+      <div style="clear:both;">
+        <h3>Characters Present (including those tagged in the most recent post)</h3>
+        <div id="lastTagged">
+          <div id="addAllCharactersButton">Tag All &raquo;</div>
+          <!-- BEGIN tagged -->
+          <div class="selectedCharacter previouslyTagged" data-character-id="{tagged.ID}">
+            <div class="prettyCenter">
+              <img class="micro" src="/roleplay/{URL}/characters/{tagged.URL}/image" />
+              {tagged.NAME}
+            </div>
+          </div>
+          <!-- END tagged -->
+        </div>
+      </div>
+
+		  <div id="postingtip" style="clear:both;"></div>
+
+      <div style="float: right; width: 180px;">
+        <h3>Characters Present</h3>
+        <div id="taggedCharacters" style="display:inline-block;"></div>
+      </div>
+      <div class="content" style="width: 749px;">
+        <div id="innerPreview">Once you start writing your post, the preview will appear here.</div>
+      </div>
+      <div><input type="submit" name="Submit" value="Add Post &raquo;" class="button1 button" /></div>
+      <div class="clearfix"></div>
+		</div>
+
+		<style type="text/css">
+		  #characterTagging { font-size: 1.4em; vertical-align: middle; margin-left: 1em; }
+		  #taggedCharacters { display: inline-block; margin-left: 5px; }
+		  .hovered { border: 1px dotted red; }
+		  .micro { height: 30px; margin-right: 5px; vertical-align: middle; }
+		  .prettyCenter { font-weight: bold; }
+		  .selectedCharacter, #addAllCharactersButton { display: inline-block; border-radius: 3px; background: #ccc; margin-left: 5px; margin-right: 5px; padding-right: 5px; border: 1px solid black; }
+      .previouslyTagged {
+        cursor: pointer;
+      }
+      #addAllCharactersButton {
+        font-weight: bold;
+        font-size: 1.2em;
+        padding: 0.5em;
+        cursor: pointer;
+        float:right;
+      }
+		</style>
+	</form>
+</div>

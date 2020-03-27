@@ -11,11 +11,11 @@
 
 <!-- IF FORUM_HAS_NEWS -->
 <div style="float:left; clear:left;">
-	<a href="http://feeds.feedburner.com/Current_Metaverse_Events"><img src="http://www.roleplaygateway.com/images/rss.png" height="30" /></a>
+	<a href="http://feeds.feedburner.com/Current_Metaverse_Events"><img src="//www.roleplaygateway.com/images/rss.png" height="30" /></a>
 </div>
 <h3><marquee>
 <!-- BEGIN news_items -->
-	&nbsp;&nbsp;&nbsp;<strong><a href="http://www.roleplaygateway.com/post{news_items.POST_ID}.html#p{news_items.POST_ID}">{news_items.TITLE} <em>({news_items.TIME})</em></a></strong>&nbsp;&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;<strong><a href="//www.roleplaygateway.com/post{news_items.POST_ID}.html#p{news_items.POST_ID}">{news_items.TITLE} <em>({news_items.TIME})</em></a></strong>&nbsp;&nbsp;&nbsp;
 <!-- END news_items -->
 </marquee></h3>
 <p></p>
@@ -58,10 +58,10 @@
 
 	<!-- IF S_DISPLAY_SEARCHBOX -->
 		<div class="search-box">
-			<form method="post" id="forum-search" action="{S_SEARCHBOX_ACTION}">	
+			<form method="post" id="forum-search" action="{S_SEARCHBOX_ACTION}">
 			<fieldset>
 				<input class="inputbox search tiny" type="text" name="keywords" id="search_keywords" size="20" value="{L_SEARCH_FORUM}" onclick="if (this.value == '{LA_SEARCH_FORUM}') this.value = '';" onblur="if (this.value == '') this.value = '{LA_SEARCH_FORUM}';" />
-				<input class="button2" type="submit" value="{L_SEARCH}" />	
+				<input class="button2" type="submit" value="{L_SEARCH}" />
 				<input type="hidden" value="{FORUM_ID}" name="fid[]" />
 			</fieldset>
 			</form>
@@ -150,7 +150,7 @@
 		<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
 			<dl class="icon" style="background-image: url({topicrow.TOPIC_FOLDER_IMG_SRC}); background-repeat: no-repeat;">
 				<dt style="padding-bottom:5px; <!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS -->background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;<!-- ENDIF -->" title="{topicrow.TOPIC_FOLDER_IMG_ALT}">
-					<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><!-- IF topicrow.S_IS_ROLEPLAY --><span class="inline-tag">ROLEPLAY</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+					<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><!-- IF topicrow.S_IS_ROLEPLAY --><span class="inline-tag">IMPORTED &#10003;</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
 					<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
 					<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF --><br />
 					<!-- IF topicrow.PAGINATION --><strong class="pagination"><span>{topicrow.PAGINATION}</span></strong><!-- ENDIF -->
@@ -161,8 +161,12 @@
 				</dt>
 				<dd class="posts">{topicrow.REPLIES} <dfn>{L_REPLIES}</dfn></dd>
 				<dd class="views">{topicrow.VIEWS} <dfn>{L_VIEWS}</dfn></dd>
-				<dd class="lastpost"><span><dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL}
-					<a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a> <br />{L_POSTED_ON_DATE} {topicrow.LAST_POST_TIME}</span>
+				<dd class="lastpost">
+          <span>
+            <a href="{topicrow.LAST_POST_LINK}"><time class="timeago" datetime="{topicrow.LAST_POST_TIME_ISO}">{topicrow.LAST_POST_TIME}</time></a>
+            <br />
+            <dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL} <a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a>
+          </span>
 				</dd>
 			</dl>
 			<div class="attachments-list" style="margin-left: 100px;">
@@ -193,8 +197,8 @@
 		<fieldset class="display-options">
 			<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a><!-- ENDIF -->
 			<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
-			<label>{L_DISPLAY_TOPICS}: {S_SELECT_SORT_DAYS}</label> 
-			<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label> 
+			<label>{L_DISPLAY_TOPICS}: {S_SELECT_SORT_DAYS}</label>
+			<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label>
 			<label>{S_SELECT_SORT_DIR} <input type="submit" name="sort" value="{L_GO}" class="button2" /></label>
 		</fieldset>
 	</form>

@@ -1,0 +1,50 @@
+<!-- INCLUDE overall_header.html -->
+
+<style type="text/css">
+  textarea {
+    font-size: 1.2em;
+  }
+</style>
+
+<div class="special panel">
+  <h2><a href="#posting" name="posting">Creating a New Group in {ROLEPLAY_NAME}</a></h2>
+  <p class="supersize">Groups are convenient tools for uniting characters under a single banner, such as in a clan or a guild.  These groups can be assigned banners and be granted access to shared resources.  Browse <a href="/roleplay/{ROLEPLAY_URL}/groups">the existing list of groups</a> to see examples!</p>
+</div>
+
+<div class="panel" id="message">
+	<div class="inner"><span class="corners-top"><span></span></span>
+  <h2>Your Group's Profile</h2>
+	<div id="posting">
+		<form id="write" method="post" action="/ucp.php?i=roleplays&amp;mode=add_group&amp;roleplay_id={ROLEPLAY_ID}&amp;action=submit" enctype="multipart/form-data">
+			<input type="hidden" name="roleplay_id" value="{ROLEPLAY_ID}" />
+
+			<h3>Name</h3>
+			<input name="group_name" class="inputbox supersize" style="width: 100%;" placeholder="Official name for this Group.  Cannot be changed later." />
+
+			<h3>Logo</h3>
+			<p>Must be no larger than 100x100.  You <strong>can</strong> change this later.</p>
+			<input type="file" name="userfile" />
+
+			<h3>Synopsis</h3>
+			<textarea name="group_synopsis" class="ed inputbox" style="width: 100%;" placeholder="Short snippet used for brief introductions.  Almost like this message!">{SYNOPSIS}</textarea>
+
+      <h3>Group will be created in</h3>
+      <div>
+        <img src="/roleplay/{ROLEPLAY_URL}/image" alt="{ROLEPLAY_TITLE}" class="crisp-border" style="float:left; margin-right: 1em; margin-bottom: 1em;" />
+        <h2>{ROLEPLAY_TITLE}</h2>
+        <p style="margin-bottom: 4em;">{ROLEPLAY_SYNOPSIS}</p>
+      <div>
+
+			<h3>Description</h3>
+			<script type="text/javascript">edToolbar('group_description');</script>
+			<textarea name="group_description" id="group_description" class="ed inputbox" style="width: 100%; height: 400px;" placeholder="Longer-form profile for the group, BBCode supported.  You can change this later.">{DESCRIPTION}</textarea>
+
+			<input type="submit" name="submit" value="Submit &raquo;" class="button supersize" style="float:right;" />
+
+		</form>
+	</div>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

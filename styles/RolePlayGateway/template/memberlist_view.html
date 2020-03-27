@@ -129,6 +129,10 @@
 			<!-- IF U_USER_ADMIN -->
 			<dt>Real IP:</dt> <dd><pre>{USER_REAL_IP}</pre></dd>
 			<!-- ENDIF -->
+      
+      <!-- IF USER_TRUSTEE -->
+      <dt>Trustee:</dt> <dd>{USER_TRUSTEE}</dd>
+      <!-- ENDIF -->
 			
 			<h3>{L_USER_FORUM}</h3>
 			<dt>{L_JOINED}:</dt> <dd>{JOINED}</dd>
@@ -172,8 +176,15 @@
 			<!-- IF S_HAS_TWITCH -->
 				<a href="https://twitch.tv/{PROFILE_TWITCH_USERNAME}" class="namespace-profile-icon"><img src="/img/twitch.png" /></a>
 			<!-- ELSE -->
-				<!-- IF S_IS_BETA -->
+				<!-- IF S_IS_SELF -->
 				<a href="/auth/twitch" class="button">Add Twitch &raquo;</a>
+				<!-- ENDIF -->
+			<!-- ENDIF -->
+			<!-- IF S_HAS_DISCORD -->
+				<a href="https://discord.gg/KD3hF8W#{PROFILE_DISCORD_USERNAME}" class="namespace-profile-icon"><img src="/img/discord.png" /></a>
+			<!-- ELSE -->
+				<!-- IF S_IS_SELF -->
+				<a href="/auth/discord" class="button">Add Discord &raquo;</a>
 				<!-- ENDIF -->
 			<!-- ENDIF -->
 			<!-- IF S_HAS_TWITTER -->
@@ -182,9 +193,19 @@
 			<!-- ENDIF -->
 		</div>
 
+		<!-- IF USER_GPG_PUBLIC_KEY -->
+		<h3>Public GPG Key</h3>
+		<div>
+			<code>
+				<pre>{USER_GPG_PUBLIC_KEY}</pre>
+			</code>
+		</div>
+		<!-- ENDIF -->
+
 	</div>
 	
 	<div class="column2">
+    <!-- IF TOTAL_WORDS -->
 		<h3 style="clear: both;">Author Statistics</h3>
 		<div>
 			<!-- <div class="statistic">
@@ -206,7 +227,19 @@
 				<span>{AVERAGE_DAYS}</span> average days in a roleplay.
 			</div>
     </div>
+    <!-- ELSE -->
+    <blockquote style="padding-top: 30px;">
+      <p style="font-size: 1.5em;"><!-- “ -->If you want to build a ship, don’t drum up the men to gather wood, divide the work, and give orders. Instead, teach them to yearn for the vast and endless sea.”</p>
+      <cite>— Antoine de Saint-Exupéry</cite>
+    </blockquote>
+    
+    <div style="margin-top: 5em;">
+      <p style="font-size: 1.5em;">This profile is <span style="color: green;">🌱</span> budding.  As progress is made, new sections will appear here.</p>
+      <p>To get started, maybe <a href="/universes">browse the available universes</a> or <a href="/universes/new">create one for yourself</a>.</p>
+    </div>
+    <!-- ENDIF -->
 	
+    <!-- IF .characters -->
 		<h3 style="clear: both;"><a href="/member/{USERNAME}/characters">Characters</a></h3>
 		<div>
 			<!-- BEGIN characters -->
@@ -216,6 +249,9 @@
 			</a>
 			<!-- END characters -->
 		</div>
+    <!-- ELSE -->
+    
+    <!-- ENDIF -->
 	
 		<!-- IF S_GAME_MASTER -->
 		<h3 style="clear: both;"><a href="/member/{USERNAME}/roleplays">Universes</a></h3>
@@ -238,6 +274,8 @@
 			<br style="clear:both;" />
 		</div>
 		<!-- ENDIF -->
+    
+    <!-- IF .completed -->
 		<div style="clear: both;">
 			<h3>Completed Stories</h3>
 			<!-- BEGIN completed -->
@@ -252,7 +290,9 @@
 			<p>Finishing a roleplay can be hard work, but it earns you <a href="/medals/completionist">the "Completionist" medal</a>!</p>
 			<!-- END completed -->
 		</div>
+    <!-- ENDIF -->
 	
+    <!-- IF .roleplays -->
 		<div style="clear: both;">
 			<h3>Universes Created</h3>
 			<!-- BEGIN roleplays -->
@@ -267,6 +307,7 @@
 			<p>This user hasn't created any roleplays!</p>
 			<!-- END roleplays -->
 		</div>
+    <!-- ENDIF -->
 		
 		
 		<!--

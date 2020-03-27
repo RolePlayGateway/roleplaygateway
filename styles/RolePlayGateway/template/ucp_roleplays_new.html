@@ -1,21 +1,28 @@
-<!-- INCLUDE ucp_header.html -->
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
 
-<h2>Add New Roleplay</h2>
+<h2>Create New Universe</h2>
 
-<form id="ucp" method="post" enctype="multipart/form-data" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=new&action=submit">
+<form id="ucp" method="post" enctype="multipart/form-data" action="/ucp.php?i=roleplays&amp;mode=new&amp;action=submit">
 
 <div class="panel">
 	<div class="inner"><span class="corners-top"><span></span></span>
 	
-		<h3>Roleplay Details</h3>
+		<h3>Universe Details</h3>
+
+		<div class="rules">
+			<div class="inner"><span class="corners-top"><span></span></span>
+				<h4>Please Note: All Universes are Public!</h4>
+        <p>All content in RPG Universes is accessible to the public, and frequently appears in the results of search engines like <a href="https://www.google.com/search?q=site%3Aroleplaygateway.com">Google</a> &amp; <a href="https://duckduckgo.com/?q=site%3Aroleplaygateway.com">DuckDuckGo</a>.  If you're looking for something a little more private, <a href="https://chat.verse.im/#/group/+beta:verse.im">join our Beta program</a> to meet with <a href="https://www.roleplaygateway.com/designers-g2635.html">our designers</a> and collaborate on new features!</p>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
 
 		<div class="rules">
 			<div class="inner"><span class="corners-top"><span></span></span>
 				<h4>Some tips:</h4>
 				<ul>
-					<li><strong><u>Don't</u> create a high school roleplay.</strong> There's <a href="http://www.roleplaygateway.com/tag/school">already a bunch</a>, join one of those instead.</li>
-					<li><strong><u>Do</u> create something original.</strong>  Don't <a href="http://www.roleplaygateway.com/tag/fanfic">steal someone else's universe</a>, be <a href="http://www.roleplaygateway.com/tag/original">original</a> and come up with one of your own.</li>
-					<li><strong><u>Do</u> take your time.</strong> Once you submit your roleplay, it is public for the whole world to see.  Take your time and <u>make it look good</u>.</li>
+					<li><strong><u>Do</u> create something original.</strong>  Don't <a href="/tag/fanfic">steal someone else's universe</a>, be <a href="//www.roleplaygateway.com/tag/original">original</a> and come up with one of your own.</li>
+					<li><strong><u>Do</u> take your time.</strong> Once you submit your universe, it is public for the whole world to see.  Take your time and <u>make it look good</u>.</li>
 				</ul>
 			<span class="corners-bottom"><span></span></span></div>
 		</div>
@@ -24,42 +31,42 @@
 			<dl>
 				<dt>
 					<label for="roleplay_title">Title:</label><br />
-					<span>What do you want your roleplay to be called? <strong>You can only change this for up to 24 hours.</strong> Pick wisely!</span>
+					<span>What do you want your universe to be called? <strong>You can only change this for up to 24 hours.</strong> Pick wisely!</span>
 				</dt>
-				<dd><input type="text" class="inputbox" id="roleplay_title" name="roleplay_title" value="{ROLEPLAY_TITLE}" maxlength="45"></dd>
+				<dd><input type="text" class="inputbox supersize" id="roleplay_title" name="roleplay_title" value="{ROLEPLAY_TITLE}" maxlength="45"></dd>
 			</dl>
 			<dl>
 				<dt>
 					<label for="roleplay_description">Description:</label><br />
-					<span>Give a brief overview of the roleplay.</span>
+					<span>Give a brief overview of the universe.</span>
 				</dt>
 				<dd><textarea name="roleplay_description" id="roleplay_description" maxlength="255" class="inputbox">{ROLEPLAY_DESCRIPTION}</textarea></dd>
 			</dl>
 			<dl>
 				<dt>
 					<label for="roleplay_tags">Tags:</label><br />
-					<span>Please provide at least 3 tags for your roleplay. Be careful! Choosing a tag can not only help you promote your roleplay to interested parties (as it will make your roleplay show up in tag searches), but it will also hide it from people who have chosen to ignore roleplays with that tag.</span>
+					<span>Please provide at least 3 tags for your universe. Be careful! Choosing a tag can not only help you promote your universe to interested parties (as it will make your universe show up in tag searches), but it will also hide it from people who have chosen to ignore universes with that tag.</span>
 				</dt>
 				<dd><textarea name="roleplay_tags" id="roleplay_tags" maxlength="255" class="inputbox">{ROLEPLAY_TAGS}</textarea></dd>
 			</dl>
 			<dl>
 				<dt>
 					<label for="roleplay_image">Roleplay Thumbnail</label><br />
-					<span>Upload a small 100x100 image that will represent your roleplay.</span>
+					<span>Upload a small 100x100 image that will represent your universe.</span>
 				</dt>
 				<dd>
 					<input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
 					<input name="userfile" type="file" />
 				</dd>
-			</dl>			
+			</dl>
 			<dl>
 				<dt>
 					<label for="roleplay_setting">Setting:</label><br />
-					<span>What is the name of your roleplay's setting (or "universe")?</span>
+					<span>What is the name of your universe's setting (or "universe")?</span>
 				</dt>
 				<dd><input type="text" class="inputbox" id="roleplay_setting" maxlength="45" name="roleplay_setting" value="{ROLEPLAY_SETTING}"></dd>
-			</dl>			
-			<!-- 
+			</dl>
+			<!--
 			<dl>
 				<dt>
 					<label for="roleplay_slots">Number of players allowed:</label><br />
@@ -91,7 +98,7 @@
 			<dl>
 				<dt>
 					<label for="roleplay_approval">Character Approval</label><br />
-					<span>What characters are allowed to join this roleplay?</span>
+					<span>What characters are allowed to join this universe?</span>
 				</dt>
 				<dd>
 					<input type="radio" name="roleplay_approval" value="0" checked> <strong>Allow All Characters</strong>
@@ -101,12 +108,13 @@
 
 			<dl>
 				<dt>
-					<label for="roleplay_original">Is this roleplay original?</label><br />
-					<span>Did you create everything in this roleplay with your own skill?</span>
+					<label for="roleplay_original">Is this universe original?</label><br />
+					<span>Did you create everything in this universe with your own skill?</span>
 				</dt>
 				<dd>
-					<input type="radio" name="roleplay_original" value="yes" onclick="$('#citations_content').slideUp();"> <strong>Yes, this roleplay is <em>completely</em> my own content, and I did not base any of it on a book, movie, game, etc., that is already published.</strong>
-					<input type="radio" name="roleplay_original" value="no" onclick="$('#citations_content').slideDown();"> <strong>No, this roleplay is based on someone else's work.</strong>
+					<input type="radio" name="roleplay_original" value="yes" onclick="$('#citations_content').slideUp();"> <strong>Yes, this universe is <em>completely</em> my own content, and I did not base any of it on a book, movie, game, etc., that is already published.</strong>
+					<br />
+					<input type="radio" name="roleplay_original" value="no" onclick="$('#citations_content').slideDown();"> <strong>No, this universe is based on someone else's work.</strong>
 
           <div id="citations_content" style="display:none;">
             <h4>Citations</h4>
@@ -118,26 +126,30 @@
 
 			<ul class="topiclist cplist">
 				<h3>Rules</h3>
-				<p>These are your custom rules that govern this roleplay.</p>
+				<p>These are your custom rules that govern this universe.</p>
 				<script type="text/javascript">edToolbar('roleplay_rules');</script>
 				<textarea name="roleplay_rules" id="roleplay_rules" rows="10" class="inputbox" style="width:100%;">{ROLEPLAY_RULES}</textarea>
-			</ul>			
+			</ul>
 			<ul class="topiclist cplist">
 				<h3>Introduction</h3>
-				<p>This is the overview of your roleplay's general storyline.</p>
+				<p>This is the overview of your universe's general storyline.</p>
 				<script type="text/javascript">edToolbar('roleplay_introduction');</script>
-				<textarea name="roleplay_introduction" id="roleplay_introduction" rows="50" class="ed inputbox" style="width:100%;">{ROLEPLAY_INTRODUCTION}</textarea>
+				<textarea name="roleplay_introduction" id="roleplay_introduction" rows="50" class="ed inputbox previewable" style="width:100%;">{ROLEPLAY_INTRODUCTION}</textarea>
 			</ul>
 		</fieldset>
 		
 		<fieldset class="submit-buttons">
-			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
+			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp;
 			<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
 		</fieldset>
+
+    <div class="content">
+      <div id="innerPreview"></div>
+    </div>
 		
 	<span class="corners-bottom"><span></span></span></div>
 </div>
 
 </form>
 
-<!-- INCLUDE ucp_footer.html -->
+<!-- INCLUDE overall_footer.html -->

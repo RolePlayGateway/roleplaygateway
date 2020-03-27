@@ -1,0 +1,47 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<h2>Add A Place to Roleplay</h2>
+<div class="special panel">
+	<h3>Please provide the following information:</h3>
+	<form action="/directory/add_link.php?mode=submit" method="post" name="submitSite">
+		<table style="margin-left:auto; margin-right:auto; width:550px;">
+			<tr>
+				<td valign="top" ><p><label for="site_sponsored"><strong>Featured?</strong></label></p></td>
+				<td valign="top">
+					<p>
+						<input type="radio" name="sponsored" value="1">Yes ($50)
+						<input type="radio" name="sponsored" value="0" checked> No (Free)
+				  </p>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top"><p><label for="site_name">Website Name: </label></p></td>
+				<td valign="top"><input type="text" class="inputbox" id="site_name" name="site_name"></td>
+			</tr>
+			<tr>
+				<td valign="top"><p><label for="site_url">URL: </label></p></td>
+				<td valign="top"><input type="text" class="inputbox" id="site_url" name="site_url" value="https://"></td>
+			</tr>
+			<tr>
+				<td valign="top"><p><label for="site_description">Description: </label></p></td>
+				<td valign="top"><textarea class="inputbox" id="site_description" name="site_description" cols="50" rows="5"
+					onKeyDown="textCounter(document.submitSite.site_description,document.submitSite.remLen2,255)"
+					onKeyUp="textCounter(document.submitSite.site_description,document.submitSite.remLen2,255)"></textarea>
+					<p><input readonly type="text" name="remLen2" size="3" maxlength="3" value="255"> characters left</p>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center" valign="top">
+          <div id="vertical_slide">
+            <p>Use this code to link to us from your front page:</p>
+            <textarea onclick="select();" style="width:100%;"><a href="https://www.roleplaygateway.com">RolePlayGateway</a></textarea>
+          </div>
+          <br /><br />
+					<button type="submit" class="supersize button quick-float-right">Add to Directory &raquo;</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<!-- INCLUDE overall_footer.html -->

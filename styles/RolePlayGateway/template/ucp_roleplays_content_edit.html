@@ -15,7 +15,7 @@ input.button1 {
 	<div id="posting">
 		<h2><a href="#posting" name="posting">Editing Your Post in {ROLEPLAY_LINK} &raquo; {PLACE_LINK}</a></h2>
 					
-		<form id="write" method="post" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit_content&content_id={CONTENT_ID}&action=submit">
+		<form id="write" method="post" action="//www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit_content&content_id={CONTENT_ID}&action=submit">
 
 			<input type="hidden" name="content_id" value="{CONTENT_ID}" />			
 
@@ -61,7 +61,7 @@ input.button1 {
         $('#characterSearch').autocomplete({
           source: function(request, response) {
             $.ajax({
-              url: 'http://www.roleplaygateway.com/roleplay/{URL}/characters.json',
+              url: '//www.roleplaygateway.com/roleplay/{URL}/characters.json',
               dataType: 'json',
               data: {
                 search: request.term
@@ -69,7 +69,7 @@ input.button1 {
               success: function(data) {
                 response( $.map( data, function (character) {
                   return {
-                    label: '<div class="prettyCenter"><img class="micro" src="http://www.roleplaygateway.com/roleplay/{URL}/characters/'+ character.url + '/image">' + character.name + '</div>',
+                    label: '<div class="prettyCenter"><img class="micro" src="//www.roleplaygateway.com/roleplay/{URL}/characters/'+ character.url + '/image">' + character.name + '</div>',
                     value: character.name,
                     id: character.id
                   }

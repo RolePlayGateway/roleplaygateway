@@ -30,12 +30,25 @@ dd.mark {
 dd.mark small {
 	margin-top: 0.5em;
 }
+.subtext {
+	margin-top: 3px;
+}
+.heading {
+	margin-top: 0;
+	text-transform: none;
+	font-size: 1.2em !important;
+	font-family: "Trebuchet MS", Helvetica, Arial, Sans-serif;
+	color: #516672;
+}
+ul.topiclist li.row dl {
+	padding: 5px;
+}
 </style>
 <div class="clear"></div>
 
-<h1 style="font-size: 2.5em; font-weight: bold; color: #333;">Roleplays Listed on RolePlayGateway</h1>
-<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=new" style="float:right;" class="supersize button">New Roleplay &raquo;</a>
-<p class="content">Click the title of a roleplay to view it. Click a tag to search for more roleplays associated with that tag.</p>
+<h1 style="font-size: 2.5em; font-weight: bold; color: #333;">RPG Universes</h1>
+<a href="/universes/new" style="float:right;" class="supersize button">Create a Universe &raquo;</a>
+<p class="content">Click the title of a universes to view it. Click a tag to search for more universes associated with that tag.</p>
 
 <div class="panel">
 	<div class="inner">
@@ -47,7 +60,7 @@ dd.mark small {
 		<div id="roleplayfilters" style="display:none;" class="content">
 			<div>
 				<h3>Ignore roleplays tagged with...</h3>
-				<span style="padding-top: 5px;" id="ignored-tags-list">{IGNORED_TAGS}</span> 
+				<span style="padding-top: 5px;" id="ignored-tags-list">{IGNORED_TAGS}</span>
 				<input type="text" id="ignore-tag" />
 				<input type="button" value="Ignore" onclick="ignoreTag(document.getElementById('ignore-tag').value); return false;" />
 				<span><strong>Commonly Ignored <em>(click to insert)</em>: </strong> <span class="tag"><a href="#" onclick="ignoreTag('highschool');">highschool</a></span>, <span class="tag"><a href="#" onclick="ignoreTag('emo');">emo</a></span></span>
@@ -57,29 +70,29 @@ dd.mark small {
 				<span style="padding-top: 5px;" id="favorite-tags-list">{FAVORITE_TAGS}</span>
 				<input type="text" id="favorite-tag" />
 				<input type="button" value="Favorite" onclick="favoriteTag(document.getElementById('favorite-tag').value); return false;" />
-				<span><strong>Common Favorites<em>(click to insert)</em>: </strong> <span class="tag"><a href="#" onclick="favoriteTag('original');">original</a></span>, <span class="tag"><a href="#" onclick="favoriteTag('advanced');">advanced</a></span></span>				
+				<span><strong>Common Favorites<em>(click to insert)</em>: </strong> <span class="tag"><a href="#" onclick="favoriteTag('original');">original</a></span>, <span class="tag"><a href="#" onclick="favoriteTag('advanced');">advanced</a></span></span>
 			</div>
 			<div>
 				<h3>Sort roleplays by</h3>
-				<dd><a href="http://www.roleplaygateway.com/roleplay/?sort=activity">Activity</a></dd>
-				<dd><a href="http://www.roleplaygateway.com/roleplay/?sort=author">Author</a></dd>
-				<dd><a href="http://www.roleplaygateway.com/roleplay/?sort=newest">Newest</a></dd>
-				<dd><a href="http://www.roleplaygateway.com/roleplay/?sort=posts">Posts</a></dd>
-				<dd><a href="http://www.roleplaygateway.com/roleplay/?sort=words">Words</a></dd>
-				<dd><a href="http://www.roleplaygateway.com/roleplay/?sort=average-words">Words per post</a></dd>
+				<dd><a href="/roleplay/?sort=activity">Activity</a></dd>
+				<dd><a href="/roleplay/?sort=author">Author</a></dd>
+				<dd><a href="/roleplay/?sort=newest">Newest</a></dd>
+				<dd><a href="/roleplay/?sort=posts">Posts</a></dd>
+				<dd><a href="/roleplay/?sort=words">Words</a></dd>
+				<dd><a href="/roleplay/?sort=average-words">Words per post</a></dd>
 			
 			</div>
 			
 			
 				<script type="text/javascript">
-					function ignoreTag(tag) {						
+					function ignoreTag(tag) {
 						$.ajax({
 							type: "GET",
-							url: "http://www.roleplaygateway.com/tag/",
+							url: "/tag/",
 							data: "mode=filter&action=ignore&tag=" + tag,
 							success: function(msg){
 
-								$('ignored-tags-list').append(', <a href="http://www.roleplaygateway.com/tag/'+ $('ignore-tag').value +'">'+ $('ignore-tag').value +'</a>');
+								$('ignored-tags-list').append(', <a href="/tag/'+ $('ignore-tag').value +'">'+ $('ignore-tag').value +'</a>');
 								$('ignore-tag').value = '';
 								alert( "Tag successfully ignored.");
 								window.location.reload();
@@ -87,14 +100,14 @@ dd.mark small {
 							}
 						});
 					}
-					function favoriteTag(tag) {						
+					function favoriteTag(tag) {
 						$.ajax({
 							type: "GET",
-							url: "http://www.roleplaygateway.com/tag/",
+							url: "/tag/",
 							data: "mode=filter&action=favorite&tag=" + tag,
 							success: function(msg){
 
-								$('favorited-tags-list').append(', <a href="http://www.roleplaygateway.com/tag/'+ $('favorited-tag').value +'">'+ $('favorited-tag').value +'</a>');
+								$('favorited-tags-list').append(', <a href="/tag/'+ $('favorited-tag').value +'">'+ $('favorited-tag').value +'</a>');
 								$('favorited-tag').value = '';
 								alert( "Tag successfully favorited.");
 								window.location.reload();
@@ -106,13 +119,13 @@ dd.mark small {
 					function deleteFilter(tag) {
 						$.ajax({
 							type: "GET",
-							url: "http://www.roleplaygateway.com/tag/",
+							url: "/tag/",
 							data: "mode=filter&action=delete&tag=" + tag,
 							success: function(msg){
 								alert( "Tag filter successfully removed.");
 								window.location.reload();
 							}
-						});					
+						});
 					}
 				</script>
 
@@ -123,12 +136,12 @@ dd.mark small {
 		<div class="content">
 			<div style="float: right;">
 				<h3>Example Roleplay Filters:</h3>
-				<img src="http://www.roleplaygateway.com/images/roleplay_filters.png" alt="Example Roleplay Filters" title="Example Roleplay Filters" />
+				<img src="/images/roleplay_filters.png" alt="Example Roleplay Filters" title="Example Roleplay Filters" />
 			</div>
-			<p>If you were a registered user, you could filter out (and highlight!) roleplays using tags?  You could use this feature to browse <a href="http://www.roleplaygateway.com/tag/advanced">#advanced</a> or <a href="http://www.roleplaygateway.com/tag/original">#original</a> roleplays, for example.</p>
-			<p><a href="http://www.roleplaygateway.com/ucp.php?mode=register">Register now</a> to use this awesome weapon to completely customize your roleplay experience!</p>
+			<p>If you were a registered user, you could filter out (and highlight!) roleplays using tags?  You could use this feature to browse <a href="/tag/advanced">#advanced</a> or <a href="/tag/original">#original</a> roleplays, for example.</p>
+			<p><a href="/ucp.php?mode=register">Register now</a> to use this awesome weapon to completely customize your roleplay experience!</p>
 		</div>
-	<!-- ENDIF -->	
+	<!-- ENDIF -->
 		
 	<span class="corners-bottom"><span></span></span>
 	</div>
@@ -144,10 +157,10 @@ dd.mark small {
 		<ul class="topiclist">
 			<li class="header">
 				<dl class="icon">
-					<dt>Featured Roleplay</dt>
-					<dd class="mark"><a href="http://www.roleplaygateway.com/roleplay/?sort=words">Words</a></dd>
-					<dd class="mark"><a href="http://www.roleplaygateway.com/roleplay/?sort=average-words">Words per post</a></dd>
-					<dd class="mark"><a href="http://www.roleplaygateway.com/roleplay/?sort=posts">Posts</a></dd>
+					<dt>Featured Universes</dt>
+					<dd class="mark"><a href="/roleplay/?sort=words">Words</a></dd>
+					<dd class="mark"><a href="/roleplay/?sort=average-words">Words per post</a></dd>
+					<dd class="mark"><a href="/roleplay/?sort=posts">Posts</a></dd>
 					<dd class="mark">Characters</dd>
 				</dl>
 			</li>
@@ -157,27 +170,19 @@ dd.mark small {
 
 		
 		<!-- BEGIN featured_roleplays -->
-
 			<li class="row bg1 featured">
         <dl class="icon roleplay">
-          <a href="http://www.roleplaygateway.com/roleplay/{featured_roleplays.URL}/"><img src="http://www.roleplaygateway.com/roleplay/{featured_roleplays.URL}/image" class="crisp-border" style="float: left; margin: 0.5em;" /></a>
-					<dt style="padding-bottom:5px; padding-left: 5px;">
+          <a href="/roleplay/{featured_roleplays.URL}"><img src="/roleplay/{featured_roleplays.URL}/image" class="crisp-border" style="float: left; margin: 0.5em;" /></a>
+					<dt style="padding-left: 5px;">
 						<!-- IF featured_roleplays.S_CAN_EDIT -->
 						<div id="controls" style="float:right;">
-							<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit&id={featured_roleplays.ID}">Edit</a>
+							<a href="/ucp.php?i=roleplays&amp;mode=edit&amp;id={featured_roleplays.ID}">Edit</a>
 						</div>
-						<!-- ENDIF -->					
-						<a href="http://www.roleplaygateway.com/roleplay/{featured_roleplays.URL}/" class="topictitle">{featured_roleplays.TITLE}</a> <span class="author">by {featured_roleplays.OWNER_USERNAME}</span>
-						<p>{featured_roleplays.DESCRIPTION} <a href="http://www.roleplaygateway.com/roleplay/{featured_roleplays.URL}/#join" class="button" style="float:right;">Join this Roleplay &raquo;</a></p>
-						<span class="tags"><strong>Tags:</strong> {featured_roleplays.TAGS} (<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_tag&id={featured_roleplays.ID}">Add Tags &raquo;</a>)</span>
-						<div>
-							<div style="display: inline-block;">
-								<g:plusone annotation="inline" width="120" href="http://www.roleplaygateway.com/roleplay/{featured_roleplays.URL}/"></g:plusone>
-							</div>
-							<div style="display: inline-block;">
-								<div class="fb-like" data-send="false" data-layout="standard" data-width="310" data-show-faces="false" data-colorscheme="light" data-action="like" data-href="http://www.roleplaygateway.com/roleplay/{featured_roleplays.URL}/"></div>
-							</div>
-						</div>
+						<!-- ENDIF -->
+						<h3 class="heading"><a href="/roleplay/{featured_roleplays.URL}" class="topictitle">{featured_roleplays.TITLE}</a> <span class="author">by {featured_roleplays.OWNER_USERNAME}</span></h3>
+						<a href="/roleplay/{featured_roleplays.URL}/#join" class="button" style="float:right;">Join this Roleplay &raquo;</a>
+						<span class="tags">{featured_roleplays.TAGS}</span>
+						<p style="margin-top: 0.5em; margin-bottom: 0;">{featured_roleplays.DESCRIPTION}</p>
 					</dt>
 					<dd class="mark">
 						<div>{featured_roleplays.WORDS}</div>
@@ -204,10 +209,10 @@ dd.mark small {
 		<ul class="topiclist">
 			<li class="header">
 				<dl class="icon">
-					<dt>Roleplay Title</dt>
-					<dd class="mark"><a href="http://www.roleplaygateway.com/roleplay/?sort=words">Words</a></dd>
-					<dd class="mark"><a href="http://www.roleplaygateway.com/roleplay/?sort=average-words">Words per post</a></dd>
-					<dd class="mark"><a href="http://www.roleplaygateway.com/roleplay/?sort=posts">Posts</a></dd>
+					<dt>Universe</dt>
+					<dd class="mark"><a href="/roleplay/?sort=words">Words</a></dd>
+					<dd class="mark"><a href="/roleplay/?sort=average-words">Words per post</a></dd>
+					<dd class="mark"><a href="/roleplay/?sort=posts">Posts</a></dd>
 					<dd class="mark">Characters</dd>
 				</dl>
 			</li>
@@ -217,28 +222,21 @@ dd.mark small {
 		
 		<!-- BEGIN roleplays -->
 
-			<li class="row bg1 {roleplays.CLASS}">
+			<li class="row bg1 {roleplays.CLASS}" style="clear: both;">
         <dl class="icon roleplay">
-          <a href="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/"><img src="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/image" class="crisp-border" style="float: left; margin: 0.5em;" /></a>
-					<dt style="padding-bottom:5px; padding-left: 5px;">
+					<a href="/roleplay/{roleplays.URL}"><img src="/roleplay/{roleplays.URL}/image" class="crisp-border" style="float: left; margin: 0.5em;" /></a>
+					<dt style="padding-bottom:5px; padding-left: 5px; margin-top: 5px;">
 						<!-- IF roleplays.S_CAN_EDIT -->
 						<div id="controls" style="float:right;">
-							<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit&id={roleplays.ID}">Edit</a>
-							<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=flag&id={roleplays.ID}">Flag</a>
-							<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=remove_tag&id={roleplays.ID}">Del Tags</a>
+							<a href="/ucp.php?i=roleplays&amp;mode=edit&amp;id={roleplays.ID}">Edit</a>
+							<a href="/ucp.php?i=roleplays&amp;mode=remove_tag&amp;id={roleplays.ID}">Moderate</a>
+							<a href="/ucp.php?i=roleplays&amp;mode=flag&amp;id={roleplays.ID}">Mark...</a>
 						</div>
-						<!-- ENDIF -->					
-						{roleplays.STATUS} <a href="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/" class="topictitle">{roleplays.TITLE}</a> <span class="author">by {roleplays.OWNER_USERNAME}</span>
-						<p>{roleplays.DESCRIPTION} <a href="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/#join" class="button" style="float:right;">Join this Roleplay &raquo;</a></p>
-						<span class="tags"><strong>Tags:</strong> {roleplays.TAGS} (<a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=add_tag&id={roleplays.ID}">Add Tags &raquo;</a>)</span>
-						<div>
-							<div style="display: inline-block;">
-								<g:plusone annotation="inline" width="120" href="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/"></g:plusone>
-							</div>
-							<div style="display: inline-block;">
-								<div class="fb-like" data-send="false" data-layout="standard" data-width="310" data-show-faces="false" data-colorscheme="light" data-action="like" data-href="http://www.roleplaygateway.com/roleplay/{roleplays.URL}/"></div>
-							</div>
-						</div>	
+						<!-- ENDIF -->
+						<h3 class="heading"><a href="/roleplay/{roleplays.URL}">{roleplays.TITLE}</a>, <small>by <span class="author">{roleplays.OWNER_USERNAME}</span></small> {roleplays.STATUS}</h3>
+						<a href="/roleplay/{roleplays.URL}/characters/new" class="button" style="float:right;">Submit a Character &raquo;</a>
+						<span class="tags">{roleplays.TAGS}</span>
+						<p style="margin-top: 0.5em; margin-bottom: 0;">{roleplays.DESCRIPTION}</p>
 					</dt>
 					<dd class="mark">
 						<div>{roleplays.WORDS}</div>

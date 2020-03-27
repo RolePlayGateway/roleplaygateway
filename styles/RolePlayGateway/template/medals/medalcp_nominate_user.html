@@ -1,0 +1,77 @@
+<!-- INCLUDE overall_header.html -->
+<h2>{L_MEDAL_CP}</h2>
+<p></p>
+<form method="post" action="{U_MEDALS_ACTION}" name="post">
+<div class="panel bg3">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<div style="width: 100%;">
+			<div id="cp-menu">
+				<div id="navigation">
+					<ul>
+						<!-- IF S_CAN_NOMINATE_MEDALS -->
+						<li><a href="{U_NOMINATE_PANEL}"><span>{L_NOMINATE}</span></a></li>
+						<!-- ENDIF -->
+						<!-- IF S_CAN_AWARD_MEDALS -->
+						<li><a href="{U_AWARD_PANEL}"><span>{L_AWARD_MEDAL}</span></a></li>
+						<li id="active-subsection"><a><span>{L_NOMINATE_MEDAL}</span></a></li>
+						<li><a href="{U_AWARDED_PANEL}"><span>{L_AWARDED_MEDAL}</span></a></li>
+						<!-- ENDIF -->
+					</ul>
+				</div>
+			</div>
+			<div id="cp-main" class="mcp-main">
+				<h2>{NOMINATE_MEDAL}</h2>
+				<div class="panel">
+					<div class="inner"><span class="corners-top"><span></span></span>
+						<table cellspacing="0" class="table1">
+							<thead>
+							<tr>
+								<th class="name">{L_DELETE}</th>
+								<th class="name">{L_APPROVE}</th>
+								<th class="name">{L_MEDAL_EDIT}</th>
+								<th class="name">{L_MESSAGE}</th>
+							</tr>
+							</thead>
+							<tbody>
+								<!-- BEGIN nominations -->
+								<tr class="bg1">
+									<td><span>
+										<ul class="profile-icons">
+											<li class="delete-icon">
+												<a title="" href="{nominations.U_DELETE}"><span>{L_DELETE}</span></a>
+											</li>
+										</ul>
+									</span></td>
+									<td><span>
+										<ul class="profile-icons">
+											<li class="approve-icon">
+												<a title="" href="{nominations.U_APPROVE}"><span>{L_APPROVE}</span></a>
+											</li>
+										</ul>
+									</span></td>
+									<td><span>
+										<ul class="profile-icons">
+											<li class="edit-icon">
+												<a title="" href="{nominations.U_MEDAL_EDIT}"><span>{L_MEDAL_EDIT}</span></a>
+											</li>
+										</ul>
+									</span></td>
+									<td><div class="reason"><span>{nominations.REASON}</span></div></td>
+								</tr>
+								<!-- END nominations -->
+								<!-- IF S_ROW_COUNT eq 0 -->
+								<tr class="bg1">
+									<td colspan="4"><span><br />{L_NO_USER_NOMINATIONS}<br /><br /></span></td>
+								</tr>
+								<!-- ENDIF -->
+							</tbody>
+						</table>
+					<span class="corners-bottom"><span></span></span></div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+</form>
+<!-- INCLUDE overall_footer.html -->

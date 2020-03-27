@@ -29,38 +29,36 @@
       <!-- BEGIN places -->
       <div class="searchable-list-item" data-name="{places.NAME}" data-roleplay-name="{places.ROLEPLAY}">
         <img class="crisp-border quick-float-left" src="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}/image" />
-        <!-- IF S_IS_BETA -->
-          <div class="quick-float-right">
-            <!-- IF places.S_IS_FOR_SALE -->
-            <div class="button group">
-              <a class="pricing" on-tap="_promptAndSetPrice" data-link="/places/{places.ID}">
-                <small>INK</small>
-                <span data-bind="sale-price">{places.SALE_PRICE}</span>
-              </a>
+        <div class="quick-float-right">
+          <!-- IF places.S_IS_FOR_SALE -->
+          <div class="button group">
+            <a class="pricing" on-tap="_promptAndSetPrice" data-link="/places/{places.ID}">
+              <small>INK</small>
+              <span data-bind="sale-price">{places.SALE_PRICE}</span>
+            </a>
 
-              <!-- IF places.S_CAN_EDIT -->
-              <div>
-                <a class="header" on-tap="_promptAndSetPrice" data-link="/places/{places.ID}"><small>change</small></a>
-                <a class="header" on-tap="_cancelOrder" data-link="/orders/{orders.ORDER_ID}" title="cancel this order"><small>close</small></a>
-              </div>
-              <!-- ELSE -->
-              <!-- IF places.S_CAN_AFFORD -->
-              <a class="header" on-tap="_fillOrder" data-link="/orders/{places.ORDER_ID}" data-price="{places.SALE_PRICE}">Buy Now</a>
-              <!-- ELSE -->
-              <div class="header">
-                <small>not enough INK</small><br />
-                <a href="/medals" data-price="{places.SALE_PRICE}">Earn to Buy</a>
-              </div>
-              <!-- ENDIF -->
-              <!-- ENDIF -->
+            <!-- IF places.S_CAN_EDIT -->
+            <div>
+              <a class="header" on-tap="_promptAndSetPrice" data-link="/places/{places.ID}"><small>change</small></a>
+              <a class="header" on-tap="_cancelOrder" data-link="/orders/{orders.ORDER_ID}" title="cancel this order"><small>close</small></a>
             </div>
             <!-- ELSE -->
-            <!-- IF places.S_CAN_EDIT -->
-            <a class="button" on-tap="_promptAndSetPrice" data-link="/places/{places.ID}">sell</a>
+            <!-- IF places.S_CAN_AFFORD -->
+            <a class="header" on-tap="_fillOrder" data-link="/orders/{places.ORDER_ID}" data-price="{places.SALE_PRICE}">Buy Now</a>
+            <!-- ELSE -->
+            <div class="header">
+              <small>not enough INK</small><br />
+              <a href="/medals" data-price="{places.SALE_PRICE}">Earn to Buy</a>
+            </div>
             <!-- ENDIF -->
             <!-- ENDIF -->
           </div>
-        <!-- ENDIF -->
+          <!-- ELSE -->
+          <!-- IF places.S_CAN_EDIT -->
+          <a class="button" on-tap="_promptAndSetPrice" data-link="/places/{places.ID}">sell</a>
+          <!-- ENDIF -->
+          <!-- ENDIF -->
+        </div>
         <div>
           <h3>
             <!-- IF places.PARENT_ID gt 0 -->

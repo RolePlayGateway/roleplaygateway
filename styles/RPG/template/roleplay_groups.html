@@ -1,0 +1,56 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<img src="/universes/{ROLEPLAY_URL}/image" class="crisp-border" style="float:left; margin-right: 1em;" />
+<h1 style="color:#596E7C; margin-top: 0;"><a href="/universes/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a> &raquo; <a href="/universes/{ROLEPLAY_URL}/groups">Groups</a></h1>
+<p style="margin-bottom: 0;">{ROLEPLAY_SYNOPSIS}</p>
+
+<div>
+  <h3 style="font-size: 1.2em; margin-top: 0.5em;"><a href="/ucp.php?i=roleplays&mode=add_group&roleplay_id={ROLEPLAY_ID}" style="float:right;">Create Group &raquo;</a>Factions, Families, Clans, and Empires</h3>
+  <p style="font-size: 1.4em; margin-bottom: 0.5em;">A place to organize the various groups of characters in <strong>{ROLEPLAY_TITLE}</strong>.</p>
+</div>
+
+<div>
+  <a href="/universes/{ROLEPLAY_URL}/characters" class="button">Characters</a>
+  <a href="/universes/{ROLEPLAY_URL}/places" class="button">Settings</a>
+  <a href="/universes/{ROLEPLAY_URL}/groups" class="button">Groups</a>
+</div>
+
+<br style="clear: both;" />
+
+<ul class="linklist">
+  <li class="rightside pagination">{TOTAL_GROUPS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+    <div class="postbody" style="width:inherit;"><div class="">
+
+      <!-- BEGIN groups -->
+      <div class="place">
+        <a href="/universes/{ROLEPLAY_URL}/groups/{groups.SLUG}"><img src="/universes/{ROLEPLAY_URL}/groups/{groups.SLUG}/logo" class="crisp-border" /></a>
+	      <h2 style="margin-top: 0; padding-bottom: 0;">
+          <div style="float:right; clear:right;"><strong>{groups.CHARACTERS}</strong> characters</div>
+          <div style="float:right; clear:right;"><strong>{groups.UNIQUE_PLAYERS}</strong> players</div>
+		      <a href="/universes/{ROLEPLAY_URL}/groups/{groups.SLUG}"><strong>{groups.NAME}</strong></a>
+          <small>founded by {groups.OWNER_LINK}</small>
+	      </h2>
+	      <p>{groups.SYNOPSIS}</p>
+      </div>
+      <!-- BEGINELSE -->
+	      <p class="supersize">There are no groups in this roleplay!</p>
+      <!-- END groups -->
+
+    </div></div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_GROUPS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<!-- INCLUDE overall_footer.html -->

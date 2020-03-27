@@ -1,0 +1,103 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<style type="text/css">
+#listings th
+{
+	font-size: 13px;
+	font-weight: normal;
+	padding: 8px;
+	background: #b9c9fe;
+	border-top: 4px solid #aabcfe;
+	border-bottom: 1px solid #fff;
+}
+#listings td
+{
+	padding: 8px;
+	background: #e8edff;
+	border-bottom: 1px solid #fff;
+	border-top: 1px solid transparent;
+}
+#listings tr:hover td
+{
+	background: #d0dafd;
+}
+
+#featured tr td
+{
+	background: #d0dafd;
+}
+</style>
+
+<div class="special panel">
+  <h2>Places To Roleplay</h2>
+  <p>RPG encourages the growth and development of writers and other storytellers through role-playing games.  In the <strong>RPG Directory</strong>, we're proud to list as many other roleplaying communities as possible.</p>
+  <p>Are we missing one? <a class="button" href="/links/add">Add Link &raquo;</a></p>
+</div>
+
+<div class="panel">
+        <div class="inner"><span class="corners-top"><span></span></span>
+			<!-- <h3>Categories</h3>
+			<ul>
+			<!-- BEGIN categories -->
+				<li>{categories.NAME}</li>
+			<!-- END categories -->
+			</ul>
+			-->
+			<h3 style="clear:both;">Featured Sites</h3>
+			<div id="listings">
+				<table id="featured">
+					<thead>
+						<tr>
+							<th scope="col">Site</th>
+							<th scope="col">Screenshot</th>
+							<th scope="col">Description</th>
+							<th scope="col">Rating</th>
+							<th scope="col">Reviews</th>
+						</tr>
+					</thead>
+					<!-- BEGIN featured_sites -->
+					<tr>
+						<td><h4><a href="{featured_sites.URL}" style="float:left; padding-right:5px;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFZJREFUeF59z4EJADEIQ1F36k7u5E7ZKXeUQPACJ3wK7UNokVxVk9kHnQH7bY9hbDyDhNXgjpRLqFlo4M2GgfyJHhjq8V4agfrgPQX3JtJQGbofmCHgA/nAKks+JAjFAAAAAElFTkSuQmCC" alt="Visit {featured_sites.TITLE}" /></a> <a href="//www.roleplaygateway.com/directory/view.php?id={featured_sites.ID}">{featured_sites.TITLE}</a></h4></td>
+						<td>
+              <!-- <img src="http://api.thumbalizr.com/?url={featured_sites.URL}&width=100&height=100" style="width:100px;" /> -->
+            </td>
+						<td><p>{featured_sites.DESCRIPTION}</p></td>
+						<td>{featured_sites.RATING}</td>
+						<td>{featured_sites.REVIEWS}</td>
+					</tr>
+					<!-- END featured_sites -->
+				</table>
+				<h3 style="clear:both;">Places To Roleplay</h3>
+				<table id="approved">
+					<thead>
+						<tr>
+							<th scope="col">Site</th>
+							<th scope="col">Screenshot</th>
+							<th scope="col">Description</th>
+							<th scope="col">Rating</th>
+							<th scope="col">Reviews</th>
+						</tr>
+					</thead>
+					<!-- BEGIN listed_sites -->
+					<tr>
+						<td>
+              <h4>
+                <a href="{listed_sites.URL}" rel="nofollow" style="float:left; padding-right:5px;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFZJREFUeF59z4EJADEIQ1F36k7u5E7ZKXeUQPACJ3wK7UNokVxVk9kHnQH7bY9hbDyDhNXgjpRLqFlo4M2GgfyJHhjq8V4agfrgPQX3JtJQGbofmCHgA/nAKks+JAjFAAAAAElFTkSuQmCC" alt="Visit {listed_sites.TITLE}" /></a>
+                <a href="/links/{listed_sites.ID}">{listed_sites.TITLE}</a>
+              </h4>
+            </td>
+						<td>
+              <!-- <img src="http://api.thumbalizr.com/?url={listed_sites.URL}&width=100&height=100" style="width:100px;" /> -->
+            </td>
+						<td><p>{listed_sites.DESCRIPTION}</p></td>
+						<td>{listed_sites.RATING}</td>
+						<td>{listed_sites.REVIEWS}</td>
+					</tr>
+					<!-- END listed_sites -->
+				</table>
+				{PAGINATION}
+			</div>
+        <span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- INCLUDE overall_footer.html -->

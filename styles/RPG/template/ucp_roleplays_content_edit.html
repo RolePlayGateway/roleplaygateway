@@ -1,0 +1,113 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<style type="text/css">
+#reply_content {
+	font-size: 1.4em;
+}
+input.button1 {
+	font-size: 1.5em;
+	padding:5px;
+	float:right;
+}
+
+h2 a {
+  display: inline;
+}
+</style>
+<div class="panel" id="message">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<div id="posting">
+		<h2><a href="#posting" name="posting">Editing Your Post in {ROLEPLAY_LINK} &raquo; {PLACE_LINK}</a></h2>
+					
+		<form id="write" method="post" action="//www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit_content&content_id={CONTENT_ID}&action=submit">
+
+			<input type="hidden" name="content_id" value="{CONTENT_ID}" />
+
+			<script type="text/javascript">edToolbar('reply_content');</script>
+			<textarea name="reply_content" id="reply_content" class="ed inputbox" style="width: 100%; height: 400px;">{TEXT}</textarea>
+
+      <div style="vertical-align: middle; padding-top: 0.5em; padding-bottom: 1em;">
+		    <div style="font-size:120%; font-weight:bold; float:left;">
+			    <span id="charcount">0</span> characters in this post.<br />
+			    <span id="wordcount">0</span> words in this post.
+		    </div>
+		
+		    <div id="characterTagging" style="float:left;">
+          <input id="characterSearch" name="characterSearch" style="padding: 0.2em;" placeholder="Tag a character" />
+          <input type="hidden" id="taggedCharacterList" name="taggedCharacterList" />
+          <div id="taggedCharacters" style="display:inline-block;"></div>
+		    </div>
+		    
+		    <div id="postingtip" style="clear:both;"></div>
+		  </div>
+
+			<input type="submit" name="submit" value="Save Changes &raquo;" class="button1" />
+
+
+		  <style type="text/css">
+		    #characterTagging { font-size: 1.4em; vertical-align: middle; margin-left: 1em; }
+		    #taggedCharacters { display: inline-block; margin-left: 5px; }
+		    .hovered { border: 1px dotted red; }
+		    .micro { height: 30px; margin-right: 5px; vertical-align: middle; }
+		    .prettyCenter { font-weight: bold; }
+		    .selectedCharacter { display: inline-block; border-radius: 3px; background: #ccc; margin-left: 5px; margin-right: 5px; padding-right: 5px; border: 1px solid black; }
+		  </style>
+		
+		  <script type="text/javascript">
+		
+		    var taggedCharacters = [];
+		    
+		    $('#characterSearch').keypress(function(e) {
+		      if ( e.which == 13 ) return false;
+		    });
+		
+        $('#characterSearch').autocomplete({
+          source: function(request, response) {
+            $.ajax({
+              url: '//www.roleplaygateway.com/roleplay/{URL}/characters.json',
+              dataType: 'json',
+              data: {
+                search: request.term
+              },
+              success: function(data) {
+                response( $.map( data, function (character) {
+                  return {
+                    label: '<div class="prettyCenter"><img class="micro" src="//www.roleplaygateway.com/roleplay/{URL}/characters/'+ character.url + '/image">' + character.name + '</div>',
+                    value: character.name,
+                    id: character.id
+                  }
+                }));
+              }
+            });
+          },
+          // minLength: 1,
+          delay: 250,
+          select: function (event, ui) {
+          					
+					  $('#taggedCharacters').append('<div class="selectedCharacter">' + ui.item.label + '</div>');
+					  $('#characterSearch').val('');
+					
+					  taggedCharacters.push(ui.item.id);
+					  $('#taggedCharacterList').val(taggedCharacters);
+					
+					  return false;
+					
+          },
+          open: function() {
+            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+          },
+          close: function() {
+            $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+          }
+        });
+		  </script>
+
+		</form>
+	</div>
+
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->
