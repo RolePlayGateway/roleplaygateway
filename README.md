@@ -1,6 +1,24 @@
 # roleplaygateway
 source code for roleplaygateway.com
 
+```
+## STOP HERE AND READ ME FIRST!
+Before continuing, let us be the first to welcome you to THE SOURCE. While it might be confusing at first, there's a lot you can learn if you make the time.
+
+Use this URI: https://www.roleplaygateway.com/
+
+From there, links like `hub.roleplaygateway.com` might "pop up" from time to time. With a bit of navigating around, you can earn credit for your progress.
+
+- Continue: https://chat.roleplaygateway.com/
+- Offline: https://www.roleplaygateway.com/medals/beta-tester
+
+Remember: never be afraid to explore!  Curiosity might have killed the cat, but that's why he had nine lives.
+
+Good luck, have fun (`gl;hf o/`), and enjoy!
+
+                                          — the RPG team
+```
+
 ## Directory Structure
 `styles/RolePlayGateway/template` contains most of the "templates" for pages.
 
