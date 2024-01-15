@@ -9,11 +9,23 @@ include_once($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 // Start session management
 $user->session_begin();
 $auth->acl($user->data);
-$user->setup('viewforum');
+$user->setup();
 
 $roleplayURL = $_REQUEST['roleplayURL'];
 $start      = (int) @$_REQUEST['start'];
 $limit      = (int) @$_REQUEST['limit'];
+
+$sql = 'SELECT SUM(amount) as total FROM rpg_ledger WHERE `to` = '.(int) $user->data['user_id'];
+$creditResult = $db->sql_query($sql);
+$credits = $db->sql_fetchrow($creditResult);
+$db->sql_freeresult($creditResult);
+
+$sql = 'SELECT SUM(amount) as total FROM rpg_ledger WHERE `from` = '.(int) $user->data['user_id'];
+$debitResult = $db->sql_query($sql);
+$debits = $db->sql_fetchrow($debitResult);
+$db->sql_freeresult($debitResult);
+
+$userBalance = $credits['total'] - $debits['total'];
 
 $sql = 'SELECT id, title, url, require_approval, owner FROM rpg_roleplays WHERE url = "'.$db->sql_escape($roleplayURL).'"';
 $result = $db->sql_query($sql);
@@ -71,7 +83,18 @@ while ($owner = $db->sql_fetchrow($ownersResult)) {
 }
 $db->sql_freeresult($ownersResult);
 
+$characters = array();
 $places = array();
+
+$sql = 'SELECT c.id, c.name, c.url as slug, r.id as roleplay_id, r.title as roleplay_name, r.url as roleplay_slug FROM rpg_characters c
+  INNER JOIN rpg_roleplays r
+    ON r.id = c.roleplay_id
+  WHERE c.owner = '.(int) $user->data['user_id'];
+$charactersResult = $db->sql_query($sql);
+while ($character = $db->sql_fetchrow($charactersResult)) {
+  $characters[] = $character;
+}
+$db->sql_freeresult($charactersResult);
 
 $sql = 'SELECT id, name, synopsis, description, owner, url, parent_id, length(synopsis) as synopsisLength, length(description) as descriptionLength, length(image) as imageSize FROM rpg_places
           WHERE rpg_places.roleplay_id = '.(int) $roleplayID .' AND visibility <> "Hidden"';

@@ -1,0 +1,43 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<h1>RPG Mobs</h1>
+<h3>What exists in the worlds?</h3>
+<p><strong>Mobs</strong> are wandering monsters in <a href="/universes">RPG Universes</a>, which can be slain for experience and loot.</p>
+  
+<div class="special panel<!-- IF S_IS_SINGLE --> large featured<!-- ENDIF -->">
+  <!-- BEGIN mobs -->
+  <div class="item">
+    <!-- IF mobs.S_HAS_IMAGE -->
+    <a href="/mobs/{mobs.ID}" class="quick-float-left">
+      <img src="/universes/{mobs.ROLEPLAY_URL}/mobs/{mobs.ID}/image" style="height: 32px; width: 32px;" />
+    </a>
+    <!-- ENDIF -->
+    <h2>
+      <!-- IF mobs.S_CAN_EDIT -->
+      <a href="/universes/the-multiverse/forge?mode=edit&itemID={mobs.ID}" class="button quick-float-right">edit &raquo;</a>
+      <!-- ENDIF -->
+      <a href="/mobs/{mobs.ID}">{mobs.NAME}</a>
+      <small class="mood">{mobs.MOOD}</small>
+    </h2>
+    <h3>found in <a href="/universes/{mobs.ROLEPLAY_URL}">{mobs.ROLEPLAY_NAME}</a></h3>
+    <p>{mobs.DESCRIPTION}</p>
+    <div class="clearfix"></div>
+  </div>
+  <!-- END mobs -->
+</div>
+
+<!-- IF S_THIEF_MODE -->
+<div class="special panel">
+  <h2>Characters With Items</h2>
+  <!-- BEGIN characters -->
+  <div>
+    <h3><a href="{characters.LINK}">{characters.NAME}</a></h3>
+  </div>
+  <!-- END characters -->
+</div>
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

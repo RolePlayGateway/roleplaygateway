@@ -9,8 +9,14 @@
 
 	<div id="posting">
 		<h2><a href="#posting" name="posting">Creating a New Group in {ROLEPLAY_NAME}</a></h2>
-					
-		<form id="write" method="post" action="/ucp.php?i=roleplays&mode=add_group&roleplay_id={ROLEPLAY_ID}&action=submit" enctype="multipart/form-data">
+
+    <p class="supersize">Groups are convenient tools for uniting characters under a single banner, such as in a clan or a guild.  These groups can be assigned banners and be granted access to shared resources.  Browse <a href="/roleplay/{ROLEPLAY_URL}/groups">the existing list of groups</a> to see examples!</p>
+
+    <img src="/roleplay/{ROLEPLAY_URL}/image" alt="{ROLEPLAY_TITLE}" class="crisp-border" style="float:left; margin-right: 1em; margin-bottom: 1em;" />
+    <h2>{ROLEPLAY_TITLE}</h2>
+    <p style="margin-bottom: 4em;">{ROLEPLAY_SYNOPSIS}</p>
+    
+		<form id="write" method="post" action="/ucp.php?i=roleplays&amp;mode=add_group&amp;roleplay_id={ROLEPLAY_ID}&amp;action=submit" enctype="multipart/form-data">
 
 			<input type="hidden" name="roleplay_id" value="{ROLEPLAY_ID}" />
 

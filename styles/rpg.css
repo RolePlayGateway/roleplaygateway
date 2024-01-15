@@ -1,0 +1,759 @@
+/* # RPG Styles in < 1,000 lines of code
+An introduction to our work...
+
+Thanks for inspecting the source! We
+believe that the curious should be
+rewarded with the knowledge they seek.
+
+Keep digging, adventurer!
+
+                          ― the RPG team
+                                      */
+
+/* Typography */
+/* Selected By: maccotango */
+/* Coded By: Remæus */
+h1, h2, h3 {
+  margin: 0;
+}
+
+h1, h2, h3, .button {
+  font-family: "Arvo", serif;
+}
+
+/* Generic classes */
+.header {
+  border: 0;
+}
+
+.subtle {
+  color: #ccc;
+}
+
+.dark.subtle {
+  color: #666;
+}
+
+.oneline {
+  
+}
+
+.navigator.grid td {
+  min-height: 60px;
+  height: 88px;
+  width: 88px;
+}
+
+#roleplay h1, h1:not(.inverted) {
+	color: #2B363C;
+}
+
+#statistics {
+	float:right;
+	font-size: 1.2em;
+	width:250px;
+	margin:10px;
+}
+
+#tabs {
+	font-size: 1.3em;
+}
+
+h2 a {
+	display: block;
+	padding: 10px;
+}
+
+h2 a:hover, a.button:hover {
+	text-decoration:none;
+	/* background: #ccc; */
+}
+
+.content/*, #introduction*/ {
+	padding:5px;
+	font-size:1.3em;
+	line-height:1.4em;
+	margin-bottom:1.5em;
+	background:
+}
+
+#introduction #recent {
+	font-size:0.8em;
+}
+
+.content {
+	padding-top: 10px;
+}
+
+.controls {
+	font-size:1.2em;
+}
+
+#introduction h2 {
+	margin-bottom: 10px;
+}
+
+#activity h4 {
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+#activity, #places {
+	clear:both;
+}
+
+.horizontal.scroller {
+  max-height: 115px;
+  width: auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.horizontal.scroller > * {
+  display: inline-block;
+  width: 220px;
+}
+
+.activity {
+	clear: both;
+}
+
+.title-card {
+  margin-top: 1em;
+}
+
+span.location, span.time  {
+	font-weight:bold;
+	/* font-size: 1.2em; */
+}
+
+.character {
+	/* width: 32%; */
+	padding:5px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+.character img {
+	float:left;
+	height:100px;
+	width: 100px;
+	overflow: hidden;
+	border: 1px solid black;
+	margin-right: 10px;
+}
+
+.character:hover {
+	/* background: #ccc; */
+	/* cursor: pointer; */
+}
+
+.place {
+	height:100px;
+	padding:5px;
+	clear:both;
+}
+
+.place:hover {
+	/* cursor: pointer; */
+}
+
+.place img {
+	float:left;
+	height: 100px;
+	width: 100px;
+	margin-right:5px;
+}
+
+.place .snippets {
+	width:50%;
+	float:right;
+}
+
+.author {
+	font-style: italic;
+}
+
+#reply_options {
+	font-size: 1.5em;
+	padding: 5px;
+	float:right;
+}
+
+#reply_content {
+	font-size: 1.4em;
+}
+
+input.button1 {
+	font-size: 1.5em;
+	padding:5px;
+	float:right;
+}
+
+#write {
+	clear:both;
+}
+
+.upsize {
+  font-size: 1.2em;
+}
+
+.supersize.button {
+  padding: 0.5em 1em;
+}
+
+.label, .button {
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.label {
+	text-transform: uppercase;
+	/*font-size: 0.7em;*/
+}
+
+.status.label a:hover {
+  text-decoration: none;
+}
+
+.button {
+	font-weight: bold;
+	background: #bfd1d7;
+  border: 2px solid #bfd1d7;
+}
+
+.button.block {
+	display: block;
+}
+
+a.button:hover, .nametag:hover {
+  text-decoration: none;
+}
+
+.button:hover {
+	/* filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+	-moz-opacity: 0.6;
+	opacity: 0.6; */
+  color: #118db2 !important;
+  background: #b1c1c7;
+  border: 2px solid #118db2;
+}
+
+.nametag {
+  display: inline-block;
+  border-radius: 3px;
+  margin: 3px;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  background: #ccc;
+}
+
+#ooc .ooc {
+	padding: 10px;
+}
+
+#ooc .ooc .ooc_post {
+	margin-right: 220px;
+}
+
+#ooc .ooc h3 {
+	font-style: italic;
+}
+
+#ooc .ooc .author {
+	font-style: normal;
+	font-size: 1.5em;
+	float:right;
+	width: 200px;
+}
+
+.controls {
+	/* font-size: 1.5em; */
+	font-weight: bold;
+}
+
+#reviews dl {
+	clear:left;
+	float:left;
+	padding:20px;
+	margin:20px;
+}
+
+#reviews dl dd {
+	float:left;
+}
+
+#reviews .score {
+	float:left;
+	padding: 20px;
+	font-size:3em;
+	font-weight: bold;
+}
+
+#reviews .score span {
+	font-size: 0.75em;
+}
+
+#event-list {
+	margin-right:250px;
+}
+
+#events #calendar {
+	float:right;
+}
+
+.footnote-list li {
+	list-style-position: inside;
+}
+
+.footnote-list li > span {
+  display: inline-block;
+}
+
+.footnote-list li > cite {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.footnote-list li > cite > time {
+  font-weight: bold;
+}
+
+.footnote-list p {
+	/* font-size: 0.9em; */
+  min-height: 0 !important;
+  margin-bottom: 0;
+}
+
+.event h3 {
+	font-size: 2em;
+}
+.event span {
+	font-style: italic;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+
+
+dl.roleplay .tags {
+	font-style:italic;
+}
+
+dl.roleplay {
+	min-height: 110px;
+}
+
+dl.roleplay dt {
+	padding-left: 120px;
+}
+
+dl.roleplay .author {
+
+}
+.pagination {
+	font-size: 1.2em;
+}
+.featured, .favorite {
+	background-color:#ffffe0;
+}
+
+span.tag a {
+	background: #ccc;
+	padding: 2px;
+	margin: 2px;
+}
+
+.content ol, .content ul {
+	list-style-position: inside;
+	margin-left: 2em;
+}
+
+.dialogue-bubble {
+  background: #ecedee;
+  padding: 20px;
+  margin-right: 20px;
+  margin-left: 110px;
+  position: relative; /* This is the only really important part */
+}
+
+.dialogue-bubble>span.pointer {
+  display: block;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  font-size: 0;
+  line-height: 1px;
+  left: -10px; /* Determines the length of the tail */
+  top: 30px;
+  border-top: 7px solid transparent; /* Angle of the triangle. */
+  border-bottom: 7px solid transparent;
+  border-right: 10px solid #ecedee; /* The triangle */
+}
+
+.content blockquote.uncited,
+.content blockquote.uncited div {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  display: inline;
+  font-size: 1em;
+}
+
+.content blockquote.uncited:before {
+  content: '\201C';
+}
+
+.content blockquote.uncited:after {
+  content: '\201D';
+}
+
+.place h2 * {
+  display: inline-block;
+}
+.place .place {
+  margin: 0 0 1em 1em;
+  padding-left: 1em;
+  border-left: 1px dashed #040;
+  border-bottom-left-radius: 6em;
+  -webkit-transform: scale(0.965, 0.965);
+}
+.place-details p {
+  max-height: 4em;
+  overflow: hidden;
+}
+
+.place-icon {
+  height: 90px;
+  vertical-align: top;
+  width: 100px;
+  overflow: hidden;
+  margin: 0.25em;
+}
+
+.place-icon img {
+  margin-left: auto;
+  margin-right: auto;
+}
+  
+a.anchor:not(.special) {
+  display: block;
+  position: relative;
+  visibility: hidden;
+  top: -35px;
+}
+
+.thing-icon {
+  text-align:center;
+  display: inline-block;
+  height: 205px;
+  vertical-align: top;
+  width: 220px;
+  overflow: hidden;
+  margin: 1em;
+  padding: 1em;
+}
+.thing-icon img {
+  height: 100px;
+  width: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.5em;
+}
+.thing-icon p {
+  font-size: 1em;
+  text-align: justify;
+}
+.thing-icon a:hover {
+  text-decoration: none;
+}
+.thing-icon a p,
+.thing-icon a:hover p {
+  color: rgb(51, 51, 51);
+}
+
+.crisp-border {
+  max-width: 90%;
+}
+
+img.roleplay-image {
+	max-height: 75px;
+	float: left;
+	margin: 0.5em !important;
+}
+
+img.tiny {
+  height: 12px;
+  width: 12px;
+}
+
+img.small {
+  height: 24px;
+  width: 24px;
+}
+
+img.medium {
+  height: 50px;
+  width: 50px;
+}
+
+li.roleplay {
+	list-style-type: none;
+	height: 83px;
+	overflow: hidden;
+}
+
+.activity.panel {
+  padding: 1em;
+}
+
+.panel p {
+	min-height: 2.8em;
+}
+
+.footnote-list .panel p {
+  min-height: none !important;
+}
+
+.roleplay-description {
+	margin-bottom: 0;
+}
+
+h3.simple {
+	border: none;
+	margin-top: 0.5em;
+}
+.right.floated.button {
+	float: right;
+	padding: 0.5em 2em 0.5em 1em;
+	margin-right: 2em;
+	font-size: 1.2em;
+}
+
+.universal-navigation {
+	width: 400px;
+	background: #EDF2F2 !important;
+}
+
+.universal-navigation table {
+	text-align: center;
+	vertical-align: top;
+}
+
+.universal-navigation .huge-only {
+	display: none;
+}
+
+.quick-float-left {
+  float:left;
+  margin-right: 10px;
+}
+
+.quick-float-right {
+  float:right;
+  margin-left: 10px;
+}
+
+.underhint {
+  margin-top: 3px;
+}
+
+*[on-tap] {
+  cursor: pointer;
+}
+
+.card {
+  display: inline-block;
+  max-width: 33%;
+  width: 32%;
+}
+
+.tiny.icon.card {
+  display: inline-block;
+  font-size: 0.8em;
+  text-align: center;
+  max-width: 62px;
+  width: 62px;
+  height: 62px;
+  overflow: hidden;
+}
+
+.tiny.icon.card img {
+  max-height: 60px;
+  max-width: 60px;
+}
+
+.scrunched p {
+  margin-bottom: 0.2em;
+}
+
+.card img {
+  max-height: 100px;
+  max-width: 100px;
+}
+
+.card img.tiny {
+  max-height: 34px;
+  max-width: 34px;
+  margin-right: 3px;
+}
+
+li.header a {
+  color: white !important;
+}
+
+.searchable-list-item {
+  margin-bottom: 5px;
+  min-height: 57px;
+}
+.searchable-list-item img {
+  clear: both;
+  max-height: 50px;
+  max-width: 50px;
+}
+
+a.right {
+	background-image: none !important;
+}
+
+.button {
+  display: inline-block;
+}
+
+.group.button {
+	text-align: center;
+	padding: 1em;
+  display: inline-block;
+}
+
+.group.button:hover {
+  opacity: 1.0 !important;
+}
+
+.group.button a:hover {
+  text-decoration: none;
+}
+
+.button.group .header {
+  text-transform: uppercase;
+	font-size: 1.2em !important;
+}
+
+.tiny.button.group {
+  display: inline-block;
+  padding: 0;
+}
+
+.right.attached.button {
+  border-left: 1px solid #ccc !important;
+  padding: 3px;
+}
+
+.marginalized {
+	margin: 1em;
+	margin-bottom: 0;
+}
+
+.pricing {
+  font-size: 1.5em !important;
+}
+
+.special.controls {
+  float: right;
+}
+
+.field label {
+  float: left;
+  width: 100px;
+  text-align: right;
+  clear: both;
+}
+
+.field {
+  clear: both;
+}
+
+.clearfix {
+  clear: both;
+}
+
+@media (max-width: 960px) {
+	#wrap {
+		width: auto;
+	}
+
+	.desktop-only {
+		display: none !important;
+	}
+
+  .fill-on-mobile {
+    display: block;
+    clear: both;
+    width: 100% !important;
+  }
+
+  h1.fill-on-mobile {
+    margin-top: 1em;
+  }
+
+  .fill-on-mobile.button {
+    margin: 1em 0;
+    text-align: right;
+    width: auto !important;
+  }
+}
+
+@media (min-width: 961px) {
+	#wrap {
+		width: auto;
+	}
+
+	.mobile-only {
+		display: none !important;
+	}
+
+  .margin-right-on-desktop {
+    margin-right: 170px;
+  }
+}
+
+@media (max-width: 1919px) {
+	.universal-navigation {
+		float: right;
+	}
+	.universal-navigation table {
+		float:right;
+		width: 400px;
+	}
+}
+
+@media (min-width: 1920px) {
+  .hide-on-huge {
+    display: none;
+  }
+
+  .universal-navigation {
+		background: /*url('/images/compass.png') -7% 68%*/ #CEE2E7;
+		background-size: 80%;
+    background-repeat: no-repeat;
+    border: 1px solid black;
+    display: inline-block;
+    position: fixed;
+    right: 42px;
+    top: 42px;
+		padding: 10px;
+		text-align: center;
+	}
+	
+	.universal-navigation table {
+		width: 100%;
+	}
+	
+	.universal-navigation .huge-only {
+		display: inherit;
+	}
+}

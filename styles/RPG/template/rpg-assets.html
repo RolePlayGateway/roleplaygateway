@@ -1,0 +1,44 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<style type="text/css">
+  .panel p {
+    min-height: 0;
+  }
+  
+  .labeled.action > div {
+    text-align: center;
+  }
+  
+  .labeled.action > div > span {
+    font-size: 1.4em;
+  }
+</style>
+
+<div class="quick-float-right">
+  <div class="labeled action">
+    <div><span data-bind data-link>{COST_TO_ISSUE}</span> <small>INK</small></div>
+    <center><!-- IF S_CAN_AFFORD -->✓ affordable!<!-- ENDIF --></center>
+  </div>
+  <center>Not enough INK?  Try selling something in <a href="/orders">the marketplace</a>.</center>
+</div>
+
+<h1>Asset Issuance</h1>
+<p>Creating Assets on RPG allows you to manage resources in the universes you are a part of.  Shopkeepers may set prices in any currency of their choice, including currencies from other universes.</p>
+
+<div class="special panel">
+  <!-- INCLUDE rpg-asset-creator.html -->
+</div>
+
+<h2>Assets in Existence</h2>
+<div class="special panel">
+  <!-- BEGIN assets -->
+  <div>
+    <h3><a name="{assets.SYMBOL}"></a><a href="#{assets.SYMBOL}"><small>{assets.SYMBOL}</small></a> <a href="/assets/{assets.SYMBOL}">{assets.NAME}</a></h3>
+    <p><strong>{assets.ISSUANCE}</strong> issued, worth <strong>{assets.RATE}</strong> <small>INK</small> each, and decaying at a rate of <strong>{assets.DEMURRAGE}</strong>% per {assets.PERIOD}.</p>
+  </div>
+  <!-- END assets -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->

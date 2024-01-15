@@ -1,0 +1,51 @@
+<div class="searchable-list">
+  <input class="searchable-list-input" style="width: 350px; font-size: 1.2em; margin:0.5em; padding: 0.25em;" type="text" placeholder="Type here to filter by name or roleplay." />
+  <div class="searchable-list-items">
+    <!-- BEGIN places -->
+    <div class="searchable-list-item" data-name="{places.NAME}" data-roleplay-name="{places.ROLEPLAY}">
+      <img class="crisp-border quick-float-left" src="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}/image" />
+      <!-- IF S_IS_BETA -->
+        <div class="quick-float-right">
+          <!-- IF places.S_IS_FOR_SALE -->
+          <div class="button group">
+            <a class="pricing" on-tap="_promptAndSetPrice" data-link="/places/{places.ID}">
+              <small>INK</small>
+              <span data-bind="sale-price">{places.SALE_PRICE}</span>
+            </a>
+
+            <!-- IF places.S_CAN_EDIT -->
+            <a class="right attached tooltipped button" on-tap="_cancelOrder" data-link="/orders/{places.ORDER_ID}" title="cancel this order">&times;</a>
+            <!-- ENDIF -->
+
+            <!-- IF places.S_CAN_AFFORD -->
+            <a class="header" on-tap="_fillOrder" data-link="/orders/{places.ORDER_ID}" data-price="{places.SALE_PRICE}">Buy Now</a>
+            <!-- ELSE -->
+            <div class="header">
+              <small>not enough INK</small><br />
+              <a href="/medals" data-price="{places.SALE_PRICE}">Earn to Buy</a>
+            </div>
+            <!-- ENDIF -->
+          </div>
+          <!-- ELSE -->
+          <!-- IF places.S_CAN_EDIT -->
+          <a class="button" on-tap="_promptAndSetPrice" data-link="/places/{places.ID}">sell</a>
+          <!-- ENDIF -->
+          <!-- ENDIF -->
+        </div>
+      <!-- ENDIF -->
+      <div>
+        <h3>
+          <!-- IF places.PARENT_ID gt 0 -->
+          <small style="display:block;">
+            <a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.PARENT_SLUG}/">{places.PARENT_NAME}</a>
+          </small>
+          &#8618;
+          <!-- ENDIF -->
+          <a href="/roleplay/{places.ROLEPLAY_URL}/places/{places.URL}" class="forumtitle">{places.NAME}</a><small>, a part of <a href="/roleplay/{places.ROLEPLAY_URL}">{places.ROLEPLAY_TITLE}</a></small>
+        </h3>
+        <p>{places.SYNOPSIS}</p>
+      </div>
+    </div>	
+    <!-- END places -->
+  </div>
+</div>

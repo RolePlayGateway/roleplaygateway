@@ -50,7 +50,7 @@ a.anchor {
  		<g:plusone annotation="inline" href="/roleplay/{ROLEPLAY_URL}/arcs/{ARC_SLUG}"></g:plusone>
 	</div>
 	<div style="display:inline;">
-		<div class="fb-like" data-send="false" data-layout="standard" data-width="350" data-show-faces="false" data-colorscheme="light" data-action="like" data-href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/arcs/{ARC_SLUG}"></div>
+		<div class="fb-like" data-send="false" data-layout="standard" data-width="350" data-show-faces="false" data-colorscheme="light" data-action="like" data-href="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/arcs/{ARC_SLUG}"></div>
 	</div>
 </div>
 <div class="panel">
@@ -61,9 +61,9 @@ a.anchor {
       <h2><strong>{CONTENT_COUNT}</strong> pieces and <strong>{CHARACTER_COUNT}</strong> characters involved, written by <strong>{PLAYER_COUNT}</strong> different authors.</h2>
 			<!-- BEGIN characters -->
 			<div class="character">
-				<img class="crisp-border" src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
+				<img class="crisp-border" src="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
 				<div>
-					<a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}"><strong>{characters.NAME}</strong></a>
+					<a href="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}"><strong>{characters.NAME}</strong></a>
 				</div>
 				<span>{characters.SYNOPSIS}</span>
 			</div>
@@ -75,9 +75,9 @@ a.anchor {
       <h2><strong>{PLACE_COUNT}</strong> places involved</h2>
 			<!-- BEGIN places -->
 			<div class="place" style="display: inline-block; width: 24%;">
-				<img class="crisp-border" style="margin-right: 5px;" src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/places/{places.SLUG}/image" alt="Place Image: {places.NAME}" />
+				<img class="crisp-border" style="margin-right: 5px;" src="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/places/{places.SLUG}/image" alt="Place Image: {places.NAME}" />
 				<div>
-					<a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/places/{places.SLUG}/"><strong>{places.NAME}</strong></a>
+					<a href="//www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/places/{places.SLUG}/"><strong>{places.NAME}</strong></a>
 				</div>
 				<span>{activity.places.SYNOPSIS}</span>
 			</div>
@@ -97,19 +97,17 @@ a.anchor {
 			<div id="roleplayStream">
 				<!-- BEGIN activity -->
 					<!-- IF activity.S_SHOW_LOCATION -->
-					<!-- BEGIN places -->
-						<hr />
-						<h3 class="place"><a href="http://www.roleplaygateway.com/roleplay/{URL}/places/{activity.places.URL}/" title="{activity.places.NAME}"><img src="http://www.roleplaygateway.com/roleplay/{URL}/places/{activity.places.URL}/image" alt="{activity.places.NAME}" style="height:50px;" />Setting: {activity.places.NAME}</a></h3>
-						<hr />
-					<!-- END places -->
+					<hr />
+					<h3 class="place"><a href="//www.roleplaygateway.com/roleplay/{URL}/places/{activity.LOCATION_URL}/" title="{activity.LOCATION_NAME}"><img src="//www.roleplaygateway.com/roleplay/{URL}/places/{activity.LOCATION_URL}/image" alt="{activity.LOCATION_NAME}" style="height:50px;" />Setting: {activity.LOCATION_NAME}</a></h3>
+					<hr />
 					<!-- ENDIF -->
 					<div class="activity" id="a{activity.ID}"><a class="anchor" name="roleplay{activity.ID}"></a>
 						<div style="float:right; width: 29%; border-left: 1px solid #ccc; padding-left: 10px;">
 							<div>
 								<!-- BEGIN characters -->
-									<a href="http://www.roleplaygateway.com/roleplay/{URL}/characters/{activity.characters.URL}/" title="{activity.characters.NAME}"><img class="crisp-border" src="http://www.roleplaygateway.com/roleplay/{URL}/characters/{activity.characters.URL}/image" alt="Character Portrait: {activity.characters.NAME}" style="height:50px;" /></a>
+									<a href="//www.roleplaygateway.com/roleplay/{URL}/characters/{activity.characters.URL}/" title="{activity.characters.NAME}"><img class="crisp-border" src="//www.roleplaygateway.com/roleplay/{URL}/characters/{activity.characters.URL}/image" alt="Character Portrait: {activity.characters.NAME}" style="height:50px;" /></a>
 								<!-- END characters -->
-								<!-- <a href="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit_content&content_id={activity.ID}" style="float:right; display:block;" class="button">Add Characters &raquo;</a> -->
+								<!-- <a href="//www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit_content&content_id={activity.ID}" style="float:right; display:block;" class="button">Add Characters &raquo;</a> -->
 							</div>
 
 							<!-- IF .footnotes -->
@@ -128,8 +126,8 @@ a.anchor {
 							<div class="content<!-- IF activity.S_IS_DIALOGUE --> dialogue<!-- ENDIF -->">
 								<!-- IF activity.S_IS_DIALOGUE -->
 									<div class="dialogue-character" style="float:left; width:150px; margin-top: 2em; text-align:center;">
-										<em><a href="http://www.roleplaygateway.com/roleplay/{URL}/characters/{activity.CHARACTER_URL}/">
-											<img src="http://www.roleplaygateway.com/roleplay/{URL}/characters/{activity.CHARACTER_URL}/image" alt="Character Portrait: {activity.CHARACTER_NAME}" style="height:50px; display: block; margin-left: auto; margin-right: auto;" />
+										<em><a href="//www.roleplaygateway.com/roleplay/{URL}/characters/{activity.CHARACTER_URL}/">
+											<img src="//www.roleplaygateway.com/roleplay/{URL}/characters/{activity.CHARACTER_URL}/image" alt="Character Portrait: {activity.CHARACTER_NAME}" style="height:50px; display: block; margin-left: auto; margin-right: auto;" />
 											{activity.CHARACTER_NAME}
 										</a> says,</em>
 									</div>

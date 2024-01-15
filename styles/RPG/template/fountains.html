@@ -1,0 +1,72 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<style type="text/css">
+  .panel p {
+    min-height: 0;
+  }
+  
+  .labeled.action > div {
+    text-align: center;
+  }
+  
+  .labeled.action > div > span {
+    font-size: 1.4em;
+  }
+</style>
+
+<div class="quick-float-right">
+  <div class="labeled action">
+    <div><span data-bind data-link>250</span> <small>INK</small></div>
+    <center><!-- IF S_CAN_AFFORD -->✓ affordable!<!-- ENDIF --></center>
+  </div>
+  <center>Not enough INK?  Try selling something in <a href="/orders">the marketplace</a>.</center>
+</div>
+
+<h1>RPG Fountains</h1>
+<p>Fountains regularly issue small amounts of a <a href="/assets">RPG Asset</a> to characters present in the Fountain's location.</p>
+
+<div class="special panel">
+  <form action="/fountains" method="POST">
+    <input type="hidden" name="roleplayID" value="{ROLEPLAY_ID}" />
+    <fieldset>
+      <label>
+        <h3>Asset</h3>
+        <p>Which of your RPG Assets should be issued by this Fountain?</p>
+      </label>
+      
+      <select name="assetID">
+        <!-- BEGIN assets -->
+        <option value="{assets.ID}">{assets.NAME}</option>
+        <!-- END assets -->
+      </select>
+    <fieldset>
+      <label>
+        <h3>Location</h3>
+        <p>Where will this Fountain be located?</p>
+      </label>
+      
+      <select name="placeID">
+        <!-- BEGIN places -->
+        <option value="{places.ID}">{places.NAME}</option>
+        <!-- END places -->
+      </select>
+    </fieldset>
+
+    <fieldset style="text-align: right;">
+      <button type="submit" class="button">Create this Fountain &raquo;</button>
+    </fieldset>
+  </form>
+</div>
+
+<h2>Known Fountains</h2>
+<div class="special panel">
+  <!-- BEGIN fountains -->
+  <div>
+    <h3><a href="{fountains.ASSET_LINK}">{fountains.ASSET_NAME}</a> fountain located in <a href="{fountains.LOCATION_LINK}">{fountains.LOCATION_NAME}</a></h3>
+  </div>
+  <!-- END fountains -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->

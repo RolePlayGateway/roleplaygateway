@@ -1,0 +1,76 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<h1>RPG Characters</h1>
+<h3>Who exists in the worlds?</h3>
+<p>These fictional characters have been created by <a href="/authors">the many authors on RPG</a>.</p>
+  
+<div class="special panel">
+  <h2>Characters</h2>
+  
+  <div class="special row">
+    <div class="special column">
+      <h3>Newest</h3>
+      <div>
+        <!-- BEGIN newest -->
+        <a class="tiny tooltipped icon card" href="{newest.LINK}" title="{newest.NAME}, with {newest.TOTAL} views">
+          <img src="{newest.LINK}/image" class="crisp-border" />
+          <!-- <h4>{newest.NAME}</h4> -->
+        </a>
+        <!-- END newest -->
+      </div>
+    </div>
+    <div class="special column">
+      <h3>Most Prolific</h3>
+      <div>
+        <!-- BEGIN prolific -->
+        <a class="tiny tooltipped icon card" href="{prolific.LINK}" title="{prolific.NAME}, tagged in {prolific.TOTAL} posts">
+          <img src="{prolific.LINK}/image" class="crisp-border" />
+          <!-- <h4>{prolific.NAME}</h4> -->
+        </a>
+        <!-- END prolific -->
+      </div>
+    </div>
+    <div class="special column">
+      <h3>Most Popular</h3>
+      <div>
+        <!-- BEGIN followed -->
+        <a class="tiny tooltipped icon card" href="{followed.LINK}" title="{followed.NAME}, with {followed.TOTAL} followers">
+          <img src="{followed.LINK}/image" class="crisp-border" />
+          <!-- <h4>{followed.NAME}</h4> -->
+        </a>
+        <!-- END followed -->
+      </div>
+    </div>
+  </div>
+
+  <h3>Featured</h3>
+  <div>
+    <!-- BEGIN featured -->
+    <div class="clearfix">
+      <a href="{featured.LINK}"><img src="{featured.LINK}/image" alt="{featured.NAME}" class="left floated small image" /></a>
+      <div>
+        <h3><a href="{featured.LINK}">{featured.NAME}</a> <small>played by {featured.OWNER_USERNAME}</small></h3>
+        <p>{featured.SYNOPSIS}</p>
+      </div>
+    </div>
+    <!-- END featured -->
+  </div>
+  
+  <div class="special row">
+    <!-- <div class="special column"> -->
+      <h3>Most Views</h3>
+      <div>
+        <!-- BEGIN views -->
+        <a class="tiny tooltipped icon card" href="{views.LINK}" title="{views.NAME}, with {views.TOTAL} views">
+          <img src="{views.LINK}/image" class="crisp-border" />
+          <!-- <h4>{views.NAME}</h4> -->
+        </a>
+        <!-- END views -->
+      </div>
+    <!-- </div> -->
+  </div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

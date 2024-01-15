@@ -14,13 +14,15 @@
 <div id="roleplay">
 	<div class="quick-float-right">
 		<span class="status">{STATUS}</span>
+    <!-- IF S_SINGLE_PLACE -->
+    <a class="button" href="/ucp.php?i=characters&amp;mode=new&amp;roleplay_url={URL}&amp;birthplace={PLACE_ID}">Create a Character Here &raquo;</a>
+    <!-- ENDIF -->
+    
 		<!-- IF S_CAN_EDIT -->
 			<!-- IF S_SINGLE_PLACE -->
 				<a class="button" href="/ucp.php?i=roleplays&amp;mode=edit_place&amp;place_id={PLACE_ID}" style="margin: 1em;">Edit &raquo;</a>
-				<!-- IF S_IS_BETA -->
-					<!-- IF S_CAN_SELL -->
-						<a class="button" on-tap="_promptAndSetPrice" data-link="/places/{PLACE_ID}">sell</a>
-					<!-- ENDIF -->
+				<!-- IF S_CAN_SELL -->
+					<a class="button" on-tap="_promptAndSetPrice" data-link="/places/{PLACE_ID}">sell</a>
 				<!-- ENDIF -->
 			<!-- ELSE -->
 				<a class="button" href="/ucp.php?i=roleplays&amp;mode=flag&amp;id={ID}">Flag</a>
@@ -29,41 +31,40 @@
 			<!-- ENDIF -->
 		<!-- ENDIF -->
 
-		<!-- IF S_IS_BETA -->
-			<!-- IF S_IS_FOR_SALE -->
-				<div class="button group" style="margin: 1.5em;">
-					<!-- IF S_IS_OWNER -->
-						<a class="marginalized pricing" on-tap="_promptAndSetPrice" data-link="/places/{PLACE_ID}">
-							<span data-bind="sale-price" data-price="{SALE_PRICE}">{SALE_PRICE}</span>
+		<!-- IF S_IS_FOR_SALE -->
+			<div class="button group" style="margin: 1.5em;">
+				<!-- IF S_IS_OWNER -->
+					<a class="marginalized pricing" on-tap="_promptAndSetPrice" data-link="/places/{PLACE_ID}">
+						<span data-bind="sale-price" data-price="{SALE_PRICE}">{SALE_PRICE}</span>
+						<small>INK</small>
+					</a>
+					<div class="header">
+						<a on-tap="_promptAndSetPrice" data-link="/places/{PLACE_ID}"><small>change</small></a>
+						<span class="separator subtext"> / </span>
+						<a on-tap="_cancelOrder" data-link="/orders/{ORDER_ID}" title="cancel this order"><small>close</small></a>
+					</div>
+				<!-- ELSE -->
+					<!-- IF S_CAN_AFFORD -->
+						<a class="marginalized pricing" on-tap="_fillOrder" data-link="/orders/{ORDER_ID}" data-price="{SALE_PRICE}">
+							<span data-bind="sale-price">{SALE_PRICE}</span>
 							<small>INK</small>
 						</a>
-						<div class="header">
-							<a on-tap="_promptAndSetPrice" data-link="/places/{PLACE_ID}"><small>change</small></a>
-							<span class="separator subtext"> / </span>
-							<a on-tap="_cancelOrder" data-link="/orders/{ORDER_ID}" title="cancel this order"><small>close</small></a>
+						<div class="marginalized">
+							<a class="header clean" on-tap="_fillOrder" data-link="/orders/{orders.ID}" data-price="{orders.PRICE}">Buy Now</a>
 						</div>
 					<!-- ELSE -->
-						<!-- IF S_CAN_AFFORD -->
-							<a class="marginalized pricing" on-tap="_fillOrder" data-link="/orders/{ORDER_ID}" data-price="{SALE_PRICE}">
-								<span data-bind="sale-price">{SALE_PRICE}</span>
+						<a class="marginalized pricing" on-tap="_promptToEarn" data-link="/orders/{ORDER_ID}" data-price="{SALE_PRICE}">
+							<span data-bind="sale-price">{SALE_PRICE}</span>
 								<small>INK</small>
-							</a>
-							<div class="marginalized">
-								<a class="header clean" on-tap="_fillOrder" data-link="/orders/{orders.ID}" data-price="{orders.PRICE}">Buy Now</a>
-							</div>
-						<!-- ELSE -->
-							<a class="marginalized pricing" on-tap="_promptToEarn" data-link="/orders/{ORDER_ID}" data-price="{SALE_PRICE}">
-								<span data-bind="sale-price">{SALE_PRICE}</span>
-									<small>INK</small>
-							</a>
-							<div class="marginalized">
-								<a class="header clean" href="/medals" on-tap="_promptToEarn" data-price="{orders.PRICE}">Earn to Buy</a>
-							</div>
-						<!-- ENDIF -->
+						</a>
+						<div class="marginalized">
+							<a class="header clean" href="/medals" on-tap="_promptToEarn" data-price="{orders.PRICE}">Earn to Buy</a>
+						</div>
 					<!-- ENDIF -->
-				</div>
-			<!-- ENDIF -->
+				<!-- ENDIF -->
+			</div>
 		<!-- ENDIF -->
+
 
 	</div>
 
@@ -120,6 +121,24 @@
 		  <span class="tags"><strong>Topics:</strong> {TOPIC_LIST} (<a href="/ucp.php?i=roleplays&amp;mode=add_tag&amp;id={ID}">Add Tags &raquo;</a>)</span>
 	  </div>
 	  <!-- ENDIF -->
+    
+    <!-- IF .hotspotplaces -->
+    <div>
+      <h3>Hotspots</h3>
+      <table width="100%">
+        <tr>
+          <!-- BEGIN hotspotplaces -->
+          <td valign="top">
+            <div class="thing-icon" style="height: auto; width: auto;">
+              <a href="{hotspotplaces.LINK}"><img src="{hotspotplaces.LINK}/image" class="crisp-border" style="width: 50px; height: 50px;" /></a>
+              <h4><a href="{hotspotplaces.LINK}">{hotspotplaces.NAME}</a></h4>
+            </div>
+          </td>
+          <!-- END hotspotplaces -->
+        </tr>
+      </table>
+    </div>
+    <!-- ENDIF -->
 
 		<div class="roleplay-news" style="font-size: 1.2em;">
 			<!-- IF FORUM_HAS_NEWS -->
@@ -131,6 +150,7 @@
 			<p></p>
 			<!-- ENDIF -->
 		</div>
+
 	</div>
 
 	<!-- IF S_SINGLE_PLACE -->
@@ -271,25 +291,27 @@
 	<div id="tabs">
 		<!-- IF S_SINGLE_PLACE -->
 		<!-- <li><a href="/roleplay/{URL}"><span>Main Page</span></a></li>
-		<li name="activity-tab"><a href="#activity" onclick="subPanels('activity'); return false;"><span>Activity in &ldquo;{PLACE_NAME}&rdquo;</span></a></li>
-		<li name="chat-tab"><a href="#chat" onclick="subPanels('chat'); return false;"><span>Chat</span></a></li>
-		<li name="posting-tab"><a href="#posting" onclick="subPanels('activity'); toggleDiv('posting');"><span>Posting</span></a></li>
-		<li name="ooc-tab"><a href="#ooc" onclick="subPanels('ooc');"><span>OOC</span></a></li>	-->
+		<li id="activity-tab" name="activity-tab"><a href="#activity" onclick="subPanels('activity'); return false;"><span>Activity in &ldquo;{PLACE_NAME}&rdquo;</span></a></li>
+		<li id="chat-tab" name="chat-tab"><a href="#chat" onclick="subPanels('chat'); return false;"><span>Chat</span></a></li>
+		<li id="posting-tab" name="posting-tab"><a href="#posting" onclick="subPanels('activity'); toggleDiv('posting');"><span>Posting</span></a></li>
+		<li id="ooc-tab" name="ooc-tab"><a href="#ooc" onclick="subPanels('ooc');"><span>OOC</span></a></li>	-->
 		<!-- ELSE -->
-		<li name="introduction-tab"><a href="#introduction" onclick="subPanels('introduction'); return false;"><span>Introduction</span></a></li>
-		<li name="places-tab"><a href="/roleplay/{URL}/places" onclick="subPanels('places'); return false;"><span>Places</span></a></li>
-		<!-- IF REVIEWS --><li name="reviews-tab"><a href="#reviews" onclick="subPanels('reviews'); return false;"><span>Reviews</span></a></li><!-- ENDIF -->
-		<li name="characters-tab"><a href="#characters" onclick="subPanels('characters'); return false;"><span>Characters</span></a></li>
-		<!-- IF GROUPS --><li name="groups-tab"><a href="#groups" onclick="subPanels('groups'); return false;"><span>Groups</span></a></li><!-- ENDIF -->
-		<!-- IF ARCS --><li name="arcs-tab"><a href="#arcs" onclick="subPanels('arcs'); return false;"><span>Arcs</span></a></li><!-- ENDIF -->
-		<!-- IF QUESTS --><li name="quests-tab"><a href="#quests" onclick="subPanels('quests'); return false;"><span>Quests</span></a></li><!-- ENDIF -->
-		<!-- <li name="events-tab"><a href="#events" onclick="subPanels('events'); return false;"><span>Events</span></a></li> -->
-		<li name="chat-tab"><a href="#chat" onclick="subPanels('chat'); return false;"><span>Chat</span></a></li>
-		<!-- <li name="posting-tab"><a href="#posting" onclick="subPanels('activity'); return false;"><span>Posting</span></a></li> -->
-		<li name="ooc-tab"><a href="#ooc" onclick="subPanels('ooc'); return false;"><span>Forum</span></a></li>
-				<li name="activity-tab"><a href="#activity" onclick="subPanels('activity'); return false;"><span>Story</span></a></li>
-		<!-- ENDIF -->
-
+		<li id="introduction-tab" name="introduction-tab"><a href="#introduction" onclick="subPanels('introduction'); return false;"><span>Introduction</span></a></li>
+    <!-- IF ARCS --><li id="arcs-tab" name="arcs-tab"><a href="#arcs" onclick="subPanels('arcs'); return false;"><span>Arcs</span></a></li><!-- ENDIF -->
+    <!-- IF GROUPS --><li id="groups-tab" name="groups-tab"><a href="#groups" onclick="subPanels('groups'); return false;"><span>Factions</span></a></li><!-- ENDIF -->
+		<li id="characters-tab" name="characters-tab"><a href="#characters" onclick="subPanels('characters'); return false;"><span>Characters</span></a></li>
+		<li id="places-tab" name="places-tab"><a href="/roleplay/{URL}/places" onclick="subPanels('places'); return false;"><span>Settings</span></a></li>
+		<!-- IF REVIEWS --><li id="reviews-tab" name="reviews-tab"><a href="#reviews" onclick="subPanels('reviews'); return false;"><span>Reviews</span></a></li><!-- ENDIF -->
+		<!-- IF QUESTS --><li id="quests-tab" name="quests-tab"><a href="#quests" onclick="subPanels('quests'); return false;"><span>Quests</span></a></li><!-- ENDIF -->
+		<li id="ooc-tab" name="ooc-tab"><a href="#ooc" onclick="subPanels('ooc'); return false;"><span>Discussion</span></a></li>
+    <li id="chat-tab" name="chat-tab"><a href="#chat" onclick="subPanels('chat'); return false;"><span>Chatroom</span></a></li>
+		<!-- <li id="posting-tab" name="posting-tab"><a href="#posting" onclick="subPanels('activity'); return false;"><span>Posting</span></a></li> -->
+		<li id="activity-tab" name="activity-tab"><a href="#activity" onclick="subPanels('activity'); return false;"><span>History</span></a></li>
+    <!-- IF S_IS_BETA -->
+    <!-- IF EVENTS --><li id="events-tab" name="events-tab"><a href="#events" onclick="subPanels('events'); return false;"><span>Events</span></a></li><!-- ENDIF -->
+    <li id="forge-tab" name="forge-tab"><a href="/roleplay/{URL}/forge"><span>Forge</span></a></li>
+    <!-- ENDIF -->
+    <!-- ENDIF -->
 	</div>
 
 	<div id="content" class="panel bg3">
@@ -545,11 +567,7 @@
 			</div>
 		</div>
 
-		<!-- ENDIF -->
-
-
-		<!-- IF EVENTS_ENABLED -->
-		<div id="events">
+    <div id="events">
 			<h2><a href="#events"  name="events">Events</a></h2>
 			<div id="calendar">
 
@@ -567,6 +585,7 @@
 				<!-- END events -->
 			</div>
 		</div>
+
 		<!-- ENDIF -->
 
 		<div id="activity">
@@ -687,11 +706,14 @@
 				<!-- ENDIF -->
 
 			  <div class="place-navigation">
+					<!-- IF S_IS_VEHICLE -->
+					<!-- ELSE -->
 			  	<!-- IF PARENT_ID -->
 			  	<h4>{PLACE_NAME} is a part of <a href="/roleplay/{URL}/places/{PARENT_SLUG}"><img src="/roleplay/{URL}/places/{PARENT_SLUG}/image" style="height: 1.2em; margin-right: 0.25em; vertical-align: middle;" class="crisp-border" />{PARENT_NAME}</a>.</h4>
 			  	<!-- ELSE -->
 			  	<h4>{PLACE_NAME} is a part of <a href="/roleplay/{URL}"><img src="/roleplay/{URL}/image" style="height: 1.2em; margin-right: 0.25em; vertical-align: middle;" class="crisp-border" />{TITLE}</a>.</h4>
 			  	<!-- ENDIF -->
+					<!-- ENDIF -->
 
 			  	<!-- IF .children -->
 					<style type="text/css">
@@ -736,7 +758,21 @@
 					</h4>
 			  	<!-- ENDIF -->
 			  </div>
-				
+
+				<!-- IF S_HAS_STORES -->
+				<div class="stores">
+					<h4>
+						Stores in {PLACE_NAME}
+						<!-- IF S_CAN_EDIT --><a href="/stores" style="float:right;">Create Store Here &raquo;</a><!-- ENDIF -->
+					</h4>
+					<ul>
+						<!-- BEGIN stores -->
+						<li><a href="/stores/{stores.ID}">{stores.NAME}</a></li>
+						<!-- END stores -->
+					</ul>
+				</div>
+				<!-- ENDIF -->
+
 				<h4>Some of the {TOTAL_PRESENT} Characters Present</h4>
 				<div class="characters">
 					<!-- BEGIN characters_present -->
@@ -816,7 +852,7 @@
 			<div id="posting">
 				<!-- IF S_CAN_POST -->
 					<!-- IF S_IS_LOCKED -->
-
+						<h3>This location is currently 🔒 LOCKED.</h3>
 					<!-- ELSE -->
 						<!-- INCLUDE roleplay_posting.html -->
 					<!-- ENDIF -->
@@ -853,7 +889,7 @@
 			<h2><a href="#ooc" name="ooc">{TITLE}: <strong>O</strong>ut <strong>O</strong>f <strong>C</strong>haracter (<abbr="Out Of Character">OOC</abbr>)</a></h2>
 
 			<div class="buttons">
-				<div class="post-icon"><a href="/ucp.php?i=roleplays&amp;mode=add_thread&roleplay_id={ID}" title="{L_POST_TOPIC}"><span>{L_POST_TOPIC}</span></a></div>
+				<div class="post-icon"><a href="/ucp.php?i=roleplays&amp;mode=add_thread&amp;roleplay_id={ID}" title="{L_POST_TOPIC}"><span>{L_POST_TOPIC}</span></a></div>
 			</div>
 
 			<div class="forumbg<!-- IF topicrow.S_TOPIC_TYPE_SWITCH --> announcement<!-- ENDIF -->">
@@ -870,6 +906,7 @@
 				</ul>
 				<ul class="topiclist topics">
 			<!-- BEGIN topicrow -->
+
 					<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
 						<dl class="icon" style="background-image: url({topicrow.TOPIC_FOLDER_IMG_SRC}); background-repeat: no-repeat;">
 							<dt style="padding-bottom:5px; <!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS -->background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;<!-- ENDIF -->" title="{topicrow.TOPIC_FOLDER_IMG_ALT}">

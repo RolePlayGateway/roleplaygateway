@@ -1,0 +1,74 @@
+/*
+
+
+
+#wrap {
+	width: 100%;
+	padding: 10px;
+	min-width: 0px;
+}
+
+#page-header, #page-body {
+	clear:none;
+	margin: 0px;
+	padding: 0px;
+}
+
+#page-header {
+	float: left;
+	width: 250px;
+}
+
+#page-body {
+	margin-left: 300px;
+}
+
+#page-header * {
+	display:block;
+}
+
+#tabs {
+	min-width: 0px;
+}
+
+#tabs a {
+	float: none;
+	display: block;
+}
+
+.fora-bg {
+	clear:none;
+}
+
+span.corners-top, span.corners-bottom, span.corners-top span, span.corners-bottom span {
+	font-size: 1px;
+	line-height: 1px;
+	display: block;
+	height: 5px;
+	background-repeat: no-repeat;
+	background: none;
+}
+
+
+*/
+
+span.corners-top, span.corners-bottom, span.corners-top span, span.corners-bottom span {
+	font-size: 1px;
+	line-height: 1px;
+	display: block;
+	height: 5px;
+	background-repeat: no-repeat;
+	background: none;
+}
+
+
+ul.forums {
+
+/* 	background: none; */
+/*	background-color: #EFF7F8; */
+/*	background-image: url("http://www.roleplaygateway.com/styles/proseafoam/theme/images/gradient.gif");  */
+}
+
+.headerbar, .forumbg, .forabg {
+/* 	background: none; */
+}

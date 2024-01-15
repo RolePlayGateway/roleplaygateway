@@ -1,0 +1,103 @@
+<!-- INCLUDE overall_header.html -->
+<h2>{L_MEDAL_CP}</h2>
+<p></p>
+<form method="post" action="{U_MEDALS_ACTION}" name="post">
+<div class="panel bg3">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<div style="width: 100%;">
+			<div id="cp-menu">
+				<div id="navigation">
+					<ul>
+						<!-- IF S_CAN_NOMINATE_MEDALS -->
+						<li><a href="{U_NOMINATE_PANEL}"><span>{L_NOMINATE}</span></a></li>
+						<!-- ENDIF -->
+						<!-- IF S_CAN_AWARD_MEDALS -->
+						<li id="active-subsection"><a><span>{L_AWARD_MEDAL}</span></a></li>
+						<li><a href="{U_VALIDATE_PANEL}"><span>{L_NOMINATE_MEDAL}</span></a></li>
+						<li><a href="{U_AWARDED_PANEL}"><span>{L_AWARDED_MEDAL}</span></a></li>
+						<!-- ENDIF -->
+					</ul>
+				</div>
+			</div>
+			<div id="cp-main" class="ucp-main">
+				<h2>{L_AWARD_TO} {USERNAME}</h2>
+				<div class="panel" id="postingbox">
+					<div class="inner"><span class="corners-top"><span></span></span>
+						<fieldset class="fields1">
+							<dl>
+								<dt><strong>{L_MEDAL}:</strong></dt>
+								<dd>
+									<select name="mid" id="medal" onclick="ipreview(this)">{MEDALS}</select>
+								</dd>
+							</dl>
+							<dl>
+								<dt><strong>{L_IMAGE_PREVIEW}:</strong></dt>
+								<dd style="height: auto;"><span id="imagepreview"></span></dd>
+							</dl>
+						</fieldset>
+						<fieldset class="fields3">
+							<dl>
+								<dt><strong>{L_MEDAL_AWARD_REASON_EXPLAIN}:</strong></dt>
+							</dl>
+						</fieldset>
+						<fieldset class="fields1">
+							<!-- INCLUDE posting_buttons.html -->
+							<div id="smiley-box">
+								<!-- IF .smiley -->
+									<strong>{L_SMILIES}</strong><br />
+									<!-- BEGIN smiley -->
+										<a href="#" onclick="insert_text('{smiley.A_SMILEY_CODE}', true); return false;"><img src="{smiley.SMILEY_IMG}" width="{smiley.SMILEY_WIDTH}" height="{smiley.SMILEY_HEIGHT}" alt="{smiley.SMILEY_CODE}" title="{smiley.SMILEY_DESC}" /></a>
+									<!-- END smiley -->
+								<!-- ENDIF -->
+								<!-- IF S_SHOW_SMILEY_LINK -->
+									<br /><a href="{U_MORE_SMILIES}" onclick="window.open('{U_MORE_SMILIES}', '_phpbbsmilies', 'HEIGHT=350,resizable=yes,scrollbars=yes,WIDTH=300'); return false;">{L_MORE_SMILIES}</a>
+								<!-- ENDIF -->
+						
+								<!-- IF BBCODE_STATUS -->
+								<hr />
+								{BBCODE_STATUS}<br />
+								<!-- IF S_BBCODE_ALLOWED -->
+									{IMG_STATUS}<br />
+									{FLASH_STATUS}<br />
+									{URL_STATUS}<br />
+									{SMILIES_STATUS}
+								<!-- ENDIF -->
+								<!-- ENDIF -->
+								<!-- IF S_EDIT_DRAFT || S_DISPLAY_REVIEW -->
+									<!-- IF S_DISPLAY_REVIEW --><hr /><!-- ENDIF -->
+									<!-- IF S_EDIT_DRAFT --><strong><a href="{S_UCP_ACTION}">{L_BACK_TO_DRAFTS}</a></strong><!-- ENDIF -->
+									<!-- IF S_DISPLAY_REVIEW --><strong><a href="#review">{L_TOPIC_REVIEW}</a></strong><!-- ENDIF -->
+								<!-- ENDIF -->
+							</div>
+							<div id="message-box">
+								<textarea id="message" name="message" rows="15" cols="76" tabindex="3" wrap="physical" title="" class="inputbox">{MESSAGE}</textarea>
+							</div>
+						</fieldset>
+					<span class="corners-bottom"><span></span></span></div>
+				</div>
+				<div class="panel bg2">
+					<div class="inner"><span class="corners-top"><span></span></span>
+						<fieldset class="submit-buttons">
+							<input type="submit" accesskey="s" tabindex="6" name="submit" value="{L_SUBMIT}" class="button1" />&nbsp;
+						</fieldset>
+					<span class="corners-bottom"><span></span></span></div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+</form>
+<script type="text/javascript">
+	{JS}
+	var form_name = 'post';
+	var text_name = 'message';
+	function ipreview(element)
+	{
+		if (medals[element.value] == '' || medals[element.value] == null)
+			document.getElementById('imagepreview').innerHTML = '{L_IMAGE_ERROR}';		
+		else
+			document.getElementById('imagepreview').innerHTML = '<img src="'+medals[element.value]+'" title="'+medals[element.value]+'" alt="'+medals_desc[element.value]+'" style="max-width: 60px; max-height: 60px;" /> '+medals_desc[element.value];
+	}
+</script>
+<!-- INCLUDE overall_footer.html -->

@@ -1,15 +1,6 @@
 <!-- INCLUDE overall_header.html -->
 <!-- INCLUDE stylesheet_roleplay.html -->
 
-<!-- IF S_DISPLAY_SEARCH or (S_USER_LOGGED_IN and not S_IS_BOT) -->
-<ul class="linklist">
-	<!-- IF S_DISPLAY_SEARCH -->
-		<li><a href="{U_SEARCH_UNANSWERED}">{L_SEARCH_UNANSWERED}</a><!-- IF S_USER_LOGGED_IN --> &bull; <a href="{U_SEARCH_NEW}">{L_SEARCH_NEW}</a><!-- ENDIF --> &bull; <a href="{U_SEARCH_ACTIVE_TOPICS}">{L_SEARCH_ACTIVE_TOPICS}</a></li>
-	<!-- ENDIF -->
-	<!-- IF not S_IS_BOT and U_MARK_FORUMS --><li class="rightside"><a href="{U_MARK_FORUMS}" accesskey="m">{L_MARK_FORUMS_READ}</a></li><!-- ENDIF -->
-</ul>
-<!-- ENDIF -->
-
 <!-- IF not S_USER_LOGGED_IN -->
 <div id="content" class="panel bg3">
 	<div class="inner" style="font-size: 1.5em;"><span class="corners-top"></span>
@@ -25,12 +16,15 @@
 		</style>
 
 		<!-- INCLUDE explainer.html -->
+    <p style="margin-top: -3em;"><center><strong>When you're ready to continue,</strong> <a href="/ucp.php?mode=register" class="button">Create an Account &raquo;</a></center></p>
 
 		<span class="clearfix"></span>
 	<span class="corners-bottom"></span></div>
 </div>
 <!-- ENDIF -->
 
+<!-- INCLUDE hotspots.html -->
+<!-- INCLUDE featured-users.html -->
 <!-- INCLUDE roleplay-list-body.html -->
 
 <!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->

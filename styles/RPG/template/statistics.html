@@ -1,0 +1,76 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE scripts_d3.html -->
+
+<h1>Reports & Statistics</h1>
+<p>Overall health of RPG.</p>
+
+<div class="special panel">
+  <h2>Transaction Volume</h2>
+  <div id="transaction-volume"></div>
+  <h2>Content Volume</h2>
+  <div id="snippet-volume"></div>
+  <script type="text/javascript">
+    let MAX_COUNT = 1000;
+    let parseTime = d3.timeParse('%Y-%m-%d');
+    let margin = {top: 10, right: 30, bottom: 30, left: 50},
+        width = 900 - margin.left - margin.right,
+        height = 360 - margin.top - margin.bottom;
+
+    chartData('https://api.roleplaygateway.com/volumes', '#transaction-volume');
+    chartData('https://api.roleplaygateway.com/metrics/snippets', '#snippet-volume', 100000);
+
+    function chartData (path, target, upper = MAX_COUNT) {
+      let svg = d3.select(target)
+        .append('svg')
+          .attr('width', width + margin.left + margin.right)
+          .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+          .attr('transform',
+                'translate(' + margin.left + ',' + margin.top + ')');
+
+      d3.json(path, function (data) {
+        data.forEach(function(d) {
+          d.label = parseTime(d.label);
+          d.transactions = +d.transactions;
+          d.transactions = (d.transactions > upper) ? upper : d.transactions;
+          delete d.volume;
+          // d.volume = +d.volume;
+        });
+
+        console.log('resulting data:', data);
+
+        let x = d3.scaleTime().range([ 0, width ]);
+        let y = d3.scaleLinear().range([ height, 0 ]);
+        let d = d3.line().x(function(d) {
+          return x(d.label)
+        }).y(function(d) {
+          return y(d.transactions)
+        });
+
+        x.domain(d3.extent(data, function(d) { return d.label; }));
+        y.domain([0, d3.max(data, function(d) { return d.transactions; })]);
+
+        svg.append('g')
+          .attr('transform', 'translate(0,' + height + ')')
+          .call(d3.axisBottom(x));
+
+        svg.append('g')
+          .call(d3.axisLeft(y));
+
+        svg
+          .append('path')
+          .datum(data)
+          .attr('fill', 'none')
+          .attr('stroke', 'steelblue')
+          .attr('stroke-width', 1.5)
+          .attr('d', d);
+      });
+
+      return;
+    }
+  </script>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

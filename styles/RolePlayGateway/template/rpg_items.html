@@ -1,0 +1,39 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<h1>RPG Items</h1>
+<h3>What exists in the worlds?</h3>
+<p><a href="/characters">Characters in RPG universes</a> can find various <strong>Items</strong> which might help them on their journey.</p>
+  
+<div class="special panel<!-- IF S_IS_SINGLE --> large featured<!-- ENDIF -->">
+  <!-- BEGIN items -->
+  <div class="item">
+    <h3><a href="/items/{items.ID}">{items.NAME}</a></h3>
+    <h4><strong>{items.QUANTITY}</strong> in existence, base price <strong>{items.VALUE} <small><abbr title="One million bits per INK.">bits</abbr> of INK</small></strong>.  <strong>{items.ISSUED}</strong> sit in the hands of <strong>{items.HOLDERS}</strong> different characters.</h4>
+    <p>{items.DESCRIPTION}</p>
+    <!-- IF S_IS_SINGLE and S_HAS_STORES -->
+    <div>
+      <h4>available in</h4>
+      <ul>
+        <!-- BEGIN stores -->
+        <li><a href="/stores/{stores.ID}">{stores.NAME}</a>, a shop in <a href="{stores.PLACE_LINK}">{stores.PLACE_NAME}</a></li>
+        <!-- END stores -->
+      </ul>
+    </div>
+    <!-- ENDIF -->
+  </div>
+  <!-- END items -->
+</div>
+  
+<div class="special panel">
+  <h2>Characters With Items</h2>
+  <!-- BEGIN characters -->
+  <div>
+    <h3><a href="{characters.LINK}">{characters.NAME}</a></h3>
+  </div>
+  <!-- END characters -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->

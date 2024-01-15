@@ -1,8 +1,9 @@
-<!-- INCLUDE ucp_header.html -->
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
 
 <h2>Edit Roleplay</h2>
 
-<form id="ucp" method="post" enctype="multipart/form-data" action="http://www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit&action=submit">
+<form id="ucp" method="post" enctype="multipart/form-data" action="//www.roleplaygateway.com/ucp.php?i=roleplays&mode=edit&action=submit">
 
 <input type="hidden" name="id" value="{ROLEPLAY_ID}" />
 
@@ -59,7 +60,7 @@
 				<h3>Introduction</h3>
 				<p>This is the overview of your roleplay's general storyline.</p>
 				<script type="text/javascript">edToolbar('roleplay_introduction');</script>
-				<textarea name="roleplay_introduction" id="roleplay_introduction" rows="50" class="inputbox" style="width:100%;">{INTRODUCTION}</textarea>
+				<textarea name="roleplay_introduction" id="roleplay_introduction" rows="50" class="inputbox previewable" style="width:100%;">{INTRODUCTION}</textarea>
 			</ul>
 		</fieldset>
 		
@@ -67,10 +68,14 @@
 			<input type="reset" value="{L_RESET}" name="reset" class="button2" />&nbsp; 
 			<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
 		</fieldset>
+
+    <div class="content">
+      <div id="innerPreview"></div>
+    </div>
 		
 	<span class="corners-bottom"><span></span></span></div>
 </div>
 
 </form>
 
-<!-- INCLUDE ucp_footer.html -->
+<!-- INCLUDE overall_footer.html -->

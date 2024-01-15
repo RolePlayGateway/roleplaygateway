@@ -1,0 +1,30 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<header>
+  <h1>Bastions</h1>
+  <div>
+    <h3>Conquerable Strongholds &amp; Headquarters</h3>
+    <p>Bastions are conquerable locations for <a href="/groups">Groups on RPG</a>.  Building up a Bastion's strength requires characters to maintain a presence within them, and can be "conquered" by overcoming the Bastion's active character count with "pledged" characters.</p>
+  </div>
+</header>
+
+<div class="special panel">
+  <h3>{TOTAL_BASTIONS} Known Bastions</h3>
+
+  <div>
+    <!-- BEGIN open_bastions -->
+    <div class="bastion">
+      <h4>
+        <span style="float: right;">located in <a href="/roleplay/{open_bastions.ROLEPLAY_URL}">{open_bastions.ROLEPLAY_TITLE}</a></span>
+        <a href="/bastions/{open_bastions.BASTION_ID}">{open_bastions.BASTION_NAME}</a>, a Bastion of <a href="/roleplay/{open_bastions.ROLEPLAY_URL}/groups/{open_bastions.GROUP_URL}">{open_bastions.GROUP_NAME}</a>
+      </h4>
+      <p>{open_bastions.BASTION_SYNOPSIS}</p>
+    </div>
+    <!-- END open_bastions -->
+  </div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

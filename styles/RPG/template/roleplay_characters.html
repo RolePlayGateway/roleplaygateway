@@ -1,0 +1,54 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
+
+<style type="text/css">
+  .character {
+    height: 130px;
+  }
+</style>
+
+<img src="/universes/{ROLEPLAY_URL}/image" alt="{ROLEPLAY_NAME}" class="crisp-border" style="float:left; margin-right: 10px; margin-bottom: 0.5em;" />
+
+<h1 style="color:#596E7C; margin-right: 0;"><a href="/universes/{ROLEPLAY_URL}/characters/new" style="float: right;" class="button">Create New Character &raquo;</a><a href="/universes/{ROLEPLAY_URL}/">{ROLEPLAY_NAME}</a> &raquo; <a href="/universes/{ROLEPLAY_URL}/characters">Characters</a></h1>
+<p style="margin-bottom: 0;">{ROLEPLAY_DESCRIPTION}</p>
+
+<div>
+  <a href="/universes/{ROLEPLAY_URL}/characters" class="button">Characters</a>
+  <a href="/universes/{ROLEPLAY_URL}/places" class="button">Settings</a>
+  <a href="/universes/{ROLEPLAY_URL}/groups" class="button">Groups</a>
+</div>
+
+<ul class="supersize linklist" style="font-size: 1.5em;">
+  <li class="rightside pagination">{TOTAL_CHARACTERS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<br class="clearfix" />
+
+<div class="special panel" style="margin-top: 0.5em;">
+  <!-- IF .buyable_characters -->
+    <!-- INCLUDE buyable-characters-scroller.html -->
+  <!-- ENDIF -->
+  <h2>All Characters</h2>
+  <div>
+    <!-- BEGIN characters -->
+    <div style="clear: both;">
+      <img class="medium crisp-border quick-float-left" style="margin-bottom: 1em;" src="/universes/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
+      <div>
+        <a href="/universes/{ROLEPLAY_URL}/characters/{characters.URL}#story" class="button" style="float:right;">{characters.SIGHTINGS} sightings &raquo;</a>
+        <h3><a href="/universes/{ROLEPLAY_URL}/characters/{characters.URL}/"><strong>{characters.NAME}</strong></a><!-- IF characters.S_IS_ANONYMOUS --><!-- ELSE --> <span><em>played by {characters.OWNER_USERNAME}</em></span><!-- ENDIF --></h3>
+      </div>
+      <p>{characters.SYNOPSIS}</p>
+    </div>
+    <!-- BEGINELSE -->
+      <p class="supersize">There are no characters in this roleplay!</p>
+    <!-- END characters -->
+  </div>
+</div>
+
+<ul class="supersize linklist" style="font-size: 1.5em;">
+  <li class="rightside pagination">{TOTAL_CHARACTERS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,43 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+
+<style type="text/css">
+  .panel p {
+    min-height: 0;
+  }
+  
+  .labeled.action > div {
+    text-align: center;
+  }
+  
+  .labeled.action > div > span {
+    font-size: 1.4em;
+  }
+</style>
+
+<h2>{ASSET_NAME}</h2>
+<div class="special panel">
+  <p class="supersize"><!-- IF S_IS_BASE_ASSET --><!-- ELSE -->Known as <small>{ASSET_SYMBOL}</small>, <!-- ENDIF -->{ASSET_NAME} is a digital asset on RPG.  There are <strong>{ASSET_ISSUANCE}</strong> <small>{ASSET_SYMBOL}</small> in existence, with around <strong>{ASSET_HOLDERS}</strong> users holding balances.</p>
+
+  <!-- IF S_IS_BASE_ASSET -->
+  <p class="supersize"><small>{ASSET_SYMBOL}</small> is the base currency of RPG, and is used as a medium-of-exchange for our community to buy and sell resources in <a href="/universes">player-created universes</a>.  It can be earned by participating in various initiatives around the site, such as by <a href="/medals">earning Achievements</a> for activities which improve the health of our community.</p>
+
+  <h3>Experiments Ahead!</h3>
+  <p>The <small>{ASSET_SYMBOL}</small> experiment is just beginning — so keep your eyes open for new opportunities around the site!  As long as <small>{ASSET_SYMBOL}</small> remains in <span class="label">beta</span>, RPG will carefully monitor and manage the system as we move towards a <a href="https://fabric.fm">fully decentralized asset</a>.  Interested in helping? <a href="https://maki.io/people" class="button">Join the Maki Slack &raquo;</a></p>
+
+  <h3 class="supersize">The Forge</h3>
+  <p class="supersize">All universes on RPG have a dedicated <strong>Forge</strong>, where <small>{ASSET_SYMBOL}</small> can be spent to create and distribute virtual items.  Items can be equipped to <a href="/characters">Characters</a>, sold at in-game <a href="/stores">Stores</a>, and a few very special items can even grant you with <em>mysterious powers</em>.</p>
+  
+  <h3 class="supersize">What else can we do with <small>{ASSET_SYMBOL}</small>?</h3>
+  <p class="supersize">Browse <a href="/orders">the Marketplace</a> to see a list of what's available, or browse to <a href="/member/{S_USERNAME}/places">your list of Settings</a> to manage your listings.  Sell off old property to free up resources, and invest in others to contribute to your worlds by paying them for their work.</p>
+
+  <h4 class="supersize">Making It Rain</h4>
+  <p class="supersize"><small>INK</small> can also be used to tip other users for their content, showing appreciation for their work.  Show some gratitude for your favorite writers by giving them more <small>INK</small> to spend!</p>
+
+  <h3 class="supersize">Questions?</h3>
+  <p>Head over to <a href="">the bulletin boards</a> and ask a question in <a href="https://www.roleplaygateway.com/help-f11.html">the Help Forum</a>! <a href="/introducing-ink-the-writer-currency-t105820.html" class="button">Join the Discussion &raquo;</a></p>
+  <!-- ENDIF -->
+</div>
+
+<!-- INCLUDE overall_footer.html -->

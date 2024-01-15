@@ -1,0 +1,57 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<style type="text/css">
+.green.label, .red.label {
+  color: white;
+}
+
+.green.label {
+  background-color: darkgreen;
+}
+.red.label {
+  background-color: darkred;
+}
+
+tr:hover {
+  background-color: lightyellow;
+}
+
+</style>
+
+<h1 style="color: black;">EXITSHEET SUPREME</h1>
+<h2>{TOTAL_EXITS} dimensional linkages</h2>
+
+<table style="width: 100%;">
+  <thead>
+    <tr>
+      <th><input type="checkbox" /></th>
+      <th>#</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Direction</th>
+      <th>Bearing</th>
+      <th>Controls</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- BEGIN exits -->
+    <tr>
+      <td><input type="checkbox" /></td>
+      <td>{exits.ID}</td>
+      <td>{exits.FROM}</td>
+      <td>{exits.TO}</td>
+      <td>{exits.DIRECTION}</td>
+      <td>{exits.BEARING}</td>
+      <td>
+        <!-- IF exits.S_CAN_EDIT -->
+        <a class="button" href="/ucp.php?i=roleplays&amp;mode=edit_place&amp;place_id={exits.ID}" style="margin: 1em;">edit &raquo;</a>
+        <!-- ENDIF -->
+      </td>
+    </tr>
+    <!-- END exits -->
+  </tbody>
+  
+</table>
+
+<!-- INCLUDE overall_footer.html -->

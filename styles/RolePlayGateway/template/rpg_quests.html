@@ -2,7 +2,60 @@
 <!-- INCLUDE stylesheet_roleplay.html -->
 
 <img src="/roleplay/{ROLEPLAY_URL}/image" class="crisp-border" style="float:left; margin-right: 1em;" />
-<h1 style="color:#596E7C;"><a href="/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/quests">Quests</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/quests/{QUEST_URL}">Quest #{QUEST_ID}</a></h1>
+
+<!-- IF S_IS_BETA -->
+<div class="quick-float-right">
+  <div class="labeled action">
+    <small>INK</small> <span data-bind="stats.tips" data-link="/quests/{QUEST_ID}">{BOUNTY_AMOUNT}</span>
+    <button class="special button" on-tap="_promptAndDepositBounty" data-amount="100.00">+ <small>INK</small></button>
+  </div>
+  <center style="margin-top: 1em;"><abbr title="Tips are donations to the author." class="tooltipped">total bounty</abbr></center>
+</div>
+
+<script type="text/javascript">
+$(document).on('click', '*[on-tap=_promptAndDepositBounty]', function (e) {
+  console.log('tapped!');
+  
+  $(this).addClass('loading');
+  
+  var amount = parseFloat(prompt('How much would you like to deposit?'));
+	if (!amount) return;
+
+  var wallet = $('*[data-link="/members/{S_USER_ID}"][data-bind="stats.balance"]');
+  var jar = $('*[data-link="/quests/{QUEST_ID}"][data-bind="stats.bounty"]');
+  
+  console.log('found:', jar);
+  console.log('amount:', amount);
+  
+  var balance = parseFloat(wallet.html());
+  wallet.html((balance - amount).toFixed(2));
+  
+  $.ajax({
+    url: '/transactions',
+    type: 'POST',
+    data: {
+      to: '{POSTER_ID}',
+      for: '/quests/{TOPIC_ID}',
+      amount: amount
+    },
+    success: function (data) {
+      var before = parseFloat(jar.html());
+      var after = before + amount;
+      
+      console.log('before:', before);
+      console.log('after:', after);
+      
+      jar.html(after.toFixed(2));
+    }
+  });
+
+});
+</script>
+<!-- ENDIF -->
+
+<h1 style="color:#596E7C;">
+	<a href="/roleplay/{ROLEPLAY_URL}/">{ROLEPLAY_TITLE}</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/quests">Quests</a> &raquo; <a href="/roleplay/{ROLEPLAY_URL}/quests/{QUEST_URL}">Quest #{QUEST_ID}</a>
+</h1>
 
 <br class="clear: both;" />
 
@@ -20,19 +73,25 @@
       <!-- <h3><strong>{PLACE_COUNT}</strong> Places Controlled</h3> -->
       
       <h2><strong>{CHARACTER_COUNT}</strong> Characters</h2>
-			<!-- BEGIN characters -->
+			<!-- BEGIN participating -->
 			<div class="character">
-				<img src="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
+				<img src="/roleplay/{ROLEPLAY_URL}/characters/{participating.URL}/image" alt="Character Portrait: {participating.NAME}" />
 				<div>
-				  <h3>{characters.QUEST_STATUS}</h3>
-					<a href="http://www.roleplaygateway.com/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}"><strong>{characters.NAME}</strong></a> <span><em>played by {characters.OWNER_USERNAME}</em></span>
+				  <h3>{participating.QUEST_STATUS}</h3>
+					<a href="/roleplay/{ROLEPLAY_URL}/characters/{participating.URL}"><strong>{participating.NAME}</strong></a> <span><em>played by {participating.OWNER_USERNAME}</em></span>
 				</div>
-				<span>{characters.SYNOPSIS}</span>
+				<span>{participating.SYNOPSIS}</span>
 			</div>
 			<!-- BEGINELSE -->
 				<p class="supersize">There are no characters in this quest!</p>
-			<!-- END characters -->
-			
+			<!-- END participating -->
+      
+      <h3>Join with</h3>
+      <div>
+        <!-- BEGIN characters -->
+        <img src="/roleplay/{ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Participate with {characters.NAME}" />
+        <!-- END characters -->
+      </div>
 			
 			<br class="clear" /> 
 

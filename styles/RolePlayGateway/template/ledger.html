@@ -4,9 +4,6 @@
 
 <!-- IF S_IS_BETA -->
 <style>
-body {
-  font: 10px sans-serif;
-}
 .axis path,
 .axis line {
   fill: none;
@@ -50,7 +47,8 @@ body {
 }
 </style>
 
-<div id="balance-chart"></div>
+<h3>Currency Distribution (visible to Beta Testers only)</h3>
+<div id="balance-chart" style="margin-top: 2.5em;"></div>
 <div id="balance-table"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.js"></script>
@@ -61,13 +59,13 @@ var url = "/balances";
 
 var totalWidth = 900;
 var totalHeight = 360;
-var margin = {top: 10, right: 10, bottom: 30, left: 30};
+var margin = {top: 10, right: 10, bottom: 30, left: 150};
 
 var width = totalWidth - margin.left - margin.right;
 var height = totalHeight - margin.top - margin.bottom;
 
 var numBins = 10
-var binWidth = 250
+var binWidth = 50
 
 d3.json(url, function(err,data) {
   var balanceChart = dc.barChart("#balance-chart");
@@ -95,9 +93,10 @@ d3.json(url, function(err,data) {
 
   var x = d3.scale.linear()
     .domain([0, histMaxKey])
+    //.domain([0, 50])
 
   var y = d3.scale.linear()
-    .domain([0, histMaxValue])
+    .domain([0, histMaxValue + 5000])
 
   balanceChart
     .xAxis()
@@ -131,6 +130,9 @@ d3.json(url, function(err,data) {
 </script>
 <!-- ENDIF -->
 
+<!-- IF FINAL_BALANCE -->
+<h2 style="float: right;">Balance: <span>{FINAL_BALANCE}</span> <small>INK</small></h2>
+<!-- ENDIF -->
 
 <h2>RPG Ledger</h2>
 <p>A list of all transaction data.</p>

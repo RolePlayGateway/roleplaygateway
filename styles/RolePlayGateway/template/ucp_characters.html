@@ -1,8 +1,11 @@
-<!-- INCLUDE ucp_header.html -->
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+<!-- INCLUDE stylesheet_quill.html -->
+<!-- INCLUDE roleplay_controls.html -->
 
 <h2>Character Management</h2>
 
-<form id="ucp" method="post" action="http://www.roleplaygateway.com/ucp.php?i=characters&mode=edit">
+<form id="ucp" method="post" action="/ucp.php?i=characters&amp;mode=edit">
 
 <div class="panel">
 	<div class="inner"><span class="corners-top"><span></span></span>
@@ -13,25 +16,63 @@
 		<input class="inputbox supersize" style="width: 350px; font-size: 1.2em; margin:0.5em; padding: 0.25em;" type="text" id="characterFilter" placeholder="Type here to filter by name or roleplay." />
     <strong>We hate scrolling, too.</strong>
 
-		<ul class="topiclist cplist" id="characterList"> 
+		<ul class="topiclist cplist" id="characterList">
 		
+    <table>
 		<!-- BEGIN characters -->
-		<li class="row bg1" data-name="{characters.NAME}" data-roleplay-name="{characters.ROLEPLAY}"> 
-			<dl> 
-				<dt>
-          <img class="crisp-border" style="float:left; height: 50px; margin-right: 1em;" src="/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}/image" />
-					<a href="/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}/" class="forumtitle">{characters.NAME}</a>
-					<br />{characters.SYNOPSIS}<br /><i>{characters.MODES}</i>
-				</dt> 
-				<dd class="mark"><a href="http://www.roleplaygateway.com/ucp.php?i=characters&mode=abandon&character_id={characters.ID}">Abandon</a></dd> 
-				<dd class="mark"><a href="http://www.roleplaygateway.com/ucp.php?i=characters&mode=edit&character_id={characters.ID}">Edit</a></dd> 
-				<dd class="mark" style="width: 180px;"><a href="http://www.roleplaygateway.com/roleplay/{characters.ROLEPLAY_URL}/">{characters.ROLEPLAY}</a></dd> 
-			</dl> 
-		</li>	
+		<tr style="clear:both;" data-name="{characters.NAME}", data-roleplay-name="{characters.ROLEPLAY}">
+      <td>
+        <img class="crisp-border" style="float:left; height: 50px; margin-right: 1em;" src="/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}/image" />
+				<a href="/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}/" class="forumtitle">{characters.NAME}</a>
+				<br />{characters.SYNOPSIS}<br /><i>{characters.MODES}</i>
+			</td>
+      <td>
+        <a href="/roleplay/{characters.ROLEPLAY_URL}/">{characters.ROLEPLAY}</a>
+      </td>
+      <td>
+  			<div class="mini button group">
+  				<a class="button" href="/ucp.php?i=characters&amp;mode=abandon&amp;character_id={characters.ID}">Abandon</a>
+          <a class="button" href="/ucp.php?i=characters&amp;mode=edit&amp;character_id={characters.ID}">Edit</a>
+          <a class="button" href="/explorer?characterID={characters.ID}&amp;roleplayID={characters.ROLEPLAY_ID}">Explore &raquo;</a>
+          <a class="button" href="/roleplay/{characters.ROLEPLAY_URL}/characters/{characters.URL}/inventory">Inventory &raquo;</a>
+          
+          <!-- IF S_IS_BETA -->
+  					<!-- IF characters.S_IS_FOR_SALE -->
+  					<div class="button group">
+  						<a class="pricing" on-tap="_promptAndSetPrice" data-link="/characters/{characters.ID}">
+  							<small>INK</small>
+  							<span data-bind="sale-price">{characters.SALE_PRICE}</span>
+  						</a>
+
+  						<!-- IF characters.S_CAN_EDIT -->
+  						<div>
+  							<a class="header" on-tap="_promptAndSetPrice" data-link="/characters/{characters.ID}"><small>change</small></a>
+  							<a class="header" on-tap="_cancelOrder" data-link="/orders/{orders.ORDER_ID}" title="cancel this order"><small>close</small></a>
+  						</div>
+  						<!-- ELSE -->
+  						<!-- IF characters.S_CAN_AFFORD -->
+  						<a class="header" on-tap="_fillOrder" data-link="/orders/{characters.ORDER_ID}" data-price="{characters.SALE_PRICE}">Buy Now</a>
+  						<!-- ELSE -->
+  						<div class="header">
+  							<small>not enough INK</small><br />
+  							<a href="/medals" data-price="{characters.SALE_PRICE}">Earn to Buy</a>
+  						</div>
+  						<!-- ENDIF -->
+  						<!-- ENDIF -->
+  					</div>
+  					<!-- ELSE -->
+  					<!-- IF characters.S_CAN_EDIT -->
+  					<a class="button" on-tap="_promptAndSetPrice" data-link="/characters/{characters.ID}">sell</a>
+  					<!-- ENDIF -->
+  					<!-- ENDIF -->
+  				<!-- ENDIF -->
+  			</div>
+      </td>
+		</tr>
 	
 		<!-- END characters -->
 		
-		</ul>
+  </table>
 		
 	<span class="corners-bottom"><span></span></span></div>
 </div>
@@ -44,12 +85,12 @@
   $('#characterFilter').keyup(function() {
     var filter = $(this).val();
     if (filter.length > 0) {
-      $('#characterList li').hide();
-      $('#characterList li[data-name*="'+filter+'"]').show();
-      $('#characterList li[data-roleplay-name*="'+filter+'"]').show();
+      $('#characterList tr').hide();
+      $('#characterList tr[data-name*="'+filter+'"]').show();
+      $('#characterList tr[data-roleplay-name*="'+filter+'"]').show();
     } else {
-      $('#characterList li').show();
+      $('#characterList tr').show();
     }
   });
 </script>
-<!-- INCLUDE ucp_footer.html -->
+<!-- INCLUDE overall_footer.html -->

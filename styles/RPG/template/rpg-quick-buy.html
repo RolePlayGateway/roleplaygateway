@@ -1,0 +1,17 @@
+<div>
+  <h3>Quick Buy (Items Most Recently Listed for Sale)</h3>
+  <div>
+    <table>
+      <!-- BEGIN wares -->
+      <tr class="clearfix">
+        <td>
+          <h4><a href="/items/{wares.ID}"><abbr title="{wares.DESCRIPTION}">{wares.NAME}</abbr></a></h4>
+        </td>
+        <td><strong>{wares.INVENTORY}</strong> remaining</td>
+        <td><abbr title="{wares.PRICE} INK (1,000,000 bits per 1.00 INK)"><strong>{wares.PRICE_IN_BITS}</strong> <small>bits</small></abbr></td>
+        <td><a class="button" href="#" on-tap="_confirmShopBuy" data-name="{wares.NAME}" data-price="{wares.PRICE}" data-target="/stores/{STORE_ID}/items/{wares.ID}">Buy for <abbr title="{wares.PRICE} INK (1,000,000 bits per INK)"><strong>{wares.PRICE_IN_BITS}</strong> bits</abbr> &raquo;</a></td>
+      </tr>
+      <!-- END wares -->
+    </table>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDE stylesheet_roleplay.html -->
+
+<style type="text/css">
+  .character {
+    height: 130px;
+  }
+</style>
+
+<h1 style="color:#596E7C;"><a href="//www.roleplaygateway.com/member/{USERNAME}/">{USERNAME}</a> &raquo; <a href="//www.roleplaygateway.com/member/{USERNAME}/characters">Characters</a></h1>
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_CHARACTERS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+    <div class="postbody" style="width:inherit;"><div class="">
+
+      <!-- BEGIN characters -->
+      <div class="character">
+	      <img src="/universes/{characters.ROLEPLAY_URL}/characters/{characters.URL}/image" alt="Character Portrait: {characters.NAME}" />
+	      <div>
+          <a href="/universes/{characters.ROLEPLAY_URL}/characters/{characters.URL}#story" style="float:right;">{characters.SIGHTINGS} sightings &raquo;</a>
+		      <a href="/universes/{characters.ROLEPLAY_URL}/characters/{characters.URL}/"><strong>{characters.NAME}</strong></a>
+		      <p><em> as part of <a href="/universes/{characters.ROLEPLAY_URL}/">{characters.ROLEPLAY_TITLE}</a></em></p>
+	      </div>
+	      <span>{characters.SYNOPSIS}</span>
+      </div>
+      <!-- BEGINELSE -->
+	      <p class="supersize">This user has not created any characters!</p>
+      <!-- END characters -->
+
+    </div></div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>
+
+<ul class="linklist">
+    <li class="rightside pagination">{TOTAL_CHARACTERS} &bull; <!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --></li>
+</ul>
+
+<!-- INCLUDE overall_footer.html -->
